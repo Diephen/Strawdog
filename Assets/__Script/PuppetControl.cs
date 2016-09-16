@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PuppetControl : MonoBehaviour {
+	[SerializeField] Animator m_MouthAnim;
 	[SerializeField] GameObject[] m_Finger = new GameObject[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
 	[SerializeField] float[] m_MoveDistance = new float[3];
@@ -88,6 +89,11 @@ public class PuppetControl : MonoBehaviour {
 			if (Input.GetKeyDown (m_ListenKey [1])) {
 				m_Pressed [1] = true;
 				startTime [1] = Time.time;
+				// talk 
+				if(m_MouthAnim != null){
+					Debug.Log ("speak");
+					m_MouthAnim.SetTrigger ("TriggerSpeak");
+				}
 			} else if (Input.GetKeyUp (m_ListenKey [1])) {
 				m_Pressed [1] = false;
 				startTime [1] = Time.time;
