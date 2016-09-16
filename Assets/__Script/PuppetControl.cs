@@ -7,7 +7,7 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] float[] m_MoveDistance = new float[3];
 	[SerializeField] float[] m_CrouchMoveDistance = new float[3];
 	[SerializeField] float[] m_PickupMoveDistance = new float[3];
-	[SerializeField] bool[] m_Continuous = new bool[3];
+	[SerializeField] bool[] m_Continuous = new bool[] {true, false, true};
 	bool[] m_Pressed = new bool[] { false, false, false };
 	Vector3[] oldPos = new Vector3[3];
 	Vector3[] newPos = new Vector3[3];
@@ -17,6 +17,7 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] float m_MoveSpeed = 2.0f;
 
 	enum charState {idle, left, right, crouch, pickup};
+	bool crouchStart = false;
 	charState m_charState = charState.idle;
 	float[] startTime = new float[3];
 	float[] distCovered = new float[3];
@@ -27,13 +28,13 @@ public class PuppetControl : MonoBehaviour {
 			//Define localPosition of travel for Lerp
 			oldPos[i] = m_Finger [i].transform.localPosition;
 			newPos[i] = oldPos[i];
-			newPos [i].y -= m_MoveDistance [i];
+			newPos [i].y += m_MoveDistance [i];
 			//Define localPosition of travel for crouch Lerp
 			crouchPos [i] = oldPos [i];
-			crouchPos [i].y -= m_CrouchMoveDistance [i];
+			crouchPos [i].y += m_CrouchMoveDistance [i];
 			//Define localPosition of travel for Pickup Lerp
 			PickupPos [i] = oldPos [i];
-			PickupPos [i].y -= m_PickupMoveDistance [i];
+			PickupPos [i].y += m_PickupMoveDistance [i];
 		}
 	}
 	
@@ -42,6 +43,9 @@ public class PuppetControl : MonoBehaviour {
 
 	//Handle Pickup
 		if (Input.GetKeyDown (m_ListenKey [3])) {
+			startTime [0] = Time.time;
+			startTime [1] = Time.time;
+			startTime [2] = Time.time;
 			m_charState = charState.pickup;
 			Pickup ();
 		} else if (Input.GetKeyUp (m_ListenKey [3])) {
@@ -49,11 +53,19 @@ public class PuppetControl : MonoBehaviour {
 		}
 
 	//Handle Crouch
-		if(Input.GetKey (m_ListenKey[0]) && 
-		   Input.GetKey (m_ListenKey[1]) && 
-		   Input.GetKey (m_ListenKey[2]) &&
-			m_charState !=  charState.pickup){
+		if (Input.GetKey (m_ListenKey [0]) &&
+		   Input.GetKey (m_ListenKey [1]) &&
+		   Input.GetKey (m_ListenKey [2]) &&
+		   m_charState != charState.pickup) {
 			m_charState = charState.crouch;
+			if (crouchStart == false) {
+				crouchStart = true;
+				startTime [0] = Time.time;
+				startTime [1] = Time.time;
+				startTime [2] = Time.time;
+			}
+		} else {
+			crouchStart = false;
 		}
 			
 		if (m_charState != charState.pickup) {
