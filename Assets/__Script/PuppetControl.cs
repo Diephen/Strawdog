@@ -8,7 +8,7 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
-	[SerializeField] float[] m_MoveDistance = new float[3];
+	[SerializeField] float[] m_MoveDistance = new float[4];
 	[SerializeField] float[] m_CrouchMoveDistance = new float[4];
 	[SerializeField] float[] m_PickupMoveDistance = new float[4];
 	[SerializeField] bool[] m_Continuous = new bool[] {true, false, true};
