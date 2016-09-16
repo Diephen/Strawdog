@@ -8,15 +8,15 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
-	[SerializeField] float[] m_MoveDistance = new float[3];
+	[SerializeField] float[] m_MoveDistance = new float[4];
 	[SerializeField] float[] m_CrouchMoveDistance = new float[4];
 	[SerializeField] float[] m_PickupMoveDistance = new float[4];
 	[SerializeField] bool[] m_Continuous = new bool[] {true, false, true};
 	bool[] m_Pressed = new bool[] { false, false, false, false};
-	Vector2[] oldPos = new Vector2[4];
-	Vector2[] newPos = new Vector2[4];
-	Vector2[] crouchPos = new Vector2[4];
-	Vector2[] PickupPos = new Vector2[4];
+	Vector3[] oldPos = new Vector3[4];
+	Vector3[] newPos = new Vector3[4];
+	Vector3[] crouchPos = new Vector3[4];
+	Vector3[] PickupPos = new Vector3[4];
 
 	[SerializeField] float m_MoveSpeed = 2.0f;
 
@@ -152,35 +152,35 @@ public class PuppetControl : MonoBehaviour {
 		distCovered [3] = (Time.time - startTime [3]);
 
 		if (m_charState == charState.crouch) {
-			m_Finger [0].transform.localPosition = Vector2.Lerp (m_Finger [0].transform.localPosition, crouchPos [0], distCovered [0]);
-			m_Finger [1].transform.localPosition = Vector2.Lerp (m_Finger [1].transform.localPosition, crouchPos [1], distCovered [1]);
-			m_Finger [2].transform.localPosition = Vector2.Lerp (m_Finger [2].transform.localPosition, crouchPos [2], distCovered [2]);
+			m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, crouchPos [0], distCovered [0]);
+			m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, crouchPos [1], distCovered [1]);
+			m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, crouchPos [2], distCovered [2]);
 			//Hidden String for Head
-			m_Finger [3].transform.localPosition = Vector2.Lerp (m_Finger [3].transform.localPosition, crouchPos [3], distCovered [3]);
+			m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, crouchPos [3], distCovered [3]);
 		} else if (m_charState == charState.pickup) {
-			m_Finger [0].transform.localPosition = Vector2.Lerp (m_Finger [0].transform.localPosition, PickupPos [0], distCovered [0]);
-			m_Finger [1].transform.localPosition = Vector2.Lerp (m_Finger [1].transform.localPosition, PickupPos [1], distCovered [1]);
-			m_Finger [2].transform.localPosition = Vector2.Lerp (m_Finger [2].transform.localPosition, PickupPos [2], distCovered [2]);
+			m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, PickupPos [0], distCovered [0]);
+			m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, PickupPos [1], distCovered [1]);
+			m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, PickupPos [2], distCovered [2]);
 			//Hidden String for Head
-			m_Finger [3].transform.localPosition = Vector2.Lerp (m_Finger [3].transform.localPosition, PickupPos [3], distCovered [3]);
+			m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, PickupPos [3], distCovered [3]);
 		} else {
 			if (m_Pressed [0]) {
-				m_Finger [0].transform.localPosition = Vector2.Lerp (m_Finger [0].transform.localPosition, newPos [0], distCovered [0]);
+				m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, newPos [0], distCovered [0]);
 			} else {
-				m_Finger [0].transform.localPosition = Vector2.Lerp (m_Finger [0].transform.localPosition, oldPos [0], distCovered [0]);
+				m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, oldPos [0], distCovered [0]);
 			}
 			if (m_Pressed [1]) {
-				m_Finger [1].transform.localPosition = Vector2.Lerp (m_Finger [1].transform.localPosition, newPos [1], distCovered [1]);
+				m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, newPos [1], distCovered [1]);
 			} else {
-				m_Finger [1].transform.localPosition = Vector2.Lerp (m_Finger [1].transform.localPosition, oldPos [1], distCovered [1]);
+				m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, oldPos [1], distCovered [1]);
 			}
 			if (m_Pressed [2]) {
-				m_Finger [2].transform.localPosition = Vector2.Lerp (m_Finger [2].transform.localPosition, newPos [2], distCovered [2]);
+				m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, newPos [2], distCovered [2]);
 			} else {
-				m_Finger [2].transform.localPosition = Vector2.Lerp (m_Finger [2].transform.localPosition, oldPos [2], distCovered [2]);
+				m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, oldPos [2], distCovered [2]);
 			}
 			if (m_Pressed [3] == false) {
-				m_Finger [3].transform.localPosition = Vector2.Lerp (m_Finger [3].transform.localPosition, oldPos [3], distCovered [3]);
+				m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, oldPos [3], distCovered [3]);
 			}
 		}
 	}
@@ -188,9 +188,9 @@ public class PuppetControl : MonoBehaviour {
 	void Walk(charState dir){
 		_isWalking = true;
 		if (dir == charState.left) {
-			transform.Translate (Vector2.left * m_MoveSpeed * Time.deltaTime);
+			transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
 		} else if (dir == charState.right) {
-			transform.Translate (Vector2.right * m_MoveSpeed * Time.deltaTime);
+			transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
 		}
 	}
 
