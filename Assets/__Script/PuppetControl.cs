@@ -9,6 +9,7 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
 	[SerializeField] float[] m_MoveDistance = new float[4];
+
 	[SerializeField] float[] m_CrouchMoveDistance = new float[4];
 	[SerializeField] float[] m_PickupMoveDistance = new float[4];
 	[SerializeField] bool[] m_Continuous = new bool[] {true, false, true};
@@ -45,8 +46,23 @@ public class PuppetControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Pickup ();
+		Crouch ();
+		KeyHandle ();
+		LerpHandle ();
+	}
 
-	//Handle Pickup
+	void Walk(charState dir){
+		_isWalking = true;
+		if (dir == charState.left) {
+			transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
+		} else if (dir == charState.right) {
+			transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
+		}
+	}
+
+	void Pickup() {
+		//Handle Pickup
 		if (Input.GetKeyDown (m_ListenKey [3])) {
 			startTime [0] = Time.time;
 			startTime [1] = Time.time;
@@ -59,12 +75,14 @@ public class PuppetControl : MonoBehaviour {
 			m_charState = charState.idle;
 			m_Pressed [3] = false;
 		}
+	}
 
-	//Handle Crouch
+	void Crouch() {
+		//Handle Crouch
 		if (Input.GetKey (m_ListenKey [0]) &&
-		   Input.GetKey (m_ListenKey [1]) &&
-		   Input.GetKey (m_ListenKey [2]) &&
-		   m_charState != charState.pickup) {
+			Input.GetKey (m_ListenKey [1]) &&
+			Input.GetKey (m_ListenKey [2]) &&
+			m_charState != charState.pickup) {
 			m_charState = charState.crouch;
 			if (crouchStart == false) {
 				m_AudioSource [1].clip = m_Audio [2];
@@ -80,7 +98,9 @@ public class PuppetControl : MonoBehaviour {
 			crouchStart = false;
 			m_Pressed [3] = false;
 		}
-			
+	}
+
+	void KeyHandle() {
 		if (m_charState != charState.pickup) {
 			//Get Key Up D Moved Higher to have smooth audio transition
 			if (Input.GetKeyUp (m_ListenKey [2])) {
@@ -91,7 +111,7 @@ public class PuppetControl : MonoBehaviour {
 
 			//A-Key
 			if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
-			   && (m_charState == charState.idle || m_charState == charState.left)) {
+				&& (m_charState == charState.idle || m_charState == charState.left)) {
 				m_charState = charState.left;
 				Walk (m_charState);
 			}
@@ -125,7 +145,7 @@ public class PuppetControl : MonoBehaviour {
 
 			// D-Key
 			if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
-			   && (m_charState == charState.idle || m_charState == charState.right)) {
+				&& (m_charState == charState.idle || m_charState == charState.right)) {
 				m_charState = charState.right;
 				Walk (m_charState);
 			}
@@ -145,7 +165,9 @@ public class PuppetControl : MonoBehaviour {
 				m_AudioSource[0].Stop ();
 			}
 		}
+	}
 
+	void LerpHandle() {
 		distCovered [0] = (Time.time - startTime [0]);
 		distCovered [1] = (Time.time - startTime [1]);
 		distCovered [2] = (Time.time - startTime [2]);
@@ -183,18 +205,5 @@ public class PuppetControl : MonoBehaviour {
 				m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, oldPos [3], distCovered [3]);
 			}
 		}
-	}
-
-	void Walk(charState dir){
-		_isWalking = true;
-		if (dir == charState.left) {
-			transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
-		} else if (dir == charState.right) {
-			transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
-		}
-	}
-
-	void Pickup() {
-		
 	}
 }
