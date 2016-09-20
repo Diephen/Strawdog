@@ -8,6 +8,15 @@ using System.Collections;
 //	}
 //}
 
+public class GuardEnteringCellEvent : GameEvent {
+}
+
+public class GuardEngaginPrisonerEvent : GameEvent {
+	public bool Engaged { get; private set; }
+	public GuardEngaginPrisonerEvent(bool engaged){
+		Engaged = engaged;
+	}
+}
 
 public class EventManager : MonoBehaviour {
 }
