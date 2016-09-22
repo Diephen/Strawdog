@@ -24,6 +24,7 @@ public class PuppetControl : MonoBehaviour {
 	enum charState {idle, left, right, crouch, pickup};
 	bool crouchStart = false;
 	bool _isWalking = false;
+	bool isSpeak = false;
 	charState m_charState = charState.idle;
 	float[] startTime = new float[4];
 	float[] distCovered = new float[4];
@@ -48,6 +49,13 @@ public class PuppetControl : MonoBehaviour {
 	void Update () {
 		Pickup ();
 		Crouch ();
+		//KeyHandle ();
+		//LerpHandle ();
+
+	}
+
+	void FixedUpdate(){
+		// jiggling -> the walk function should be called here 
 		KeyHandle ();
 		LerpHandle ();
 	}
@@ -79,6 +87,10 @@ public class PuppetControl : MonoBehaviour {
 
 	void Crouch() {
 		//Handle Crouch
+		//TODO: add the delay time for the three keys 
+		// if any of the three keys is pressed, wait for deltatime for the other keys to happen 
+		// else -- press single key ??
+
 		if (Input.GetKey (m_ListenKey [0]) &&
 			Input.GetKey (m_ListenKey [1]) &&
 			Input.GetKey (m_ListenKey [2]) &&
@@ -125,7 +137,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 			//S-Key
-			if (Input.GetKeyDown (m_ListenKey [1])) {
+			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
 				m_Pressed [1] = true;
 				startTime [1] = Time.time;
 				if (!m_AudioSource[1].isPlaying) {
@@ -133,14 +145,21 @@ public class PuppetControl : MonoBehaviour {
 					m_AudioSource [1].Play ();
 				}
 				// talk 
-				if(m_MouthAnim != null){
+				if(m_MouthAnim != null && !isSpeak){
 					Debug.Log ("speak");
-					m_MouthAnim.SetTrigger ("TriggerSpeak");
+					//m_MouthAnim.SetTrigger ("TriggerSpeak");
+					m_MouthAnim.SetBool("IsSpeak", true);
+					isSpeak = true;
 				}
-			} else if (Input.GetKeyUp (m_ListenKey [1])) {
+			} else if (Input.GetKeyUp (m_ListenKey [1])  && m_charState != charState.crouch) {
 				m_Pressed [1] = false;
 				startTime [1] = Time.time;
 				m_charState = charState.idle;
+				if (isSpeak) {
+					m_MouthAnim.SetBool("IsSpeak", false);
+					isSpeak = false;
+				}
+
 			}
 
 			// D-Key
