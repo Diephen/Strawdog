@@ -69,7 +69,7 @@ public class PuppetControl : MonoBehaviour {
 			startTime [2] = Time.time;
 			startTime [3] = Time.time;
 			m_charState = charState.pickup;
-			Pickup ();
+			//Pickup ();
 			m_Pressed [3] = true;
 		} else if (Input.GetKeyUp (m_ListenKey [3])) {
 			m_charState = charState.idle;
