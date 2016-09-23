@@ -15,9 +15,5 @@ public class Pickup : MonoBehaviour {
 		
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		if (other.name == "Bucket") {
-			other.transform.SetParent (gameObject.transform);
-		}
-	}
+
 }

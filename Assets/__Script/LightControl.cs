@@ -9,7 +9,7 @@ public class LightControl : MonoBehaviour {
 	float timer = 0f;
 	float startTime;
 	float lightIntensity;
-	[SerializeField] float _flickerDuration = 2f;
+	float _flickerDuration = 2f;
 	Light _lightComponent;
 
 	void FixedUpdate() {
@@ -23,8 +23,11 @@ public class LightControl : MonoBehaviour {
 		}
 	}
 
-	public void SpotlightFlicker(GameObject spotlight){	
+	public void SpotlightFlicker(GameObject spotlight, float duration = default(float)){	
 		if (flickerDone) {
+			if (duration != null) {
+				_flickerDuration = duration;
+			}
 			flickerDone = false;
 			timer = 0f;
 			_lightComponent = spotlight.GetComponent <Light> ();

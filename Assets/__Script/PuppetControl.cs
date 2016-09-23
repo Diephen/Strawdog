@@ -36,6 +36,9 @@ public class PuppetControl : MonoBehaviour {
 	//Light Controller Script
 	[SerializeField] LightControl _lightControl;
 
+	// Will be used to selectively disable functionality to be replaced with animation
+	public bool[] _stateHandling = new bool[] {true, true, true, true, true, true, true};
+
 	// Use this for initialization
 	void Start (){
 		StringCalculation ();
