@@ -3,23 +3,23 @@ using System.Collections;
 
 public class PuppetControl : MonoBehaviour {
 	[SerializeField] Animator m_MouthAnim;
-	[SerializeField] GameObject[] m_Finger = new GameObject[4];
+	[SerializeField] GameObject[] m_Finger = new GameObject[3];
 	//add animators 
 	private Animator[] m_Animator = new Animator[4];
 	//1 for walk, 2 for speak
 	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
-	[SerializeField] float[] m_MoveDistance = new float[4];
+	[SerializeField] float[] m_MoveDistance = new float[3];
 
-	[SerializeField] float[] m_CrouchMoveDistance = new float[4];
-	[SerializeField] float[] m_PickupMoveDistance = new float[4];
+	[SerializeField] float[] m_CrouchMoveDistance = new float[3];
+	[SerializeField] float[] m_PickupMoveDistance = new float[3];
 	[SerializeField] bool[] m_Continuous = new bool[] {true, false, true};
 	bool[] m_Pressed = new bool[] { false, false, false, false};
-	Vector3[] oldPos = new Vector3[4];
-	Vector3[] newPos = new Vector3[4];
-	Vector3[] crouchPos = new Vector3[4];
-	Vector3[] PickupPos = new Vector3[4];
+	Vector3[] oldPos = new Vector3[3];
+	Vector3[] newPos = new Vector3[3];
+	Vector3[] crouchPos = new Vector3[3];
+	Vector3[] PickupPos = new Vector3[3];
 
 	[SerializeField] float m_MoveSpeed = 2.0f;
 
@@ -61,14 +61,14 @@ public class PuppetControl : MonoBehaviour {
 	void Update () {
 		Pickup ();
 		Crouch ();
-		//KeyHandle ();
+		KeyHandle ();
 		//LerpHandle ();
 
 	}
 
 	void FixedUpdate(){
 		// jiggling -> the walk function should be called here 
-		KeyHandle ();
+		ContinuousKeyHandle ();
 		LerpHandle ();
 	}
 
@@ -89,11 +89,8 @@ public class PuppetControl : MonoBehaviour {
 			startTime [2] = Time.time;
 			startTime [3] = Time.time;
 			m_charState = charState.pickup;
-			//Pickup ();
-			m_Pressed [3] = true;
 		} else if (Input.GetKeyUp (m_ListenKey [3])) {
 			m_charState = charState.idle;
-			m_Pressed [3] = false;
 		}
 	}
 
@@ -115,12 +112,26 @@ public class PuppetControl : MonoBehaviour {
 				startTime [0] = Time.time;
 				startTime [1] = Time.time;
 				startTime [2] = Time.time;
-				startTime [3] = Time.time;
 			}
-			m_Pressed [3] = true;
 		} else {
 			crouchStart = false;
-			m_Pressed [3] = false;
+		}
+	}
+
+	void ContinuousKeyHandle(){
+		if (m_charState != charState.pickup) {
+			//A-Key
+			if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
+			   && (m_charState == charState.idle || m_charState == charState.left)) {
+				m_charState = charState.left;
+				Walk (m_charState);
+			}
+			// D-Key
+			if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
+			   && (m_charState == charState.idle || m_charState == charState.right)) {
+				m_charState = charState.right;
+				Walk (m_charState);
+			}
 		}
 	}
 
@@ -133,12 +144,7 @@ public class PuppetControl : MonoBehaviour {
 				m_charState = charState.idle;
 			}
 
-			//A-Key
-			if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
-				&& (m_charState == charState.idle || m_charState == charState.left)) {
-				m_charState = charState.left;
-				Walk (m_charState);
-			}
+
 			if (Input.GetKeyDown (m_ListenKey [0])) {
 				/// string animation
 				if (m_Animator [0] != null) {
@@ -159,34 +165,32 @@ public class PuppetControl : MonoBehaviour {
 			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
 				m_Pressed [1] = true;
 				startTime [1] = Time.time;
-				if (!m_AudioSource[1].isPlaying) {
+				if (!m_AudioSource [1].isPlaying) {
 					m_AudioSource [1].clip = m_Audio [1];
 					m_AudioSource [1].Play ();
 				}
 				// talk 
-				if(m_MouthAnim != null && !isSpeak){
+				if (m_MouthAnim != null && !isSpeak) {
 					Debug.Log ("speak");
 					//m_MouthAnim.SetTrigger ("TriggerSpeak");
-					m_MouthAnim.SetBool("IsSpeak", true);
+					m_MouthAnim.SetBool ("IsSpeak", true);
 					isSpeak = true;
 				}
-			} else if (Input.GetKeyUp (m_ListenKey [1])  && m_charState != charState.crouch) {
+			} else if (Input.GetKeyUp (m_ListenKey [1]) && m_charState != charState.crouch) {
 				m_Pressed [1] = false;
 				startTime [1] = Time.time;
 				m_charState = charState.idle;
 				if (isSpeak) {
-					m_MouthAnim.SetBool("IsSpeak", false);
+					m_MouthAnim.SetBool ("IsSpeak", false);
 					isSpeak = false;
 				}
 
+			} else if (m_charState == charState.crouch) {
+				m_MouthAnim.SetBool ("IsSpeak", false);
+				isSpeak = false;
 			}
 
-			// D-Key
-			if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
-				&& (m_charState == charState.idle || m_charState == charState.right)) {
-				m_charState = charState.right;
-				Walk (m_charState);
-			}
+
 			if (Input.GetKeyDown (m_ListenKey [2])) {
 				m_Pressed [2] = true;
 				startTime [2] = Time.time;
@@ -220,20 +224,14 @@ public class PuppetControl : MonoBehaviour {
 		distCovered [0] = (Time.time - startTime [0]);
 		distCovered [1] = (Time.time - startTime [1]);
 		distCovered [2] = (Time.time - startTime [2]);
-		distCovered [3] = (Time.time - startTime [3]);
-
 		if (m_charState == charState.crouch) {
 			m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, crouchPos [0], distCovered [0]);
 			m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, crouchPos [1], distCovered [1]);
 			m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, crouchPos [2], distCovered [2]);
-			//Hidden String for Head
-			m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, crouchPos [3], distCovered [3]);
 		} else if (m_charState == charState.pickup) {
 			m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, PickupPos [0], distCovered [0]);
 			m_Finger [1].transform.localPosition = Vector3.Lerp (m_Finger [1].transform.localPosition, PickupPos [1], distCovered [1]);
 			m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, PickupPos [2], distCovered [2]);
-			//Hidden String for Head
-			m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, PickupPos [3], distCovered [3]);
 		} else {
 			if (m_Pressed [0]) {
 				m_Finger [0].transform.localPosition = Vector3.Lerp (m_Finger [0].transform.localPosition, newPos [0], distCovered [0]);
@@ -249,9 +247,6 @@ public class PuppetControl : MonoBehaviour {
 				m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, newPos [2], distCovered [2]);
 			} else {
 				m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, oldPos [2], distCovered [2]);
-			}
-			if (m_Pressed [3] == false) {
-				m_Finger [3].transform.localPosition = Vector3.Lerp (m_Finger [3].transform.localPosition, oldPos [3], distCovered [3]);
 			}
 		}
 	}
