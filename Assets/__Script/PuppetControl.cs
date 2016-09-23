@@ -324,4 +324,11 @@ public class PuppetControl : MonoBehaviour {
 	public void MoveRight(){
 		transform.Translate (Vector3.right);
 	}
+
+
+	void OnTriggerStay2D(Collider2D other) {
+		if (other.name == "STOP") {
+			_stateHandling [3] = false;
+		}
+	}
 }
