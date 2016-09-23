@@ -92,6 +92,15 @@ public class PrisonerHandle : MonoBehaviour {
 
 	}
 
+	public void LeaveCalledByGuard(){
+		m_isResisting = false;
+		m_PrisonerAnim.SetBool("IsResist", false);
+		m_IsStartTorture = false;	
+		m_AnimCtrl.SetAnimation(false);
+		m_GuardHandle.LeaveCalledByPrisoner ();
+	
+	}
+
 	public void Speak(){
 		// not implemented yet 
 		Debug.Log("Speak in torture");

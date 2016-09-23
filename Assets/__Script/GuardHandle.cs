@@ -6,6 +6,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] PrisonerHandle m_PrisonerHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] PuppetControl m_PC;
+	[SerializeField] AudioSource m_DoorAudio;
 
 	private bool m_IsStartTorture = false;
 
@@ -24,7 +25,9 @@ public class GuardHandle : MonoBehaviour {
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
 		Debug.Log("Guard Entered");
-
+		if (m_DoorAudio != null && !m_DoorAudio.isPlaying) {
+			m_DoorAudio.Play ();
+		}
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
@@ -64,7 +67,7 @@ public class GuardHandle : MonoBehaviour {
 		// prisoner animation set back
 		m_AnimCtrl.SetAnimation(false);
 		m_IsStartTorture = false;
-		m_PrisonerHandle.Leave ();
+		m_PrisonerHandle.LeaveCalledByGuard ();
 
 	}
 	public void LeaveCalledByPrisoner(){
