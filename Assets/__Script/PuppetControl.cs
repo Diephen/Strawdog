@@ -190,7 +190,18 @@ public class PuppetControl : MonoBehaviour {
 			if (Input.GetKeyDown (m_ListenKey [2])) {
 				m_Pressed [2] = true;
 				startTime [2] = Time.time;
+				if (m_Animator [2] != null) {
+					m_Animator [2].SetBool ("IsPull", true);
+				}
 			} // Get Key up [2] Moved up for smooth transition
+			else if(Input.GetKeyUp(m_ListenKey[2])){
+				if (m_Animator [2] != null) {
+					m_Animator [2].SetBool ("IsPull", false);
+				}
+				m_Pressed [2] = false;
+				startTime [2] = Time.time;
+				m_charState = charState.idle;
+			}
 
 			if (_isWalking == true) {
 				if (m_AudioSource[0].isPlaying == false) {
