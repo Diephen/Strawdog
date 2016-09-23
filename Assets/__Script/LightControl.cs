@@ -14,7 +14,7 @@ public class LightControl : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (!flickerDone) {
-			timer = (Time.time / _flickerDuration) - startTime;
+			timer = (Time.time - startTime) / _flickerDuration;
 			Debug.Log ("Flickr");
 			_lightComponent.intensity = MathHelpers.LinMapFrom01 (_flickerRange.Min, _flickerRange.Max, _flickerCurve.Evaluate (timer));
 			if (timer >= 1f) {

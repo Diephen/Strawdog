@@ -38,6 +38,10 @@ public class PuppetControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start (){
+		StringCalculation ();
+	}
+
+	void StringCalculation(){
 		for(int i = 0; i < oldPos.Length; i++){
 			//Define localPosition of travel for Lerp
 			oldPos[i] = m_Finger [i].transform.localPosition;
@@ -55,11 +59,7 @@ public class PuppetControl : MonoBehaviour {
 			} else {
 				m_Animator [i] = null;
 			}
-
 		}
-
-
-
 	}
 	
 	// Update is called once per frame
@@ -68,7 +68,6 @@ public class PuppetControl : MonoBehaviour {
 		Crouch ();
 		KeyHandle ();
 		//LerpHandle ();
-
 	}
 
 	void FixedUpdate(){
