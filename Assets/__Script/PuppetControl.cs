@@ -31,6 +31,11 @@ public class PuppetControl : MonoBehaviour {
 	float[] startTime = new float[4];
 	float[] distCovered = new float[4];
 
+	// GameObject for Body Spotlight
+	[SerializeField] GameObject _spotlight;
+	//Light Controller Script
+	[SerializeField] LightControl _lightControl;
+
 	// Use this for initialization
 	void Start (){
 		for(int i = 0; i < oldPos.Length; i++){
@@ -165,6 +170,7 @@ public class PuppetControl : MonoBehaviour {
 			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
 				m_Pressed [1] = true;
 				startTime [1] = Time.time;
+				_lightControl.SpotlightFlicker (_spotlight);
 				if (!m_AudioSource [1].isPlaying) {
 					m_AudioSource [1].clip = m_Audio [1];
 					m_AudioSource [1].Play ();
@@ -172,6 +178,7 @@ public class PuppetControl : MonoBehaviour {
 				// talk 
 				if (m_MouthAnim != null && !isSpeak) {
 					Debug.Log ("speak");
+
 					//m_MouthAnim.SetTrigger ("TriggerSpeak");
 					m_MouthAnim.SetBool ("IsSpeak", true);
 					isSpeak = true;
