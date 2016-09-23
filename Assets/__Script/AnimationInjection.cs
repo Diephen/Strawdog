@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class AnimationInjection : MonoBehaviour {
+	[SerializeField] bool _isGuard;
 	[SerializeField] PuppetControl _puppetControl;
 	[SerializeField] bool[] _animInject = new bool[11];
+	[SerializeField] GuardHandle m_guard;
+	[SerializeField] PrisonerHandle m_prisoner;
 	int state = 0;
 
 	// Use this for initialization
@@ -47,25 +50,62 @@ public class AnimationInjection : MonoBehaviour {
 		// swapped based on the state of the interaction
 
 	public void PickUpPressed(){
+		if (_isGuard) {
+		
+		} else {
+			
+		}
 	}
 	public void PickupReleased(){
 	}
 	public void CrouchPressed(){
 	}
 	public void WalkLeft(){
+		
 	}
 	public void WalkRight(){
+		if (_isGuard) {
+
+		} else {
+
+		}
 	}
 	public void APressed(){
+		if (_isGuard) {
+			// guard torture
+			m_guard.Torture();
+		} else {
+			m_prisoner.Resist ();
+		}
+		
 	}
 	public void AReleased(){
+		if (_isGuard) {
+			m_guard.ReleaseTorture ();
+		} else {
+
+		}
 	}
 	public void SPressed(){
 	}
 	public void SReleased(){
 	}
 	public void DPressed(){
+		// choose to leave 
+		if (_isGuard) {
+			// guard torture
+			m_guard.Leave();
+			_puppetControl.MoveRight ();
+		} else {
+			m_prisoner.Resist ();
+		}
 	}
 	public void DReleased(){
+		if (_isGuard) {
+			// guard torture
+			m_guard.Torture();
+		} else {
+			m_prisoner.Resist ();
+		}
 	}
 }
