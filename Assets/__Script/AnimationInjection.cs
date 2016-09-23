@@ -103,9 +103,9 @@ public class AnimationInjection : MonoBehaviour {
 	public void DReleased(){
 		if (_isGuard) {
 			// guard torture
-			m_guard.Torture();
+			// m_guard.Torture();
 		} else {
-			m_prisoner.Resist ();
+			m_prisoner.ReleaseResist ();
 		}
 	}
 }

@@ -5,6 +5,7 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] Animator m_PrisonerAnim;
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
+	bool m_isResisting = false;
 	//[SerializeField] Animator m_GuardAnim;
 
 	private bool m_IsStartTorture = false;
@@ -64,12 +65,16 @@ public class PrisonerHandle : MonoBehaviour {
 		// prisoner needs to be called too
 		// m_PrisonerAnim.SetBool("IsTorture", true);
 		// call prisoner
-		m_PrisonerAnim.SetTrigger("TriggerResist");
+		//m_PrisonerAnim.SetTrigger("TriggerResist");
+		m_PrisonerAnim.SetBool("IsResist", true);
 		m_GuardHandle.PushBack ();
+		m_isResisting = true;
 		//m_GuardAnim.SetTrigger ("TriggerBack");
 	}
 
 	public void ReleaseResist(){
+		m_isResisting = false;
+		m_PrisonerAnim.SetBool("IsResist", false);
 	
 	}
 
@@ -77,9 +82,13 @@ public class PrisonerHandle : MonoBehaviour {
 		// D walk need to be called 
 		// animation set back 
 		// prisoner animation set back
-		m_IsStartTorture = false;	
-		m_AnimCtrl.SetAnimation(false);
-		m_GuardHandle.LeaveCalledByPrisoner ();
+		if(m_isResisting){
+			m_PrisonerAnim.SetBool("IsResist", false);
+			m_IsStartTorture = false;	
+			m_AnimCtrl.SetAnimation(false);
+			m_GuardHandle.LeaveCalledByPrisoner ();
+		}
+
 
 	}
 
