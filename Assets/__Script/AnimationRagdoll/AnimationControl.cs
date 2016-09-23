@@ -8,7 +8,6 @@ public class AnimationControl : MonoBehaviour {
 	//[SerializeField] List<Rigidbody2D> m_RigidList;  // all the rigidbody of the controllers \
 	[SerializeField] Rigidbody2D[] m_RigidArray;
 	[SerializeField] int m_RigidNum;
-
 	[SerializeField] bool m_IsAnimating = false;
 	// Use this for initialization
 	void Start () {
@@ -30,6 +29,14 @@ public class AnimationControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (m_IsAnimating) {
+			Debug.Log ("Start Animation");
+			SwitchToAnimation ();
+		} else {
+			SwitchToRigidBody ();
+		}
+
 		// test 
 		if(Input.GetKeyDown(KeyCode.X)){
 			Debug.Log ("Toggle Animtion and Rigidbody");
@@ -44,19 +51,31 @@ public class AnimationControl : MonoBehaviour {
 	}
 
 	void SwitchToAnimation(){
-		m_AnimController.enabled = true;
-		foreach (Rigidbody2D _rig in m_RigidArray) {
-			_rig.isKinematic = true;	
+		if (!m_AnimController.enabled) {
+			m_AnimController.enabled = true;
+			foreach (Rigidbody2D _rig in m_RigidArray) {
+				_rig.isKinematic = true;	
+			}
 		}
+
 	}
 
 	void SwitchToRigidBody(){
-		m_AnimController.enabled = false;
-		foreach (Rigidbody2D _rig in m_RigidArray) {
-			if (_rig.isKinematic) {
-				_rig.isKinematic = false;	
-			}
+		if (m_AnimController.enabled) {
+			m_AnimController.enabled = false;
+			foreach (Rigidbody2D _rig in m_RigidArray) {
+				if (_rig.isKinematic) {
+					_rig.isKinematic = false;	
+				}
 
+			}
 		}
+	
 	}
+
+	public void SetAnimation(bool animating){
+		m_IsAnimating = animating;
+	}
+
+
 }

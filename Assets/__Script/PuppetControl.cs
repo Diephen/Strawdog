@@ -44,6 +44,8 @@ public class PuppetControl : MonoBehaviour {
 		StringCalculation ();
 	}
 
+
+
 	void StringCalculation(){
 		for(int i = 0; i < oldPos.Length; i++){
 			//Define localPosition of travel for Lerp

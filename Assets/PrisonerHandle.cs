@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GuardHandle : MonoBehaviour {
-	[SerializeField] Animator m_GuardAnim;
+public class PrisonerHandle : MonoBehaviour {
+	[SerializeField] Animator m_PrisonerAnim;
 	[SerializeField] AnimationControl m_AnimCtrl;
 
 	private bool m_IsStartTorture = false;
-
+ 	
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
@@ -21,24 +21,30 @@ public class GuardHandle : MonoBehaviour {
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
-		Debug.Log("Guard Entered");
+		Debug.Log("Guard Entered, Activate Prisoner Control");
+		// 
+
 
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
 		if (e.Engaged) {
-			Debug.Log ("P: Prisoner Engaged");
+			Debug.Log ("G: Prisoner Engaged");
 			StartTorture ();
 		} else {
-			Debug.Log ("P: Prisoner Disengaged");
+			Debug.Log ("Prisoner Disengaged");
 		}
+	}
+
+	void ActivatePrisoner(){
+		
 	}
 
 
 	void StartTorture(){
-		if (m_GuardAnim != null && !m_IsStartTorture) {
-			m_AnimCtrl.SetAnimation (true);	
+		if (m_PrisonerAnim != null && !m_IsStartTorture) {
+			m_AnimCtrl.SetAnimation (true);
 			m_IsStartTorture = true;
 		}
 	}
