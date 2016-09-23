@@ -70,10 +70,9 @@ public class FollowCam : MonoBehaviour {
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
 		if (e.Engaged) {
-			Debug.Log ("P: Prisoner Engaged");
 			timer = 0f;
 			_followObj = _followPrisoner;
-			cameraToggle = !cameraToggle;
+			cameraToggle = true;
 		}
 	}
 }
