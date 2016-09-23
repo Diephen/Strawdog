@@ -4,6 +4,8 @@ using System.Collections;
 public class PuppetControl : MonoBehaviour {
 	[SerializeField] Animator m_MouthAnim;
 	[SerializeField] GameObject[] m_Finger = new GameObject[4];
+	//add animators 
+	private Animator[] m_Animator = new Animator[4];
 	//1 for walk, 2 for speak
 	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
@@ -42,7 +44,17 @@ public class PuppetControl : MonoBehaviour {
 			//Define localPosition of travel for Pickup Lerp
 			PickupPos [i] = oldPos [i];
 			PickupPos [i].y += m_PickupMoveDistance [i];
+			// init animator
+			if (m_Finger [i].GetComponentsInChildren<Animator> () != null) {
+				m_Animator [i] = m_Finger [i].GetComponentInChildren<Animator> ();
+			} else {
+				m_Animator [i] = null;
+			}
+
 		}
+
+
+
 	}
 	
 	// Update is called once per frame
@@ -128,9 +140,16 @@ public class PuppetControl : MonoBehaviour {
 				Walk (m_charState);
 			}
 			if (Input.GetKeyDown (m_ListenKey [0])) {
+				/// string animation
+				if (m_Animator [0] != null) {
+					m_Animator [0].SetBool ("IsPull", true);
+				}
 				m_Pressed [0] = true;
 				startTime [0] = Time.time;
 			} else if (Input.GetKeyUp (m_ListenKey [0])) {
+				if (m_Animator [0] != null) {
+					m_Animator [0].SetBool ("IsPull", false);
+				}
 				m_Pressed [0] = false;
 				startTime [0] = Time.time;
 				m_charState = charState.idle;
