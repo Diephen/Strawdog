@@ -12,6 +12,11 @@ public class AnimationControl : MonoBehaviour {
 	[SerializeField] bool m_IsAnimating = false;
 	// Use this for initialization
 	void Start () {
+		
+
+	}
+
+	void Awake(){
 		// get all the rigidbodies 
 		m_RigidArray = m_Structure.GetComponentsInChildren<Rigidbody2D>();
 		Debug.Log ("All rigid = " + m_RigidArray.Length);
@@ -20,17 +25,11 @@ public class AnimationControl : MonoBehaviour {
 		}
 		SwitchToRigidBody ();
 		//SwitchToAnimation();
-
-	}
-
-	void Awake(){
 		
 	}
 
 	// Update is called once per frame
 	void Update () {
-
-
 		// test 
 		if(Input.GetKeyDown(KeyCode.X)){
 			Debug.Log ("Toggle Animtion and Rigidbody");
@@ -54,7 +53,6 @@ public class AnimationControl : MonoBehaviour {
 	void SwitchToRigidBody(){
 		m_AnimController.enabled = false;
 		foreach (Rigidbody2D _rig in m_RigidArray) {
-			
 			if (_rig.isKinematic) {
 				_rig.isKinematic = false;	
 			}
