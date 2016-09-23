@@ -24,9 +24,11 @@ public class LightControl : MonoBehaviour {
 	}
 
 	public void SpotlightFlicker(GameObject spotlight){	
-		flickerDone = false;
-		timer = 0f;
-		_lightComponent = spotlight.GetComponent <Light>();
-		startTime = Time.time;
+		if (flickerDone) {
+			flickerDone = false;
+			timer = 0f;
+			_lightComponent = spotlight.GetComponent <Light> ();
+			startTime = Time.time;
+		}
 	}
 }
