@@ -121,9 +121,11 @@ public class PuppetControl : MonoBehaviour {
 		if (Input.GetKey (m_ListenKey [0]) &&
 			Input.GetKey (m_ListenKey [1]) &&
 			Input.GetKey (m_ListenKey [2]) &&
-			m_charState != charState.pickup) {
+			m_charState != charState.pickup)
+		{
+			m_charState = charState.crouch;
 			if (_stateHandling [2] == true) {
-				m_charState = charState.crouch;
+//				m_charState = charState.crouch;
 				if (crouchStart == false) {
 					m_AudioSource [1].clip = m_Audio [2];
 					m_AudioSource [1].Play ();
@@ -171,21 +173,22 @@ public class PuppetControl : MonoBehaviour {
 		if (m_charState != charState.pickup) {
 
 			if (Input.GetKeyDown (m_ListenKey [0])) {
+				if (m_Animator [0] != null) {
+					m_Animator [0].SetBool ("IsPull", true);
+				}
 				if (_stateHandling [5] == true) {
 					/// string animation
-					if (m_Animator [0] != null) {
-						m_Animator [0].SetBool ("IsPull", true);
-					}
+
 					m_Pressed [0] = true;
 					startTime [0] = Time.time;
 				} else {
 					_animInject.APressed ();
 				}
 			} else if (Input.GetKeyUp (m_ListenKey [0])) {
+				if (m_Animator [0] != null) {
+					m_Animator [0].SetBool ("IsPull", false);
+				}
 				if (_stateHandling [6] == true) {
-					if (m_Animator [0] != null) {
-						m_Animator [0].SetBool ("IsPull", false);
-					}
 					m_Pressed [0] = false;
 					startTime [0] = Time.time;
 					m_charState = charState.idle;
@@ -196,6 +199,9 @@ public class PuppetControl : MonoBehaviour {
 
 			//S-Key
 			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
+				if (m_Animator [1] != null) {
+					m_Animator [1].SetBool ("IsPull", true);
+				}
 				if (_stateHandling [7] == true) {
 					m_Pressed [1] = true;
 					startTime [1] = Time.time;
@@ -217,6 +223,9 @@ public class PuppetControl : MonoBehaviour {
 					_animInject.SPressed ();
 				}
 			} else if (Input.GetKeyUp (m_ListenKey [1]) && m_charState != charState.crouch) {
+				if (m_Animator [1] != null) {
+					m_Animator [1].SetBool ("IsPull", false);
+				}
 				if (_stateHandling [8] == true) {
 					m_Pressed [1] = false;
 					startTime [1] = Time.time;
@@ -236,25 +245,27 @@ public class PuppetControl : MonoBehaviour {
 
 
 			if (Input.GetKeyDown (m_ListenKey [2])) {
+				if (m_Animator [2] != null) {
+					m_Animator [2].SetBool ("IsPull", true);
+				}
 				if (_stateHandling [9] == true) {
 					m_Pressed [2] = true;
 					startTime [2] = Time.time;
-					if (m_Animator [2] != null) {
-						m_Animator [2].SetBool ("IsPull", true);
-					}
+
 				} else {
 					_animInject.DPressed ();
 				}
 			} // Get Key up [2] Moved up for smooth transition
 			else if(Input.GetKeyUp(m_ListenKey[2])){
+				if (m_Animator [2] != null) {
+					m_Animator [2].SetBool ("IsPull", false);
+				}
 				//Get Key Up D Moved Higher to have smooth audio transition
 				if (_stateHandling [10] == true) {
 					m_Pressed [2] = false;
 					startTime [2] = Time.time;
 					m_charState = charState.idle;
-					if (m_Animator [2] != null) {
-						m_Animator [2].SetBool ("IsPull", false);
-					}
+
 					m_Pressed [2] = false;
 					startTime [2] = Time.time;
 					m_charState = charState.idle;
@@ -264,14 +275,17 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 			if (_isWalking == true) {
-				if (m_AudioSource[0].isPlaying == false) {
+				if (m_AudioSource[0]!= null && m_AudioSource[0].isPlaying == false) {
 					m_AudioSource[0].clip = m_Audio [0];
 					m_AudioSource[0].Play ();
 				}
 			}
 			if (m_charState != charState.left && m_charState != charState.right) {
 				_isWalking = false;
-				m_AudioSource[0].Stop ();
+				if (m_AudioSource [0] != null) {
+					m_AudioSource[0].Stop ();
+				}
+
 			}
 		}
 	}
@@ -305,5 +319,9 @@ public class PuppetControl : MonoBehaviour {
 				m_Finger [2].transform.localPosition = Vector3.Lerp (m_Finger [2].transform.localPosition, oldPos [2], distCovered [2]);
 			}
 		}
+	}
+
+	public void MoveRight(){
+		transform.Translate (Vector3.right);
 	}
 }
