@@ -4,9 +4,10 @@ using System.Collections;
 public class PickableItem : MonoBehaviour {
 	bool _pickedUp = false;
 	Quaternion _myRot;
+	Transform _originalParent;
 	// Use this for initialization
 	void Start () {
-	
+		_originalParent = transform.parent;
 	}
 	
 	// Update is called once per frame
@@ -20,9 +21,18 @@ public class PickableItem : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "PickingUp") {
-			_pickedUp = true;
+		if (_pickedUp == false && other.tag == "PickingUp") {
 			gameObject.transform.SetParent (other.transform);
+		} else if (_pickedUp == true && other.tag == "Ground") {
+			gameObject.transform.SetParent (_originalParent);
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.tag == "PickingUp") {
+			_pickedUp = false;
+		} else if (other.tag == "Ground") {
+			_pickedUp = true;
 		}
 	}
 }
