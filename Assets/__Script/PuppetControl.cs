@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(KeyComboHandler))]
 public class PuppetControl : MonoBehaviour {
 	[SerializeField] Animator m_MouthAnim;
 	[SerializeField] GameObject[] m_Finger = new GameObject[3];
@@ -37,8 +38,22 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] LightControl _lightControl;
 	[SerializeField] AnimationInjection _animInject;
 
+	// key combo detection 
+	[SerializeField] KeyComboHandler _keyASD;
+
+
 	// Will be used to selectively disable functionality to be replaced with animation
 	public bool[] _stateHandling = new bool[11] {true, true, true, true, true, true, true, true, true, true, true};
+
+	void Awake(){
+		//_keyASD = new KeyComboHandler (0.1f, new KeyCode[] {m_ListenKey[0],m_ListenKey[1],m_ListenKey[2]});
+	
+		_keyASD = gameObject.GetComponent<KeyComboHandler>();
+		if (_keyASD != null) {
+			_keyASD.SetKeyCombo (0.5f, new KeyCode[]{ m_ListenKey [0], m_ListenKey [1], m_ListenKey [2] });
+		} 
+
+	}
 
 	// Use this for initialization
 	void Start (){
@@ -78,8 +93,10 @@ public class PuppetControl : MonoBehaviour {
 
 	void FixedUpdate(){
 		// jiggling -> the walk function should be called here 
+		// Debug.Log(_keyASD.IsPressCombo);
 		ContinuousKeyHandle ();
 		LerpHandle ();
+
 	}
 
 	void Walk(charState dir){
@@ -121,6 +138,7 @@ public class PuppetControl : MonoBehaviour {
 		if (Input.GetKey (m_ListenKey [0]) &&
 			Input.GetKey (m_ListenKey [1]) &&
 			Input.GetKey (m_ListenKey [2]) &&
+			_keyASD.IsPressCombo &&
 			m_charState != charState.pickup)
 		{
 			m_charState = charState.crouch;
@@ -146,7 +164,7 @@ public class PuppetControl : MonoBehaviour {
 		if (m_charState != charState.pickup) {
 			
 				//A-Key
-			if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
+			if (m_Continuous [0] && !_keyASD.IsPressCombo && Input.GetKey (m_ListenKey [0])
 				   && (m_charState == charState.idle || m_charState == charState.left)) {
 				if (_stateHandling [3] == true) {
 					m_charState = charState.left;
@@ -157,7 +175,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 				// D-Key
-			if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
+			if (m_Continuous [2] && !_keyASD.IsPressCombo && Input.GetKey (m_ListenKey [2])
 				   && (m_charState == charState.idle || m_charState == charState.right)) {
 				if (_stateHandling [4] == true) {
 					m_charState = charState.right;
@@ -170,9 +188,8 @@ public class PuppetControl : MonoBehaviour {
 	}
 
 	void KeyHandle() {
-		if (m_charState != charState.pickup) {
-
-			if (Input.GetKeyDown (m_ListenKey [0])) {
+		if (m_charState != charState.pickup ) {
+			if (Input.GetKeyDown (m_ListenKey [0]) && !_keyASD.IsPressCombo) {
 				if (m_Animator [0] != null) {
 					m_Animator [0].SetBool ("IsPull", true);
 				}
@@ -198,7 +215,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 			//S-Key
-			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
+			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch && !_keyASD.IsPressCombo) {
 				if (m_Animator [1] != null) {
 					m_Animator [1].SetBool ("IsPull", true);
 				}
@@ -244,7 +261,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 
-			if (Input.GetKeyDown (m_ListenKey [2])) {
+			if (Input.GetKeyDown (m_ListenKey [2])&& !_keyASD.IsPressCombo) {
 				if (m_Animator [2] != null) {
 					m_Animator [2].SetBool ("IsPull", true);
 				}
