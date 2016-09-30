@@ -110,7 +110,7 @@ public class AnimationInjection : MonoBehaviour {
 		if (_isGuard) {
 			// guard torture
 			m_guard.Leave();
-			_puppetControl.MoveRight ();
+			//_puppetControl.MoveRight ();
 		}
 	}
 

@@ -116,9 +116,13 @@ public class GuardHandle : MonoBehaviour {
 		// animation set back 
 		// prisoner animation set back
 		// m_AnimCtrl.SetAnimation(false);
-		m_IsStartTorture = false;
-		m_GuardAnim.SetTrigger ("TriggerBack");
-		m_PrisonerHandle.LeaveCalledByGuard ();
+		if(!m_IsTorture){
+			m_IsStartTorture = false;
+			m_GuardAnim.SetTrigger ("TriggerBack");
+			m_PrisonerHandle.LeaveCalledByGuard ();
+			m_PC.MoveRight ();
+		}
+
 
 	}
 
