@@ -4,7 +4,10 @@ using System.Collections;
 public class AudioController : MonoBehaviour {
 	AudioSource _audioSource;
 	[SerializeField] float[] volume = new float[] {0.1f, 0.3f, 0.7f};
-	// Use this for initialization
+
+	AudioSource _tempAudioSource;
+	float _goalVolume;
+
 	void Start () {
 		_audioSource = gameObject.GetComponent <AudioSource> ();
 		_audioSource.volume = volume [0];
@@ -12,18 +15,16 @@ public class AudioController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
-
-	void SmoothVolume(AudioSource audioSource, float goal){
-		if (goal > audioSource.volume) {
-			while (goal >= audioSource.volume) {
-				audioSource.volume = audioSource.volume + 0.0001f;
-			}
-		} else {
-			while (goal <= audioSource.volume) {
-				audioSource.volume = audioSource.volume - 0.0001f;
+	void FixedUpdate () {
+		if (_tempAudioSource != null && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
+		{
+			if (_tempAudioSource.volume > _goalVolume) 
+			{
+				_tempAudioSource.volume = _tempAudioSource.volume - 0.01f;
+			} 
+			else 
+			{
+				_tempAudioSource.volume = _tempAudioSource.volume + 0.01f;
 			}
 		}
 	}
@@ -42,19 +43,21 @@ public class AudioController : MonoBehaviour {
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
-//		_audioSource.volume = volume [1];
-		SmoothVolume (_audioSource, volume[1]);
-
+		_tempAudioSource = _audioSource;
+		_goalVolume = volume [1];
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
-		if (e.Engaged) {
-//			_audioSource.volume = volume [2];
-			SmoothVolume (_audioSource, volume[2]);
-		} else {
-//			_audioSource.volume = volume [1];
-			SmoothVolume (_audioSource, volume[1]);
+		if (e.Engaged) 
+		{
+			_tempAudioSource = _audioSource;
+			_goalVolume = volume [2];
+		} 
+		else 
+		{
+			_tempAudioSource = _audioSource;
+			_goalVolume = volume [1];
 		}
 	}
 }
