@@ -31,23 +31,23 @@ public class AnimationControl : MonoBehaviour {
 	void Update () {
 
 		if (m_IsAnimating) {
-			Debug.Log ("Start Animation");
+			//Debug.Log ("Start Animation");
 			SwitchToAnimation ();
 		} else {
 			SwitchToRigidBody ();
 		}
 
 		// test 
-		if(Input.GetKeyDown(KeyCode.X)){
-			Debug.Log ("Toggle Animtion and Rigidbody");
-			m_IsAnimating = !m_IsAnimating;
-
-			if (m_IsAnimating) {
-				SwitchToAnimation ();
-			} else {
-				SwitchToRigidBody ();
-			}
-		}
+//		if(Input.GetKeyDown(KeyCode.X)){
+//			//Debug.Log ("Toggle Animtion and Rigidbody");
+//			m_IsAnimating = !m_IsAnimating;
+//
+//			if (m_IsAnimating) {
+//				SwitchToAnimation ();
+//			} else {
+//				SwitchToRigidBody ();
+//			}
+//		}
 	}
 
 	void SwitchToAnimation(){

@@ -55,10 +55,7 @@ public class KeyComboHandler : MonoBehaviour {
 					m_IsKeyComboPressed = false;
 				}
 				m_KeyTimer.Reset ();
-			} else {
-				//m_IsKeyComboPressed = false;
-				//Debug.Log ("Still count");
-			}
+			} 
 		}
 
 		if(Input.GetKey(m_KeyCombo[1])){
@@ -73,9 +70,7 @@ public class KeyComboHandler : MonoBehaviour {
 					m_IsKeyComboPressed = false;
 				}
 				m_KeyTimer.Reset ();
-			} else {
-				//Debug.Log ("Still count");
-			}
+			} 
 		}
 
 		if(Input.GetKey(m_KeyCombo[2])){
@@ -90,9 +85,7 @@ public class KeyComboHandler : MonoBehaviour {
 					m_IsKeyComboPressed = false;
 				}
 				m_KeyTimer.Reset ();
-			} else {
-				//Debug.Log ("Still count");
-			}
+			} 
 		}
 	}
 
