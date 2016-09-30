@@ -53,6 +53,7 @@ public class GuardHandle : MonoBehaviour {
 				Debug.Log ("drowning");
 				if (!m_Bubbles.activeSelf) {
 					m_Bubbles.SetActive (true);
+					m_ItrAudio.PlayDrown ();
 				}
 
 			}
@@ -95,7 +96,10 @@ public class GuardHandle : MonoBehaviour {
 		m_PrisonerHandle.ReleaseTorture ();
 		if (m_IsTorture) {
 			m_ItrAudio.PlayDunkOut ();
-			m_Bubbles.SetActive (false);
+			if (m_Bubbles.activeSelf) {
+				m_Bubbles.SetActive (false);
+				m_ItrAudio.StopDrown ();
+			}
 			m_IsTorture = false;
 		}
 
