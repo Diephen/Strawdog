@@ -5,6 +5,8 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] Animator m_PrisonerAnim;
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
+	[SerializeField] AudioSource m_InteractionAudio;
+
 	bool m_isResisting = false;
 	bool m_isUnderTorture = false;
 	//[SerializeField] Animator m_GuardAnim;
