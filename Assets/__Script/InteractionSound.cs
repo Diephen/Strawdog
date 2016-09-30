@@ -54,7 +54,21 @@ public class InteractionSound : MonoBehaviour {
 	}
 
 	public void PlayResist(){
-		m_audio.clip = m_sounds [0];
+		m_audio.clip = m_sounds [3];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayBreakOut(){
+		m_audio.clip = m_sounds [4];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayChain(){
+		m_audio.clip = m_sounds [5];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}

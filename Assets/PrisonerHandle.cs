@@ -5,7 +5,7 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] Animator m_PrisonerAnim;
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
-	[SerializeField] AudioSource m_InteractionAudio;
+	[SerializeField] InteractionSound m_ItrAudio;
 
 	bool m_isResisting = false;
 	bool m_isUnderTorture = false;
@@ -78,7 +78,7 @@ public class PrisonerHandle : MonoBehaviour {
 			m_PrisonerAnim.SetBool("IsResist", true);
 			//m_GuardHandle.PushBack ();
 			m_isResisting = true;
-			//m_GuardAnim.SetTrigger ("TriggerBack");
+			m_ItrAudio.PlayResist ();
 		}
 
 	}
@@ -98,6 +98,7 @@ public class PrisonerHandle : MonoBehaviour {
 			m_IsStartTorture = false;	
 			m_AnimCtrl.SetAnimation(false);
 			m_GuardHandle.LeaveCalledByPrisoner ();
+			m_ItrAudio.PlayBreakOut ();
 		}
 
 
@@ -108,6 +109,7 @@ public class PrisonerHandle : MonoBehaviour {
 		m_PrisonerAnim.SetBool("IsResist", false);
 		m_IsStartTorture = false;	
 		m_AnimCtrl.SetAnimation(false);
+		m_ItrAudio.PlayChain ();
 		//m_GuardHandle.LeaveCalledByPrisoner ();
 	
 	}

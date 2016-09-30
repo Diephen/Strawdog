@@ -18467,7 +18467,7 @@ MonoBehaviour:
   m_PrisonerAnim: {fileID: 1250271399}
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1250271400}
-  m_InteractionAudio: {fileID: 0}
+  m_ItrAudio: {fileID: 1800800385}
 --- !u!95 &1250271399
 Animator:
   serializedVersion: 3
@@ -21273,7 +21273,7 @@ MonoBehaviour:
   m_PrisonerAnim: {fileID: 1468791722}
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1468791723}
-  m_InteractionAudio: {fileID: 0}
+  m_ItrAudio: {fileID: 0}
 --- !u!114 &1468791725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21681,7 +21681,7 @@ MonoBehaviour:
   m_PrisonerAnim: {fileID: 1505586824}
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1505586825}
-  m_InteractionAudio: {fileID: 0}
+  m_ItrAudio: {fileID: 0}
 --- !u!95 &1505586824
 Animator:
   serializedVersion: 3
@@ -26949,6 +26949,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b8598e411f09840ebba9499f33f9eb86, type: 3}
   - {fileID: 8300000, guid: 50ec80cdd1b5f4f33ab5465ad4485eca, type: 3}
   - {fileID: 8300000, guid: 5350ac021d5b7404a9f0c2d3f6ee85bf, type: 3}
+  - {fileID: 8300000, guid: 760dc4ae9844f4556ac22cfcc7445207, type: 3}
+  - {fileID: 8300000, guid: 516a0a77adef3443bb84a6f34e4a9b12, type: 3}
+  - {fileID: 8300000, guid: 5a145e844db7d4b6a92482a2a25b16ce, type: 3}
   m_audio: {fileID: 0}
   m_audioDrown: {fileID: 0}
 --- !u!1 &1810157945
