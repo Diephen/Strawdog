@@ -21,7 +21,7 @@ public class LightControl : MonoBehaviour {
 		if (!flickerDone1) {
 			timer1 = (Time.time - startTime1) / _flickerDuration1;
 			_lightComponent1.intensity = MathHelpers.LinMapFrom01 (_flickerRange.Min, _flickerRange.Max, _flickerCurve.Evaluate (timer1));
-			Debug.Log (_lightComponent1.intensity);
+			//Debug.Log (_lightComponent1.intensity);
 			if (timer1 >= 1f) {
 				flickerDone1 = true;
 			}
@@ -29,7 +29,7 @@ public class LightControl : MonoBehaviour {
 		if (!flickerDone2) {
 			timer2 = (Time.time - startTime2) / _flickerDuration2;
 			_lightComponent2.intensity = MathHelpers.LinMapFrom01 (_flickerRange.Min, _flickerRange.Max, _flickerCurve.Evaluate (timer2));
-			Debug.Log (_lightComponent2.intensity);
+			//Debug.Log (_lightComponent2.intensity);
 			if (timer2 >= 1f) {
 				flickerDone2 = true;
 			}
