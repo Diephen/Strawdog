@@ -99,15 +99,20 @@ public class AnimationInjection : MonoBehaviour {
 	public void SReleased(){
 	}
 	public void DPressed(){
+		if(!_isGuard) {
+			m_prisoner.Resist ();
+		}
+	}
+
+	public void DHold(){
 		// choose to leave 
 		if (_isGuard) {
 			// guard torture
 			m_guard.Leave();
 			_puppetControl.MoveRight ();
-		} else {
-			m_prisoner.Resist ();
 		}
 	}
+
 	public void DReleased(){
 		if (_isGuard) {
 			// guard torture
