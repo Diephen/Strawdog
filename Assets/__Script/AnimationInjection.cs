@@ -7,6 +7,7 @@ public class AnimationInjection : MonoBehaviour {
 	[SerializeField] bool[] _animInject = new bool[11];
 	[SerializeField] GuardHandle m_guard;
 	[SerializeField] PrisonerHandle m_prisoner;
+	bool[] _tempStateHandling = new bool[11];
 	int state = 0;
 
 	bool _isGuardTorturing = false;       // if the guard is doing the torture action 
@@ -41,12 +42,13 @@ public class AnimationInjection : MonoBehaviour {
 		if (e.Engaged) {
 			state = 1;
 			for (int i = 0; i < _animInject.Length; i++) {
+				_tempStateHandling [i] = _puppetControl._stateHandling [i];
 				_puppetControl._stateHandling [i] = _animInject [i];
 			}
 		} else {
 			state = 0;
 			for (int i = 0; i < _animInject.Length; i++) {
-				_puppetControl._stateHandling [i] = true;
+				_puppetControl._stateHandling [i] = _tempStateHandling [i];
 			}
 		}
 	}
