@@ -31,14 +31,11 @@ public class LightControl : MonoBehaviour {
 	[SerializeField] Light _soldierLight;
 
 
-	public bool _prisonerFlicker { get { return _prisonerFlicker; } set { _prisonerFlicker = value; } }
-
 	float _timeOn = 0.1f;
 	float _timeOff = 0.05f;
 	float _changeTime = 0;
 
 	void Awake(){
-		_prisonerFlicker = false;
 		_dLightTimer = new Timer (_dLightTransitionTime);
 	}
 
@@ -91,18 +88,7 @@ public class LightControl : MonoBehaviour {
 		}
 
 
-		if (_prisonerFlicker) {
-			if (Time.time > _changeTime) {
-				_prisonerLight.enabled = !_prisonerLight.enabled;
-				if (_prisonerLight.enabled) {
-					_changeTime = Time.time + _timeOn;
-				} else {
-					_changeTime = Time.time + _timeOff;
-				}
-			}
-		} else {
-			_prisonerLight.enabled = true;
-		}
+
 	}
 		
 	public void SpotlightFlicker(GameObject spotlight, float duration = _defaultDuration){	

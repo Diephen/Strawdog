@@ -21285,36 +21285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
-  _puppetControl: {fileID: 1468791721}
-  _animInject:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  m_guard: {fileID: 235587886}
-  m_prisoner: {fileID: 1468791724}
-  _tempStateHandling:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  state: 0
-  _isGuardTorturing: 0
 --- !u!50 &1468791726
 Rigidbody2D:
   serializedVersion: 2
@@ -21756,36 +21726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
-  _puppetControl: {fileID: 1505586827}
-  _animInject:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  m_guard: {fileID: 235587886}
-  m_prisoner: {fileID: 1505586823}
-  _tempStateHandling:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  state: 0
-  _isGuardTorturing: 0
 --- !u!114 &1505586827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27008,7 +26948,9 @@ MonoBehaviour:
   m_sounds:
   - {fileID: 8300000, guid: b8598e411f09840ebba9499f33f9eb86, type: 3}
   - {fileID: 8300000, guid: 50ec80cdd1b5f4f33ab5465ad4485eca, type: 3}
+  - {fileID: 8300000, guid: 5350ac021d5b7404a9f0c2d3f6ee85bf, type: 3}
   m_audio: {fileID: 0}
+  m_audioDrown: {fileID: 0}
 --- !u!1 &1810157945
 GameObject:
   m_ObjectHideFlags: 0
