@@ -41,7 +41,7 @@ public class KeyComboHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("Update?? " + m_KeyCombo[0].ToString());
+		//Debug.Log ("Update?? " + m_KeyCombo[0].ToString());
 		// check input ASD
 		if(Input.GetKey(m_KeyCombo[0])){
 			// start timer 

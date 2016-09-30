@@ -7,6 +7,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] PuppetControl m_PC;
 	[SerializeField] AudioSource m_DoorAudio;
+	[SerializeField] AudioSource m_InteractionAudio;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
