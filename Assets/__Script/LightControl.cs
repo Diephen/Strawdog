@@ -30,7 +30,8 @@ public class LightControl : MonoBehaviour {
 	[SerializeField] Light _prisonerLight;
 	[SerializeField] Light _soldierLight;
 
-
+	[SerializeField] PrisonerHandle _prisonerHandle;
+	bool _prisonerFlicker = false;
 	float _timeOn = 0.1f;
 	float _timeOff = 0.05f;
 	float _changeTime = 0;
@@ -87,8 +88,18 @@ public class LightControl : MonoBehaviour {
 			}
 		}
 
-
-
+		if (_prisonerHandle.GetisUnderTorture ()) {
+			if (Time.time > _changeTime) {
+				_prisonerLight.enabled = !_prisonerLight.enabled;
+				if (_prisonerLight.enabled) {
+					_changeTime = Time.time + _timeOn;
+				} else {
+					_changeTime = Time.time + _timeOff;
+				}
+			}
+		} else {
+			_prisonerLight.enabled = true;
+		}
 	}
 		
 	public void SpotlightFlicker(GameObject spotlight, float duration = _defaultDuration){	

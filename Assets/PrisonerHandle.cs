@@ -33,6 +33,11 @@ public class PrisonerHandle : MonoBehaviour {
 
 	}
 
+	public bool GetisUnderTorture(){
+		return m_isUnderTorture;
+	}
+
+
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
 		if (e.Engaged) {
