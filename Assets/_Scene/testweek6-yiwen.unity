@@ -4566,6 +4566,7 @@ MonoBehaviour:
   _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
   _prisonerLight: {fileID: 339936829}
   _soldierLight: {fileID: 549154274}
+  _prisonerHandle: {fileID: 1250271398}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -27164,7 +27165,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1833161823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -2.25, z: 0}
+  m_LocalPosition: {x: -0.39, y: -2.25, z: -1}
   m_LocalScale: {x: 0.513359, y: 0.6486726, z: 0.47608992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
