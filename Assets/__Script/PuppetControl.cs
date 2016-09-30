@@ -157,9 +157,9 @@ public class PuppetControl : MonoBehaviour {
 			_keyASD.IsPressCombo &&
 			m_charState != charState.pickup)
 		{
-			m_charState = charState.crouch;
+//			m_charState = charState.crouch;
 			if (_stateHandling [2] == true) {
-//				m_charState = charState.crouch;
+				m_charState = charState.crouch;
 				if (crouchStart == false) {
 					m_AudioSource [1].clip = m_Audio [2];
 					m_AudioSource [1].Play ();

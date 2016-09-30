@@ -7,7 +7,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] PuppetControl m_PC;
 	[SerializeField] AudioSource m_DoorAudio;
-	[SerializeField] AudioSource m_InteractionAudio;
+	[SerializeField] InteractionSound m_ItrAudio;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
@@ -75,14 +75,22 @@ public class GuardHandle : MonoBehaviour {
 		m_IsTorture = true;
 		m_GuardAnim.SetBool("IsTorture", true);
 		m_PrisonerHandle.Torture ();
+		m_ItrAudio.PlayDunkIn ();
 		// call prisoner
 	}
 
 	public void ReleaseTorture(){
-		m_IsTorture = false;
+		
 		m_GuardAnim.SetBool("IsTorture", false);
 		m_GuardAnim.SetFloat ("TortureHold", -1f);
 		m_PrisonerHandle.ReleaseTorture ();
+		if (m_IsTorture) {
+			m_ItrAudio.PlayDunkOut ();
+			m_IsTorture = false;
+		}
+
+
+
 	}
 
 	public void ReleasePrisoner(){
