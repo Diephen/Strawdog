@@ -9,8 +9,14 @@ public class AnimationInjection : MonoBehaviour {
 	[SerializeField] PrisonerHandle m_prisoner;
 	int state = 0;
 
+	bool _isGuardTorturing = false;       // if the guard is doing the torture action 
+
 	// Use this for initialization
 	void Start () {
+	}
+
+	void Update(){
+		Debug.Log ("Torturing?? " + _isGuardTorturing);	
 	}
 
 	void OnEnable ()
@@ -83,7 +89,7 @@ public class AnimationInjection : MonoBehaviour {
 		if (_isGuard) {
 			m_guard.ReleaseTorture ();
 		} else {
-
+			m_prisoner.ReleaseResist ();
 		}
 	}
 	public void SPressed(){

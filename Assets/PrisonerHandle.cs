@@ -6,6 +6,7 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	bool m_isResisting = false;
+	bool m_isUnderTorture = false;
 	//[SerializeField] Animator m_GuardAnim;
 
 	private bool m_IsStartTorture = false;
@@ -33,10 +34,10 @@ public class PrisonerHandle : MonoBehaviour {
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
 		if (e.Engaged) {
-			Debug.Log ("G: Prisoner Engaged");
+			Debug.Log ("P: Prisoner Engaged");
 			StartTorture ();
 		} else {
-			Debug.Log ("Prisoner Disengaged");
+			Debug.Log ("P:Prisoner Disengaged");
 		}
 	}
 
@@ -54,10 +55,15 @@ public class PrisonerHandle : MonoBehaviour {
 	}
 
 	public void Torture(){
+		m_isUnderTorture = true;
 		m_PrisonerAnim.SetBool("IsTorture", true);
+		if (m_isResisting) {
+			ReleaseResist ();
+		}
 	}
 
 	public void ReleaseTorture(){
+		m_isUnderTorture = false;
 		m_PrisonerAnim.SetBool ("IsTorture", false);
 	}
 
@@ -66,10 +72,13 @@ public class PrisonerHandle : MonoBehaviour {
 		// m_PrisonerAnim.SetBool("IsTorture", true);
 		// call prisoner
 		//m_PrisonerAnim.SetTrigger("TriggerResist");
-		m_PrisonerAnim.SetBool("IsResist", true);
-		m_GuardHandle.PushBack ();
-		m_isResisting = true;
-		//m_GuardAnim.SetTrigger ("TriggerBack");
+		if(!m_isUnderTorture){
+			m_PrisonerAnim.SetBool("IsResist", true);
+			//m_GuardHandle.PushBack ();
+			m_isResisting = true;
+			//m_GuardAnim.SetTrigger ("TriggerBack");
+		}
+
 	}
 
 	public void ReleaseResist(){
@@ -97,9 +106,13 @@ public class PrisonerHandle : MonoBehaviour {
 		m_PrisonerAnim.SetBool("IsResist", false);
 		m_IsStartTorture = false;	
 		m_AnimCtrl.SetAnimation(false);
-		m_GuardHandle.LeaveCalledByPrisoner ();
+		//m_GuardHandle.LeaveCalledByPrisoner ();
 	
 	}
+
+	public void DisableAnim(){
+		m_AnimCtrl.SetAnimation(false);
+	} 
 
 	public void Speak(){
 		// not implemented yet 
