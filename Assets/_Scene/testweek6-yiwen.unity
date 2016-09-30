@@ -3447,11 +3447,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 235587882}
   - 114: {fileID: 235587883}
-  - 114: {fileID: 235587887}
   - 114: {fileID: 235587885}
   - 95: {fileID: 235587884}
   - 114: {fileID: 235587886}
   - 114: {fileID: 235587888}
+  - 114: {fileID: 235587887}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -3580,12 +3580,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 235587881}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isGuard: 1
   _puppetControl: {fileID: 235587883}
-  _animInject: 0000010000000000000000
+  _animInject: 0000000000000000000000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1250271398}
 --- !u!114 &235587888
@@ -5869,7 +5869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &435940596
 Transform:
   m_ObjectHideFlags: 0
@@ -5977,7 +5977,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1184609155
+  randomSeed: 516245465
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18378,13 +18378,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 1250271394}
   - 114: {fileID: 1250271402}
-  - 114: {fileID: 1250271401}
   - 114: {fileID: 1250271400}
   - 95: {fileID: 1250271399}
   - 114: {fileID: 1250271398}
   - 61: {fileID: 1250271397}
   - 50: {fileID: 1250271396}
   - 114: {fileID: 1250271395}
+  - 114: {fileID: 1250271401}
   m_Layer: 0
   m_Name: prisoner-old
   m_TagString: Untagged
@@ -18509,7 +18509,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250271393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _isGuard: 0
@@ -21285,11 +21285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
-  _puppetControl: {fileID: 1468791721}
-  _animInject: 0000000000000000000000
-  m_guard: {fileID: 235587886}
-  m_prisoner: {fileID: 1468791724}
 --- !u!50 &1468791726
 Rigidbody2D:
   serializedVersion: 2
@@ -21731,11 +21726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb2f2545341e4870b99c94509a14767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
-  _puppetControl: {fileID: 1505586827}
-  _animInject: 0000000000000000000000
-  m_guard: {fileID: 235587886}
-  m_prisoner: {fileID: 1505586823}
 --- !u!114 &1505586827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26958,7 +26948,9 @@ MonoBehaviour:
   m_sounds:
   - {fileID: 8300000, guid: b8598e411f09840ebba9499f33f9eb86, type: 3}
   - {fileID: 8300000, guid: 50ec80cdd1b5f4f33ab5465ad4485eca, type: 3}
+  - {fileID: 8300000, guid: 5350ac021d5b7404a9f0c2d3f6ee85bf, type: 3}
   m_audio: {fileID: 0}
+  m_audioDrown: {fileID: 0}
 --- !u!1 &1810157945
 GameObject:
   m_ObjectHideFlags: 0
