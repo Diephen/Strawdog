@@ -2412,6 +2412,7 @@ GameObject:
   - 114: {fileID: 235587885}
   - 95: {fileID: 235587884}
   - 114: {fileID: 235587886}
+  - 114: {fileID: 235587888}
   m_Layer: 0
   m_Name: Guard
   m_TagString: Untagged
@@ -2479,6 +2480,7 @@ MonoBehaviour:
   _spotlight: {fileID: 549154272}
   _lightControl: {fileID: 320693799}
   _animInject: {fileID: 235587887}
+  _keyASD: {fileID: 0}
   _stateHandling: 0101010101010101010101
 --- !u!95 &235587884
 Animator:
@@ -2545,6 +2547,17 @@ MonoBehaviour:
   _animInject: 0000000001000000000000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1468791724}
+--- !u!114 &235587888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 235587881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251327480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,6 +3311,14 @@ MonoBehaviour:
   _flickerRange:
     _min: 2.5
     _max: 6
+  _interactFlickerRange:
+    _min: 4
+    _max: 8
+  _directionalLight: {fileID: 479197241}
+  _originalDLight: {r: 0.4509804, g: 0.5058824, b: 0.5137255, a: 1}
+  _interactDLight: {r: 0.18243648, g: 0.18965518, b: 0.15897568, a: 1}
+  _prisonerLight: {fileID: 1939993742}
+  _soldierLight: {fileID: 549154274}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -3308,9 +3329,10 @@ Transform:
   m_LocalPosition: {x: 0.92800176, y: -0.5297894, z: -2.828884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 479197240}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &333492428
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,11 +4586,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479197239}
   m_LocalRotation: {x: 0.023775972, y: 0.011881396, z: 0.00031448674, w: 0.99964666}
-  m_LocalPosition: {x: -0.95390487, y: 2.9163995, z: -5.24987}
+  m_LocalPosition: {x: -0.66742814, y: 0.96736616, z: -2.7529252}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
-  m_Father: {fileID: 1505815905}
+  m_Father: {fileID: 320693800}
   m_RootOrder: 0
 --- !u!108 &479197241
 Light:
@@ -4722,7 +4744,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &490060671
 GameObject:
   m_ObjectHideFlags: 0
@@ -6675,6 +6697,7 @@ MonoBehaviour:
   _spotlight: {fileID: 0}
   _lightControl: {fileID: 0}
   _animInject: {fileID: 0}
+  _keyASD: {fileID: 0}
   _stateHandling: 01010101010101
 --- !u!1 &770246186
 GameObject:
@@ -13835,6 +13858,7 @@ GameObject:
   - 114: {fileID: 1468791724}
   - 61: {fileID: 1468791727}
   - 50: {fileID: 1468791726}
+  - 114: {fileID: 1468791728}
   m_Layer: 0
   m_Name: prisoner
   m_TagString: Untagged
@@ -13903,7 +13927,8 @@ MonoBehaviour:
   _spotlight: {fileID: 1939993740}
   _lightControl: {fileID: 320693799}
   _animInject: {fileID: 1468791725}
-  _stateHandling: 0101010101010101010101
+  _keyASD: {fileID: 0}
+  _stateHandling: 0000010000010101010101
 --- !u!95 &1468791722
 Animator:
   serializedVersion: 3
@@ -13964,7 +13989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isGuard: 0
   _puppetControl: {fileID: 1468791721}
-  _animInject: 0000000000000000000000
+  _animInject: 0000000000000001000000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1468791724}
 --- !u!50 &1468791726
@@ -13998,6 +14023,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!114 &1468791728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1468791719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1469068013
 GameObject:
   m_ObjectHideFlags: 0
@@ -14224,35 +14260,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!1 &1505815904
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1505815905}
-  m_Layer: 0
-  m_Name: Lights
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1505815905
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1505815904}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2144785, y: -2.4788227, z: -0.33193922}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 479197240}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
 --- !u!1 &1511297120
 GameObject:
   m_ObjectHideFlags: 0
@@ -14505,6 +14512,7 @@ MonoBehaviour:
   _spotlight: {fileID: 2121633093}
   _lightControl: {fileID: 320693799}
   _animInject: {fileID: 0}
+  _keyASD: {fileID: 0}
   _stateHandling: 01010101010101
 --- !u!1 &1530807981
 GameObject:
@@ -16677,6 +16685,7 @@ MonoBehaviour:
   _spotlight: {fileID: 0}
   _lightControl: {fileID: 0}
   _animInject: {fileID: 0}
+  _keyASD: {fileID: 0}
   _stateHandling: 01010101010101
 --- !u!1 &1738259692
 GameObject:

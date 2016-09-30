@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent (typeof(KeyComboHandler))]
 public class PuppetControl : MonoBehaviour {
@@ -43,16 +44,31 @@ public class PuppetControl : MonoBehaviour {
 
 
 	// Will be used to selectively disable functionality to be replaced with animation
+	/* 
+	 * [0]: PickUp Down
+	 * [1]: PickUp Up
+	 * [2]: Crouch Down
+	 * [3]: Walk Left
+	 * [4]: Walk Right
+	 * [5]: Left Arm Down
+	 * [6]: Left Arm Up
+	 * [7]: Speak Down
+	 * [8]: Speak Up
+	 * [9]: Right Arm Down
+	 * [10]: Right Arm Up
+	 */
 	public bool[] _stateHandling = new bool[11] {true, true, true, true, true, true, true, true, true, true, true};
+
+
+
 
 	void Awake(){
 		//_keyASD = new KeyComboHandler (0.1f, new KeyCode[] {m_ListenKey[0],m_ListenKey[1],m_ListenKey[2]});
-	
+
 		_keyASD = gameObject.GetComponent<KeyComboHandler>();
 		if (_keyASD != null) {
 			_keyASD.SetKeyCombo (0.5f, new KeyCode[]{ m_ListenKey [0], m_ListenKey [1], m_ListenKey [2] });
 		} 
-
 	}
 
 	// Use this for initialization

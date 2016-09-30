@@ -16,6 +16,17 @@ public class AudioController : MonoBehaviour {
 	
 	}
 
+	void SmoothVolume(AudioSource audioSource, float goal){
+		if (goal > audioSource.volume) {
+			while (goal >= audioSource.volume) {
+				audioSource.volume = audioSource.volume + 0.0001f;
+			}
+		} else {
+			while (goal <= audioSource.volume) {
+				audioSource.volume = audioSource.volume - 0.0001f;
+			}
+		}
+	}
 
 	void OnEnable ()
 	{
@@ -31,16 +42,19 @@ public class AudioController : MonoBehaviour {
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
-		_audioSource.volume = volume [1];
+//		_audioSource.volume = volume [1];
+		SmoothVolume (_audioSource, volume[1]);
 
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
 	{
 		if (e.Engaged) {
-			_audioSource.volume = volume [2];
+//			_audioSource.volume = volume [2];
+			SmoothVolume (_audioSource, volume[2]);
 		} else {
-			_audioSource.volume = volume [1];
+//			_audioSource.volume = volume [1];
+			SmoothVolume (_audioSource, volume[1]);
 		}
 	}
 }
