@@ -8,6 +8,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] PuppetControl m_PC;
 	[SerializeField] AudioSource m_DoorAudio;
 	[SerializeField] InteractionSound m_ItrAudio;
+	[SerializeField] GameObject m_Bubbles;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
@@ -48,7 +49,15 @@ public class GuardHandle : MonoBehaviour {
 		if (m_IsTorture) {
 			m_AHoldTime = Time.time - m_AStartHoldTime;
 			m_GuardAnim.SetFloat ("TortureHold", m_AHoldTime);
+			if (m_AHoldTime >= 0.8f) {
+				Debug.Log ("drowning");
+				if (!m_Bubbles.activeSelf) {
+					m_Bubbles.SetActive (true);
+				}
+
+			}
 		} else {
+			m_AStartHoldTime = 0f;
 //			if (m_AHoldTime > 0) {
 //				m_AHoldTime -= Time.deltaTime;
 //			} else {
@@ -86,6 +95,7 @@ public class GuardHandle : MonoBehaviour {
 		m_PrisonerHandle.ReleaseTorture ();
 		if (m_IsTorture) {
 			m_ItrAudio.PlayDunkOut ();
+			m_Bubbles.SetActive (false);
 			m_IsTorture = false;
 		}
 
