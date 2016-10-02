@@ -109,6 +109,10 @@ public class PrisonerHandle : MonoBehaviour {
 
 	}
 
+	public void DrownStruggle(float holdTime){
+		m_PrisonerAnim.SetFloat ("TortureHold", holdTime);
+	}
+
 	public void LeaveCalledByGuard(){
 		m_isResisting = false;
 		m_PrisonerAnim.SetBool("IsResist", false);

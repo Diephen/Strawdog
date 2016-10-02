@@ -49,6 +49,7 @@ public class GuardHandle : MonoBehaviour {
 		if (m_IsTorture) {
 			m_AHoldTime = Time.time - m_AStartHoldTime;
 			m_GuardAnim.SetFloat ("TortureHold", m_AHoldTime);
+			m_PrisonerHandle.DrownStruggle (m_AHoldTime);
 			if (m_AHoldTime >= 0.8f) {
 				Debug.Log ("drowning");
 				if (!m_Bubbles.activeSelf) {
@@ -57,6 +58,14 @@ public class GuardHandle : MonoBehaviour {
 				}
 
 			}
+
+			if (m_AHoldTime >= 5f) {
+				Debug.Log ("Faint");
+
+
+			}
+
+
 		} else {
 			m_AStartHoldTime = 0f;
 //			if (m_AHoldTime > 0) {
