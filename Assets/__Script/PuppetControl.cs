@@ -44,6 +44,8 @@ public class PuppetControl : MonoBehaviour {
 
 	Timer _DHoldTimer;
 
+	bool _disableKeys = false;
+
 
 	// Will be used to selectively disable functionality to be replaced with animation
 	/* 
@@ -105,17 +107,21 @@ public class PuppetControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Pickup ();
-		Crouch ();
-		KeyHandle ();
-		//LerpHandle ();
+		if(!_disableKeys){
+			Pickup ();
+			Crouch ();
+			KeyHandle ();
+			//LerpHandle ();
+		}
 	}
 
 	void FixedUpdate(){
-		// jiggling -> the walk function should be called here 
-		// Debug.Log(_keyASD.IsPressCombo);
-		ContinuousKeyHandle ();
-		LerpHandle ();
+		if (!_disableKeys) {
+			// jiggling -> the walk function should be called here 
+			// Debug.Log(_keyASD.IsPressCombo);
+			ContinuousKeyHandle ();
+			LerpHandle ();
+		}
 
 	}
 
@@ -374,5 +380,9 @@ public class PuppetControl : MonoBehaviour {
 		if (other.name == "STOP") {
 			_stateHandling [3] = false;
 		}
+	}
+
+	public void DisableKeyInput(){
+		_disableKeys = true; 
 	}
 }
