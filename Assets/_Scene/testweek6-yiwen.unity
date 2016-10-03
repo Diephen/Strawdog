@@ -2602,6 +2602,7 @@ MonoBehaviour:
   m_DoorAudio: {fileID: 1185244839}
   m_ItrAudio: {fileID: 1800800385}
   m_Bubbles: {fileID: 435940595}
+  m_LightCtrl: {fileID: 320693799}
 --- !u!114 &235587887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14821,6 +14822,7 @@ MonoBehaviour:
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1250271400}
   m_ItrAudio: {fileID: 1800800385}
+  m_LightCtrl: {fileID: 320693799}
 --- !u!95 &1250271399
 Animator:
   serializedVersion: 3
@@ -17268,6 +17270,7 @@ MonoBehaviour:
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1250271400}
   m_ItrAudio: {fileID: 1800800385}
+  m_LightCtrl: {fileID: 0}
 --- !u!95 &1505586824
 Animator:
   serializedVersion: 3

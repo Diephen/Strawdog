@@ -142,7 +142,20 @@ public class LightControl : MonoBehaviour {
 	}
 
 	public void ToggleSpotFlicker(){
+		//Debug.Log ("Flicker on: " + _toggleSpotFlicker);
 		_toggleSpotFlicker = !_toggleSpotFlicker;
+	}
+
+	public void TurnOnFlicker(){
+		if (!_toggleSpotFlicker) {
+			_toggleSpotFlicker = true;
+		}
+	}
+
+	public void TurnOffFlicker(){
+		if (_toggleSpotFlicker) {
+			_toggleSpotFlicker = false;
+		}
 	}
 
 }

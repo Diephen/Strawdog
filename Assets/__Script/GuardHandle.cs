@@ -9,11 +9,13 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] AudioSource m_DoorAudio;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] GameObject m_Bubbles;
+	[SerializeField] LightControl m_LightCtrl;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
 	private bool m_IsStartTorture = false;
 	private bool m_IsTorture = false;
+	private bool m_IsFaint = false;
 
 	void OnEnable ()
 	{
@@ -61,13 +63,19 @@ public class GuardHandle : MonoBehaviour {
 			}
 
 			if (m_AHoldTime >= 5f) {
-				Debug.Log ("Faint");
 				//m_GuardAnim.SetTrigger ("TriggerFaint");
-				if (m_Bubbles.activeSelf) {
-					m_Bubbles.SetActive (false);
-					m_ItrAudio.PlayFaint ();
-				}
+				if(!m_IsFaint){
+					if (m_Bubbles.activeSelf) {
+						m_Bubbles.SetActive (false);
+						Debug.Log ("Faint");
+						m_ItrAudio.PlayFaint ();
 
+					}
+					m_PC.DisableKeyInput ();
+					m_LightCtrl.ToggleSpotFlicker ();
+					m_IsFaint = true;
+					
+				}
 			}
 
 
@@ -98,16 +106,15 @@ public class GuardHandle : MonoBehaviour {
 		m_AStartHoldTime = Time.time;
 		m_IsTorture = true;
 		m_GuardAnim.SetBool("IsTorture", true);
-		m_PrisonerHandle.Torture ();
+		//m_PrisonerHandle.Torture ();
 		m_ItrAudio.PlayDunkIn ();
 		// call prisoner
 	}
 
 	public void ReleaseTorture(){
-		
 		m_GuardAnim.SetBool("IsTorture", false);
 		m_GuardAnim.SetFloat ("TortureHold", -1f);
-		m_PrisonerHandle.ReleaseTorture ();
+		//m_PrisonerHandle.ReleaseTorture ();
 		if (m_IsTorture) {
 			m_ItrAudio.PlayDunkOut ();
 			if (m_Bubbles.activeSelf) {
@@ -136,7 +143,6 @@ public class GuardHandle : MonoBehaviour {
 			m_PrisonerHandle.LeaveCalledByGuard ();
 			m_PC.MoveRight ();
 		}
-
 
 	}
 

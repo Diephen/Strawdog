@@ -81,6 +81,7 @@ public class AnimationInjection : MonoBehaviour {
 	public void APressed(){
 		if (_isGuard) {
 			// guard torture
+			Debug.Log("Call Torture");
 			m_guard.Torture();
 		} else {
 			m_prisoner.Resist ();

@@ -6,6 +6,7 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] InteractionSound m_ItrAudio;
+	[SerializeField] LightControl m_LightCtrl;
 
 	bool m_isResisting = false;
 	bool m_isUnderTorture = false;
@@ -32,10 +33,10 @@ public class PrisonerHandle : MonoBehaviour {
 
 
 	}
-
-	public bool GetisUnderTorture(){
-		return m_isUnderTorture;
-	}
+//
+//	public bool GetisUnderTorture(){
+//		return m_isUnderTorture;
+//	}
 
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
@@ -67,11 +68,15 @@ public class PrisonerHandle : MonoBehaviour {
 		if (m_isResisting) {
 			ReleaseResist ();
 		}
+		m_LightCtrl.TurnOnFlicker ();
+		//m_LightCtrl.ToggleSpotFlicker ();
 	}
 
 	public void ReleaseTorture(){
 		m_isUnderTorture = false;
 		m_PrisonerAnim.SetBool ("IsTorture", false);
+		//m_LightCtrl.ToggleSpotFlicker ();
+		m_LightCtrl.TurnOffFlicker();
 	}
 
 	public void Resist(){
@@ -104,6 +109,7 @@ public class PrisonerHandle : MonoBehaviour {
 			m_AnimCtrl.SetAnimation(false);
 			m_GuardHandle.LeaveCalledByPrisoner ();
 			m_ItrAudio.PlayBreakOut ();
+			m_LightCtrl.TurnOffFlicker ();
 		}
 
 
@@ -120,6 +126,7 @@ public class PrisonerHandle : MonoBehaviour {
 		m_AnimCtrl.SetAnimation(false);
 		m_ItrAudio.PlayChain ();
 		//m_GuardHandle.LeaveCalledByPrisoner ();
+		m_LightCtrl.TurnOffFlicker ();
 	
 	}
 

@@ -80,6 +80,7 @@ public class InteractionSound : MonoBehaviour {
 
 	public void PlayFaint(){
 		m_audioDrown.Stop ();
-		PlayDunkOut ();
+		m_audio.clip = m_sounds [1];
+		m_audio.Play ();
 	}
 }
