@@ -17,7 +17,7 @@ public class AnimationInjection : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log ("Torturing?? " + _isGuardTorturing);	
+		//Debug.Log ("Torturing?? " + _isGuardTorturing);	
 	}
 
 	void OnEnable ()
