@@ -36,6 +36,8 @@ public class LightControl : MonoBehaviour {
 	float _timeOff = 0.05f;
 	float _changeTime = 0;
 
+	bool _toggleSpotFlicker = false;
+
 	void Awake(){
 		_dLightTimer = new Timer (_dLightTransitionTime);
 	}
@@ -88,7 +90,7 @@ public class LightControl : MonoBehaviour {
 			}
 		}
 
-		if (_prisonerHandle.GetisUnderTorture ()) {
+		if (_toggleSpotFlicker) {
 			if (Time.time > _changeTime) {
 				_prisonerLight.enabled = !_prisonerLight.enabled;
 				if (_prisonerLight.enabled) {
@@ -137,6 +139,10 @@ public class LightControl : MonoBehaviour {
 		} else {
 			_dLightInteractStart = false;
 		}
+	}
+
+	public void ToggleSpotFlicker(){
+		_toggleSpotFlicker = !_toggleSpotFlicker;
 	}
 
 }
