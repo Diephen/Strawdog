@@ -10,6 +10,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] GameObject m_Bubbles;
 	[SerializeField] LightControl m_LightCtrl;
+	[SerializeField] AudioSource m_TortureAudio;
 
 	[SerializeField] Fading m_Fading;
 
@@ -127,15 +128,18 @@ public class GuardHandle : MonoBehaviour {
 		m_AStartHoldTime = Time.time;
 		m_IsTorture = true;
 		m_GuardAnim.SetBool("IsTorture", true);
-		//m_PrisonerHandle.Torture ();
+		m_PrisonerHandle.Torture ();
 		m_ItrAudio.PlayDunkIn ();
+		if (m_TortureAudio != null) {
+			m_TortureAudio.Play ();
+		}
 		// call prisoner
 	}
 
 	public void ReleaseTorture(){
 		m_GuardAnim.SetBool("IsTorture", false);
 		m_GuardAnim.SetFloat ("TortureHold", -1f);
-		//m_PrisonerHandle.ReleaseTorture ();
+		m_PrisonerHandle.ReleaseTorture ();
 		if (m_IsTorture) {
 			m_ItrAudio.PlayDunkOut ();
 			if (m_Bubbles.activeSelf) {

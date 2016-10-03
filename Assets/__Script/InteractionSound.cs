@@ -10,6 +10,7 @@ public class InteractionSound : MonoBehaviour {
 	//
 	// 5 --
 	// 6 -- Faint Sound
+	// 7 -- dunkout delayed
 
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
