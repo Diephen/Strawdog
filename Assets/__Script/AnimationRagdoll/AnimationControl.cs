@@ -9,6 +9,7 @@ public class AnimationControl : MonoBehaviour {
 	[SerializeField] Rigidbody2D[] m_RigidArray;
 	[SerializeField] int m_RigidNum;
 	[SerializeField] bool m_IsAnimating = false;
+	[SerializeField] PuppetJoint[] m_Joints;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,6 +19,7 @@ public class AnimationControl : MonoBehaviour {
 	void Awake(){
 		// get all the rigidbodies 
 		m_RigidArray = m_Structure.GetComponentsInChildren<Rigidbody2D>();
+		m_Joints = m_Structure.GetComponentsInChildren<PuppetJoint> ();
 		Debug.Log ("All rigid = " + m_RigidArray.Length);
 		if (m_AnimController == null) {
 			m_AnimController = gameObject.GetComponent<Animator> ();
@@ -38,16 +40,16 @@ public class AnimationControl : MonoBehaviour {
 		}
 
 		// test 
-//		if(Input.GetKeyDown(KeyCode.X)){
-//			//Debug.Log ("Toggle Animtion and Rigidbody");
-//			m_IsAnimating = !m_IsAnimating;
-//
-//			if (m_IsAnimating) {
-//				SwitchToAnimation ();
-//			} else {
-//				SwitchToRigidBody ();
-//			}
-//		}
+		if(Input.GetKeyDown(KeyCode.X)){
+			//Debug.Log ("Toggle Animtion and Rigidbody");
+			m_IsAnimating = !m_IsAnimating;
+
+			if (m_IsAnimating) {
+				SwitchToAnimation ();
+			} else {
+				SwitchToRigidBody ();
+			}
+		}
 	}
 
 	void SwitchToAnimation(){
@@ -56,6 +58,7 @@ public class AnimationControl : MonoBehaviour {
 			foreach (Rigidbody2D _rig in m_RigidArray) {
 				_rig.isKinematic = true;	
 			}
+			//RegisterPositions ();
 		}
 
 	}
@@ -69,12 +72,25 @@ public class AnimationControl : MonoBehaviour {
 				}
 
 			}
+			//RestorePositions ();
 		}
 	
 	}
 
 	public void SetAnimation(bool animating){
 		m_IsAnimating = animating;
+	}
+
+	void RegisterPositions(){
+		foreach (PuppetJoint pj in m_Joints) {
+			pj.RegisterPos ();
+		}
+	}
+
+	void RestorePositions(){
+		foreach (PuppetJoint pj in m_Joints) {
+			pj.RestorePos();
+		}
 	}
 
 

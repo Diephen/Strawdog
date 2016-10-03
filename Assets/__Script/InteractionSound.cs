@@ -6,6 +6,10 @@ public class InteractionSound : MonoBehaviour {
 	// 0 -- dunk in 
 	// 1 -- dunk out
 	// 2 -- drown
+	//
+	//
+	// 5 --
+	// 6 -- Faint Sound
 
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
@@ -72,5 +76,10 @@ public class InteractionSound : MonoBehaviour {
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
+	}
+
+	public void PlayFaint(){
+		m_audioDrown.Stop ();
+		PlayDunkOut ();
 	}
 }
