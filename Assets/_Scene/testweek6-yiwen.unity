@@ -2495,7 +2495,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 235587881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3, y: 0, z: 0}
+  m_LocalPosition: {x: 16.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2603,6 +2603,7 @@ MonoBehaviour:
   m_ItrAudio: {fileID: 1800800385}
   m_Bubbles: {fileID: 435940595}
   m_LightCtrl: {fileID: 320693799}
+  m_Fading: {fileID: 2112633601}
 --- !u!114 &235587887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4186,7 +4187,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 5.0598254, y: 6.9471455}
+  m_ConnectedAnchor: {x: 23.059826, y: 6.9471455}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7090,7 +7091,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 6.0798254, y: 4.0371456}
+  m_ConnectedAnchor: {x: 24.079826, y: 4.0371456}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7330,7 +7331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544408505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.96, y: 0, z: -10}
+  m_LocalPosition: {x: 19.78, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -14027,8 +14028,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1185244834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.37, y: -2.63, z: 0}
-  m_LocalScale: {x: 1.7374991, y: 4.2625, z: 1}
+  m_LocalPosition: {x: 4.8, y: -2.63, z: 0}
+  m_LocalScale: {x: 0.34749964, y: 4.2625, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 694361781}
@@ -19587,7 +19588,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 2.6498256, y: 4.9971457}
+  m_ConnectedAnchor: {x: 20.649826, y: 4.9971457}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -21181,6 +21182,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 760dc4ae9844f4556ac22cfcc7445207, type: 3}
   - {fileID: 8300000, guid: 516a0a77adef3443bb84a6f34e4a9b12, type: 3}
   - {fileID: 8300000, guid: 5a145e844db7d4b6a92482a2a25b16ce, type: 3}
+  - {fileID: 8300000, guid: 44261bf7fced048898ae80291b8e3b26, type: 3}
   m_audio: {fileID: 0}
   m_audioDrown: {fileID: 0}
 --- !u!1 &1810157945
@@ -23807,6 +23809,48 @@ Transform:
   - {fileID: 994315745}
   m_Father: {fileID: 1526309918}
   m_RootOrder: 3
+--- !u!1 &2112633600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2112633602}
+  - 114: {fileID: 2112633601}
+  m_Layer: 0
+  m_Name: Fade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2112633601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2112633600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a51a25142344641a2eba207023cc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeOutTexture: {fileID: 2800000, guid: 24a1c30fd118a40f28fbe679da782e33, type: 3}
+  fadeSpeed: 1
+--- !u!4 &2112633602
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2112633600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32454127, y: -1.11855, z: 4.3671875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &2116444285
 GameObject:
   m_ObjectHideFlags: 0

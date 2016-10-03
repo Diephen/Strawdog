@@ -10,6 +10,8 @@ public class GuardTrigger : MonoBehaviour {
 		if (_guardState == guardState.BeforeEntering && other.name == "EnterCell") {
 			_guardState = guardState.EnteredCell;
 			Events.G.Raise(new GuardEnteringCellEvent());
+		} else if(_guardState == guardState.EnteredCell && other.name == "EnterCell"){
+			Events.G.Raise (new GuardLeavingCellEvent());
 		}
 		if (other.name == "EngagePrisoner") {
 			_guardState = guardState.EngagedPrisoner;

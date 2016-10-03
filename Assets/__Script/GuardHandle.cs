@@ -11,22 +11,28 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] GameObject m_Bubbles;
 	[SerializeField] LightControl m_LightCtrl;
 
+	[SerializeField] Fading m_Fading;
+
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
 	private bool m_IsStartTorture = false;
 	private bool m_IsTorture = false;
 	private bool m_IsFaint = false;
 
+	bool m_EngagedPrisoner = false;
+
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.AddListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.RemoveListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
@@ -34,6 +40,16 @@ public class GuardHandle : MonoBehaviour {
 		Debug.Log("Guard Entered");
 		if (m_DoorAudio != null && !m_DoorAudio.isPlaying) {
 			m_DoorAudio.Play ();
+		}
+	}
+
+	void OnGuardLeaveCell (GuardLeavingCellEvent e){
+		if (m_DoorAudio != null && !m_DoorAudio.isPlaying) {
+			m_DoorAudio.Play ();
+		}
+		//Fading to Black
+		if (m_EngagedPrisoner) {
+			Events.G.Raise (new Act1EndedEvent ());
 		}
 	}
 
@@ -45,6 +61,8 @@ public class GuardHandle : MonoBehaviour {
 		} else {
 			Debug.Log ("G: Prisoner Disengaged");
 		}
+		//Checks if the guard engaged prisoner for fading out
+		m_EngagedPrisoner = true;
 	}
 
 	void Update(){
@@ -53,7 +71,7 @@ public class GuardHandle : MonoBehaviour {
 			// set the hold time
 			m_GuardAnim.SetFloat ("TortureHold", m_AHoldTime);
 			m_PrisonerHandle.DrownStruggle (m_AHoldTime);
-			if (m_AHoldTime >= 0.8f) {
+			if (m_AHoldTime >= 0.8f && !m_IsFaint) {
 				Debug.Log ("drowning");
 				if (!m_Bubbles.activeSelf) {
 					m_Bubbles.SetActive (true);
@@ -71,10 +89,13 @@ public class GuardHandle : MonoBehaviour {
 						m_ItrAudio.PlayFaint ();
 
 					}
+					m_ItrAudio.StopDrown ();
 					m_PC.DisableKeyInput ();
-					m_LightCtrl.ToggleSpotFlicker ();
+					m_LightCtrl.TurnOffFlicker ();
 					m_IsFaint = true;
-					
+
+					//Fading to Black
+					Events.G.Raise(new Act1EndedEvent());
 				}
 			}
 
