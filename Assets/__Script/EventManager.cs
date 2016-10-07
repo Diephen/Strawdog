@@ -24,5 +24,31 @@ public class GuardEngaginPrisonerEvent : GameEvent {
 	}
 }
 
+/* Act 2 */
+public class LockCellEvent : GameEvent {
+}
+
+public class LeftCellUnlockedEvent : GameEvent {
+}
+
+public class SleepInCellEvent : GameEvent {
+}
+
+public class PrisonerFoundBombEvent : GameEvent {
+}
+
+public class GuardFoundBombEvent : GameEvent {
+}
+
+public class CaughtSneakingEvent : GameEvent {
+}
+
+//public class Act2EndedEvent : GameEvent {
+//}
+
+/* Act 3 */
+
+
+
 public class EventManager : MonoBehaviour {
 }

@@ -86,9 +86,9 @@ public class TheatreManager : MonoBehaviour {
 			m_Actors [m_CurIndex].GetComponent<Actor>().Activate();
 		}
 		*/ 
-		if (Input.GetKeyDown (KeyCode.R)) {
-			SceneManager.LoadScene ("ManWolf");
-		}
+//		if (Input.GetKeyDown (KeyCode.R)) {
+//			SceneManager.LoadScene ("ManWolf");
+//		}
 	}
 
 	void MoveLightTo(Vector3 position){
