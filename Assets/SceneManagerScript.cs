@@ -63,35 +63,35 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadVertical(Act0EndedEvent e){
-		StartCoroutine(ChangeLevel(0, 1.0f));
+		StartCoroutine(ChangeLevel(1, 1.0f));
 	}
 		
 	void LoadAct2(Act1EndedEvent e){
-		StartCoroutine(ChangeLevel(1, 4f));
+		StartCoroutine(ChangeLevel(2, 4f));
 	}
 
 
 	void LoadAct3_No(SleepInCellEvent e){
-		StartCoroutine(ChangeLevel(2, 3f));
+		StartCoroutine(ChangeLevel(3, 3f));
 	}
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
-		StartCoroutine(ChangeLevel(4, 3f));
+		StartCoroutine(ChangeLevel(5, 3f));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
-		StartCoroutine(ChangeLevel(3, 3f));
+		StartCoroutine(ChangeLevel(4, 3f));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
 
 
 	void LoadExecution(TriggerExecutionEvent e){
-		StartCoroutine(ChangeLevel(5, 1f));
+		StartCoroutine(ChangeLevel(6, 1f));
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
-		StartCoroutine(ChangeLevel(5, 1f));
+		StartCoroutine(ChangeLevel(6, 1f));
 	}
 	void LoadPlantBomb(TriggerPlantBombEvent e){
-		StartCoroutine(ChangeLevel(5, 1f));
+		StartCoroutine(ChangeLevel(6, 1f));
 	}
 
 
@@ -104,7 +104,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
-		StartCoroutine(ChangeLevel(5, 1f));
+		StartCoroutine(ChangeLevel(6, 1f));
 	}
 
 
