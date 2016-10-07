@@ -7,6 +7,9 @@ using System.Collections;
 //		PersonId = personId;
 //	}
 //}
+public class Act0EndedEvent : GameEvent {
+}
+
 
 public class GuardEnteringCellEvent : GameEvent {
 }

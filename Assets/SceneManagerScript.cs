@@ -17,6 +17,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
+
 		Events.G.AddListener<Act1EndedEvent>(LoadAct2);
 
 		Events.G.AddListener<SleepInCellEvent>(LoadAct3_No);
@@ -39,6 +41,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnDisable ()
 	{
+		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
+
 		Events.G.RemoveListener<Act1EndedEvent>(LoadAct2);
 
 		Events.G.RemoveListener<SleepInCellEvent>(LoadAct3_No);
@@ -56,6 +60,10 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
+	}
+
+	void LoadVertical(Act0EndedEvent e){
+		StartCoroutine(ChangeLevel(0, 1.0f));
 	}
 		
 	void LoadAct2(Act1EndedEvent e){
