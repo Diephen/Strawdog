@@ -29,6 +29,7 @@ public class PuppetControl : MonoBehaviour {
 	bool crouchStart = false;
 	bool _isWalking = false;
 	bool isSpeak = false;
+	bool _isStairs = false;
 	charState m_charState = charState.idle;
 	float[] startTime = new float[4];
 	float[] distCovered = new float[4];
@@ -44,7 +45,7 @@ public class PuppetControl : MonoBehaviour {
 
 	Timer _DHoldTimer;
 
-	bool _disableKeys = false;
+	[SerializeField] bool _disableKeys = false;
 
 
 	// Will be used to selectively disable functionality to be replaced with animation
@@ -127,10 +128,18 @@ public class PuppetControl : MonoBehaviour {
 
 	void Walk(charState dir){
 		_isWalking = true;
-		if (dir == charState.left) {
-			transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
-		} else if (dir == charState.right) {
-			transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
+		if (_isStairs == false) {
+			if (dir == charState.left) {
+				transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
+			} else if (dir == charState.right) {
+				transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
+			}
+		} else {
+			if (dir == charState.left) {
+				transform.Translate ((Vector3.left + Vector3.down) * m_MoveSpeed * Time.deltaTime);
+			} else if (dir == charState.right) {
+				transform.Translate ((Vector3.right + Vector3.up) * m_MoveSpeed * Time.deltaTime);
+			}
 		}
 	}
 
@@ -384,5 +393,17 @@ public class PuppetControl : MonoBehaviour {
 
 	public void DisableKeyInput(){
 		_disableKeys = true; 
+	}
+
+	public void EnableKeyInput(){
+		_disableKeys = false;
+	}
+
+	public KeyCode[] GetKeyCodes(){
+		return m_ListenKey;
+	}
+
+	public void SetIsStairs(bool stairs){
+		_isStairs = stairs;
 	}
 }

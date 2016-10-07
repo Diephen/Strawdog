@@ -2,26 +2,40 @@
 using System.Collections;
 
 public class FollowCam : MonoBehaviour {
-	
+	enum cameraPos {Left, Center, Right, Static};
+
+	[SerializeField] bool _startGuard = true;
 	[SerializeField] Transform _followGuard;
 	[SerializeField] Transform _followPrisoner;
 	Transform _followObj;
 	Vector3 CameraPos;
 	[SerializeField] bool[] XYZ = new bool[3] {false, false, false};
 
-	Vector3 _posDiff;
+	Vector3 _guardPosDiff;
+	Vector3 _prisonerPosDiff;
 
-	bool cameraToggle = false;
+	[SerializeField] cameraPos _cameraToggle = cameraPos.Right;
 
 	float timer = 0f;
 
 	[SerializeField] float _leftCameraPos = 2f;
 	[SerializeField] float _rightCameraPos = -2f;
 
+	[SerializeField] int ActNumber = 1;
+	enum followWho {Guard, Prisoner, None};
+	followWho _followWho = followWho.None;
+
 	void Start () {
 		CameraPos = gameObject.transform.position;
-		_followObj = _followGuard;
-//		_posDiff = transform.position - _followGuard.position;
+		if (_startGuard) {
+			_followObj = _followGuard;
+			_followWho = followWho.Guard;
+		} else {
+			_followObj = _followPrisoner;
+			_followWho = followWho.Prisoner;
+		}
+		_guardPosDiff = transform.position - _followGuard.position;
+		_prisonerPosDiff = transform.position - _followPrisoner.position;
 
 	}
 	
@@ -35,22 +49,32 @@ public class FollowCam : MonoBehaviour {
 			
 
 		if (XYZ [0]) {
-			if (cameraToggle) {
+			if (_cameraToggle == cameraPos.Left) {
 				timer += Time.deltaTime;
 				CameraPos.x = Mathf.Lerp (CameraPos.x, _followObj.position.x + _leftCameraPos, timer);
-			} else {
+			} else if (_cameraToggle == cameraPos.Right) {
 				timer += Time.deltaTime;
 				CameraPos.x = Mathf.Lerp (CameraPos.x, _followObj.position.x + _rightCameraPos, timer);
+			} else if(_cameraToggle == cameraPos.Center){
+				timer += Time.deltaTime;
+				CameraPos.x = Mathf.Lerp (CameraPos.x, _followObj.position.x, timer);
 			}
 
 //			CameraPos.x = _followObj.position.x + _rightCameraPos;
 			//			CameraPos.x = _followObj.position.x + _posDiff.x;
 		} 
 		if (XYZ [1]) {
-			CameraPos.y = _followObj.position.y + _posDiff.y;
+			if (_followWho == followWho.Guard) {
+				CameraPos.y = _followObj.position.y + _guardPosDiff.y;
+			} else if (_followWho == followWho.Prisoner) {
+				CameraPos.y = _followObj.position.y + _prisonerPosDiff.y;
+			} else {
+				CameraPos.y = _followObj.position.y;
+			}
+
 		}
 		if (XYZ [2]) {
-			CameraPos.z = _followObj.position.z + _posDiff.z;
+//			CameraPos.z = _followObj.position.z + _posDiff.z;
 		}
 		gameObject.transform.position = CameraPos;
 	}
@@ -59,11 +83,15 @@ public class FollowCam : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.AddListener<LockCellEvent>(OnLockedDoor);
+		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.RemoveListener<LockCellEvent>(OnLockedDoor);
+		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 	}
 		
 
@@ -72,7 +100,22 @@ public class FollowCam : MonoBehaviour {
 		if (e.Engaged) {
 			timer = 0f;
 			_followObj = _followPrisoner;
-			cameraToggle = true;
+			_followWho = followWho.Prisoner;
+			_cameraToggle = cameraPos.Left;
 		}
+	}
+
+	void OnLockedDoor(LockCellEvent e){
+		timer = 0f;
+		_followObj = _followGuard;
+		_followWho = followWho.Guard;
+		_cameraToggle = cameraPos.Left;
+	}
+
+	void LeftCellUnlocked(LeftCellUnlockedEvent e){
+		timer = 0f;
+		_followObj = _followPrisoner;
+		_followWho = followWho.Prisoner;
+		_cameraToggle = cameraPos.Left;
 	}
 }
