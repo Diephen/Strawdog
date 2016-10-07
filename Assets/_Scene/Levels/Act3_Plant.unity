@@ -3646,7 +3646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!102 &372106156
 TextMesh:
   serializedVersion: 3
@@ -11562,7 +11562,7 @@ GameObject:
   - 82: {fileID: 929883196}
   - 82: {fileID: 929883195}
   m_Layer: 0
-  m_Name: BombPlant
+  m_Name: EnterFoodStorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13767,7 +13767,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052947248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9efe286c12214bef90f56c81d512479, type: 3}
   m_Name: 
@@ -18256,7 +18256,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  _fullTranslucencyCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _code: {fileID: 1488667866}
+  _foodStorageWall: {fileID: 0}
 --- !u!61 &1485883823
 BoxCollider2D:
   m_ObjectHideFlags: 0

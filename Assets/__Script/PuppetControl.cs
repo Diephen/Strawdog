@@ -386,8 +386,17 @@ public class PuppetControl : MonoBehaviour {
 
 
 	void OnTriggerStay2D(Collider2D other) {
-		if (other.name == "STOP") {
+		if (other.name == "STOPLeft") {
 			_stateHandling [3] = false;
+		} else if(other.name == "STOPRight") {
+			_stateHandling [4] = false;
+		}
+	}
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.name == "STOPLeft") {
+			_stateHandling [3] = true;
+		} else if (other.name == "STOPRight") {
+			_stateHandling [4] = true;
 		}
 	}
 

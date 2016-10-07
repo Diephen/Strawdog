@@ -71,9 +71,21 @@ public class PrisonerShotEvent : GameEvent {
 }
 
 /* Act 4-2 Taken Away */
+public class Taken_EnterFoodStorageEvent : GameEvent {
+}
 
 
 /* Act 4-3 Plant Bomb */
+
+public class Plant_EnterFoodStorageEvent : GameEvent {
+}
+
+
+public class Guard_EncounterEvent : GameEvent {
+}
+
+public class Prisoner_EncounterEvent: GameEvent {
+}
 
 /* Act 5 */
 public class EventManager : MonoBehaviour {

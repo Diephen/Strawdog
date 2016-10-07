@@ -11,19 +11,23 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	KeyCode[] _guardKeyCodes;
 
 	[SerializeField] AnimationCurve _screenTranslucencyCurve;
+	[SerializeField] AnimationCurve _fullTranslucencyCurve;
 	Color _tempColor;
 	float _tempAlpha;
 
 	[SerializeField] TextMesh _code;
+	[SerializeField] Renderer _foodStorageWall;
 	bool _codeOnce = true;
 //	bool _isStairs = false;
 //	float _stairTempPosition;
 
 //	int _waveCnt = 0;
 	Renderer _screenRenderer;
+	bool _bombPlanted = false;
 
 	void Start(){
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
+
 	}
 
 	void Update(){
@@ -51,12 +55,20 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		if (other.name == "Glass") {
 			_screenRenderer = other.gameObject.GetComponent <Renderer> ();
 			_tempColor = _screenRenderer.material.color;
-			StartCoroutine (ScreenFadeOut());
+			StartCoroutine (ScreenFadeOut ());
 
 
 //			_guardState = guardState.LeftUnlocked;
 //			Events.G.Raise (new LeftCellUnlockedEvent());
 //			_guard.SetActive (false);
+		}else if (other.name == "EnterFoodStorage") {
+			Events.G.Raise (new Plant_EnterFoodStorageEvent());
+		} 
+		else if (other.name == "LeaveFoodStorage" && _bombPlanted) {
+			_tempColor = _foodStorageWall.material.color;
+			StartCoroutine (WallFadeOut (_foodStorageWall));
+		} else if (other.name == "Encounter") {
+			Events.G.Raise (new Guard_EncounterEvent());
 		}
 //
 //		if (other.tag == "Stairs") {
@@ -115,6 +127,36 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		}
 	}
 
+	IEnumerator WallFadeIn(Renderer render){
+		float startTime = Time.time;
+		bool i = true;
+		while (i) {
+			_tempAlpha = _fullTranslucencyCurve.Evaluate ((Time.time - startTime)/2f);
+			_tempColor.a = _tempAlpha;
+			render.material.color = _tempColor;
+			//			Debug.Log (_screenTimer.PercentTimePassed);
+			yield return null;
+			if ((Time.time - startTime)/2f > 1.0f) {
+				i = false;
+			}
+		}
+	}
+
+	IEnumerator WallFadeOut(Renderer render){
+		float startTime = Time.time;
+		bool i = true;
+		while (i) {
+			_tempAlpha = _fullTranslucencyCurve.Evaluate (1.0f - (Time.time - startTime)/3f);
+			_tempColor.a = _tempAlpha;
+			render.material.color = _tempColor;
+			//			Debug.Log (_screenTimer.PercentTimePassed);
+			yield return null;
+			if ((Time.time - startTime)/3f > 1.0f) {
+				i = false;
+			}
+		}
+	}
+
 	void OnTriggerStay2D(Collider2D other){
 //		if (_guardState == guardState.Act2Begin && other.name == "LockCell") {
 //			if(Input.GetKeyDown (_guardKeyCodes[3])){
@@ -124,8 +166,9 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //			}
 //		}
 		if (other.name == "BombPlant") {
-			if(Input.GetKeyDown (_guardKeyCodes[3])){
+			if (Input.GetKeyDown (_guardKeyCodes [3])) {
 				Debug.Log ("Planted Bomb");
+				_bombPlanted = true;
 				if (_codeOnce) {
 					_tempColor = _code.color;
 					StartCoroutine (CodeFadeIn ());

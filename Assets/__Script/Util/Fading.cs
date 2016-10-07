@@ -34,25 +34,25 @@ public class Fading : MonoBehaviour {
 		BeginFade (-1);
 	}
 
-
-	void OnEnable ()
-	{
-		Events.G.AddListener <Act1EndedEvent>(Fade);
-	}
-
-	void OnDisable ()
-	{
-		Events.G.AddListener <Act1EndedEvent>(Fade);
-	}
-
-	void Fade(Act1EndedEvent e){
-		StartCoroutine (FadetoBlack());
-	}
-
-	IEnumerator FadetoBlack(){
-		yield return new WaitForSeconds(5f);
-		BeginFade (1);
-	}
+//
+//	void OnEnable ()
+//	{
+//		Events.G.AddListener <Act1EndedEvent>(Fade);
+//	}
+//
+//	void OnDisable ()
+//	{
+//		Events.G.AddListener <Act1EndedEvent>(Fade);
+//	}
+//
+//	void Fade(Act1EndedEvent e){
+//		StartCoroutine (FadetoBlack());
+//	}
+//
+//	IEnumerator FadetoBlack(){
+//		yield return new WaitForSeconds(5f);
+//		BeginFade (1);
+//	}
 }
 //StartCoroutine(ChangeLevel());
 //IEnumerator ChangeLevel(){
