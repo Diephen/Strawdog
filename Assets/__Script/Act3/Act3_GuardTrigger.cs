@@ -198,4 +198,18 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //			_waveCnt = 0;
 //		}
 	}
+
+	void OnEnable()
+	{
+		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
+	}
+
+	void OnDisable ()
+	{
+		Events.G.RemoveListener<Prisoner_EncounterEvent>(PrisonerEncounter);
+	}
+
+	void PrisonerEncounter(Prisoner_EncounterEvent e) {
+		_guardPuppetController.EnableKeyInput ();
+	}
 }

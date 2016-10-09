@@ -86,7 +86,10 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<LockCellEvent>(OnLockedDoor);
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<Guard_EncounterEvent>(GuardEncounter);
+		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 		Events.G.AddListener<BrokeFree>(BreakFree);
+
+
 	}
 
 	void OnDisable ()
@@ -95,6 +98,7 @@ public class FollowCam : MonoBehaviour {
 		Events.G.RemoveListener<LockCellEvent>(OnLockedDoor);
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<Guard_EncounterEvent>(GuardEncounter);
+		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 		Events.G.RemoveListener<BrokeFree>(BreakFree);
 	}
 		
@@ -129,6 +133,11 @@ public class FollowCam : MonoBehaviour {
 	}
 
 	void BreakFree(BrokeFree e) {
+		timer = 0f;
+		_cameraToggle = cameraPos.Center;
+	}
+
+	void PrisonerEncounter(Prisoner_EncounterEvent e) {
 		timer = 0f;
 		_cameraToggle = cameraPos.Left;
 	}

@@ -6,7 +6,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	prisonerState _prisonerState = prisonerState.Act4Begin;
 
 	[SerializeField] GameObject _prisoner;
-	[SerializeField] PuppetControl _prisonerPuppetController;
+	PuppetControl _prisonerPuppetController;
 //	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _prisonerKeyCodes;
 
@@ -18,6 +18,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //	float _stairTempPosition;
 
 	void Start(){
+		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
 		_prisonerKeyCodes = _prisonerPuppetController.GetKeyCodes ();
 		_alertTimer = new Timer (2.0f);
 	}
@@ -50,6 +51,9 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 		if (other.name == "AlertTrigger") {
 			_isSafe = true;
 			Events.G.Raise (new AboutToStrayOutOfLineEvent(false));
+		} else if(other.name == "Encounter"){
+			Events.G.Raise (new Prisoner_EncounterEvent());
+			other.enabled = false;
 		}
 
 //		if (other.tag == "Stairs") {

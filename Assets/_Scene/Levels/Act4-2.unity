@@ -3147,7 +3147,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 235587881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 93.1, y: 0, z: -6.8}
+  m_LocalPosition: {x: 68.9, y: 0, z: -6.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -3201,7 +3201,7 @@ MonoBehaviour:
   _lightControl: {fileID: 320693799}
   _animInject: {fileID: 235587887}
   _keyASD: {fileID: 0}
-  _disableKeys: 0
+  _disableKeys: 1
   _stateHandling: 0101010101010101010101
 --- !u!95 &235587884
 Animator:
@@ -5041,7 +5041,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 95.61983, y: 16.947145}
+  m_ConnectedAnchor: {x: 71.41983, y: 16.947145}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -8020,7 +8020,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 96.63982, y: 14.037146}
+  m_ConnectedAnchor: {x: 72.43982, y: 14.037146}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -10064,12 +10064,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 741221682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f970b1d705b4694abff8e7bf2ce02f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b7281f16d99d4485adb5b44415c3bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prisoner: {fileID: 1250271393}
-  _prisonerPuppetController: {fileID: 1250271402}
-  _note: {fileID: 0}
 --- !u!61 &741221685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21515,7 +21513,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 93.20982, y: 14.997147}
+  m_ConnectedAnchor: {x: 69.00983, y: 14.997147}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
