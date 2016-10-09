@@ -5,7 +5,7 @@ public class ParallaxScroll : MonoBehaviour {
 	[SerializeField] float _speed = 1.5f;
 	[SerializeField] string _triggerCharacterName;
 	Transform _followChar;
-	bool _triggered = true;
+	bool _triggered = false;
 
 	Vector3 _originalPos;
 	Vector3 _newPos;
