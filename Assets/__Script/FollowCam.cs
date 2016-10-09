@@ -50,7 +50,7 @@ public class FollowCam : MonoBehaviour {
 
 		if (XYZ [0]) {
 			if (_cameraToggle == cameraPos.Left) {
-				timer += Time.deltaTime;
+				timer += Time.deltaTime/2f;
 				CameraPos.x = Mathf.Lerp (CameraPos.x, _followObj.position.x + _leftCameraPos, timer);
 			} else if (_cameraToggle == cameraPos.Right) {
 				timer += Time.deltaTime;
@@ -86,6 +86,7 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<LockCellEvent>(OnLockedDoor);
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<Guard_EncounterEvent>(GuardEncounter);
+		Events.G.AddListener<BrokeFree>(BreakFree);
 	}
 
 	void OnDisable ()
@@ -94,6 +95,7 @@ public class FollowCam : MonoBehaviour {
 		Events.G.RemoveListener<LockCellEvent>(OnLockedDoor);
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<Guard_EncounterEvent>(GuardEncounter);
+		Events.G.RemoveListener<BrokeFree>(BreakFree);
 	}
 		
 
@@ -124,5 +126,10 @@ public class FollowCam : MonoBehaviour {
 	void GuardEncounter(Guard_EncounterEvent e) {
 		timer = 0f;
 		_cameraToggle = cameraPos.Right;
+	}
+
+	void BreakFree(BrokeFree e) {
+		timer = 0f;
+		_cameraToggle = cameraPos.Left;
 	}
 }

@@ -415,4 +415,14 @@ public class PuppetControl : MonoBehaviour {
 	public void SetIsStairs(bool stairs){
 		_isStairs = stairs;
 	}
+
+	public void DisableContinuousWalk() {
+		m_Continuous [0] = false;
+		m_Continuous [2] = false;
+	}
+
+	public void EnableContinuousWalk() {
+		m_Continuous [0] = true;
+		m_Continuous [2] = true;
+	}
 }

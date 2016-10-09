@@ -84,6 +84,8 @@ public class PrisonerShotEvent : GameEvent {
 public class Taken_EnterFoodStorageEvent : GameEvent {
 }
 
+public class BrokeFree : GameEvent {
+}
 
 /* Act 4-3 Plant Bomb */
 
