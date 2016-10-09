@@ -61,6 +61,13 @@ public class TriggerPlantBombEvent : GameEvent {
 
 /* Act 4-1 Execution*/
 
+public class AboutToStrayOutOfLineEvent : GameEvent {
+	public bool Straying { get; private set; }
+	public AboutToStrayOutOfLineEvent(bool straying){
+		Straying = straying;
+	}
+}
+
 public class StrayOutOfLineEvent : GameEvent {
 }
 
