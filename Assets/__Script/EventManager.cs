@@ -106,3 +106,6 @@ public class Prisoner_EncounterEvent: GameEvent {
 /* Act 5 */
 public class EventManager : MonoBehaviour {
 }
+
+
+/* Key Events */
