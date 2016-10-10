@@ -29,6 +29,10 @@ public class GuardEngaginPrisonerEvent : GameEvent {
 
 /* Act 2 */
 public class LockCellEvent : GameEvent {
+	public bool Locked { get; private set; }
+	public LockCellEvent(bool locked){
+		Locked = locked;
+	}
 }
 
 public class LeftCellUnlockedEvent : GameEvent {

@@ -64,7 +64,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			_highlightsFX.objectRenderer = _stairRenderer;

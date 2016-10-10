@@ -2,14 +2,13 @@
 using System.Collections;
 
 public class Cell_GuardTrigger : MonoBehaviour {
-	enum guardState {Act2Begin, Locked, LeftUnlocked};
-	guardState _guardState = guardState.Act2Begin;
 
 	[SerializeField] GameObject _guard;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
 
 	bool _isStairs = false;
+	bool _isDoor = false;
 
 	[SerializeField] float _stairStartPosition = 28f;
 	bool _goToStart = false;
@@ -20,6 +19,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 
 	int _waveCnt = 0;
+
+	bool _locked = true;
 
 
 	Camera _mainCam;
@@ -43,12 +44,19 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			Events.G.Raise(new GuardFoundBombEvent());
 			Debug.Log ("Guard Found Bomb");
 		}
-		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
-			_goToStart = true;
-			_highlightsFX.enabled = false;
-			_guardPuppetController.DisableKeyInput ();
-			_tempPosition = _guard.transform.position;
-			_stairStartTimer.Reset ();
+		if (Input.GetKeyDown (_guardKeyCodes [3])) {
+			if (_isStairs) {
+				_goToStart = true;
+				_highlightsFX.enabled = false;
+				_guardPuppetController.DisableKeyInput ();
+				_tempPosition = _guard.transform.position;
+				_stairStartTimer.Reset ();
+			} 
+			else if (_isDoor) 
+			{
+				_locked = !_locked;
+				Events.G.Raise(new LockCellEvent(_locked));
+			}
 		}
 
 		if (_goToStart) {
@@ -64,10 +72,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if(_guardState == guardState.Act2Begin && other.name == "LeaveUnlocked"){
-			_guardState = guardState.LeftUnlocked;
-			Events.G.Raise (new LeftCellUnlockedEvent());
-			_guard.SetActive (false);
+		if (!_locked) {
+			if (other.name == "LeaveUnlocked") {
+				Events.G.Raise (new LeftCellUnlockedEvent ());
+				_guard.SetActive (false);
+			}
 		}
 
 		if (other.tag == "Stairs") {
@@ -77,24 +86,17 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		} else if (other.name == "LockCell") {
 			_highlightsFX.objectRenderer = _doorRenderer;
 			_highlightsFX.enabled = true;
+			_isDoor = true;
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (_guardState == guardState.Act2Begin && other.name == "LockCell") {
-			if(Input.GetKeyDown (_guardKeyCodes[3])){
-				_guardState = guardState.Locked;
-				Debug.Log ("Guard Locked the door");
-				Events.G.Raise(new LockCellEvent());
-			}
-		}
-		if (other.name == "Bomb" && _guardState == guardState.Locked) {
+		if (other.name == "Bomb") {
 			if(Input.GetKeyDown (_guardKeyCodes[2])){
 				_waveCnt++;
 			}
 		}
 	}
-
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "Bomb") {
@@ -104,6 +106,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_highlightsFX.enabled = false;
 		} else if (other.name == "LockCell") {
 			_highlightsFX.enabled = false;
+			_isDoor = false;
 		}
 	}
 }
