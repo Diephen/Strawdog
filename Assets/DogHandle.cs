@@ -20,6 +20,7 @@ public class DogHandle : MonoBehaviour {
 	void Start () {
 		m_PC = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<PuppetControl> ();
 		m_GuardHandle = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<GuardTutorialHandle> ();
+		m_Anim = GetComponent<Animator> () ? GetComponent<Animator> () : null;
 	}
 	
 	// Update is called once per frame
@@ -53,10 +54,10 @@ public class DogHandle : MonoBehaviour {
 	{
 		switch (dgs) {
 		case DogState.idle:
-			
 			break;
 		case DogState.start:
 			m_GuardHandle.StartDogInteraction ();
+			WalkToPlayer ();
 			break;
 		case DogState.beg:
 			break;
@@ -67,6 +68,13 @@ public class DogHandle : MonoBehaviour {
 
 		}
 		
+	}
+
+	public void WalkToPlayer(){
+		if (m_Anim != null) {
+			m_Anim.SetBool ("IsStartWalk", true);
+		}
+
 	}
 
 	void StopPlayer(){
