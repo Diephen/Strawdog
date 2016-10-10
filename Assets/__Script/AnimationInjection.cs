@@ -87,6 +87,7 @@ public class AnimationInjection : MonoBehaviour {
 			m_prisoner.Resist ();
 		}
 
+
 	}
 	public void AReleased(){
 		if (_isGuard) {
