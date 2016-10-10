@@ -29,7 +29,6 @@ public class PuppetControl : MonoBehaviour {
 	bool crouchStart = false;
 	bool _isWalking = false;
 	bool isSpeak = false;
-	bool _isStairs = false;
 	charState m_charState = charState.idle;
 	float[] startTime = new float[4];
 	float[] distCovered = new float[4];
@@ -128,19 +127,11 @@ public class PuppetControl : MonoBehaviour {
 
 	void Walk(charState dir){
 		_isWalking = true;
-		if (_isStairs == false) {
 			if (dir == charState.left) {
 				transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
 			} else if (dir == charState.right) {
 				transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
 			}
-		} else {
-			if (dir == charState.left) {
-				transform.Translate ((Vector3.left + Vector3.down) * m_MoveSpeed * Time.deltaTime);
-			} else if (dir == charState.right) {
-				transform.Translate ((Vector3.right + Vector3.up) * m_MoveSpeed * Time.deltaTime);
-			}
-		}
 	}
 
 	void Pickup() {
@@ -411,10 +402,6 @@ public class PuppetControl : MonoBehaviour {
 
 	public KeyCode[] GetKeyCodes(){
 		return m_ListenKey;
-	}
-
-	public void SetIsStairs(bool stairs){
-		_isStairs = stairs;
 	}
 
 	public void DisableContinuousWalk() {
