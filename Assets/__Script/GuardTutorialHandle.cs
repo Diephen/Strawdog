@@ -7,6 +7,8 @@ public class GuardTutorialHandle : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] PuppetControl m_PC;
 	[SerializeField] InteractionSound m_ItrAudio;
+	[SerializeField] AnimationInjectionTutorial m_AnimInjection;
+
 
 	// Use this for initialization
 	void Start () {
@@ -14,12 +16,12 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_PC = GetComponent<PuppetControl> () ? GetComponent<PuppetControl> () : null;
 		m_AnimCtrl = GetComponent<AnimationControl> () ? GetComponent<AnimationControl> () : null;
 		m_DogHandle = GameObject.FindObjectOfType<DogHandle> ().GetComponent<DogHandle> ();
-		
+		m_AnimInjection = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<AnimationInjectionTutorial> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void StartDogInteraction(){
@@ -30,9 +32,25 @@ public class GuardTutorialHandle : MonoBehaviour {
 
 	public void LeaveDog(){
 		m_GuardAnim.SetBool ("IsSeeDog", false);
+		m_DogHandle.PersonLeft ();
 	}
 
 	public void DisableAnim(){
 		m_AnimCtrl.SetAnimation (false);
+		m_AnimInjection.SetLeave ();
+	}
+
+	public void PetDog(){
+		m_GuardAnim.SetBool ("IsPetting", true);
+		m_DogHandle.Pet ();
+	}
+
+	public void ReleasePet(){
+		m_GuardAnim.SetBool ("IsPetting", false);
+		m_DogHandle.ReleasePet ();
+	}
+
+	public void UpdatePetTime(float t){
+		m_GuardAnim.SetFloat ("PetTime", t);
 	}
 }
