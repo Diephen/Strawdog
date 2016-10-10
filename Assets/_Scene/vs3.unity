@@ -2558,6 +2558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whoAmI: 0
   m_MouthAnim: {fileID: 1874565299}
   m_Finger:
   - {fileID: 1735936622}
@@ -2588,7 +2589,6 @@ MonoBehaviour:
   m_MoveSpeed: 2
   _spotlight: {fileID: 549154272}
   _lightControl: {fileID: 320693799}
-  _animInject: {fileID: 235587887}
   _keyASD: {fileID: 0}
   _disableKeys: 0
   _stateHandling: 0101010101010101010101
@@ -2658,9 +2658,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 1
+  _whoAmI: 0
   _puppetControl: {fileID: 235587883}
-  _animInject: 0000000000000000000000
+  _animInject: 0000000000000001010000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1250271398}
 --- !u!114 &235587888
@@ -15521,9 +15521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
+  _whoAmI: 1
   _puppetControl: {fileID: 1250271402}
-  _animInject: 0000000000000000000000
+  _animInject: 0000000000000001010000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1250271398}
 --- !u!114 &1250271402
@@ -15537,6 +15537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whoAmI: 1
   m_MouthAnim: {fileID: 114806624}
   m_Finger:
   - {fileID: 383068589}
@@ -15567,7 +15568,6 @@ MonoBehaviour:
   m_MoveSpeed: 2
   _spotlight: {fileID: 339936827}
   _lightControl: {fileID: 320693799}
-  _animInject: {fileID: 1250271401}
   _keyASD: {fileID: 0}
   _disableKeys: 0
   _stateHandling: 0000000000010101010101
@@ -18232,7 +18232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGuard: 0
+  _whoAmI: 0
   _puppetControl: {fileID: 1505586827}
   _animInject: 0000000000000000000000
   m_guard: {fileID: 235587886}
@@ -18248,6 +18248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whoAmI: 0
   m_MouthAnim: {fileID: 940521928}
   m_Finger:
   - {fileID: 1901902341}
@@ -18278,7 +18279,6 @@ MonoBehaviour:
   m_MoveSpeed: 2
   _spotlight: {fileID: 1793412599}
   _lightControl: {fileID: 320693799}
-  _animInject: {fileID: 1250271401}
   _keyASD: {fileID: 0}
   _disableKeys: 0
   _stateHandling: 0101010101010101010101
@@ -18755,6 +18755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whoAmI: 0
   m_MouthAnim: {fileID: 1469068015}
   m_Finger:
   - {fileID: 1138715433}
@@ -18785,7 +18786,6 @@ MonoBehaviour:
   m_MoveSpeed: 2
   _spotlight: {fileID: 2121633093}
   _lightControl: {fileID: 320693799}
-  _animInject: {fileID: 0}
   _keyASD: {fileID: 0}
   _disableKeys: 0
   _stateHandling: 01010101010101
@@ -20868,6 +20868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whoAmI: 0
   m_MouthAnim: {fileID: 2094835548}
   m_Finger:
   - {fileID: 302609693}
@@ -20898,7 +20899,6 @@ MonoBehaviour:
   m_MoveSpeed: 2
   _spotlight: {fileID: 0}
   _lightControl: {fileID: 320693799}
-  _animInject: {fileID: 0}
   _keyASD: {fileID: 0}
   _disableKeys: 0
   _stateHandling: 0101010101010101010101

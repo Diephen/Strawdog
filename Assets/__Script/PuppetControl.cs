@@ -2,8 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum CharacterIdentity {Guard, Prisoner};
+
 [RequireComponent (typeof(KeyComboHandler))]
 public class PuppetControl : MonoBehaviour {
+	[SerializeField] CharacterIdentity _whoAmI;
+
 	[SerializeField] Animator m_MouthAnim;
 	[SerializeField] GameObject[] m_Finger = new GameObject[3];
 	//add animators 
@@ -37,7 +41,6 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] GameObject _spotlight;
 	//Light Controller Script
 	[SerializeField] LightControl _lightControl;
-	[SerializeField] AnimationInjection _animInject;
 
 	// key combo detection 
 	[SerializeField] KeyComboHandler _keyASD;
@@ -144,13 +147,13 @@ public class PuppetControl : MonoBehaviour {
 				startTime [3] = Time.time;
 				m_charState = charState.pickup;
 			} else {
-				_animInject.PickUpPressed ();
+				Events.G.Raise (new PickUpPressedEvent (_whoAmI));
 			}
 		} else if (Input.GetKeyUp (m_ListenKey [3])) {
 			if (_stateHandling [1] == true) {
 				m_charState = charState.idle;
 			} else {
-				_animInject.PickupReleased ();
+				Events.G.Raise (new PickupReleasedEvent (_whoAmI));
 			}
 		}
 	}
@@ -179,7 +182,7 @@ public class PuppetControl : MonoBehaviour {
 					startTime [2] = Time.time;
 				}
 			} else {
-				_animInject.CrouchPressed ();
+				Events.G.Raise (new CrouchPressedEvent (_whoAmI));
 			}
 		} else {
 			crouchStart = false;
@@ -196,7 +199,8 @@ public class PuppetControl : MonoBehaviour {
 					m_charState = charState.left;
 					Walk (m_charState);
 				} else {
-					_animInject.WalkLeft ();
+					//Jung-Ho: Let me know if you need to use this
+					//					Events.G.Raise (new WalkRightEvent (_whoAmI));
 				}
 			}
 
@@ -207,7 +211,8 @@ public class PuppetControl : MonoBehaviour {
 					m_charState = charState.right;
 					Walk (m_charState);
 				} else {
-					_animInject.WalkRight ();
+					//Jung-Ho: Let me know if you need to use this
+					//					Events.G.Raise (new WalkLeftEvent (_whoAmI));
 				}
 			}
 		}
@@ -225,7 +230,7 @@ public class PuppetControl : MonoBehaviour {
 					m_Pressed [0] = true;
 					startTime [0] = Time.time;
 				} else {
-					_animInject.APressed ();
+					Events.G.Raise (new APressedEvent (_whoAmI));
 				}
 			} else if (Input.GetKeyUp (m_ListenKey [0])) {
 				if (m_Animator [0] != null) {
@@ -236,7 +241,7 @@ public class PuppetControl : MonoBehaviour {
 					startTime [0] = Time.time;
 
 				} else {
-					_animInject.AReleased ();
+					Events.G.Raise (new AReleasedEvent (_whoAmI));
 				}
 				m_charState = charState.idle;
 			}
@@ -264,7 +269,7 @@ public class PuppetControl : MonoBehaviour {
 						isSpeak = true;
 					}
 				} else {
-					_animInject.SPressed ();
+					Events.G.Raise (new SPressedEvent (_whoAmI));
 				}
 			} else if (Input.GetKeyUp (m_ListenKey [1])) {
 				if (m_Animator [1] != null) {
@@ -279,7 +284,7 @@ public class PuppetControl : MonoBehaviour {
 						isSpeak = false;
 					}
 				} else {
-					_animInject.SReleased ();
+					Events.G.Raise (new SReleasedEvent (_whoAmI));
 				}
 				m_charState = charState.idle;
 
@@ -298,14 +303,14 @@ public class PuppetControl : MonoBehaviour {
 					startTime [2] = Time.time;
 
 				} else {
-					_animInject.DPressed ();
+					Events.G.Raise (new DPressedEvent (_whoAmI));
 					_DHoldTimer.Reset ();
 				}
 			}
 			if (Input.GetKey (m_ListenKey [2])&& m_charState != charState.crouch &&  !_keyASD.IsPressCombo) {
 				if (_stateHandling [9] == false) {
 					if (_DHoldTimer.IsOffCooldown) {
-						_animInject.DHold ();
+						Events.G.Raise (new DHoldEvent (_whoAmI));
 					}
 				}
 			}
@@ -319,7 +324,7 @@ public class PuppetControl : MonoBehaviour {
 					startTime [2] = Time.time;
 
 				} else {
-					_animInject.DReleased ();
+					Events.G.Raise (new DReleasedEvent (_whoAmI));
 				}
 				m_charState = charState.idle;
 			}
