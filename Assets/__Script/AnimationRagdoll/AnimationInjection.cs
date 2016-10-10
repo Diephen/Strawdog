@@ -24,6 +24,7 @@ public class AnimationInjection : MonoBehaviour {
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 
+		// all the events for controls
 		Events.G.AddListener<PickUpPressedEvent>(PickUpPressed);
 		Events.G.AddListener<PickupReleasedEvent>(PickupReleased);
 		Events.G.AddListener<CrouchPressedEvent>(CrouchPressed);
@@ -43,6 +44,7 @@ public class AnimationInjection : MonoBehaviour {
 		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 
+		// for all the controls 
 		Events.G.RemoveListener<PickUpPressedEvent>(PickUpPressed);
 		Events.G.RemoveListener<PickupReleasedEvent>(PickupReleased);
 		Events.G.RemoveListener<CrouchPressedEvent>(CrouchPressed);
