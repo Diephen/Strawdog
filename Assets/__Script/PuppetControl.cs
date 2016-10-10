@@ -389,6 +389,7 @@ public class PuppetControl : MonoBehaviour {
 		if (other.name == "STOPLeft") {
 			_stateHandling [3] = false;
 		} else if(other.name == "STOPRight") {
+			
 			_stateHandling [4] = false;
 		}
 	}

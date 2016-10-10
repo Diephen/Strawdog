@@ -1,12 +1,9 @@
 fileFormatVersion: 2
-guid: d17665139b8924bc7a5fd20cfdb44823
-timeCreated: 1476061411
+guid: 56896869f440040388196518637b0573
+timeCreated: 1476063237
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: stair_0
-    21300002: stair_1
-    21300004: stair_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -41,7 +38,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -54,46 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: stair_0
-      rect:
-        serializedVersion: 2
-        x: 153
-        y: 828
-        width: 1106
-        height: 467
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stair_1
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 149
-        width: 1109
-        height: 488
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: stair_2
-      rect:
-        serializedVersion: 2
-        x: 1489
-        y: 176
-        width: 1494
-        height: 1115
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
