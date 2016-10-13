@@ -18,6 +18,7 @@ public class DogHandle : MonoBehaviour {
 	float m_StartPetTime;
 	float m_PetTime = 0f;
 	bool m_IsPetting = false;
+	bool m_IsDogHappy = false;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +37,15 @@ public class DogHandle : MonoBehaviour {
 		} else {
 			m_PetTime = 0;
 		}
+
+		if (m_PetTime >= 5.0f) {
+			if (!m_IsDogHappy) {
+				m_IsDogHappy = true;
+				DogHappy ();
+			}
+
+
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -45,7 +55,7 @@ public class DogHandle : MonoBehaviour {
 			m_AnimInjection.SetEngage ();
 			m_DogState = DogState.start;
 			CheckState (m_DogState);
-			Debug.Log ("waggle waggle");
+			Debug.Log ("wiggle wiggle");
 		}
 
 	}
@@ -124,6 +134,20 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsStartWalk", false);
 		m_IsPetting = false;
 		//LeavePlayer ();
+	}
+
+	public void DogHappy(){
+		
+		gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+		m_Anim.SetTrigger ("TriggerDogHappy");
+		m_GuardHandle.DogHappy ();
+
+	}
+
+	public void EndInteraction(){
+		LeavePlayer ();
+		m_Anim.SetBool ("IsPetting", false);
+		m_Anim.SetBool ("IsStartWalk",false);
 	}
 
 

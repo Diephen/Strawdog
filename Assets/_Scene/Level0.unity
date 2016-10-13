@@ -476,7 +476,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 44400908}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -2671,7 +2671,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300008, guid: d0771542180a94108a3080cb94bdda11, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
   m_FlipX: 1
   m_FlipY: 0
 --- !u!1 &297098254
@@ -7116,7 +7116,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300008, guid: d0771542180a94108a3080cb94bdda11, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
   m_FlipX: 1
   m_FlipY: 0
 --- !u!1 &514746644
@@ -7607,7 +7607,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544408505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7, y: 0, z: -10}
+  m_LocalPosition: {x: -11.69, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -9612,7 +9612,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300002, guid: d0771542180a94108a3080cb94bdda11, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1 &856445972
@@ -12436,7 +12436,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011274968084, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.71
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 4000011274968084, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -19115,7 +19115,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1687208844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.438204, y: -5.853933, z: -2.2471912}
+  m_LocalPosition: {x: 4.68, y: -5.853933, z: -2.2471912}
   m_LocalScale: {x: 1.1797754, y: 1.1797754, z: 1.1797754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -19146,9 +19146,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 3.7891207, y: 0}
+  m_Offset: {x: 3.5947251, y: 0}
   serializedVersion: 2
-  m_Size: {x: 13.496717, y: 21.479998}
+  m_Size: {x: 22.772142, y: 21.479998}
 --- !u!1 &1700179270
 GameObject:
   m_ObjectHideFlags: 0
