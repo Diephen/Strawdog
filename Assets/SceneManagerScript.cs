@@ -63,7 +63,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadVertical(Act0EndedEvent e){
-		StartCoroutine(ChangeLevel(1, 1.0f));
+		StartCoroutine(ChangeLevel(1, 1.7f));
 	}
 		
 	void LoadAct2(Act1EndedEvent e){

@@ -182,6 +182,9 @@ public class DReleasedEvent: GameEvent {
 	}
 }
 
+public class EnableMoveEvent: GameEvent {
+}
+
 
 
 

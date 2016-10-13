@@ -385,10 +385,10 @@ public class PuppetControl : MonoBehaviour {
 		if (other.name == "STOPLeft") {
 			_stateHandling [3] = false;
 		} else if(other.name == "STOPRight") {
-			
 			_stateHandling [4] = false;
 		}
 	}
+		
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "STOPLeft") {
 			_stateHandling [3] = true;
@@ -417,5 +417,19 @@ public class PuppetControl : MonoBehaviour {
 	public void EnableContinuousWalk() {
 		m_Continuous [0] = true;
 		m_Continuous [2] = true;
+	}
+
+	void EnableMove(EnableMoveEvent e){
+		_stateHandling [4] = true;
+		_stateHandling [3] = true;
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<EnableMoveEvent>(EnableMove);
+	}
+
+	void OnDisable ()
+	{
+		Events.G.RemoveListener<EnableMoveEvent> (EnableMove);
 	}
 }

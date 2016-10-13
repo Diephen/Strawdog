@@ -79,5 +79,6 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	void OpenGate(){
 		Debug.Log ("Open Gate Request");
 		m_GateBlock.SetActive (false);
+		Events.G.Raise (new EnableMoveEvent ());
 	}
 }
