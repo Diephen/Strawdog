@@ -8,6 +8,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 	[SerializeField] PuppetControl m_PC;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] AnimationInjectionTutorial m_AnimInjection;
+	bool isEndInteraction=false;
 
 
 	// Use this for initialization
@@ -30,8 +31,10 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_GuardAnim.SetBool ("IsSeeDog", true);
 	}
 
+	// guard press D
 	public void LeaveDog(){
 		m_GuardAnim.SetBool ("IsSeeDog", false);
+		m_GuardAnim.SetBool ("IsPetting", false);
 		m_DogHandle.PersonLeft ();
 	}
 
@@ -52,5 +55,9 @@ public class GuardTutorialHandle : MonoBehaviour {
 
 	public void UpdatePetTime(float t){
 		m_GuardAnim.SetFloat ("PetTime", t);
+	}
+
+	public void DogHappy(){
+		m_GuardAnim.SetTrigger ("TriggerDogHappy");
 	}
 }
