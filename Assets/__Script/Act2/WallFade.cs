@@ -7,7 +7,9 @@ public class WallFade : MonoBehaviour {
 	Color _tempColor;
 
 	void Start(){
-		_renderer = gameObject.GetComponent <Renderer> ();
+		_renderer = gameObject.GetComponent <SpriteRenderer> ();
+		_tempColor = _renderer.material.color;
+		_tempAlpha = _tempColor.a;
 	}
 
 	void OnEnable ()
