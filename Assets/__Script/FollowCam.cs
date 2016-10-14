@@ -140,6 +140,7 @@ public class FollowCam : MonoBehaviour {
 			_followObj = _followPrisoner;
 			_cameraToggle = cameraPos.Center;
 		} else {
+			timer = 0f;
 			_followObj = _followGuard;
 			_cameraToggle = cameraPos.Center;
 		}
