@@ -40,7 +40,7 @@ public class WallFade : MonoBehaviour {
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = MathHelpers.LinMapFrom01 (0.65f, 1.0f, 1.0f - (Time.time - startTime)/2f);
+			_tempAlpha = MathHelpers.LinMapFrom01 (0.0f, 1.0f, 1.0f - (Time.time - startTime)/2f);
 			_tempColor.a = _tempAlpha;
 			_renderer.material.color = _tempColor;
 			yield return null;
@@ -54,7 +54,7 @@ public class WallFade : MonoBehaviour {
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = MathHelpers.LinMapFrom01 (0.65f, 1.0f, (Time.time - startTime)/2f);
+			_tempAlpha = MathHelpers.LinMapFrom01 (0.0f, 1.0f, (Time.time - startTime)/2f);
 			_tempColor.a = _tempAlpha;
 			_renderer.material.color = _tempColor;
 			yield return null;
