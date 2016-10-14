@@ -79,6 +79,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		else if(_climbStair && !_isGuardTop)
 		{
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
+			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
 	}
 

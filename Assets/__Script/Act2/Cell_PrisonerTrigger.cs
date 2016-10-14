@@ -62,11 +62,13 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		}
 		else if (_climbStair && !_isPrisonerTop) {
 			_prisoner.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
+			Events.G.Raise (new Act2_PrisonerWalkedUpStairsEvent ());
 		}
 		else if (_climbStair && _isPrisonerTop) {
 			_groundCollider1.enabled = false;
 			_groundCollider2.enabled = false;
 			_prisoner.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
+			Events.G.Raise (new Act2_PrisonerWalkedDownStairsEvent ());
 		}
 	}
 

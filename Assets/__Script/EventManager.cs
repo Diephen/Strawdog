@@ -50,6 +50,14 @@ public class GuardFoundBombEvent : GameEvent {
 public class CaughtSneakingEvent : GameEvent {
 }
 
+public class Act2_GuardWalkedUpStairsEvent : GameEvent {
+}
+
+public class Act2_PrisonerWalkedUpStairsEvent : GameEvent {
+}
+
+public class Act2_PrisonerWalkedDownStairsEvent : GameEvent {
+}
 //public class Act2EndedEvent : GameEvent {
 //}
 
@@ -182,6 +190,7 @@ public class DReleasedEvent: GameEvent {
 	}
 }
 
+//Call to Enable Movement
 public class EnableMoveEvent: GameEvent {
 }
 
