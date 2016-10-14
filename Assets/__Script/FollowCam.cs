@@ -137,8 +137,10 @@ public class FollowCam : MonoBehaviour {
 	void CloseDoor(LockCellEvent e){
 		if (!e.Locked) {
 			timer = 0f;
-			_cameraToggle = cameraPos.Static;
+			_followObj = _followPrisoner;
+			_cameraToggle = cameraPos.Center;
 		} else {
+			_followObj = _followGuard;
 			_cameraToggle = cameraPos.Center;
 		}
 	}
