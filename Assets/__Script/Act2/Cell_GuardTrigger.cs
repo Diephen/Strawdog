@@ -70,12 +70,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_climbStair = true;
 			}
 		}
-		else if (_climbStair && _isGuardTop) 
-		{
-			_groundCollider1.enabled = false;
-			_groundCollider2.enabled = false;
-			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
-		} 
+//		else if (_climbStair && _isGuardTop) 
+//		{
+//			_groundCollider1.enabled = false;
+//			_groundCollider2.enabled = false;
+//			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
+//		} 
 		else if(_climbStair && !_isGuardTop)
 		{
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
