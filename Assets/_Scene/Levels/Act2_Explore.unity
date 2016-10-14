@@ -2725,6 +2725,61 @@ Transform:
   - {fileID: 372128684}
   m_Father: {fileID: 1045422141}
   m_RootOrder: 1
+--- !u!1 &306663774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 306663776}
+  - 61: {fileID: 306663775}
+  - 114: {fileID: 306663777}
+  m_Layer: 0
+  m_Name: TriggerArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &306663775
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306663774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -4.566941, y: -0.08853917}
+  serializedVersion: 2
+  m_Size: {x: 10.133904, y: 0.2326702}
+--- !u!4 &306663776
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306663774}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: 4.2800016, y: -0.21999925, z: 0.98618317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1784842295}
+  m_RootOrder: 0
+--- !u!114 &306663777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306663774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2833e2ef70eb47a69a4965c9fa6a1e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &320665165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6333,7 +6388,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 464964832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 134.33, y: 0.1, z: 0}
+  m_LocalPosition: {x: 149.09, y: 0.1, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -14457,7 +14512,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013200042514, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 110.6
+      value: 138
       objectReference: {fileID: 0}
     - target: {fileID: 4000013200042514, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
       propertyPath: m_LocalPosition.y
@@ -14512,6 +14567,21 @@ Prefab:
       propertyPath: _lightControl
       value: 
       objectReference: {fileID: 320693799}
+    - target: {fileID: 61000011716610030, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.34698352
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000011716610030, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.6191385
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000011716610030, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 8.252456
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
@@ -18971,11 +19041,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1784842294}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 0.8599999, y: 2.8200016, z: 4.2800007}
   m_LocalScale: {x: 1, y: 2, z: 2}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
-  m_Children: []
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 0}
+  m_Children:
+  - {fileID: 306663776}
   m_Father: {fileID: 464964835}
   m_RootOrder: 0
 --- !u!114 &1784842296
@@ -19069,8 +19140,8 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 8
-  m_Range: 30
-  m_SpotAngle: 41
+  m_Range: 50
+  m_SpotAngle: 25
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -19089,7 +19160,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &1785542060
