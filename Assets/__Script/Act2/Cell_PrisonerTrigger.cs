@@ -2,12 +2,10 @@
 using System.Collections;
 
 public class Cell_PrisonerTrigger : MonoBehaviour {
-	enum prisonerState {Act2Begin};
-	prisonerState _prisonerState = prisonerState.Act2Begin;
+	[SerializeField] bool _isPrisonerTop = false;
 
 	[SerializeField] GameObject _prisoner;
 	PuppetControl _prisonerPuppetController;
-	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _prisonerKeyCodes;
 
 	[SerializeField] Renderer _stairRenderer;
@@ -16,7 +14,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	int _waveCnt = 0;
 
 	bool _isStairs = false;
-	float _stairStartPosition = 28.6f;
+	[SerializeField] float _stairStartPosition = 28.6f;
 
 
 	bool _goToStart = false;
@@ -27,6 +25,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	Camera _mainCam;
 	HighlightsFX _highlightsFX;
+
+	[SerializeField] BoxCollider2D _groundCollider1;
+	[SerializeField] BoxCollider2D _groundCollider2;
 
 	void Start(){
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
@@ -58,8 +59,14 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				_goToStart = false;
 				_climbStair = true;
 			}
-		} else if(_climbStair){
+		}
+		else if (_climbStair && !_isPrisonerTop) {
 			_prisoner.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
+		}
+		else if (_climbStair && _isPrisonerTop) {
+			_groundCollider1.enabled = false;
+			_groundCollider2.enabled = false;
+			_prisoner.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 		}
 	}
 

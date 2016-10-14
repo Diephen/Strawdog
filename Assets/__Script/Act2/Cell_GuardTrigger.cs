@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Cell_GuardTrigger : MonoBehaviour {
-
+	[SerializeField] bool _isGuardTop = false;
 	[SerializeField] GameObject _guard;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
@@ -28,6 +28,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
+
+	[SerializeField] BoxCollider2D _groundCollider1;
+	[SerializeField] BoxCollider2D _groundCollider2;
 
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
@@ -66,7 +69,15 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_goToStart = false;
 				_climbStair = true;
 			}
-		} else if(_climbStair){
+		}
+		else if (_climbStair && _isGuardTop) 
+		{
+			_groundCollider1.enabled = false;
+			_groundCollider2.enabled = false;
+			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
+		} 
+		else if(_climbStair && !_isGuardTop)
+		{
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
 		}
 	}
