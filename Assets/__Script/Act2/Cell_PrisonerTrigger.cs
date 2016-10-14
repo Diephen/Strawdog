@@ -21,6 +21,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	Timer _stairStartTimer;
 	bool _climbStair = false;
 
+	bool _guardLeftCell = false;
+
 	Vector3 _tempPosition;
 
 	Camera _mainCam;
@@ -77,14 +79,14 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_isStairs = true;
 			_highlightsFX.objectRenderer = _stairRenderer;
 			_highlightsFX.enabled = true;
-		} else if (other.name == "Bed") {
+		} else if (other.name == "Bed" && _guardLeftCell) {
 			_highlightsFX.objectRenderer = _bedRenderer;
 			_highlightsFX.enabled = true;
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (other.name == "Bed") {
+		if (other.name == "Bed" && _guardLeftCell) {
 			if(Input.GetKeyDown (_prisonerKeyCodes[3])){
 				Debug.Log ("Prisoner going to bed");
 				Events.G.Raise(new SleepInCellEvent());
@@ -107,5 +109,17 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		} else if (other.name == "Bed") {
 			_highlightsFX.enabled = false;
 		}
+	}
+
+	void LeftCellUnlocked(LeftCellUnlockedEvent e){
+		_guardLeftCell = true;
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
+	}
+	void OnDisable(){
+		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
+
 	}
 }
