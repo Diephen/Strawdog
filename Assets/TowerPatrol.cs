@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class TowerPatrol : MonoBehaviour {
-	float _speed = 2.0f;
 	bool _isLeft = true;
 	bool _wait = false;
 

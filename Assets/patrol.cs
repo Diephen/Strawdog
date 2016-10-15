@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class patrol : MonoBehaviour {
-	[SerializeField] MinMax _patrolArea = new MinMax (130.0f, 150.0f);
+	[SerializeField] MinMax _patrolArea = new MinMax (-20.0f, 20.0f);
+	float _startPosition;
 	[SerializeField] float _speed = 2.0f;
 	bool _isLeft = true;
 
@@ -27,6 +28,8 @@ public class patrol : MonoBehaviour {
 		_rotateTowards = _flashlight.gameObject.GetComponent<rotateTowards> ();
 		_flashlightLight = _flashlight.gameObject.GetComponent<Light> ();
 		_flashRotationTimer = new Timer (_waitSeconds);
+
+		_startPosition = transform.position.x;
 	}
 	
 	// Update is called once per frame
@@ -48,14 +51,14 @@ public class patrol : MonoBehaviour {
 			else {
 				if (_isLeft) {
 					transform.Translate (Vector2.left * Time.deltaTime * _speed);
-					if (transform.position.x < _patrolArea.Min) {
+					if (transform.position.x < _startPosition + _patrolArea.Min) {
 						_isLeft = false;
 						_flashRotationTimer.Reset ();
 					}
 				}
 				else {
 					transform.Translate (Vector2.right * Time.deltaTime * _speed);
-					if (transform.position.x > _patrolArea.Max) {
+					if (transform.position.x > _startPosition +  _patrolArea.Max) {
 						_isLeft = true;
 						_flashRotationTimer.Reset ();
 					}
