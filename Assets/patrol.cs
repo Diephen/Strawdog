@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class patrol : MonoBehaviour {
-	[SerializeField] MinMax _patrolArea = new MinMax (-20.0f, 20.0f);
+	[SerializeField] MinMax _patrolArea = new MinMax (-1.0f, 1.0f);
 	float _startPosition;
 	[SerializeField] float _speed = 2.0f;
 	bool _isLeft = true;
