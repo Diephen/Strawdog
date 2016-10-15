@@ -173,6 +173,7 @@ public class PuppetControl : MonoBehaviour {
 //						m_charState = charState.crouch;
 			if (_stateHandling [2] == true) {
 				m_charState = charState.crouch;
+				Events.G.Raise (new CrouchHideEvent (_whoAmI));
 				if (crouchStart == false) {
 					m_AudioSource [1].clip = m_Audio [2];
 					m_AudioSource [1].Play ();
@@ -185,6 +186,7 @@ public class PuppetControl : MonoBehaviour {
 				Events.G.Raise (new CrouchPressedEvent (_whoAmI));
 			}
 		} else {
+			Events.G.Raise (new CrouchReleaseHideEvent (_whoAmI));
 			crouchStart = false;
 		}
 	}

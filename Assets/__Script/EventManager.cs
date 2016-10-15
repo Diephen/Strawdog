@@ -190,12 +190,24 @@ public class DReleasedEvent: GameEvent {
 	}
 }
 
+//Not for animation injection
+public class CrouchHideEvent: GameEvent {
+	public CharacterIdentity WhoAmI { get; private set; }
+	public CrouchHideEvent(CharacterIdentity whoAmI){
+		WhoAmI = whoAmI;
+	}
+}
+
+public class CrouchReleaseHideEvent: GameEvent {
+	public CharacterIdentity WhoAmI { get; private set; }
+	public CrouchReleaseHideEvent(CharacterIdentity whoAmI){
+		WhoAmI = whoAmI;
+	}
+}
+
 //Call to Enable Movement
 public class EnableMoveEvent: GameEvent {
 }
-
-
-
 
 
 public class EventManager : MonoBehaviour {

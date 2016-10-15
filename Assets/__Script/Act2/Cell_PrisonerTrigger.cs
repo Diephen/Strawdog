@@ -23,6 +23,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	bool _guardLeftCell = false;
 
+	bool _crouchHideReady = false;
+	bool _isHidden = false;
+
 	Vector3 _tempPosition;
 
 	Camera _mainCam;
@@ -79,9 +82,19 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_isStairs = true;
 			_highlightsFX.objectRenderer = _stairRenderer;
 			_highlightsFX.enabled = true;
-		} else if (other.name == "Bed" && _guardLeftCell) {
+		}
+		else if (other.name == "Bed" && _guardLeftCell) {
 			_highlightsFX.objectRenderer = _bedRenderer;
 			_highlightsFX.enabled = true;
+		}
+
+		if (_isPrisonerTop) {
+			if (other.tag == "CrouchHide") {
+				_crouchHideReady = true;
+			}
+			else if (other.tag == "StandHide") {
+				_isHidden = true;
+			}
 		}
 	}
 
@@ -109,17 +122,41 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		} else if (other.name == "Bed") {
 			_highlightsFX.enabled = false;
 		}
+
+		if (_isPrisonerTop) {
+			if (other.tag == "CrouchHide") {
+				_crouchHideReady = false;
+			}
+			else if (other.tag == "StandHide") {
+				_isHidden = false;
+			}
+		}
 	}
 
 	void LeftCellUnlocked(LeftCellUnlockedEvent e){
 		_guardLeftCell = true;
 	}
 
+	void CrouchHide(CrouchHideEvent e){
+		if (_crouchHideReady) {
+			_isHidden = true;
+		}
+	}
+
+	void CrouchRelease(CrouchReleaseHideEvent e){
+		if (_crouchHideReady) {
+			_isHidden = false;
+		}
+	}
+
 	void OnEnable(){
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
+		Events.G.AddListener<CrouchHideEvent>(CrouchHide);
+		Events.G.AddListener<CrouchReleaseHideEvent>(CrouchRelease);
 	}
 	void OnDisable(){
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
-
+		Events.G.RemoveListener<CrouchHideEvent>(CrouchHide);
+		Events.G.RemoveListener<CrouchReleaseHideEvent>(CrouchRelease);
 	}
 }

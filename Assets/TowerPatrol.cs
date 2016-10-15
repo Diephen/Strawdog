@@ -65,20 +65,14 @@ public class TowerPatrol : MonoBehaviour {
 			}
 			else {
 				// <--
-
 				angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _currentRotationZ, _towerCooldownTimer.PercentTimeLeft);
 				transform.localRotation = Quaternion.Euler (0f, 0f, angle);
-				Debug.Log ("z: " + _currentRotationZ);
-				Debug.Log("angle: " +angle);
-
-
 			}
 			if (_towerCooldownTimer.IsOffCooldown) {
 				_reRotate = false;
 			}
 		}
 	}
-
 
 
 	void OnTriggerEnter2D(Collider2D other) {
