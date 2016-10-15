@@ -101,6 +101,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			}
 			else if (other.tag == "StandHide") {
 				_isHidden = true;
+				Debug.Log ("[Hide] stand hide");
 			}
 		}
 	}
@@ -159,6 +160,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	void CrouchHide(CrouchHideEvent e){
 		if (_crouchHideReady) {
 			_isHidden = true;
+			Debug.Log ("[Hide] crouch hide");
 		}
 	}
 
