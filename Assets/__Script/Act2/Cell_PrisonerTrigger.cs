@@ -10,6 +10,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _bedRenderer;
+	[SerializeField] Renderer _bombRenderer;
 
 	int _waveCnt = 0;
 
@@ -30,6 +31,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	Camera _mainCam;
 	HighlightsFX _highlightsFX;
+	[SerializeField] GameObject _bomb;
+	Bomb _bombScript;
 
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
@@ -40,14 +43,14 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		_stairStartTimer = new Timer (1f);
 		_mainCam = Camera.main;
 		_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
+		if (_isPrisonerTop) {
+			_bomb = GameObject.Find ("Bomb");
+			_bombScript = _bomb.GetComponent<Bomb> ();
+			_bombRenderer = _bomb.GetComponent<Renderer> ();
+		}
 	}
 
 	void Update(){
-		if (_waveCnt >= 3) {
-			_waveCnt = 0;
-			Events.G.Raise(new PrisonerFoundBombEvent());
-			Debug.Log ("Prisoner Found Bomb");
-		}
 
 		if (Input.GetKeyDown (_prisonerKeyCodes [3]) && _isStairs) {
 			_goToStart = true;
@@ -87,6 +90,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_highlightsFX.objectRenderer = _bedRenderer;
 			_highlightsFX.enabled = true;
 		}
+		else if (other.name == "Bomb") {
+			_highlightsFX.objectRenderer = _bombRenderer;
+			_highlightsFX.enabled = true;
+		}
 
 		if (_isPrisonerTop) {
 			if (other.tag == "CrouchHide") {
@@ -100,26 +107,38 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other){
 		if (other.name == "Bed" && _guardLeftCell) {
-			if(Input.GetKeyDown (_prisonerKeyCodes[3])){
+			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				Debug.Log ("Prisoner going to bed");
-				Events.G.Raise(new SleepInCellEvent());
+				Events.G.Raise (new SleepInCellEvent ());
 			}
 		}
-		if (other.name == "Bomb") {
+		else if (other.name == "Bomb") {
+			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
+				_highlightsFX.enabled = false;
+				_bomb.SetActive (false);
+				Events.G.Raise (new PrisonerFoundBombEvent ());
+			}
+		}
+		if (other.name == "BombArea") {
 			if(Input.GetKeyDown (_prisonerKeyCodes[2])){
 				_waveCnt++;
+				if (_waveCnt == 3) {
+					_bombScript.ThrowBomb ();
+				}
 			}
 		}
 	}
 
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (other.name == "Bomb") {
+		if (other.name == "BombArea") {
 			_waveCnt = 0;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
 			_highlightsFX.enabled = false;
 		} else if (other.name == "Bed") {
+			_highlightsFX.enabled = false;
+		} else if (other.name == "Bomb") {
 			_highlightsFX.enabled = false;
 		}
 

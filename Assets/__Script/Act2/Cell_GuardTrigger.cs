@@ -28,6 +28,10 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
+	[SerializeField] Renderer _bombRenderer;
+
+	[SerializeField] GameObject _bomb;
+	Bomb _bombScript;
 
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
@@ -38,15 +42,14 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		_stairStartTimer = new Timer (1f);
 		_mainCam = Camera.main;
 		_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
+		if (_isGuardTop) {
+			_bomb = GameObject.Find ("Bomb");
+			_bombScript = _bomb.GetComponent<Bomb> ();
+			_bombRenderer = _bomb.GetComponent<Renderer> ();
+		}
 	}
 
 	void Update(){
-
-		if (_waveCnt >= 3) {
-			_waveCnt = 0;
-			Events.G.Raise(new GuardFoundBombEvent());
-			Debug.Log ("Guard Found Bomb");
-		}
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_goToStart = true;
@@ -70,12 +73,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_climbStair = true;
 			}
 		}
-//		else if (_climbStair && _isGuardTop) 
-//		{
-//			_groundCollider1.enabled = false;
-//			_groundCollider2.enabled = false;
-//			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
-//		} 
 		else if(_climbStair && !_isGuardTop)
 		{
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
@@ -99,19 +96,32 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_highlightsFX.objectRenderer = _doorRenderer;
 			_highlightsFX.enabled = true;
 			_isDoor = true;
+		} else if (other.name == "Bomb") {
+			_highlightsFX.objectRenderer = _bombRenderer;
+			_highlightsFX.enabled = true;
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D other){
 		if (other.name == "Bomb") {
+			if (Input.GetKeyDown (_guardKeyCodes [3])) {
+				_highlightsFX.enabled = false;
+				_bomb.SetActive (false);
+				Events.G.Raise (new GuardFoundBombEvent ());
+			}
+		}
+		if (other.name == "BombArea") {
 			if(Input.GetKeyDown (_guardKeyCodes[2])){
 				_waveCnt++;
+				if (_waveCnt == 3) {
+					_bombScript.ThrowBomb ();
+				}
 			}
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (other.name == "Bomb") {
+		if (other.name == "BombArea") {
 			_waveCnt = 0;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
@@ -119,6 +129,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		} else if (other.name == "LockCell") {
 			_highlightsFX.enabled = false;
 			_isDoor = false;
+		} else if (other.name == "Bomb") {
+			_highlightsFX.enabled = false;
 		}
 	}
 }
