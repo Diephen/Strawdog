@@ -15,7 +15,7 @@ public class Detection : MonoBehaviour {
 	
 	}
 
-	void OnTriggerStay2D(Collider2D other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "FemaleStructure") {
 			_patrolScript.StopAndLook ();
 		}

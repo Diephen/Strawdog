@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class patrol : MonoBehaviour {
 	[SerializeField] MinMax _patrolArea = new MinMax (-1.0f, 1.0f);
@@ -14,8 +15,12 @@ public class patrol : MonoBehaviour {
 	Light _flashlightLight;
 	float _lightSize;
 
-	float _waitSeconds = 2.0f;
 	Timer _flashRotationTimer;
+	Timer _waitTimer;
+	bool _wait = false;
+
+	Timer _caughtTimer;
+	Color _currentColor;
 
 	bool _stopAndLook = false;
 	bool _reRotate = false;
@@ -27,14 +32,16 @@ public class patrol : MonoBehaviour {
 		_flashlight = gameObject.transform.GetChild (0);
 		_rotateTowards = _flashlight.gameObject.GetComponent<rotateTowards> ();
 		_flashlightLight = _flashlight.gameObject.GetComponent<Light> ();
-		_flashRotationTimer = new Timer (_waitSeconds);
-
+		_flashRotationTimer = new Timer (2.0f);
+		_caughtTimer = new Timer (1.0f);
+		_waitTimer = new Timer (2.0f);
 		_startPosition = transform.position.x;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!_stopAndLook) {
+			Debug.Log ("Here1");
 			if (!_flashRotationTimer.IsOffCooldown) {
 				if (_isLeft) {
 					//180 to 0
@@ -58,7 +65,7 @@ public class patrol : MonoBehaviour {
 				}
 				else {
 					transform.Translate (Vector2.right * Time.deltaTime * _speed);
-					if (transform.position.x > _startPosition +  _patrolArea.Max) {
+					if (transform.position.x > _startPosition + _patrolArea.Max) {
 						_isLeft = true;
 						_flashRotationTimer.Reset ();
 					}
@@ -66,6 +73,7 @@ public class patrol : MonoBehaviour {
 			}
 		}
 		else if (_stopAndLook && _reRotate) {
+			Debug.Log ("Here2");
 			if (_isLeft) {
 				//180 to 0
 				angle = MathHelpers.LinMapFrom01 (_lastRotation, _flashlightRot.Max, _flashRotationTimer.PercentTimePassed);
@@ -80,19 +88,37 @@ public class patrol : MonoBehaviour {
 			}
 			_lightSize = MathHelpers.LinMapFrom01 (25.0f, _flashlightLight.spotAngle, _flashRotationTimer.PercentTimeLeft);
 			_flashlightLight.spotAngle = _lightSize;
+
 			if (_flashRotationTimer.IsOffCooldown) {
 				_stopAndLook = false;
 				_reRotate = false;
 			}
 		}
+		else if (_rotateTowards.enabled) {
+			_flashlightLight.color = Color.Lerp (_currentColor, Color.red, _caughtTimer.PercentTimePassed);
+			Debug.Log (_caughtTimer.PercentTimePassed);
+			if (_caughtTimer.IsOffCooldown) {
+				Events.G.Raise (new CaughtSneakingEvent ());
+			}
+		}
+		if (_waitTimer.IsOffCooldown && _wait) {
+			_currentColor = _flashlightLight.color;
+			_flashRotationTimer.Reset ();
+			_reRotate = true;
+			_wait = false;
+		}
 	}
 
 	public void StopAndLook(){
 		_stopAndLook = true;
+		_reRotate = false;
+		_currentColor = _flashlightLight.color;
+		_caughtTimer.Reset ();
 		_rotateTowards.enabled = true;
 	}
 
 	public void CarryOn(){
+		_flashlightLight.color = Color.white;
 		_rotateTowards.enabled = false;
 		if (_flashlight.localEulerAngles.z > 300.0f) {
 			_lastRotation = _flashlight.localEulerAngles.x;
@@ -100,13 +126,15 @@ public class patrol : MonoBehaviour {
 		else {
 			_lastRotation = 180 - _flashlight.localEulerAngles.x;
 		}
-
-		StartCoroutine (Wait(_waitSeconds));
+		_wait = true;
+		_waitTimer.Reset ();
+//		StartCoroutine (Wait(_waitSeconds));
 	}
 
-	IEnumerator Wait(float waitTime) {
-		yield return new WaitForSeconds(waitTime);
-		_reRotate = true;
-		_flashRotationTimer.Reset ();
-	}
+//	IEnumerator Wait(float waitTime) {
+//		yield return new WaitForSeconds(waitTime);
+//		_currentColor = _flashlightLight.color;
+//		_reRotate = true;
+//		_flashRotationTimer.Reset ();
+//	}
 }
