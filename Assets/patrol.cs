@@ -41,7 +41,6 @@ public class patrol : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!_stopAndLook) {
-			Debug.Log ("Here1");
 			if (!_flashRotationTimer.IsOffCooldown) {
 				if (_isLeft) {
 					//180 to 0
