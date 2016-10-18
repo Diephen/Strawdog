@@ -425,13 +425,19 @@ public class PuppetControl : MonoBehaviour {
 		_stateHandling [4] = true;
 		_stateHandling [3] = true;
 	}
+	void DisableMove(DisableMoveEvent e){
+		_stateHandling [4] = false;
+		_stateHandling [3] = false;
+	}
 
 	void OnEnable(){
 		Events.G.AddListener<EnableMoveEvent>(EnableMove);
+		Events.G.AddListener<DisableMoveEvent>(DisableMove);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<EnableMoveEvent> (EnableMove);
+		Events.G.RemoveListener<DisableMoveEvent> (DisableMove);
 	}
 }

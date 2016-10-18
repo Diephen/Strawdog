@@ -25,6 +25,8 @@ public class FollowCam : MonoBehaviour {
 	enum followWho {Guard, Prisoner, None};
 	followWho _followWho = followWho.None;
 
+	cameraPos _prevTansition;
+
 	void Start () {
 		CameraPos = gameObject.transform.position;
 		if (_startGuard) {
@@ -88,6 +90,7 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 		Events.G.AddListener<BrokeFree>(BreakFree);
 		Events.G.AddListener<LockCellEvent>(CloseDoor);
+		Events.G.AddListener<TransitionSecretDoorEvent>(TransitionSecret);
 
 	}
 
@@ -99,6 +102,19 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 		Events.G.RemoveListener<BrokeFree>(BreakFree);
 		Events.G.RemoveListener<LockCellEvent>(CloseDoor);
+		Events.G.RemoveListener<TransitionSecretDoorEvent>(TransitionSecret);
+	}
+
+	void TransitionSecret(TransitionSecretDoorEvent e){
+		if (e.SecretOn) {
+			timer = 0f;
+			_prevTansition = _cameraToggle;
+			_cameraToggle = cameraPos.Center;
+		}
+		else {
+			timer = 0f;
+			_cameraToggle = _prevTansition;
+		}
 	}
 		
 

@@ -112,7 +112,14 @@ public class Prisoner_EncounterEvent: GameEvent {
 }
 
 /* Act 5 */
-
+public class CallSecretDoorEvent: GameEvent{
+}
+public class TransitionSecretDoorEvent: GameEvent{
+	public bool SecretOn { get; private set; }
+	public TransitionSecretDoorEvent(bool secretOn){
+		SecretOn = secretOn;
+	}
+}
 
 
 
@@ -207,6 +214,8 @@ public class CrouchReleaseHideEvent: GameEvent {
 
 //Call to Enable Movement
 public class EnableMoveEvent: GameEvent {
+}
+public class DisableMoveEvent: GameEvent {
 }
 
 

@@ -29,6 +29,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
 	[SerializeField] Renderer _bombRenderer;
+	[SerializeField] Renderer _secretDoorRenderer;
 
 	[SerializeField] GameObject _bomb;
 	Bomb _bombScript;

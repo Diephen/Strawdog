@@ -11,6 +11,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _bedRenderer;
 	[SerializeField] Renderer _bombRenderer;
+	[SerializeField] Renderer _secretDoorRenderer;
 
 	int _waveCnt = 0;
 
@@ -26,6 +27,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	bool _crouchHideReady = false;
 	bool _isHidden = false;
+	bool _secretDoor = false;
 
 	Vector3 _tempPosition;
 
@@ -78,6 +80,11 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_prisoner.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_PrisonerWalkedDownStairsEvent ());
 		}
+
+		if (_secretDoor && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+			Events.G.Raise (new CallSecretDoorEvent ());
+			_highlightsFX.enabled = false;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -102,6 +109,11 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			else if (other.tag == "StandHide") {
 				_isHidden = true;
 				Debug.Log ("[Hide] stand hide");
+			}
+			else if (other.tag == "SecretDoor") {
+				_secretDoor = true;
+				_highlightsFX.objectRenderer = _secretDoorRenderer;
+				_highlightsFX.enabled = true;
 			}
 		}
 	}
@@ -149,6 +161,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			}
 			else if (other.tag == "StandHide") {
 				_isHidden = false;
+			}
+			else if (other.tag == "SecretDoor") {
+				_secretDoor = false;
+				_highlightsFX.enabled = false;
 			}
 		}
 	}
