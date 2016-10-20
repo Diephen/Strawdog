@@ -25,7 +25,7 @@ public class Bomb : MonoBehaviour {
 	public void ThrowBomb(){
 		if (!_thrownOnce) {
 			_bombRigidBody.constraints = RigidbodyConstraints2D.None;
-			_bombRigidBody.AddForce ((Vector2.up * 3f + Vector2.left * 0.5f) * 300.0f);
+			_bombRigidBody.AddForce ((Vector2.up * 2.2f + Vector2.left * 1.2f) * 300.0f);
 			_thrownOnce = true;
 		}
 	}
