@@ -6,7 +6,7 @@ public class HousePatrol : MonoBehaviour {
 	float _speed = 2.8f;
 	[SerializeField] Transform _soldier;
 	bool _isLeft = true;
-	bool _stop = false;
+	bool _stop = true;
 	// Use this for initialization
 	void Start () {
 	}
@@ -26,6 +26,12 @@ public class HousePatrol : MonoBehaviour {
 					_isLeft = true;
 				}
 			}
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.tag == "Prisoner") {
+			_stop = false;
 		}
 	}
 
