@@ -12,13 +12,13 @@ public class SoilderHouseFrontdoorLight : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.name == "Prisoner") {
+		if (other.name == "FemaleStructure") {
 			m_anim.SetTrigger ("TriggerFlicker");
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-		if (other.name == "Prisoner") {
+		if (other.name == "FemaleStructure") {
 			m_anim.SetTrigger ("TriggerFlicker");
 		}
 	}
