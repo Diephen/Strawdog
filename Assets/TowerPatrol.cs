@@ -5,7 +5,7 @@ public class TowerPatrol : MonoBehaviour {
 	bool _isLeft = true;
 	bool _wait = false;
 
-	MinMax _towerPatrolRange = new MinMax (-50.0f, 50.0f);
+	MinMax _towerPatrolRange = new MinMax (-70.0f, 80.0f);
 	float angle;
 	Vector3 crossProduce;
 
