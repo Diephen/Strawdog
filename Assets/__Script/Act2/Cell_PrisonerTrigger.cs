@@ -112,10 +112,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		}
 
 		if (_isPrisonerTop) {
-			if (other.tag == "CrouchHide") {
-				_crouchHideReady = true;
-			}
-			else if (other.tag == "StandHide") {
+			if (other.tag == "StandHide") {
 				_isHidden = true;
 				Events.G.Raise (new PrisonerHideEvent (_isHidden));
 				Debug.Log ("[Hide] stand hide");
@@ -129,6 +126,12 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
+		if (_isPrisonerTop) {
+			if (other.tag == "CrouchHide") {
+				_crouchHideReady = true;
+			}
+		}
+
 		if (other.name == "Bed" && _guardLeftCell) {
 			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				Debug.Log ("Prisoner going to bed");

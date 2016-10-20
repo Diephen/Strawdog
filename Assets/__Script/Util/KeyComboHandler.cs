@@ -46,12 +46,11 @@ public class KeyComboHandler : MonoBehaviour {
 		if(Input.GetKey(m_KeyCombo[0])){
 			// start timer 
 			if (m_KeyTimer.IsOffCooldown) {
-				Debug.Log ("End of timer");
 				if ( Input.GetKey (m_KeyCombo[1]) || Input.GetKey (m_KeyCombo[2])) {
-					Debug.Log ("More Than one key");
+//					Debug.Log ("More Than one key");
 					m_IsKeyComboPressed = true;
 				} else {
-					Debug.Log("Single Key");
+//					Debug.Log("Single Key");
 					m_IsKeyComboPressed = false;
 				}
 				m_KeyTimer.Reset ();
