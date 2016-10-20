@@ -40,6 +40,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	[SerializeField] BoxCollider2D _groundCollider2;
 
 	void Start(){
+		gameObject.tag = "Prisoner";
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
 		_prisonerKeyCodes = _prisonerPuppetController.GetKeyCodes ();
 		_stairStartTimer = new Timer (1f);
@@ -85,6 +86,14 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			Events.G.Raise (new CallSecretDoorEvent ());
 			_highlightsFX.enabled = false;
 		}
+
+		//Checking if prisoner should be detectable or not
+		if (_isHidden && gameObject.tag == "Prisoner") {
+			gameObject.tag = "Untagged";
+		}
+		else if (!_isHidden && gameObject.tag == "Untagged") {
+			gameObject.tag = "Prisoner";
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -108,6 +117,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			}
 			else if (other.tag == "StandHide") {
 				_isHidden = true;
+				Events.G.Raise (new PrisonerHideEvent (_isHidden));
 				Debug.Log ("[Hide] stand hide");
 			}
 			else if (other.tag == "SecretDoor") {
@@ -161,6 +171,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			}
 			else if (other.tag == "StandHide") {
 				_isHidden = false;
+				Events.G.Raise (new PrisonerHideEvent (_isHidden));
 			}
 			else if (other.tag == "SecretDoor") {
 				_secretDoor = false;
@@ -176,6 +187,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	void CrouchHide(CrouchHideEvent e){
 		if (_crouchHideReady) {
 			_isHidden = true;
+			Events.G.Raise (new PrisonerHideEvent (_isHidden));
 			Debug.Log ("[Hide] crouch hide");
 		}
 	}
@@ -183,6 +195,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	void CrouchRelease(CrouchReleaseHideEvent e){
 		if (_crouchHideReady) {
 			_isHidden = false;
+			Events.G.Raise (new PrisonerHideEvent (_isHidden));
 		}
 	}
 

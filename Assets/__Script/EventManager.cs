@@ -212,6 +212,13 @@ public class CrouchReleaseHideEvent: GameEvent {
 	}
 }
 
+public class PrisonerHideEvent: GameEvent {
+	public bool Hidden { get; private set; }
+	public PrisonerHideEvent(bool hidden){
+		Hidden = hidden;
+	}
+}
+
 //Call to Enable Movement
 public class EnableMoveEvent: GameEvent {
 }

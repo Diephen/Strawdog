@@ -72,7 +72,6 @@ public class patrol : MonoBehaviour {
 			}
 		}
 		else if (_stopAndLook && _reRotate) {
-			Debug.Log ("Here2");
 			if (_isLeft) {
 				//180 to 0
 				angle = MathHelpers.LinMapFrom01 (_lastRotation, _flashlightRot.Max, _flashRotationTimer.PercentTimePassed);
@@ -95,7 +94,6 @@ public class patrol : MonoBehaviour {
 		}
 		else if (_rotateTowards.enabled) {
 			_flashlightLight.color = Color.Lerp (_currentColor, Color.red, _caughtTimer.PercentTimePassed);
-			Debug.Log (_caughtTimer.PercentTimePassed);
 			if (_caughtTimer.IsOffCooldown) {
 				Events.G.Raise (new CaughtSneakingEvent ());
 			}

@@ -18,6 +18,7 @@ public class TowerPatrol : MonoBehaviour {
 
 	float _currentRotationZ;
 	bool _reRotate = false;
+	bool _callOnce = false;
 
 	SpriteRenderer _towerLightSprite;
 	Color _currentColor;
@@ -88,7 +89,7 @@ public class TowerPatrol : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.name == "FemaleStructure") {
+		if (other.tag == "Prisoner") {
 			_lookAtFollow = true;
 			_currentColor = _towerLightSprite.color;
 			_caughtTimer.Reset ();
@@ -97,8 +98,20 @@ public class TowerPatrol : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-		if (other.name == "FemaleStructure") {
+		if (other.tag == "Prisoner") {
 			ReRotate ();
+		}
+	}
+
+	void IsHidden(PrisonerHideEvent e){
+		if (e.Hidden) {
+			if (!_callOnce) {
+				ReRotate ();
+				_callOnce = true;
+			}
+		}
+		else {
+			_callOnce = e.Hidden;
 		}
 	}
 
@@ -111,5 +124,12 @@ public class TowerPatrol : MonoBehaviour {
 		_reRotate = true;
 		_lookAtFollow = false;
 		_towerCooldownTimer.Reset ();
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<PrisonerHideEvent>(IsHidden);
+	}
+	void OnDisable(){
+		Events.G.RemoveListener<PrisonerHideEvent>(IsHidden);
 	}
 }
