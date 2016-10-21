@@ -9,7 +9,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	[SerializeField] Animator m_Anim;
 	private bool isGateOpen = false;
 	[SerializeField] GameObject m_GateBlock;
-
+	AudioSource _audioSource;
 	// Use this for initialization
 	void Start () {
 		if (m_Anim == null && GetComponent<Animator> ()) {
@@ -17,7 +17,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 		} else {
 			Debug.Log ("[Error] No animator");
 		}
-
+		_audioSource = gameObject.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -79,6 +79,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	void OpenGate(){
 		Debug.Log ("Open Gate Request");
 		m_GateBlock.SetActive (false);
+		_audioSource.Play ();
 		Events.G.Raise (new EnableMoveEvent ());
 	}
 }

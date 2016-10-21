@@ -249,7 +249,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 
 			//S-Key
-			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch && !_keyASD.IsPressCombo) {
+			if (Input.GetKeyDown (m_ListenKey [1]) && m_charState != charState.crouch) {
 				if (m_Animator [1] != null) {
 					m_Animator [1].SetBool ("IsPull", true);
 				}
