@@ -6227,6 +6227,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 435803515}
   - 212: {fileID: 435803514}
+  - 61: {fileID: 435803516}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -6282,6 +6283,20 @@ Transform:
   - {fileID: 440559346}
   m_Father: {fileID: 0}
   m_RootOrder: 12
+--- !u!61 &435803516
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435803513}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -1.7771909, y: 1.4707637}
+  serializedVersion: 2
+  m_Size: {x: 19.781794, y: 14.891527}
 --- !u!1 &435940595
 GameObject:
   m_ObjectHideFlags: 0
@@ -8163,7 +8178,7 @@ GameObject:
   - 212: {fileID: 440559347}
   m_Layer: 0
   m_Name: cart-parts_2
-  m_TagString: Untagged
+  m_TagString: StandHide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
