@@ -7024,6 +7024,20 @@ Prefab:
       propertyPath: _isPrisonerTop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012380807976, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
+      propertyPath: m_TagString
+      value: Prisoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: _disableKeys
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: _lightControl
+      value: 
+      objectReference: {fileID: 320693799}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
@@ -7325,6 +7339,11 @@ Prefab:
       propertyPath: _isGuardTop
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _lightControl
+      value: 
+      objectReference: {fileID: 320693799}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_IsPrefabParent: 0

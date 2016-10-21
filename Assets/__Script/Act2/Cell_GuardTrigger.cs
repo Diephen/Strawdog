@@ -58,6 +58,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_guardPuppetController.DisableKeyInput ();
 				_tempPosition = _guard.transform.position;
 				_stairStartTimer.Reset ();
+				Events.G.Raise (new GuardStairsStartEvent ());
 			} 
 			else if (_isDoor) 
 			{

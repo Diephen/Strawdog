@@ -7,7 +7,11 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioSource _soundSource1;
 	AudioSource _tempAudioSource;
 	float _goalVolume;
-
+	[SerializeField] AudioClip _lockCell;
+	[SerializeField] AudioClip _openCell;
+	[SerializeField] AudioClip _pickUpBomb;
+	[SerializeField] AudioClip _guardStairs;
+	[SerializeField] AudioClip _prisonerStairs;
 	void Start () {
 		_audioSource.volume = volume [0];
 	}
@@ -27,18 +31,46 @@ public class AudioController : MonoBehaviour {
 		}
 	}
 
+	void PlayLock(LockCellEvent e){
+		if (e.Locked) {
+			_soundSource1.clip = _lockCell;
+			_soundSource1.Play ();
+		}
+		else {
+			_soundSource1.clip = _openCell;
+			_soundSource1.Play ();
+		}
+	}
+	void PlayPickUpBomb(PrisonerFoundBombEvent e){
+		_soundSource1.clip = _pickUpBomb;
+		_soundSource1.Play ();
+	}
+	void PlayPickUpBomb1(GuardFoundBombEvent e){
+		_soundSource1.clip = _pickUpBomb;
+		_soundSource1.Play ();
+	}
+	void GuardStairsStart(GuardStairsStartEvent e){
+		_soundSource1.clip = _guardStairs;
+		_soundSource1.Play ();
+	}
+	void PrisonerStairsStartEvent(PrisonerStairsStartEvent e){
+		_soundSource1.clip = _prisonerStairs;
+		_soundSource1.Play ();
+	}
+
+
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 
 		//Act2
-		Events.G.AddListener<LockCellEvent>(OnGuardEngagePrisoner);
-		Events.G.AddListener<PrisonerFoundBombEvent>(OnGuardEngagePrisoner);
-		Events.G.AddListener<GuardFoundBombEvent>(OnGuardEngagePrisoner);
-		Events.G.AddListener<Act2_GuardWalkedUpStairsEvent>(OnGuardEngagePrisoner);
-		Events.G.AddListener<Act2_PrisonerWalkedUpStairsEvent>(OnGuardEngagePrisoner);
-		Events.G.AddListener<Act2_PrisonerWalkedDownStairsEvent>(OnGuardEngagePrisoner);
+		Events.G.AddListener<LockCellEvent>(PlayLock);
+		Events.G.AddListener<PrisonerFoundBombEvent>(PlayPickUpBomb);
+		Events.G.AddListener<GuardFoundBombEvent>(PlayPickUpBomb1);
+		Events.G.AddListener<GuardStairsStartEvent>(GuardStairsStart);
+		Events.G.AddListener<PrisonerStairsStartEvent>(PrisonerStairsStartEvent);
+
 	}
 
 	void OnDisable ()
@@ -47,12 +79,11 @@ public class AudioController : MonoBehaviour {
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 
 		//Act2
-		Events.G.RemoveListener<LockCellEvent>(OnGuardEngagePrisoner);
-		Events.G.RemoveListener<PrisonerFoundBombEvent>(OnGuardEngagePrisoner);
-		Events.G.RemoveListener<GuardFoundBombEvent>(OnGuardEngagePrisoner);
-		Events.G.RemoveListener<Act2_GuardWalkedUpStairsEvent>(OnGuardEngagePrisoner);
-		Events.G.RemoveListener<Act2_PrisonerWalkedUpStairsEvent>(OnGuardEngagePrisoner);
-		Events.G.RemoveListener<Act2_PrisonerWalkedDownStairsEvent>(OnGuardEngagePrisoner);
+		Events.G.RemoveListener<LockCellEvent>(PlayLock);
+		Events.G.RemoveListener<PrisonerFoundBombEvent>(PlayPickUpBomb);
+		Events.G.RemoveListener<GuardFoundBombEvent>(PlayPickUpBomb1);
+		Events.G.RemoveListener<GuardStairsStartEvent>(GuardStairsStart);
+		Events.G.RemoveListener<PrisonerStairsStartEvent>(PrisonerStairsStartEvent);
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)

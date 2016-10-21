@@ -61,6 +61,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_prisonerPuppetController.DisableKeyInput ();
 			_tempPosition = _prisoner.transform.position;
 			_stairStartTimer.Reset ();
+			Events.G.Raise (new PrisonerStairsStartEvent ());
 		}
 
 		if (_goToStart) {
