@@ -9,6 +9,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] AnimationInjectionTutorial m_AnimInjection;
 	bool isEndInteraction=false;
+	bool isStartInteraction = false;
 
 
 	// Use this for initialization
@@ -24,6 +25,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 		//m_AnimCtrl.SetAnimation (true);
 		m_AnimCtrl.SetAnimation (true);
 		m_GuardAnim.SetBool ("IsSeeDog", true);
+		isStartInteraction = false;
 	}
 
 	// guard press D
@@ -31,6 +33,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_GuardAnim.SetBool ("IsSeeDog", false);
 		m_GuardAnim.SetBool ("IsPetting", false);
 		m_DogHandle.PersonLeft ();
+
 	}
 
 	public void DisableAnim(){
@@ -39,13 +42,18 @@ public class GuardTutorialHandle : MonoBehaviour {
 	}
 
 	public void PetDog(){
-		m_GuardAnim.SetBool ("IsPetting", true);
-		m_DogHandle.Pet ();
+		if (isStartInteraction) {
+			m_GuardAnim.SetBool ("IsPetting", true);
+			m_DogHandle.Pet ();
+		}
+
 	}
 
 	public void ReleasePet(){
-		m_GuardAnim.SetBool ("IsPetting", false);
-		m_DogHandle.ReleasePet ();
+		if (isStartInteraction) {
+			m_GuardAnim.SetBool ("IsPetting", false);
+			m_DogHandle.ReleasePet ();
+		}
 	}
 
 	public void UpdatePetTime(float t){
@@ -54,5 +62,13 @@ public class GuardTutorialHandle : MonoBehaviour {
 
 	public void DogHappy(){
 		m_GuardAnim.SetTrigger ("TriggerDogHappy");
+	}
+
+	public void EnablePetting(){
+		if (!isStartInteraction) {
+			isStartInteraction = true;	
+			Debug.Log ("Enable Petting");
+		}
+
 	}
 }

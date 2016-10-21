@@ -123,6 +123,8 @@ public class DogHandle : MonoBehaviour {
 		m_IsPetting = true;
 		m_StartPetTime = Time.time;
 		//get pet 
+		m_ItrAudio.PlayPant();
+
 	}
 
 	public void ReleasePet(){
@@ -149,6 +151,7 @@ public class DogHandle : MonoBehaviour {
 		gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 		m_Anim.SetTrigger ("TriggerDogHappy");
 		m_GuardHandle.DogHappy ();
+		m_ItrAudio.PlayHappy ();
 	}
 
 	public void EndInteraction(){
@@ -166,6 +169,10 @@ public class DogHandle : MonoBehaviour {
 	public void UIHidePet(){
 		m_UIAnim.SetBool ("IsBeg", false);
 		m_UIAnim.Play("UI-Idle");
+	}
+
+	public void DogBegSound(){
+		m_ItrAudio.PlayBeg ();
 	}
 
 
