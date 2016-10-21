@@ -64,6 +64,13 @@ public class Act2_PrisonerWalkedUpStairsEvent : GameEvent {
 
 public class Act2_PrisonerWalkedDownStairsEvent : GameEvent {
 }
+
+public class LightCaughtEvent : GameEvent {
+	public float Volume { get; private set; }
+	public LightCaughtEvent(float volume){
+		Volume = volume;
+	}
+}
 //public class Act2EndedEvent : GameEvent {
 //}
 

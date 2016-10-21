@@ -93,6 +93,7 @@ public class patrol : MonoBehaviour {
 			}
 		}
 		else if (_rotateTowards.enabled) {
+			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed));
 			_flashlightLight.color = Color.Lerp (_currentColor, Color.red, _caughtTimer.PercentTimePassed);
 			if (_caughtTimer.IsOffCooldown) {
 				Events.G.Raise (new CaughtSneakingEvent ());

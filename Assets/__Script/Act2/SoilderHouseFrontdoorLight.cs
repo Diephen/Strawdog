@@ -7,18 +7,17 @@ public class SoilderHouseFrontdoorLight : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_anim = GetComponent<Animator> ();
-	
 	}
 
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.name == "FemaleStructure") {
+		if (other.tag == "Prisoner") {
 			m_anim.SetTrigger ("TriggerFlicker");
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
-		if (other.name == "FemaleStructure") {
+		if (other.tag == "Prisoner") {
 			m_anim.SetTrigger ("TriggerFlicker");
 		}
 	}

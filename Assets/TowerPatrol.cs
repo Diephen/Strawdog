@@ -57,6 +57,7 @@ public class TowerPatrol : MonoBehaviour {
 			}
 		}
 		else if (_lookAtFollow) {
+			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed));
 			Vector3 dir = _followPerson.transform.position - transform.position;
 			dir.z = 0.0f;
 			dir.Normalize ();
