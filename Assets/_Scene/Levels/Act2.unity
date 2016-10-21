@@ -9823,7 +9823,10 @@ MonoBehaviour:
   _prisoner: {fileID: 1250271393}
   _stairRenderer: {fileID: 1384982690}
   _bedRenderer: {fileID: 1537473836}
+  _bombRenderer: {fileID: 0}
+  _secretDoorRenderer: {fileID: 0}
   _stairStartPosition: 28.6
+  _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
 --- !u!61 &741221685
@@ -17521,6 +17524,106 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1353089930}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1362321696
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c818f12a002284629955913fc144a9ef, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1365599397
 GameObject:
   m_ObjectHideFlags: 0
@@ -18643,6 +18746,9 @@ MonoBehaviour:
   _stairStartPosition: 28.6
   _stairRenderer: {fileID: 1384982690}
   _doorRenderer: {fileID: 1059143570}
+  _bombRenderer: {fileID: 0}
+  _secretDoorRenderer: {fileID: 0}
+  _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
 --- !u!61 &1485883823
