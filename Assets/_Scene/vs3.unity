@@ -2658,7 +2658,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whoAmI: 0
   _puppetControl: {fileID: 235587883}
   _animInject: 0000000000000001010000
   m_guard: {fileID: 235587886}
@@ -3308,7 +3307,7 @@ MonoBehaviour:
     _max: 8
   _directionalLight: {fileID: 479197241}
   _originalDLight: {r: 0.4509804, g: 0.5058824, b: 0.5137255, a: 1}
-  _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
+  _interactDLight: {r: 0.22413792, g: 0.21370392, b: 0.17963997, a: 1}
   _prisonerLight: {fileID: 339936829}
   _soldierLight: {fileID: 549154274}
   _prisonerHandle: {fileID: 1250271398}
@@ -15521,7 +15520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whoAmI: 1
   _puppetControl: {fileID: 1250271402}
   _animInject: 0000000000000001010000
   m_guard: {fileID: 235587886}
@@ -17924,6 +17922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a025482f3731e4eb5950b97e6cf1651c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _guard: {fileID: 235587881}
+  _stairRenderer: {fileID: 0}
+  _groundCollider1: {fileID: 0}
+  _groundCollider2: {fileID: 0}
 --- !u!61 &1485883823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18232,7 +18234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f70a0ff3f1294409b9af01f99b3175d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _whoAmI: 0
   _puppetControl: {fileID: 1505586827}
   _animInject: 0000000000000000000000
   m_guard: {fileID: 235587886}
