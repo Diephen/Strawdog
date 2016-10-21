@@ -19,11 +19,6 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_DogHandle = GameObject.FindObjectOfType<DogHandle> ().GetComponent<DogHandle> ();
 		m_AnimInjection = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<AnimationInjectionTutorial> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	public void StartDogInteraction(){
 		//m_AnimCtrl.SetAnimation (true);

@@ -10,7 +10,11 @@ public class InteractionSound : MonoBehaviour {
 	//
 	// 5 --
 	// 6 -- Faint Sound
-	// 7 -- dunkout delayed
+
+	//Tutorial
+	// 7 -- Happy Dog
+	// 8 -- Panting Dog
+	// 9 -- Begging Dog
 
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
@@ -82,6 +86,22 @@ public class InteractionSound : MonoBehaviour {
 	public void PlayFaint(){
 		m_audioDrown.Stop ();
 		m_audio.clip = m_sounds [6];
+		m_audio.Play ();
+	}
+
+	// Tutorial
+	public void PlayHappy(){
+		m_audio.clip = m_sounds [7];
+		m_audio.Play ();
+	}
+
+	public void PlayPant(){
+		m_audio.clip = m_sounds [8];
+		m_audio.Play ();
+	}
+
+	public void PlayBeg(){
+		m_audio.clip = m_sounds [9];
 		m_audio.Play ();
 	}
 }

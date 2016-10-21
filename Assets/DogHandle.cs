@@ -16,6 +16,7 @@ public class DogHandle : MonoBehaviour {
 	GuardTutorialHandle m_GuardHandle;
 	AnimationInjectionTutorial m_AnimInjection;
 	[SerializeField] Animator m_UIAnim;
+	[SerializeField] InteractionSound m_ItrAudio;
 
 	float m_StartPetTime;
 	float m_PetTime = 0f;
@@ -121,7 +122,6 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsPetting", true);	
 		m_IsPetting = true;
 		m_StartPetTime = Time.time;
-
 		//get pet 
 	}
 
@@ -149,7 +149,6 @@ public class DogHandle : MonoBehaviour {
 		gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 		m_Anim.SetTrigger ("TriggerDogHappy");
 		m_GuardHandle.DogHappy ();
-
 	}
 
 	public void EndInteraction(){

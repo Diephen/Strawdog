@@ -43,6 +43,7 @@ public class GuardTrigger : MonoBehaviour {
 			_guardPuppetController.DisableKeyInput ();
 			_tempPosition = _guard.transform.position;
 			_stairStartTimer.Reset ();
+			Events.G.Raise (new GuardStairsStartEvent ());
 		}
 
 		if (_goToStart) {
