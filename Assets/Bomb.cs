@@ -6,9 +6,11 @@ public class Bomb : MonoBehaviour {
 	bool _floorStopped = false;
 	bool _thrownOnce = false;
 	Rigidbody2D _bombRigidBody;
+	AudioSource _audioSource;
 	// Use this for initialization
 	void Start () {
 		_bombRigidBody = gameObject.GetComponent<Rigidbody2D> ();
+		_audioSource = gameObject.GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -16,6 +18,9 @@ public class Bomb : MonoBehaviour {
 		if (transform.position.y < _floorPos && !_floorStopped) {
 			_bombRigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 			_floorStopped = true;
+			if (_thrownOnce) {
+				_audioSource.Play ();
+			}
 		}
 		else if (_floorStopped && transform.position.y > _floorPos) {
 			_floorStopped = false;
