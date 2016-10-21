@@ -92,16 +92,22 @@ public class InteractionSound : MonoBehaviour {
 	// Tutorial
 	public void PlayHappy(){
 		m_audio.clip = m_sounds [7];
-		m_audio.Play ();
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
 	}
 
 	public void PlayPant(){
 		m_audio.clip = m_sounds [8];
-		m_audio.Play ();
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
 	}
 
 	public void PlayBeg(){
 		m_audio.clip = m_sounds [9];
-		m_audio.Play ();
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
 	}
 }
