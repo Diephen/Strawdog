@@ -10,11 +10,13 @@ public class DogHandle : MonoBehaviour {
 		leave
 	}
 
-	[SerializeField] DogState m_DogState;
-	[SerializeField] Animator m_Anim;
-	[SerializeField] PuppetControl m_PC;
-	[SerializeField] GuardTutorialHandle m_GuardHandle;
-	[SerializeField] AnimationInjectionTutorial m_AnimInjection;
+	DogState m_DogState;
+	Animator m_Anim;
+	PuppetControl m_PC;
+	GuardTutorialHandle m_GuardHandle;
+	AnimationInjectionTutorial m_AnimInjection;
+	[SerializeField] Animator m_UIAnim;
+
 	float m_StartPetTime;
 	float m_PetTime = 0f;
 	bool m_IsPetting = false;
@@ -119,6 +121,8 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsPetting", true);	
 		m_IsPetting = true;
 		m_StartPetTime = Time.time;
+
+		//get pet 
 	}
 
 	public void ReleasePet(){
@@ -127,6 +131,8 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetFloat ("PetTime", 0f);
 		m_GuardHandle.UpdatePetTime (0f);
 		//m_StartPetTime = Time.time;
+
+		// ask for pet 
 	}
 
 	public void PersonLeft(){
@@ -134,6 +140,8 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsStartWalk", false);
 		m_IsPetting = false;
 		//LeavePlayer ();
+
+		// stop begging 
 	}
 
 	public void DogHappy(){
@@ -148,6 +156,17 @@ public class DogHandle : MonoBehaviour {
 		LeavePlayer ();
 		m_Anim.SetBool ("IsPetting", false);
 		m_Anim.SetBool ("IsStartWalk",false);
+	}
+
+	public void UIShowPet(){
+		m_UIAnim.SetBool ("IsBeg", true);
+		//m_UIAnim.Play("UI-Petme");
+		print ("Bark Bark");
+	}
+
+	public void UIHidePet(){
+		m_UIAnim.SetBool ("IsBeg", false);
+		m_UIAnim.Play("UI-Idle");
 	}
 
 
