@@ -13,6 +13,9 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioClip _pickUpBomb;
 	[SerializeField] AudioClip _guardStairs;
 	[SerializeField] AudioClip _prisonerStairs;
+
+	bool _soundOff = true;
+	Timer _soundOffTimer = new Timer(0.5f);
 	void Start () {
 		_audioSource.volume = volume [0];
 	}
@@ -28,6 +31,15 @@ public class AudioController : MonoBehaviour {
 			else 
 			{
 				_tempAudioSource.volume = _tempAudioSource.volume + 0.01f;
+			}
+		}
+
+		if (_soundOff) {
+			if (Mathf.Approximately (_soundSource2.volume, 0.0f)) {
+				_soundSource2.Stop ();
+				_soundOff = false;
+			} else {
+				_soundSource2.volume = MathHelpers.LinMapFrom01 (_soundSource2.volume, 0.0f, _soundOffTimer.PercentTimePassed);
 			}
 		}
 	}
@@ -68,16 +80,16 @@ public class AudioController : MonoBehaviour {
 
 	void StopCaught(PrisonerHideEvent e){
 		if (e.Hidden) {
-			_soundSource2.Stop ();
+//			_soundSource2.Stop ();
+			_soundOffTimer.Reset();
+			_soundOff = true;
 		}
 	}
 
-	void StopCaught1(CaughtSneakingEvent e){
-		_soundSource2.Stop ();
-	}
-
-	void StopCaught2(LightOffEvent e){
-		_soundSource2.Stop ();
+	void StopCaught1(LightOffEvent e){
+//		_soundSource2.Stop ();
+		_soundOffTimer.Reset ();
+		_soundOff = true;
 	}
 
 
@@ -94,8 +106,7 @@ public class AudioController : MonoBehaviour {
 		Events.G.AddListener<PrisonerStairsStartEvent>(PrisonerStairsStartEvent);
 		Events.G.AddListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.AddListener<PrisonerHideEvent>(StopCaught);
-		Events.G.AddListener<CaughtSneakingEvent>(StopCaught1);
-		Events.G.AddListener<LightOffEvent> (StopCaught2);
+		Events.G.AddListener<LightOffEvent> (StopCaught1);
 	}
 
 	void OnDisable ()
@@ -111,8 +122,7 @@ public class AudioController : MonoBehaviour {
 		Events.G.RemoveListener<PrisonerStairsStartEvent>(PrisonerStairsStartEvent);
 		Events.G.RemoveListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.RemoveListener<PrisonerHideEvent>(StopCaught);
-		Events.G.RemoveListener<CaughtSneakingEvent>(StopCaught1);
-		Events.G.RemoveListener<LightOffEvent> (StopCaught2);
+		Events.G.RemoveListener<LightOffEvent> (StopCaught1);
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)

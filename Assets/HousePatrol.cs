@@ -55,6 +55,7 @@ public class HousePatrol : MonoBehaviour {
 	}
 
 	public void CarryOn(){
+		Events.G.Raise (new LightOffEvent ());
 		_stop = false;
 		_caught = false;
 	}

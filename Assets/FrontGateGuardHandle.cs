@@ -56,7 +56,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other) {
 		//Debug.Log ("Attention");
-		if(m_SoldierState == greetState.idle && other.name == "GuardStructure"){
+		if((m_SoldierState == greetState.idle || m_SoldierState == greetState.endsalute) && other.name == "GuardStructure"){
 			m_SoldierState = greetState.salute;
 			CheckState (m_SoldierState);
 			Debug.Log ("Attention");

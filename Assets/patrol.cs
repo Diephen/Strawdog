@@ -127,13 +127,5 @@ public class patrol : MonoBehaviour {
 		}
 		_wait = true;
 		_waitTimer.Reset ();
-//		StartCoroutine (Wait(_waitSeconds));
 	}
-
-//	IEnumerator Wait(float waitTime) {
-//		yield return new WaitForSeconds(waitTime);
-//		_currentColor = _flashlightLight.color;
-//		_reRotate = true;
-//		_flashRotationTimer.Reset ();
-//	}
 }
