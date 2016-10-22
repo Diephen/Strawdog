@@ -71,6 +71,9 @@ public class LightCaughtEvent : GameEvent {
 		Volume = volume;
 	}
 }
+
+public class LightOffEvent : GameEvent {
+}
 //public class Act2EndedEvent : GameEvent {
 //}
 

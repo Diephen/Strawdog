@@ -116,6 +116,7 @@ public class patrol : MonoBehaviour {
 	}
 
 	public void CarryOn(){
+		Events.G.Raise (new LightOffEvent ());
 		_flashlightLight.color = Color.white;
 		_rotateTowards.enabled = false;
 		if (_flashlight.localEulerAngles.z > 300.0f) {

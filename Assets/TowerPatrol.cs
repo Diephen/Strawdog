@@ -101,6 +101,7 @@ public class TowerPatrol : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Prisoner") {
 			ReRotate ();
+			Events.G.Raise (new LightOffEvent ());
 		}
 	}
 

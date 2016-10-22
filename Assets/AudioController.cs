@@ -76,6 +76,10 @@ public class AudioController : MonoBehaviour {
 		_soundSource2.Stop ();
 	}
 
+	void StopCaught2(LightOffEvent e){
+		_soundSource2.Stop ();
+	}
+
 
 	void OnEnable ()
 	{
@@ -91,6 +95,7 @@ public class AudioController : MonoBehaviour {
 		Events.G.AddListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.AddListener<PrisonerHideEvent>(StopCaught);
 		Events.G.AddListener<CaughtSneakingEvent>(StopCaught1);
+		Events.G.AddListener<LightOffEvent> (StopCaught2);
 	}
 
 	void OnDisable ()
@@ -107,6 +112,7 @@ public class AudioController : MonoBehaviour {
 		Events.G.RemoveListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.RemoveListener<PrisonerHideEvent>(StopCaught);
 		Events.G.RemoveListener<CaughtSneakingEvent>(StopCaught1);
+		Events.G.RemoveListener<LightOffEvent> (StopCaught2);
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
