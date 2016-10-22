@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class RotateAround : MonoBehaviour {
-	MinMax _rotateRange = new MinMax(-90.0f, 120.0f);
+	MinMax _rotateRange = new MinMax(-90.0f, 160.0f);
 	Timer _rotateTimer;
-	[SerializeField] float _rotateDuration = 5.0f;
+	float _rotateDuration = 7.0f;
 	Vector3 _eulerRotation;
 	// Use this for initialization
 	void Start () {
@@ -18,5 +18,8 @@ public class RotateAround : MonoBehaviour {
 		_eulerRotation.x = MathHelpers.LinMapFrom01 (_rotateRange.Min, _rotateRange.Max, _rotateTimer.PercentTimeLeft);
 //		Debug.Log (_rotation);
 		transform.rotation = Quaternion.Euler (_eulerRotation);
+		if (_rotateTimer.IsOffCooldown) {
+			Events.G.Raise (new TitleEndedEvent ());
+		}
 	}
 }

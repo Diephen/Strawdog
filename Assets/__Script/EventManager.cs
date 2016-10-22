@@ -27,6 +27,9 @@ public class GuardEngaginPrisonerEvent : GameEvent {
 	}
 }
 
+public class TitleEndedEvent : GameEvent {
+}
+
 /* Act 2 */
 public class LockCellEvent : GameEvent {
 	public bool Locked { get; private set; }
