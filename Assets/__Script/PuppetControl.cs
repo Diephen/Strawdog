@@ -161,9 +161,6 @@ public class PuppetControl : MonoBehaviour {
 					m_AudioSource [1].clip = m_Audio [2];
 					m_AudioSource [1].Play ();
 					crouchStart = true;
-					//					startTime [0] = Time.time;
-					//					startTime [1] = Time.time;
-					//					startTime [2] = Time.time;
 				}
 			} else {
 				Events.G.Raise (new CrouchPressedEvent (_whoAmI));
