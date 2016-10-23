@@ -36,6 +36,10 @@ public class WallFade : MonoBehaviour {
 		}
 	}
 
+	public void FadeWall(){
+		StartCoroutine (FadeOut ());
+	}
+
 	IEnumerator FadeIn(){
 		float startTime = Time.time;
 		bool i = true;
