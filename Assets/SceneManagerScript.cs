@@ -1,10 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Giverspace;
 
 public class SceneManagerScript : MonoBehaviour {
 
 	FrameScript _frameScript;
+	bool _start = false;
+
+	void Update(){
+		if(_start){
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
+				_frameScript.OpenFlap ();
+				_start = false;
+			}
+		}
+	}
 
 	void OnEnable ()
 	{
@@ -138,7 +150,12 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
-		StartCoroutine( WaitBeforeOpen());
+		if (scene.name == "Level0") {
+			_start = true;
+		}
+		else {
+			StartCoroutine (WaitBeforeOpen ());
+		}
 	}
 
 //	void OnLevelWasLoaded() {
