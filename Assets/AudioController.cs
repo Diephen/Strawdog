@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace;
 
 public class AudioController : MonoBehaviour {
 	[SerializeField] float[] volume = new float[] {0.1f, 0.3f, 0.7f};
@@ -61,16 +62,19 @@ public class AudioController : MonoBehaviour {
 		if (e.Locked) {
 			_soundSource1.clip = _lockCell;
 			_soundSource1.Play ();
+			Log.Metrics.Message("*Lock");
 		}
 		else {
 			_soundSource1.clip = _openCell;
 			_soundSource1.Play ();
+			Log.Metrics.Message("*[Un]lock");
 		}
 	}
 	void LeftCell(LeftCellUnlockedEvent e){
 		_soundSource2.clip = _guardWalkOut;
 		_soundSource2.volume = 1.0f;
 		_soundSource2.Play ();
+		Log.Metrics.Message("CHOICE 2: Unlock");
 	}
 	void LeaveCell(GuardLeavingCellEvent e){
 		_soundSource2.clip = _guardWalkOut;
@@ -88,10 +92,12 @@ public class AudioController : MonoBehaviour {
 	void GuardStairsStart(GuardStairsStartEvent e){
 		_soundSource1.clip = _guardStairs;
 		_soundSource1.Play ();
+		Log.Metrics.Message("CHOICE 2: Guard Stairs (Lock)");
 	}
 	void PrisonerStairsStartEvent(PrisonerStairsStartEvent e){
 		_soundSource1.clip = _prisonerStairs;
 		_soundSource1.Play ();
+		Log.Metrics.Message("CHOICE 3: Prisoner Stairs");
 	}
 
 	void PlayLightCaught(LightCaughtEvent e){

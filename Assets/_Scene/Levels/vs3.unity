@@ -15939,7 +15939,6 @@ GameObject:
   - 114: {fileID: 1250271398}
   - 61: {fileID: 1250271397}
   - 50: {fileID: 1250271396}
-  - 114: {fileID: 1250271395}
   - 114: {fileID: 1250271401}
   m_Layer: 0
   m_Name: prisoner
@@ -15967,17 +15966,6 @@ Transform:
   - {fileID: 573963937}
   m_Father: {fileID: 2119516614}
   m_RootOrder: 1
---- !u!114 &1250271395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1250271393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1250271396
 Rigidbody2D:
   serializedVersion: 2
