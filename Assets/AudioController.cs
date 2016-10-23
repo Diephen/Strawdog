@@ -13,6 +13,7 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioClip _pickUpBomb;
 	[SerializeField] AudioClip _guardStairs;
 	[SerializeField] AudioClip _prisonerStairs;
+	[SerializeField] AudioClip _guardWalkOut;
 
 	bool _soundOff = true;
 	Timer _soundOffTimer = new Timer(0.5f);
@@ -66,6 +67,16 @@ public class AudioController : MonoBehaviour {
 			_soundSource1.Play ();
 		}
 	}
+	void LeftCell(LeftCellUnlockedEvent e){
+		_soundSource2.clip = _guardWalkOut;
+		_soundSource2.volume = 1.0f;
+		_soundSource2.Play ();
+	}
+	void LeaveCell(GuardLeavingCellEvent e){
+		_soundSource2.clip = _guardWalkOut;
+		_soundSource2.volume = 1.0f;
+		_soundSource2.Play ();
+	}
 	void PlayPickUpBomb(PrisonerFoundBombEvent e){
 		_soundSource1.clip = _pickUpBomb;
 		_soundSource1.Play ();
@@ -109,6 +120,8 @@ public class AudioController : MonoBehaviour {
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.AddListener<LeftCellUnlockedEvent> (LeftCell);
+		Events.G.AddListener<GuardLeavingCellEvent> (LeaveCell);
 
 		//Act2
 		Events.G.AddListener<LockCellEvent>(PlayLock);
@@ -125,6 +138,8 @@ public class AudioController : MonoBehaviour {
 	{
 		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+		Events.G.RemoveListener<LeftCellUnlockedEvent> (LeftCell);
+		Events.G.RemoveListener<GuardLeavingCellEvent> (LeaveCell);
 
 		//Act2
 		Events.G.RemoveListener<LockCellEvent>(PlayLock);

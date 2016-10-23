@@ -64,11 +64,16 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_tempPosition = _guard.transform.position;
 				_stairStartTimer.Reset ();
 				Events.G.Raise (new GuardStairsStartEvent ());
-			} 
-			else if (_isDoor) 
-			{
+			}
+			else if (_isDoor) {
 				_locked = !_locked;
-				Events.G.Raise(new LockCellEvent(_locked));
+				Events.G.Raise (new LockCellEvent (_locked));
+			}
+			else if (_isOnFlap) {
+				Events.G.Raise (new LeftCellUnlockedEvent ());
+				_guard.SetActive (false);
+				_highlightsFX.enabled = false;
+				_isOnFlap = false;
 			}
 		}
 
@@ -85,13 +90,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
-
-		if (_isOnFlap && Input.GetKeyDown (_guardKeyCodes [3])) {
-			Events.G.Raise (new LeftCellUnlockedEvent ());
-			_guard.SetActive (false);
-			_highlightsFX.enabled = false;
-			_isOnFlap = false;
-		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -107,8 +105,10 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_highlightsFX.objectRenderer = _bombRenderer;
 			_highlightsFX.enabled = true;
 		} else if (other.name == "open-right") {
-			_highlightsFX.objectRenderer = _rightFlap;
-			_highlightsFX.enabled = true;
+			if (!_isDoor) {
+				_highlightsFX.objectRenderer = _rightFlap;
+				_highlightsFX.enabled = true;
+			}
 			_isOnFlap = true;
 		}
 		else if (other.name == "open-left") {
@@ -143,13 +143,23 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isStairs = false;
 			_highlightsFX.enabled = false;
 		} else if (other.name == "LockCell") {
-			_highlightsFX.enabled = false;
+			if (_isOnFlap) {
+				_highlightsFX.objectRenderer = _rightFlap;
+			}
+			else {
+				_highlightsFX.enabled = false;
+			}
 			_isDoor = false;
 		} else if (other.name == "Bomb") {
 			_highlightsFX.enabled = false;
 		} else if (other.name == "open-right") {
-			_highlightsFX.enabled = false;
-			_isOnFlap = false;
+			if (_isDoor) {
+				_highlightsFX.objectRenderer = _doorRenderer;
+			}
+			else {
+				_highlightsFX.enabled = false;
+				_isOnFlap = false;
+			}
 		}
 		else if (other.name == "open-left") {
 			_highlightsFX.enabled = false;

@@ -76,7 +76,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
-		StartCoroutine(ChangeLevel(3, 1f));
+		StartCoroutine(ChangeLevel(3, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){

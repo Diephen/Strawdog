@@ -154,7 +154,7 @@ public class FollowCam : MonoBehaviour {
 		if (!e.Locked) {
 			timer = 0f;
 			_followObj = _followPrisoner;
-			_cameraToggle = cameraPos.Center;
+			_cameraToggle = cameraPos.Left;
 		} else {
 			timer = 0f;
 			_followObj = _followGuard;
