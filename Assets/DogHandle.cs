@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace;
 
 public class DogHandle : MonoBehaviour {
 	enum DogState{
@@ -140,6 +141,7 @@ public class DogHandle : MonoBehaviour {
 	}
 
 	public void ReleasePet(){
+		Log.Metrics.Message("Pet: " + m_Anim.GetFloat("PetTime"));
 		m_Anim.SetBool ("IsPetting", false);	
 		m_IsPetting = false;
 		m_Anim.SetFloat ("PetTime", 0f);
@@ -159,7 +161,7 @@ public class DogHandle : MonoBehaviour {
 	}
 
 	public void DogHappy(){
-		
+		Log.Metrics.Message("Pet: " + m_Anim.GetFloat("PetTime"));
 		gameObject.GetComponent<BoxCollider2D> ().enabled = false;
 		m_Anim.SetTrigger ("TriggerDogHappy");
 		m_GuardHandle.DogHappy ();

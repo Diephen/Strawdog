@@ -7,6 +7,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	FrameScript _frameScript;
 	bool _start = false;
+	bool _once = false;
 
 	void Update(){
 		if(_start){
@@ -177,9 +178,12 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	IEnumerator ChangeLevel(int index, float duration){
-		yield return new WaitForSeconds(duration);
-		_frameScript.CloseFlap ();
-		yield return new WaitForSeconds(1.0f);
-		SceneManager.LoadScene (index);
+		if (!_once) {
+			_once = true;
+			yield return new WaitForSeconds (duration);
+			_frameScript.CloseFlap ();
+			yield return new WaitForSeconds (1.0f);
+			SceneManager.LoadScene (index);
+		}
 	}
 }

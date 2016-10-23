@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Giverspace;
 
 public class RotateAround : MonoBehaviour {
-	MinMax _rotateRange = new MinMax(-90.0f, 160.0f);
+//	MinMax _rotateRange = new MinMax(-90.0f, 160.0f);
+	MinMax _rotateRange = new MinMax(-30.0f, 160.0f);
 	Timer _rotateTimer;
 	float _rotateDuration = 7.0f;
 	Vector3 _eulerRotation;
@@ -11,6 +13,7 @@ public class RotateAround : MonoBehaviour {
 		_rotateTimer = new Timer (_rotateDuration);
 		_eulerRotation = transform.eulerAngles;
 		_rotateTimer.Reset ();
+		Log.Metrics.Message("End Time");
 	}
 	
 	// Update is called once per frame
