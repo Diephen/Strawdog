@@ -10,6 +10,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 	[SerializeField] AnimationInjectionTutorial m_AnimInjection;
 	bool isEndInteraction=false;
 	bool isStartInteraction = false;
+	bool isPetting = false;
 
 
 	// Use this for initialization
@@ -26,13 +27,22 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_AnimCtrl.SetAnimation (true);
 		m_GuardAnim.SetBool ("IsSeeDog", true);
 		isStartInteraction = false;
+		isEndInteraction = false;
 	}
 
 	// guard press D
 	public void LeaveDog(){
-		m_GuardAnim.SetBool ("IsSeeDog", false);
-		m_GuardAnim.SetBool ("IsPetting", false);
-		m_DogHandle.PersonLeft ();
+		if (!isEndInteraction) {
+			m_GuardAnim.SetBool ("IsSeeDog", false);
+			isEndInteraction = true;
+			if (isPetting) {
+				ReleasePet ();
+				m_ItrAudio.StopPlay ();
+			}
+			//m_GuardAnim.SetBool ("IsPetting", false);
+			m_DogHandle.PersonLeft ();
+		}
+
 
 	}
 
@@ -42,7 +52,8 @@ public class GuardTutorialHandle : MonoBehaviour {
 	}
 
 	public void PetDog(){
-		if (isStartInteraction) {
+		if (isStartInteraction && !isEndInteraction) {
+			isPetting = true;
 			m_GuardAnim.SetBool ("IsPetting", true);
 			m_DogHandle.Pet ();
 		}
@@ -50,7 +61,8 @@ public class GuardTutorialHandle : MonoBehaviour {
 	}
 
 	public void ReleasePet(){
-		if (isStartInteraction) {
+		if (isStartInteraction && !isEndInteraction) {
+			isPetting = false;
 			m_GuardAnim.SetBool ("IsPetting", false);
 			m_DogHandle.ReleasePet ();
 		}
@@ -62,6 +74,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 
 	public void DogHappy(){
 		m_GuardAnim.SetTrigger ("TriggerDogHappy");
+		isEndInteraction = true;
 	}
 
 	public void EnablePetting(){

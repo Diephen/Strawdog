@@ -17,7 +17,8 @@ public class DogHandle : MonoBehaviour {
 	AnimationInjectionTutorial m_AnimInjection;
 	[SerializeField] Animator m_UIAnim;
 	[SerializeField] InteractionSound m_ItrAudio;
-
+	SpriteRenderer[] m_DogSprite;
+ 
 	float m_StartPetTime;
 	float m_PetTime = 0f;
 	bool m_IsPetting = false;
@@ -29,6 +30,7 @@ public class DogHandle : MonoBehaviour {
 		m_GuardHandle = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<GuardTutorialHandle> ();
 		m_Anim = GetComponent<Animator> () ? GetComponent<Animator> () : null;
 		m_AnimInjection = GameObject.FindObjectOfType<GuardTutorialHandle> ().GetComponent<AnimationInjectionTutorial> ();
+		m_DogSprite = GetComponentsInChildren<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -152,16 +154,24 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetTrigger ("TriggerDogHappy");
 		m_GuardHandle.DogHappy ();
 		m_ItrAudio.PlayHappy ();
+		m_IsPetting = false;
+		m_Anim.SetFloat ("PetTime", 0f);
+		//m_Anim.SetBool ("IsPetting", false);
+		//m_Anim.SetBool ("IsStartWalk", false);
 	}
 
 	public void EndInteraction(){
 		LeavePlayer ();
 		m_Anim.SetBool ("IsPetting", false);
 		m_Anim.SetBool ("IsStartWalk",false);
+		foreach (SpriteRenderer spr in m_DogSprite) {
+			spr.sortingOrder = spr.sortingOrder - 5;
+		}
 	}
 
 	public void UIShowPet(){
 		m_UIAnim.SetBool ("IsBeg", true);
+		DogBegSound ();
 		//m_UIAnim.Play("UI-Petme");
 		print ("Bark Bark");
 	}
@@ -173,6 +183,10 @@ public class DogHandle : MonoBehaviour {
 
 	public void DogBegSound(){
 		m_ItrAudio.PlayBeg ();
+	}
+
+	public void ReadyForPetting(){
+		m_GuardHandle.EnablePetting ();
 	}
 
 

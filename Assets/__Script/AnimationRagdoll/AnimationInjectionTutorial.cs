@@ -86,6 +86,7 @@ public class AnimationInjectionTutorial : AnimationInjectionBase {
 //	}
 	protected override void DPressed(DPressedEvent e){
 		base.DPressed (e);
+		m_GuardHandle.LeaveDog ();
 	}
 //
 	protected override void DHold(DHoldEvent e){
