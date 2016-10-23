@@ -6,11 +6,6 @@ public class SceneManagerScript : MonoBehaviour {
 
 	FrameScript _frameScript;
 
-	void Start(){
-		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
-		_frameScript.OpenFlap ();
-	}
-
 	void OnEnable ()
 	{
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
@@ -39,7 +34,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
 
 
-//		SceneManager.sceneLoaded += OpenScreen;
+		SceneManager.sceneLoaded += OpenScreen;
 	}
 
 	void OnDisable ()
@@ -69,7 +64,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
 
-//		SceneManager.sceneLoaded -= OpenScreen;
+		SceneManager.sceneLoaded -= OpenScreen;
 	}
 
 	void LoadVertical(Act0EndedEvent e){
@@ -135,6 +130,17 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
+		StartCoroutine( WaitBeforeOpen());
+	}
+
+//	void OnLevelWasLoaded() {
+//		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
+//		_frameScript.OpenFlap ();
+//	}
+
+	IEnumerator WaitBeforeOpen(){
+		yield return new WaitForSeconds(1.0f);
+		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
 		_frameScript.OpenFlap ();
 	}
 

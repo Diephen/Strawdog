@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Checkpoint : MonoBehaviour {
 	[SerializeField] float _checkPosition = 0.0f;
-	Fading _fadingScript;
+	FrameScript _frameScript;
 	// Use this for initialization
 	void Start () {
-		_fadingScript = GameObject.Find ("Fade").GetComponent<Fading> ();
+		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
 	}
 	
 	// Update is called once per frame
@@ -26,13 +26,13 @@ public class Checkpoint : MonoBehaviour {
 
 	IEnumerator Respawn(){
 		yield return new WaitForSeconds(2.0f);
-		float fadeTime = _fadingScript.BeginFade (1);
-		yield return new WaitForSeconds(fadeTime);
+		_frameScript.CloseFlap ();
+		yield return new WaitForSeconds(1.0f);
 		Vector3 _tempPos = transform.position;
 		_tempPos.x = _checkPosition;
 		transform.position = _tempPos;
 		yield return new WaitForSeconds(1.0f);
-		_fadingScript.BeginFade (-1);
+		_frameScript.OpenFlap ();
 	}
 
 	void OnEnable(){

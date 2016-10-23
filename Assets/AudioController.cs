@@ -16,11 +16,23 @@ public class AudioController : MonoBehaviour {
 
 	bool _soundOff = true;
 	Timer _soundOffTimer = new Timer(0.5f);
+
+	static AudioController _instance = null;
+
+	void Awake() {
+		if (_instance) {
+			Destroy (gameObject);
+		}
+		else {
+			_instance = this;
+			DontDestroyOnLoad (gameObject);
+		}
+	}
+
 	void Start () {
 		_audioSource.volume = volume [0];
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		if (_tempAudioSource != null && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
 		{

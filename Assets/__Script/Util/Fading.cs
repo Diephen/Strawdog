@@ -31,7 +31,7 @@ public class Fading : MonoBehaviour {
 	//OnLevelWasLoaded is called when a level is loaded. takes loaded level index as a parameter
 	void OnLevelWasLoaded() {
 		//alpha = 1
-		BeginFade (-1);
+//		BeginFade (-1);
 	}
 
 //
