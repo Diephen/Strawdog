@@ -17,7 +17,7 @@ namespace Giverspace {
 
         enum LogType {
             String,
-            PlayerPosRot
+            PlayerPosRot,
             // TODO: add more entries if you need more message types
         }
 

@@ -14,6 +14,7 @@ public class SceneManagerScript : MonoBehaviour {
 				_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
 				_frameScript.OpenFlap ();
 				_start = false;
+				Log.Metrics.Message("Start Time");
 			}
 		}
 	}
@@ -84,14 +85,19 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadVertical(Act0EndedEvent e){
+		Log.Metrics.Message("End Act 0");
 		StartCoroutine(ChangeLevel(1, 1.7f));
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
+		Log.Metrics.Message("End Act 1");
+		Log.Metrics.Message("CHOICE 1: Leave");
 		StartCoroutine(ChangeLevel(3, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
+		Log.Metrics.Message("End Act 1");
+		Log.Metrics.Message("CHOICE 1: Drown");
 		StartCoroutine(ChangeLevel(3, 4f));
 	}
 		
@@ -112,6 +118,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadAct3_No(SleepInCellEvent e){
+		Log.Metrics.Message("CHOICE 3: Bed");
 		StartCoroutine(ChangeLevel(4, 3f));
 	}
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
