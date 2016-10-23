@@ -79,7 +79,6 @@ public class GuardHandle : MonoBehaviour {
 			}
 
 			if (m_AHoldTime >= 5f) {
-				Log.Metrics.Message("Hold Time - Drown: 5");
 				//m_GuardAnim.SetTrigger ("TriggerFaint");
 				if(!m_IsFaint){
 					if (m_Bubbles.activeSelf) {
@@ -93,6 +92,8 @@ public class GuardHandle : MonoBehaviour {
 					m_LightCtrl.TurnOffFlicker ();
 					m_IsFaint = true;
 
+					Log.Metrics.Message("Hold Time - Drown: 5");
+
 					//Fading to Black
 					Events.G.Raise(new Act1EndedEvent());
 				}
@@ -100,7 +101,6 @@ public class GuardHandle : MonoBehaviour {
 
 
 		} else {
-			Log.Metrics.Message("Hold Time - Drown: "+ m_AStartHoldTime);
 			m_AStartHoldTime = 0f;
 //			if (m_AHoldTime > 0) {
 //				m_AHoldTime -= Time.deltaTime;
@@ -146,6 +146,7 @@ public class GuardHandle : MonoBehaviour {
 				m_ItrAudio.StopDrown ();
 			}
 			m_IsTorture = false;
+			Log.Metrics.Message("Hold Time - Drown: "+ m_AHoldTime);
 		}
 
 

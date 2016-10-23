@@ -64,7 +64,12 @@ namespace Giverspace {
 
             void WriteTimeStampWith (StreamWriter w) {
                 w.Write("\"ts\":");
-                w.Write(ReportedAt.Ticks);
+//				ReportedAt.Ticks
+				int minute = ReportedAt.Minute;
+				int second = ReportedAt.Second;
+				int milli = ReportedAt.Millisecond;
+
+				w.Write("m: " + minute + ", s: " + second + ", ml: " + milli);
             }
 
             void WriteVectorWith (ref Vector3 v, string name, StreamWriter w) {
