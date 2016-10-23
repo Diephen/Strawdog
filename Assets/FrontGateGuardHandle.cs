@@ -9,7 +9,9 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	[SerializeField] Animator m_Anim;
 	private bool isGateOpen = false;
 	[SerializeField] GameObject m_GateBlock;
+	Animator m_DoorAnim;
 	AudioSource _audioSource;
+	bool m_IsGateOpen;
 	// Use this for initialization
 	void Start () {
 		if (m_Anim == null && GetComponent<Animator> ()) {
@@ -18,6 +20,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 			Debug.Log ("[Error] No animator");
 		}
 		_audioSource = gameObject.GetComponent<AudioSource> ();
+		m_DoorAnim = m_GateBlock.GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -44,11 +47,16 @@ public class FrontGateGuardHandle : MonoBehaviour {
 				if (!isGateOpen) {
 					isGateOpen = true;
 					m_Anim.SetTrigger ("TriggerTalk");
+					m_Anim.SetBool ("IsSalute", false);
 					OpenGate ();
 				}
 				break;
 			case greetState.endsalute:
 				m_Anim.SetBool ("IsSalute", false);
+				m_DoorAnim.SetBool ("IsGateOpen", false);
+				m_IsGateOpen = false;
+				isGateOpen = false;
+				m_SoldierState = greetState.idle;
 				break;
 			}
 		}
@@ -56,7 +64,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other) {
 		//Debug.Log ("Attention");
-		if((m_SoldierState == greetState.idle || m_SoldierState == greetState.endsalute) && other.name == "GuardStructure"){
+		if(m_SoldierState == greetState.idle && other.name == "GuardStructure" && !m_IsGateOpen){
 			m_SoldierState = greetState.salute;
 			CheckState (m_SoldierState);
 			Debug.Log ("Attention");
@@ -68,18 +76,36 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		//Debug.Log ("Guard Pass");
 		if(other.name == "GuardStructure"){
-			m_SoldierState = greetState.endsalute;
-			Debug.Log ("Guard Pass");
-			CheckState (m_SoldierState);
+			if (m_SoldierState == greetState.talk) {
+				m_SoldierState = greetState.endsalute;
+				Debug.Log ("Guard Pass");
+				CheckState (m_SoldierState);
+
+			} else if (m_SoldierState == greetState.salute) {
+				m_SoldierState = greetState.idle;
+				m_Anim.SetBool ("IsSalute", false);
+				CheckState (m_SoldierState);
+			}
+
+
+
 		}
 
 	}
 		
 
 	void OpenGate(){
+		m_IsGateOpen = true;
 		Debug.Log ("Open Gate Request");
-		m_GateBlock.SetActive (false);
+		//m_GateBlock.SetActive (false);
 		_audioSource.Play ();
 		Events.G.Raise (new EnableMoveEvent ());
+	}
+
+	void CallOpenAnimation(){
+		if (m_IsGateOpen) {
+			m_DoorAnim.SetBool ("IsGateOpen", true);
+			//m_GateBlock.name = "STOPRight";
+		}
 	}
 }
