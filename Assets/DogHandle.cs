@@ -18,6 +18,7 @@ public class DogHandle : MonoBehaviour {
 	[SerializeField] Animator m_UIAnim;
 	[SerializeField] InteractionSound m_ItrAudio;
 	SpriteRenderer[] m_DogSprite;
+	[SerializeField] InteractionProgress m_ProgressBar;
  
 	float m_StartPetTime;
 	float m_PetTime = 0f;
@@ -35,18 +36,25 @@ public class DogHandle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_IsPetting) {
-			m_PetTime = Time.time - m_StartPetTime;
-			m_Anim.SetFloat ("PetTime", m_PetTime);
-			m_GuardHandle.UpdatePetTime (m_PetTime);
-		} else {
-			m_PetTime = 0;
+		if (!m_IsDogHappy) {
+			if (m_IsPetting) {
+				m_PetTime = Time.time - m_StartPetTime;
+				m_Anim.SetFloat ("PetTime", m_PetTime);
+				m_GuardHandle.UpdatePetTime (m_PetTime);
+				m_ProgressBar.IncTime (m_PetTime);
+			} else {
+				m_PetTime = 0;
+				m_ProgressBar.IncTime (m_PetTime);
+			}
+		
 		}
+
 
 		if (m_PetTime >= 5.0f) {
 			if (!m_IsDogHappy) {
 				m_IsDogHappy = true;
 				DogHappy ();
+				m_ProgressBar.IncTime (5f);
 			}
 
 
