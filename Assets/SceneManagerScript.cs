@@ -107,7 +107,9 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
-		StartCoroutine(ChangeLevel(4, 2f));
+//		StartCoroutine(ChangeLevel(4, 2f));
+		//End PlayTest
+		StartCoroutine(ChangeLevel(2, 2f));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){
@@ -115,12 +117,16 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
-		StartCoroutine(ChangeLevel(5, 2f));
+//		StartCoroutine(ChangeLevel(5, 2f));
+		//End PlayTest
+		StartCoroutine(ChangeLevel(2, 2f));
 	}
 
 	void LoadAct3_No(SleepInCellEvent e){
 		Log.Metrics.Message("CHOICE 3: Bed");
-		StartCoroutine(ChangeLevel(4, 3f));
+//		StartCoroutine(ChangeLevel(4, 2f));
+		//End PlayTest
+		StartCoroutine(ChangeLevel(2, 1f));
 	}
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
 		StartCoroutine(ChangeLevel(6, 3f));
