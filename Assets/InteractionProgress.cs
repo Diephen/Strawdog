@@ -6,8 +6,12 @@ public class InteractionProgress : MonoBehaviour {
 	[SerializeField] float m_TimeToComplete;
 	[SerializeField] float m_TimePassed; 
 
-	bool isComplete = false;
+	[SerializeField] Renderer m_Bck;
 
+
+	bool isComplete = false;
+	bool isFadeOut = false;
+	Color bckColor;
 	//public int timeToComplete = 3;
 	
 	// Update is called once per frame
@@ -15,7 +19,13 @@ public class InteractionProgress : MonoBehaviour {
 		if (!isComplete) {
 			UpdateBar (m_TimePassed);
 		} else {
-			UpdateBar (m_TimeToComplete);
+			
+			if (!isFadeOut) {
+				UpdateBar (m_TimeToComplete);
+				isFadeOut = true;
+				print ("FadeOut");
+				StartCoroutine (FadeOut (4f));
+			}
 		}
 	
 	}
@@ -26,6 +36,10 @@ public class InteractionProgress : MonoBehaviour {
 		m_Progress.material.SetFloat ("_Progress", 0f);
 		//Use this to Start progress
 		//StartCoroutine(RadialProgress(3));
+		m_Progress.material.SetFloat("_AlphaValue", 0f);
+		bckColor = m_Bck.material.color;
+		bckColor.a = 0;
+		m_Bck.material.SetColor ("_Color", bckColor);
 	}
 
 	void UpdateBar(float time){
@@ -35,10 +49,11 @@ public class InteractionProgress : MonoBehaviour {
 		
 	public void IncTime(float time){
 		m_TimePassed = time;
-		if (m_TimePassed < m_TimeToComplete) {
-			
-		} else {
+		if (m_TimePassed >= m_TimeToComplete) {
 			isComplete = true;
+			print ("complete");	
+		} else {
+			
 		}
 	}
 
@@ -57,9 +72,26 @@ public class InteractionProgress : MonoBehaviour {
 
 	public IEnumerator FadeIn(float fadeintime){
 		float i = 0;
-		while (i < fadeintime)
+		float rate = 1 / fadeintime;
+		while (i < 1)
 		{
-			i += Time.deltaTime;
+			i += Time.deltaTime * rate;
+			m_Progress.material.SetFloat ("_AlphaValue", i);
+			bckColor.a = i;
+			m_Bck.material.SetColor ("_Color", bckColor);
+			yield return 0;
+		}
+	}
+
+	public IEnumerator FadeOut(float fadeintime){
+		float i = 1;
+		float rate = 1 / fadeintime;
+		while (i > 0)
+		{
+			i -= Time.deltaTime * rate;
+			m_Progress.material.SetFloat ("_AlphaValue", i);
+			bckColor.a = i;
+			m_Bck.material.SetColor ("_Color", bckColor);
 			yield return 0;
 		}
 	}

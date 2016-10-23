@@ -54,7 +54,7 @@ public class DogHandle : MonoBehaviour {
 			if (!m_IsDogHappy) {
 				m_IsDogHappy = true;
 				DogHappy ();
-				m_ProgressBar.IncTime (5f);
+				m_ProgressBar.IncTime (10f);
 			}
 
 
@@ -65,6 +65,7 @@ public class DogHandle : MonoBehaviour {
 		//Debug.Log ("Attention");
 		if(m_DogState == DogState.idle && other.name == "GuardStructure"){
 			StopPlayer ();
+			StartCoroutine (m_ProgressBar.FadeIn(3f));
 			m_AnimInjection.SetEngage ();
 			m_DogState = DogState.start;
 			CheckState (m_DogState);
