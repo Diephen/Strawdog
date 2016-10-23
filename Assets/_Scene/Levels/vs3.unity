@@ -2865,7 +2865,6 @@ GameObject:
   - 114: {fileID: 235587885}
   - 95: {fileID: 235587884}
   - 114: {fileID: 235587886}
-  - 114: {fileID: 235587888}
   - 114: {fileID: 235587887}
   - 61: {fileID: 235587890}
   - 50: {fileID: 235587889}
@@ -3008,17 +3007,6 @@ MonoBehaviour:
   _animInject: 0000000000000001010000
   m_guard: {fileID: 235587886}
   m_prisoner: {fileID: 1250271398}
---- !u!114 &235587888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 235587881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &235587889
 Rigidbody2D:
   serializedVersion: 2
@@ -7783,6 +7771,7 @@ GameObject:
   - 124: {fileID: 544408507}
   - 81: {fileID: 544408506}
   - 114: {fileID: 544408511}
+  - 114: {fileID: 544408512}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7852,7 +7841,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544408505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.78, y: 0, z: -10}
+  m_LocalPosition: {x: 33.83, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -7879,6 +7868,24 @@ MonoBehaviour:
   _leftCameraPos: 2
   _rightCameraPos: -2
   ActNumber: 1
+--- !u!114 &544408512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544408505}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296a1de81b60e451a9b96e4407e7c413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectRenderer: {fileID: 0}
+  m_selectionType: 0
+  m_sortingType: 4
+  m_fillType: 1
+  m_resolution: 1
+  m_occludersTag: 
+  m_highlightColor: {r: 1, g: 0.96862745, b: 0.91764706, a: 0.64705884}
 --- !u!1 &549116385
 GameObject:
   m_ObjectHideFlags: 0
@@ -10411,6 +10418,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 0.759}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &820816774 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212000013106483222, guid: d0965eff08aed44d889e8f4e130a0e80,
+    type: 2}
+  m_PrefabInternal: {fileID: 57888775}
 --- !u!1 &825505462
 GameObject:
   m_ObjectHideFlags: 0
@@ -18398,9 +18410,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _guard: {fileID: 235587881}
-  _stairRenderer: {fileID: 0}
+  _stairRenderer: {fileID: 2037651494}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
+  _leftFlap: {fileID: 2103367175}
+  _rightFlap: {fileID: 820816774}
 --- !u!61 &1485883823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24873,6 +24887,11 @@ BoxCollider2D:
   m_Offset: {x: -4.650173, y: -0.40324292}
   serializedVersion: 2
   m_Size: {x: 7.377495, y: 11.506485}
+--- !u!212 &2037651494 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212000010703102038, guid: 18303c44fec924ea0a115981fece80ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 2037651491}
 --- !u!1 &2040893498
 GameObject:
   m_ObjectHideFlags: 0
@@ -25370,6 +25389,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!212 &2103367175 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212000013592450508, guid: d0965eff08aed44d889e8f4e130a0e80,
+    type: 2}
+  m_PrefabInternal: {fileID: 57888775}
 --- !u!1 &2105957484
 GameObject:
   m_ObjectHideFlags: 0

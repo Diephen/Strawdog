@@ -48,10 +48,6 @@ public class GuardHandle : MonoBehaviour {
 		if (m_DoorAudio != null && !m_DoorAudio.isPlaying) {
 			m_DoorAudio.Play ();
 		}
-		//Fading to Black
-		if (m_EngagedPrisoner) {
-			Events.G.Raise (new Act1EndedEvent ());
-		}
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)

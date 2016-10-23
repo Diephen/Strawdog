@@ -11,6 +11,8 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.AddListener<Act1EndedEvent>(LoadTitle);
+		Events.G.AddListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
+
 		Events.G.AddListener<TitleEndedEvent>(LoadAct2);
 
 		Events.G.AddListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
@@ -42,6 +44,8 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.RemoveListener<Act1EndedEvent>(LoadTitle);
+		Events.G.RemoveListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
+
 		Events.G.RemoveListener<TitleEndedEvent>(LoadAct2);
 
 		Events.G.RemoveListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
@@ -69,6 +73,10 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadVertical(Act0EndedEvent e){
 		StartCoroutine(ChangeLevel(1, 1.7f));
+	}
+
+	void OnGuardLeaveCell (GuardLeavingCellEvent e){
+		StartCoroutine(ChangeLevel(3, 1f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){

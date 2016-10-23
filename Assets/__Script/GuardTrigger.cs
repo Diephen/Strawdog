@@ -18,8 +18,12 @@ public class GuardTrigger : MonoBehaviour {
 	Timer _stairStartTimer;
 	bool _climbStair = false;
 	Vector3 _tempPosition;
+
+	bool _isOnFlap = false;
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
+	[SerializeField] SpriteRenderer _leftFlap;
+	[SerializeField] SpriteRenderer _rightFlap;
 
 	//Variables for Highlight
 	Camera _mainCam;
@@ -63,6 +67,9 @@ public class GuardTrigger : MonoBehaviour {
 			_groundCollider2.enabled = false;
 			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 		}
+		if (_isOnFlap && Input.GetKeyDown (_guardKeyCodes [3])) {
+			Events.G.Raise (new GuardLeavingCellEvent ());
+		}
 	}
 
 
@@ -72,21 +79,24 @@ public class GuardTrigger : MonoBehaviour {
 			_guardState = guardState.EnteredCell;
 			Events.G.Raise(new GuardEnteringCellEvent());
 		} 
-		else if(_guardState == guardState.EnteredCell && other.name == "EnterCell")
-		{
-			Events.G.Raise (new GuardLeavingCellEvent());
-		}
-
-		if (other.name == "EngagePrisoner") 
-		{
+		if (other.name == "EngagePrisoner") {
 			_guardState = guardState.EngagedPrisoner;
-			Events.G.Raise(new GuardEngaginPrisonerEvent(true));
-		} 
-		else if (other.tag == "Stairs") 
-		{
+			Events.G.Raise (new GuardEngaginPrisonerEvent (true));
+		}
+		else if (other.tag == "Stairs") {
 			_isStairs = true;
 			_highlightsFX.objectRenderer = _stairRenderer;
 			_highlightsFX.enabled = true;
+		}
+		else if (other.name == "open-right") {
+			_highlightsFX.objectRenderer = _rightFlap;
+			_highlightsFX.enabled = true;
+			_isOnFlap = true;
+		}
+		else if (other.name == "open-left") {
+			_highlightsFX.objectRenderer = _leftFlap;
+			_highlightsFX.enabled = true;
+			_isOnFlap = true;
 		}
 	}
 
@@ -102,6 +112,13 @@ public class GuardTrigger : MonoBehaviour {
 		{
 			_isStairs = false;
 			_highlightsFX.enabled = false;
+		} else if (other.name == "open-right") {
+			_highlightsFX.enabled = false;
+			_isOnFlap = false;
+		}
+		else if (other.name == "open-left") {
+			_highlightsFX.enabled = false;
+			_isOnFlap = false;
 		}
 	}
 }		

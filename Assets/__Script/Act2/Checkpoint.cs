@@ -4,6 +4,7 @@ using System.Collections;
 public class Checkpoint : MonoBehaviour {
 	[SerializeField] float _checkPosition = 0.0f;
 	FrameScript _frameScript;
+	bool _once = false;
 	// Use this for initialization
 	void Start () {
 		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
@@ -21,7 +22,10 @@ public class Checkpoint : MonoBehaviour {
 	}
 
 	void Caught(CaughtSneakingEvent e){
-		StartCoroutine (Respawn ());
+		if (!_once) {
+			StartCoroutine (Respawn ());
+			_once = true;
+		}
 	}
 
 	IEnumerator Respawn(){
@@ -33,6 +37,7 @@ public class Checkpoint : MonoBehaviour {
 		transform.position = _tempPos;
 		yield return new WaitForSeconds(1.0f);
 		_frameScript.OpenFlap ();
+		_once = false;
 	}
 
 	void OnEnable(){

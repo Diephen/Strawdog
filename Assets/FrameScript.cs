@@ -21,6 +21,9 @@ public class FrameScript : MonoBehaviour {
 	[SerializeField] AudioClip _closeSound;
 	AudioSource _audioSource;
 
+	[SerializeField] BoxCollider2D _bc1;
+	[SerializeField] BoxCollider2D _bc2;
+
 	void Start () {
 		_leftTempPos = _leftFlap.transform.localPosition;
 		_rightTempPos = _rightFlap.transform.localPosition;
@@ -86,5 +89,31 @@ public class FrameScript : MonoBehaviour {
 		_done = false;
 		_audioSource.clip = _openSound;
 		_audioSource.Play ();
+	}
+
+
+	void NoTorture(GuardEnteringCellEvent e){
+		_bc1.enabled = true;
+		_bc2.enabled = true;
+	}
+
+	void LeaveUnlock(LockCellEvent e){
+		if (e.Locked) {
+			_bc1.enabled = false;
+			_bc2.enabled = false;
+		}
+		else {
+			_bc1.enabled = true;
+			_bc2.enabled = true;
+		}
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<GuardEnteringCellEvent>(NoTorture);
+		Events.G.AddListener<LockCellEvent>(LeaveUnlock);
+	}
+	void OnDisable(){
+		Events.G.RemoveListener<GuardEnteringCellEvent>(NoTorture);
+		Events.G.RemoveListener<LockCellEvent>(LeaveUnlock);
 	}
 }
