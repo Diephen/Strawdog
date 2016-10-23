@@ -4,16 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagerScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	FrameScript _frameScript;
 
+	void Start(){
+		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
+		_frameScript.OpenFlap ();
+	}
 
 	void OnEnable ()
 	{
@@ -42,6 +38,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.AddListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
 
+
+//		SceneManager.sceneLoaded += OpenScreen;
 	}
 
 	void OnDisable ()
@@ -70,6 +68,8 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
+
+//		SceneManager.sceneLoaded -= OpenScreen;
 	}
 
 	void LoadVertical(Act0EndedEvent e){
@@ -77,7 +77,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadTitle(Act1EndedEvent e){
-		StartCoroutine(ChangeLevel(2, 4f));
+		StartCoroutine(ChangeLevel(3, 4f));
 	}
 		
 	void LoadAct2(TitleEndedEvent e){
@@ -134,10 +134,14 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 
+	void OpenScreen(Scene scene, LoadSceneMode mode){
+		_frameScript.OpenFlap ();
+	}
+
 	IEnumerator ChangeLevel(int index, float duration){
 		yield return new WaitForSeconds(duration);
-		float fadeTime = GameObject.Find ("Fade").GetComponent<Fading> ().BeginFade (1);
-		yield return new WaitForSeconds(fadeTime);
+		_frameScript.CloseFlap ();
+		yield return new WaitForSeconds(1.0f);
 		SceneManager.LoadScene (index);
 	}
 }
