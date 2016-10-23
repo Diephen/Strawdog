@@ -37,6 +37,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
 
+
+	bool _isOnFlap = false;
+	[SerializeField] SpriteRenderer _leftFlap;
+	[SerializeField] SpriteRenderer _rightFlap;
+
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
@@ -80,16 +85,16 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
+
+		if (_isOnFlap && Input.GetKeyDown (_guardKeyCodes [3])) {
+			Events.G.Raise (new LeftCellUnlockedEvent ());
+			_guard.SetActive (false);
+			_highlightsFX.enabled = false;
+			_isOnFlap = false;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (!_locked) {
-			if (other.name == "LeaveUnlocked") {
-				Events.G.Raise (new LeftCellUnlockedEvent ());
-				_guard.SetActive (false);
-			}
-		}
-
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			_highlightsFX.objectRenderer = _stairRenderer;
@@ -101,6 +106,15 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		} else if (other.name == "Bomb") {
 			_highlightsFX.objectRenderer = _bombRenderer;
 			_highlightsFX.enabled = true;
+		} else if (other.name == "open-right") {
+			_highlightsFX.objectRenderer = _rightFlap;
+			_highlightsFX.enabled = true;
+			_isOnFlap = true;
+		}
+		else if (other.name == "open-left") {
+			_highlightsFX.objectRenderer = _leftFlap;
+			_highlightsFX.enabled = true;
+			_isOnFlap = true;
 		}
 	}
 
@@ -133,6 +147,13 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isDoor = false;
 		} else if (other.name == "Bomb") {
 			_highlightsFX.enabled = false;
+		} else if (other.name == "open-right") {
+			_highlightsFX.enabled = false;
+			_isOnFlap = false;
+		}
+		else if (other.name == "open-left") {
+			_highlightsFX.enabled = false;
+			_isOnFlap = false;
 		}
 	}
 }

@@ -153,7 +153,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010746247262}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -259,7 +259,7 @@ MonoBehaviour:
     _max: 1
   _openSound: {fileID: 8300000, guid: 53f72610656de4532bd38ad2915037ec, type: 3}
   _closeSound: {fileID: 8300000, guid: 56f69d70cadd94bf9b0087a533e82284, type: 3}
-  _bc1: {fileID: 61000011868901574}
+  _bc1: {fileID: 61000010715144298}
   _bc2: {fileID: 61000011868901574}
 --- !u!212 &212000010890764724
 SpriteRenderer:
