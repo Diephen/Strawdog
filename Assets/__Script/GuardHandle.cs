@@ -14,6 +14,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] AudioSource m_TortureAudio;
 
 	[SerializeField] Fading m_Fading;
+	[SerializeField] InteractionProgress m_ProgressBar;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
@@ -68,6 +69,7 @@ public class GuardHandle : MonoBehaviour {
 			m_AHoldTime = Time.time - m_AStartHoldTime;
 			// set the hold time
 			m_GuardAnim.SetFloat ("TortureHold", m_AHoldTime);
+			m_ProgressBar.IncTime (m_AHoldTime);
 			m_PrisonerHandle.DrownStruggle (m_AHoldTime);
 			if (m_AHoldTime >= 0.8f && !m_IsFaint) {
 				Debug.Log ("drowning");
@@ -85,7 +87,7 @@ public class GuardHandle : MonoBehaviour {
 						m_Bubbles.SetActive (false);
 						Debug.Log ("Faint");
 						m_ItrAudio.PlayFaint ();
-
+						m_ProgressBar.IncTime (10f);
 					}
 					m_ItrAudio.StopDrown ();
 					m_PC.DisableKeyInput ();
@@ -102,6 +104,7 @@ public class GuardHandle : MonoBehaviour {
 
 		} else {
 			m_AStartHoldTime = 0f;
+
 //			if (m_AHoldTime > 0) {
 //				m_AHoldTime -= Time.deltaTime;
 //			} else {
@@ -118,6 +121,7 @@ public class GuardHandle : MonoBehaviour {
 			m_AnimCtrl.SetAnimation (true);	
 			m_GuardAnim.SetTrigger ("TriggerStartTorture");
 			m_IsStartTorture = true;
+			StartCoroutine (m_ProgressBar.FadeIn (3f));
 		}
 	}
 		
@@ -138,6 +142,9 @@ public class GuardHandle : MonoBehaviour {
 	public void ReleaseTorture(){
 		m_GuardAnim.SetBool("IsTorture", false);
 		m_GuardAnim.SetFloat ("TortureHold", -1f);
+		if (!m_IsFaint) {
+			m_ProgressBar.IncTime (0f);
+		}
 		m_PrisonerHandle.ReleaseTorture ();
 		if (m_IsTorture) {
 			m_ItrAudio.PlayDunkOut ();
@@ -167,6 +174,7 @@ public class GuardHandle : MonoBehaviour {
 			m_GuardAnim.SetTrigger ("TriggerBack");
 			m_PrisonerHandle.LeaveCalledByGuard ();
 			m_PC.MoveRight ();
+			StartCoroutine (m_ProgressBar.FadeOut (2f));
 		}
 
 	}
@@ -176,6 +184,7 @@ public class GuardHandle : MonoBehaviour {
 		m_IsStartTorture = false;
 		m_GuardAnim.SetTrigger ("TriggerBack");
 		m_PC.MoveRight ();
+		StartCoroutine (m_ProgressBar.FadeOut (2f));
 	}
 
 

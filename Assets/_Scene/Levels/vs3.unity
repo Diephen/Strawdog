@@ -2892,7 +2892,7 @@ Transform:
   - {fileID: 1596383961}
   - {fileID: 1485883821}
   m_Father: {fileID: 2119516614}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &235587883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2992,6 +2992,7 @@ MonoBehaviour:
   m_LightCtrl: {fileID: 320693799}
   m_TortureAudio: {fileID: 749456646}
   m_Fading: {fileID: 0}
+  m_ProgressBar: {fileID: 894999944}
 --- !u!114 &235587887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10418,6 +10419,53 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 0.759}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &799727318
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2119516614}
+    m_Modifications:
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -5.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 4.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &799727319 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 799727318}
 --- !u!212 &820816774 stripped
 SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000013106483222, guid: d0965eff08aed44d889e8f4e130a0e80,
@@ -11567,6 +11615,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 0.753}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &894999944 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011424736302, guid: 994814c2fcdc1413d9d13fad3ba869d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 799727318}
+  m_Script: {fileID: 11500000, guid: 5f9a37f51ab9a4735a27ca8775ee354f, type: 3}
 --- !u!1001 &901114409
 Prefab:
   m_ObjectHideFlags: 0
@@ -15965,7 +16019,7 @@ Transform:
   - {fileID: 741221683}
   - {fileID: 573963937}
   m_Father: {fileID: 2119516614}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!50 &1250271396
 Rigidbody2D:
   serializedVersion: 2
@@ -16100,7 +16154,7 @@ MonoBehaviour:
   - 2
   - -1
   - 2
-  m_Continuous: 010001
+  m_Continuous: 000000
   m_MoveSpeed: 2
   _spotlight: {fileID: 339936827}
   _lightControl: {fileID: 320693799}
@@ -19197,7 +19251,7 @@ Transform:
   - {fileID: 2110911204}
   - {fileID: 1387603897}
   m_Father: {fileID: 2119516614}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1526309919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21415,7 +21469,7 @@ Transform:
   - {fileID: 366747810}
   - {fileID: 1680766421}
   m_Father: {fileID: 2119516614}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!95 &1738090508
 Animator:
   serializedVersion: 3
@@ -25822,6 +25876,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1471316862}
+  - {fileID: 799727319}
   - {fileID: 1250271394}
   - {fileID: 235587882}
   - {fileID: 1738090507}

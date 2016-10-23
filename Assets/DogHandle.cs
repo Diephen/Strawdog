@@ -45,6 +45,7 @@ public class DogHandle : MonoBehaviour {
 			} else {
 				m_PetTime = 0;
 				m_ProgressBar.IncTime (m_PetTime);
+
 			}
 		
 		}
@@ -153,7 +154,7 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsStartWalk", false);
 		m_IsPetting = false;
 		//LeavePlayer ();
-
+		StartCoroutine (m_ProgressBar.FadeOut (2f));
 		// stop begging 
 	}
 
