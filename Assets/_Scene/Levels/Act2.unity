@@ -7992,18 +7992,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544408505}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 296a1de81b60e451a9b96e4407e7c413, type: 3}
+  m_Script: {fileID: 11500000, guid: f93c260e114f8454481ce77071441535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectRenderer: {fileID: 0}
-  m_selectionType: 0
-  m_sortingType: 4
-  m_fillType: 1
-  m_resolution: 1
-  m_occludersTag: Occluder
-  m_highlightColor: {r: 1, g: 0.96907437, b: 0.9191176, a: 0.65}
+  _wantedAspectRatio: 1.777778
 --- !u!1 &549116385
 GameObject:
   m_ObjectHideFlags: 0
