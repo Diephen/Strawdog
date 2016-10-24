@@ -3484,7 +3484,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 23555b2eb89b540599c90be8cada283b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 13abd8fba7acd4618a4fe25e4855ec8c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3493,34 +3493,44 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 11.528732
-  MaxDistance: 500
+  MinDistance: 13.622803
+  MaxDistance: 54.208977
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: 0.34057006
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.9374275
+      outSlope: -2.9374275
+      tangentMode: 0
+    - time: 0.63057834
+      value: 0.4
+      inSlope: -0.7343569
+      outSlope: -0.7343569
+      tangentMode: 0
+    - time: 0.9514006
+      value: 0.14237842
+      inSlope: -0.5058944
+      outSlope: -0.5058944
       tangentMode: 0
     - time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.3407061
+      outSlope: -0.3407061
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3537,7 +3547,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -18847,7 +18857,7 @@ GameObject:
   - 50: {fileID: 1485883824}
   m_Layer: 0
   m_Name: GurdStructure
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
