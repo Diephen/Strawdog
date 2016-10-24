@@ -89,7 +89,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadAct0(TriggerWarningEndEvent e){
 		print ("Load Act 0");
-		StartCoroutine(ChangeLevel(1, 2f));
+		StartCoroutine(ChangeFade(1, 2f));
 	}
 
 	void LoadVertical(Act0EndedEvent e){
@@ -203,6 +203,20 @@ public class SceneManagerScript : MonoBehaviour {
 			if (_frameScript != null) {
 				_frameScript.CloseFlap ();
 			}
+			yield return new WaitForSeconds (1.0f);
+			SceneManager.LoadScene (index);
+		}
+	}
+
+
+	IEnumerator ChangeFade(int index, float duration){
+		if (!_once) {
+			_once = true;
+			yield return new WaitForSeconds (duration);
+//			if (_frameScript != null) {
+//				_frameScript.CloseFlap ();
+//			}
+			GameObject.Find("Fade").GetComponent<Fading>().BeginFade(1);
 			yield return new WaitForSeconds (1.0f);
 			SceneManager.LoadScene (index);
 		}
