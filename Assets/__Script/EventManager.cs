@@ -7,6 +7,11 @@ using System.Collections;
 //		PersonId = personId;
 //	}
 //}
+
+public class TriggerWarningEndEvent: GameEvent{
+	
+}
+
 public class Act0EndedEvent : GameEvent {
 }
 

@@ -48,7 +48,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
 		Events.G.AddListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
-
+		Events.G.AddListener<TriggerWarningEndEvent>(LoadAct0);
 
 		SceneManager.sceneLoaded += OpenScreen;
 	}
@@ -81,13 +81,20 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
+		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadAct0);
 
 		SceneManager.sceneLoaded -= OpenScreen;
 	}
 
+
+	void LoadAct0(TriggerWarningEndEvent e){
+		print ("Load Act 0");
+		StartCoroutine(ChangeLevel(1, 2f));
+	}
+
 	void LoadVertical(Act0EndedEvent e){
 		Log.Metrics.Message("End Act 0");
-		StartCoroutine(ChangeLevel(1, 1.7f));
+		StartCoroutine(ChangeLevel(2, 1.7f));
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
@@ -101,51 +108,52 @@ public class SceneManagerScript : MonoBehaviour {
 		Log.Metrics.Message("CHOICE 1: Drown");
 		StartCoroutine(ChangeLevel(3, 4f));
 	}
+
 		
 	void LoadAct2(TitleEndedEvent e){
-		StartCoroutine(ChangeLevel(3, 0.5f));
+		StartCoroutine(ChangeLevel(4, 0.5f));
 	}
 
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(2, 2f));
+		StartCoroutine(ChangeLevel(3, 2f));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){
-		StartCoroutine(ChangeLevel(3, 2f));
+		StartCoroutine(ChangeLevel(4, 2f));
 	}
 
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(2, 2f));
+		StartCoroutine(ChangeLevel(3, 2f));
 	}
 
 	void LoadAct3_No(SleepInCellEvent e){
 		Log.Metrics.Message("CHOICE 3: Bed");
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(2, 1f));
+		StartCoroutine(ChangeLevel(3, 1f));
 	}
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
-		StartCoroutine(ChangeLevel(6, 3f));
+		StartCoroutine(ChangeLevel(7, 3f));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
-		StartCoroutine(ChangeLevel(5, 3f));
+		StartCoroutine(ChangeLevel(6, 3f));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
 
 
 	void LoadExecution(TriggerExecutionEvent e){
-		StartCoroutine(ChangeLevel(7, 1f));
+		StartCoroutine(ChangeLevel(8, 1f));
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
-		StartCoroutine(ChangeLevel(7, 1f));
+		StartCoroutine(ChangeLevel(8, 1f));
 	}
 	void LoadPlantBomb(TriggerPlantBombEvent e){
-		StartCoroutine(ChangeLevel(7, 1f));
+		StartCoroutine(ChangeLevel(8, 1f));
 	}
 
 
@@ -158,13 +166,15 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
-		StartCoroutine(ChangeLevel(7, 1f));
+		StartCoroutine(ChangeLevel(8, 1f));
 	}
 
 
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
-		if (scene.name == "Level0") {
+		if (scene.name == "TriggerWarning") {
+		}
+		else if (scene.name == "Level0") {
 			_start = true;
 		}
 		else {
@@ -179,15 +189,20 @@ public class SceneManagerScript : MonoBehaviour {
 
 	IEnumerator WaitBeforeOpen(){
 		yield return new WaitForSeconds(1.0f);
-		_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
-		_frameScript.OpenFlap ();
+		if (GameObject.Find ("Frame").GetComponent<FrameScript> ()!= null) {
+			_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
+			_frameScript.OpenFlap ();
+		}
+
 	}
 
 	IEnumerator ChangeLevel(int index, float duration){
 		if (!_once) {
 			_once = true;
 			yield return new WaitForSeconds (duration);
-			_frameScript.CloseFlap ();
+			if (_frameScript != null) {
+				_frameScript.CloseFlap ();
+			}
 			yield return new WaitForSeconds (1.0f);
 			SceneManager.LoadScene (index);
 		}
