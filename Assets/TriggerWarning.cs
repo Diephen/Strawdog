@@ -12,7 +12,9 @@ public class TriggerWarning : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - _startTime >= duration && !isEnd) {
+//		if (Time.time - _startTime >= duration && !isEnd) {
+
+		if(Input.GetKeyDown(KeyCode.Space)){
 			isEnd = true;
 			print ("End of trigger warning");
 			Events.G.Raise (new TriggerWarningEndEvent ());

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Fading : MonoBehaviour {
 	public Texture2D fadeOutTexture; //the texture that will overlay the screen. Black image or loading graphic
@@ -34,16 +35,21 @@ public class Fading : MonoBehaviour {
 		BeginFade (-1);
 	}
 
-//
-//	void OnEnable ()
-//	{
-//		Events.G.AddListener <Act1EndedEvent>(Fade);
+//	void WhenLevelLoads(Scene scene, LoadSceneMode mode){
+//		BeginFade (-1);
 //	}
 //
-//	void OnDisable ()
-//	{
+	void OnEnable ()
+	{
+//		SceneManager.sceneLoaded += WhenLevelLoads;
 //		Events.G.AddListener <Act1EndedEvent>(Fade);
-//	}
+	}
+//
+	void OnDisable ()
+	{
+//		SceneManager.sceneLoaded -= WhenLevelLoads;
+//		Events.G.AddListener <Act1EndedEvent>(Fade);
+	}
 //
 //	void Fade(Act1EndedEvent e){
 //		StartCoroutine (FadetoBlack());
