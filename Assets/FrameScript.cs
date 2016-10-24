@@ -75,6 +75,8 @@ public class FrameScript : MonoBehaviour {
 	}
 
 	public void CloseFlap(){
+		_bc1.enabled = false;
+		_bc2.enabled = false;
 		_flapTimer.Reset();
 		_open = false;
 		_done = false;

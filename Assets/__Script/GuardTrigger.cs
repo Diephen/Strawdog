@@ -37,13 +37,14 @@ public class GuardTrigger : MonoBehaviour {
 
 		//For The glow Effect
 		_mainCam = Camera.main;
-		_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
+		//_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
 	}
 
 	void Update(){
 		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
 			_goToStart = true;
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_guardPuppetController.DisableKeyInput ();
 			_tempPosition = _guard.transform.position;
 			_stairStartTimer.Reset ();
@@ -69,6 +70,8 @@ public class GuardTrigger : MonoBehaviour {
 		}
 		if (_isOnFlap && Input.GetKeyDown (_guardKeyCodes [3])) {
 			Events.G.Raise (new GuardLeavingCellEvent ());
+			_rightFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			_leftFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		}
 	}
 
@@ -85,17 +88,20 @@ public class GuardTrigger : MonoBehaviour {
 		}
 		else if (other.tag == "Stairs") {
 			_isStairs = true;
-			_highlightsFX.objectRenderer = _stairRenderer;
-			_highlightsFX.enabled = true;
+			other.GetComponent<HighlightSprite> ().EnableHighlight ();
+			//_highlightsFX.objectRenderer = _stairRenderer;
+			//_highlightsFX.enabled = true;
 		}
 		else if (other.name == "open-right") {
-			_highlightsFX.objectRenderer = _rightFlap;
-			_highlightsFX.enabled = true;
+			//_highlightsFX.objectRenderer = _rightFlap;
+			//_highlightsFX.enabled = true;
+			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
 		}
 		else if (other.name == "open-left") {
-			_highlightsFX.objectRenderer = _leftFlap;
-			_highlightsFX.enabled = true;
+			//_highlightsFX.objectRenderer = _leftFlap;
+			//_highlightsFX.enabled = true;
+			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
 		}
 	}
@@ -111,13 +117,17 @@ public class GuardTrigger : MonoBehaviour {
 		else if (other.tag == "Stairs") 
 		{
 			_isStairs = false;
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		} else if (other.name == "open-right") {
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 		}
 		else if (other.name == "open-left") {
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 		}
 	}

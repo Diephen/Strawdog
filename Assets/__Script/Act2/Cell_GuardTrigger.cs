@@ -24,7 +24,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 
 	Camera _mainCam;
-	HighlightsFX _highlightsFX;
+	//HighlightsFX _highlightsFX;
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
@@ -42,12 +42,13 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] SpriteRenderer _leftFlap;
 	[SerializeField] SpriteRenderer _rightFlap;
 
+
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
 		_stairStartTimer = new Timer (1f);
 		_mainCam = Camera.main;
-		_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
+		//_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
 		if (_isGuardTop) {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
@@ -59,7 +60,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_goToStart = true;
-				_highlightsFX.enabled = false;
+				//_highlightsFX.enabled = false;
+				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_guardPuppetController.DisableKeyInput ();
 				_tempPosition = _guard.transform.position;
 				_stairStartTimer.Reset ();
@@ -72,8 +74,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			else if (_isOnFlap) {
 				Events.G.Raise (new LeftCellUnlockedEvent ());
 				_guard.SetActive (false);
-				_highlightsFX.enabled = false;
+				//_highlightsFX.enabled = false;
+				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_isOnFlap = false;
+
 			}
 		}
 
@@ -95,25 +100,29 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Stairs") {
 			_isStairs = true;
-			_highlightsFX.objectRenderer = _stairRenderer;
-			_highlightsFX.enabled = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			//_highlightsFX.objectRenderer = _stairRenderer;
+			//_highlightsFX.enabled = true;
 		} else if (other.name == "LockCell") {
-			_highlightsFX.objectRenderer = _doorRenderer;
-			_highlightsFX.enabled = true;
+			//_highlightsFX.objectRenderer = _doorRenderer;
+			//_highlightsFX.enabled = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			_isDoor = true;
 		} else if (other.name == "Bomb") {
-			_highlightsFX.objectRenderer = _bombRenderer;
-			_highlightsFX.enabled = true;
+			//_highlightsFX.objectRenderer = _bombRenderer;
+			//_highlightsFX.enabled = true;
 		} else if (other.name == "open-right") {
 			if (!_isDoor) {
-				_highlightsFX.objectRenderer = _rightFlap;
-				_highlightsFX.enabled = true;
+				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+				//_highlightsFX.objectRenderer = _rightFlap;
+				//_highlightsFX.enabled = true;
 			}
 			_isOnFlap = true;
 		}
 		else if (other.name == "open-left") {
-			_highlightsFX.objectRenderer = _leftFlap;
-			_highlightsFX.enabled = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			//_highlightsFX.objectRenderer = _leftFlap;
+			//_highlightsFX.enabled = true;
 			_isOnFlap = true;
 		}
 	}
@@ -121,7 +130,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D other){
 		if (other.name == "Bomb") {
 			if (Input.GetKeyDown (_guardKeyCodes [3])) {
-				_highlightsFX.enabled = false;
+				//_highlightsFX.enabled = false;
 				_bomb.SetActive (false);
 				Events.G.Raise (new GuardFoundBombEvent ());
 			}
@@ -141,28 +150,40 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_waveCnt = 0;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		} else if (other.name == "LockCell") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			if (_isOnFlap) {
-				_highlightsFX.objectRenderer = _rightFlap;
+				//_highlightsFX.objectRenderer = _rightFlap;
+				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			}
 			else {
-				_highlightsFX.enabled = false;
+				//_highlightsFX.enabled = false;
+				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+
 			}
 			_isDoor = false;
 		} else if (other.name == "Bomb") {
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
 		} else if (other.name == "open-right") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			_isOnFlap = false;
 			if (_isDoor) {
-				_highlightsFX.objectRenderer = _doorRenderer;
+				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				//_highlightsFX.objectRenderer = _doorRenderer;
 			}
 			else {
-				_highlightsFX.enabled = false;
-				_isOnFlap = false;
+				//_highlightsFX.enabled = false;
+				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				//_isOnFlap = false;
 			}
 		}
 		else if (other.name == "open-left") {
-			_highlightsFX.enabled = false;
+			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 		}
 	}
