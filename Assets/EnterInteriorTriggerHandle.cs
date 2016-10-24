@@ -44,7 +44,7 @@ public class EnterInteriorTriggerHandle : MonoBehaviour {
 
 	IEnumerator FadeOut()
 	{
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (1);
 		while (m_OutsideWall.color.a > m_EndColor.a) {
 			m_OutsideWall.color = Color.Lerp(m_OutsideWall.color,m_EndColor,Time.deltaTime * m_FadeSpeed);
 			yield return null;
