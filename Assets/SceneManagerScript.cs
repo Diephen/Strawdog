@@ -100,13 +100,13 @@ public class SceneManagerScript : MonoBehaviour {
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Leave");
-		StartCoroutine(ChangeLevel(3, 1.5f));
+		StartCoroutine(ChangeLevel(4, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Drown");
-		StartCoroutine(ChangeLevel(3, 4f));
+		StartCoroutine(ChangeLevel(4, 4f));
 	}
 
 		
