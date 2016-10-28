@@ -16,8 +16,12 @@ public class IterrogationGuardHandle : MonoBehaviour {
 	Animator m_Anim;
 	[SerializeField] Transform m_StartX;
 	[SerializeField] Transform m_EndX;
+	[SerializeField] GameObject m_Bottom;
+	[SerializeField] SpriteRenderer m_LeftArm;
 	[SerializeField] float m_Speed;
 	[SerializeField] float[] m_WaitTime;
+
+	SpriteRenderer[] m_BottomSpr;
 
 	float dir = 1;
 	float m_CurWaitTime = -1;
@@ -32,7 +36,7 @@ public class IterrogationGuardHandle : MonoBehaviour {
 		m_CurWaitTime = 2f;
 		m_StartTime = Time.time;
 		//ChangeState ();
-	
+		m_BottomSpr = m_Bottom.GetComponentsInChildren<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -147,6 +151,20 @@ public class IterrogationGuardHandle : MonoBehaviour {
 
 
 		
+	}
+
+	void HideLegSprites(){
+		foreach (SpriteRenderer spr in m_BottomSpr) {
+			spr.sortingOrder = spr.sortingOrder - 10;
+		}
+		m_LeftArm.sortingOrder = m_LeftArm.sortingOrder - 10;
+	}
+
+	void ShowLegSprites(){
+		foreach (SpriteRenderer spr in m_BottomSpr) {
+			spr.sortingOrder = spr.sortingOrder + 10;
+		}
+		m_LeftArm.sortingOrder = m_LeftArm.sortingOrder + 10;
 	}
 
 	void Flip(){
