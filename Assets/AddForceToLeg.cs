@@ -6,22 +6,33 @@ public class AddForceToLeg : MonoBehaviour {
 	Rigidbody2D rb;
 	bool drag = false;
 	bool left = false;
+	MinMax _forceRange = new MinMax(8.0f, 12.0f);
 	float force = 10.0f;
-	// Use this for initialization
+	[SerializeField] bool flip;
+
 	void Start () {
 		rb = gameObject.GetComponent<Rigidbody2D> ();
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
 		if(drag){
-			if (left) {
-				rb.AddForce (Vector2.left * force);
+			force = MathHelpers.LinMapFrom01 (_forceRange.Min, _forceRange.Max, Random.value);
+			if (flip) {
+				if (left) {
+					rb.AddForce (Vector2.left * force);
+				}
+				else {
+					rb.AddForce (Vector2.right * force);
+				}
 			}
 			else {
-				rb.AddForce (Vector2.right * force);
+				if (left) {
+					rb.AddForce (Vector2.right * force);
+				}
+				else {
+					rb.AddForce (Vector2.left * force);
+				}
 			}
-
 		}
 	}
 

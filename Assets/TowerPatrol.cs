@@ -34,19 +34,20 @@ public class TowerPatrol : MonoBehaviour {
 		_currentColor = _towerLightSprite.color;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (!_lookAtFollow && !_reRotate) {
 			if (_isLeft) {
 				//50 to -50
 				angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimePassed);
 				transform.localRotation = Quaternion.Euler (0f, 0f, angle);
+				Debug.Log ("ISLEFT");
 			}
 			else {
 				angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimeLeft);
 				transform.localRotation = Quaternion.Euler (0f, 0f, angle);
+				Debug.Log ("ISLEFT ELSE");
 			}
-
+				
 			if (_towerCooldownTimer.IsOffCooldown && _wait) {
 				_towerTimer.Reset ();
 				_isLeft = !_isLeft;
@@ -111,15 +112,14 @@ public class TowerPatrol : MonoBehaviour {
 	}
 
 	void IsHidden(PrisonerHideEvent e){
-		if (e.Hidden) {
-			_triggerOnce = false;
-			if (!_callOnce) {
-				ReRotate ();
-				_callOnce = true;
-			}
-		}
-		else {
+		if (_callOnce != e.Hidden) {
 			_callOnce = e.Hidden;
+			if (e.Hidden) {
+				ReRotate ();
+			}
+			else {
+				_triggerOnce = false;
+			}
 		}
 	}
 
