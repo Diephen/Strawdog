@@ -36,16 +36,16 @@ public class TowerPatrol : MonoBehaviour {
 	
 	void FixedUpdate () {
 		if (!_lookAtFollow && !_reRotate) {
-			if (_isLeft) {
-				//50 to -50
-				angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimePassed);
-				transform.localRotation = Quaternion.Euler (0f, 0f, angle);
-				Debug.Log ("ISLEFT");
-			}
-			else {
-				angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimeLeft);
-				transform.localRotation = Quaternion.Euler (0f, 0f, angle);
-				Debug.Log ("ISLEFT ELSE");
+			if (!_wait) {
+				if (_isLeft) {
+					//50 to -50
+					angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimePassed);
+					transform.localRotation = Quaternion.Euler (0f, 0f, angle);
+				}
+				else {
+					angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimeLeft);
+					transform.localRotation = Quaternion.Euler (0f, 0f, angle);
+				}
 			}
 				
 			if (_towerCooldownTimer.IsOffCooldown && _wait) {
@@ -86,6 +86,8 @@ public class TowerPatrol : MonoBehaviour {
 			}
 			if (_towerCooldownTimer.IsOffCooldown) {
 				_reRotate = false;
+				_wait = true;
+				_towerCooldownTimer.Reset ();
 			}
 		}
 	}

@@ -36,6 +36,7 @@ public class patrol : MonoBehaviour {
 		_caughtTimer = new Timer (1.0f);
 		_waitTimer = new Timer (2.0f);
 		_startPosition = transform.position.x;
+
 	}
 	
 	// Update is called once per frame
