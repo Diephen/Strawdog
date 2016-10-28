@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TowerPatrol : MonoBehaviour {
-	bool _isLeft = true;
+public class guardPatrol : MonoBehaviour {
+	bool _isLeft = false;
 	bool _wait = false;
+	bool turn = false;
 
-	MinMax _towerPatrolRange = new MinMax (-70.0f, 80.0f);
+	MinMax _towerPatrolRange = new MinMax (-90.0f, 80.0f);
 	float angle;
 	Vector3 crossProduce;
 
@@ -23,22 +24,21 @@ public class TowerPatrol : MonoBehaviour {
 
 	SpriteRenderer _towerLightSprite;
 	Color _currentColor;
-
+	[SerializeField] int _id;
 
 	// Use this for initialization
 	void Start () {
 		_caughtTimer = new Timer (5.0f);
-		_towerTimer = new Timer (5.0f);
+		_towerTimer = new Timer (3.0f);
 		_towerCooldownTimer = new Timer (2.0f);
 		_towerLightSprite = transform.GetChild (0).gameObject.GetComponent<SpriteRenderer>();
 		_currentColor = _towerLightSprite.color;
 	}
-	
+
 	void FixedUpdate () {
 		if (!_lookAtFollow && !_reRotate) {
-			if (!_wait) {
 				if (_isLeft) {
-					//50 to -50
+//					//50 to -50
 					angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimePassed);
 					transform.localRotation = Quaternion.Euler (0f, 0f, angle);
 				}
@@ -46,20 +46,9 @@ public class TowerPatrol : MonoBehaviour {
 					angle = MathHelpers.LinMapFrom01 (_towerPatrolRange.Min, _towerPatrolRange.Max, _towerTimer.PercentTimeLeft);
 					transform.localRotation = Quaternion.Euler (0f, 0f, angle);
 				}
-			}
-				
-			if (_towerCooldownTimer.IsOffCooldown && _wait) {
-				_towerTimer.Reset ();
-				_isLeft = !_isLeft;
-				_wait = false;
-			}
-			else if (_towerTimer.IsOffCooldown && !_wait) {
-				_towerCooldownTimer.Reset ();
-				_wait = true;
-			}
 		}
 		else if (_lookAtFollow) {
-			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed, 0));
+			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed, _id));
 			Vector3 dir = _followPerson.transform.position - transform.position;
 			dir.z = 0.0f;
 			dir.Normalize ();
@@ -141,5 +130,12 @@ public class TowerPatrol : MonoBehaviour {
 	}
 	void OnDisable(){
 		Events.G.RemoveListener<PrisonerHideEvent>(IsHidden);
+	}
+
+
+	public void Turn(bool isLeft){
+		turn = true;
+		_isLeft = isLeft;
+		_towerTimer.Reset ();
 	}
 }

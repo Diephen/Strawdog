@@ -31,7 +31,7 @@ public class HousePatrol : MonoBehaviour {
 		}
 		else if (_caught)
 		{
-			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed));
+			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed, 0));
 			if (_caughtTimer.IsOffCooldown) {
 				Events.G.Raise (new CaughtSneakingEvent ());
 			}
