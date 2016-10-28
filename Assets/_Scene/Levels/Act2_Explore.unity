@@ -3059,7 +3059,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236871435}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 670c7a249f7fe43af8d170756d0b0e34, type: 2}
   m_CullingMode: 0
@@ -17593,7 +17593,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 40b4c547080a14283a55d718a06d699f, type: 3}
-  m_Color: {r: 1, g: 0.9918864, b: 0.88235295, a: 1}
+  m_Color: {r: 0.69310343, g: 0.6781142, b: 0.5656947, a: 0.478}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!95 &1105359121
@@ -21397,7 +21397,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000013200042514, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 186
+      value: 91.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000013200042514, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
       propertyPath: m_LocalPosition.y
@@ -27603,31 +27603,6 @@ Prefab:
       propertyPath: m_Name
       value: PatrolGuard
       objectReference: {fileID: 0}
-    - target: {fileID: 212000011921929082, guid: 35854a56616594b2abaec989df609b09,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.709
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013169153096, guid: 35854a56616594b2abaec989df609b09,
-        type: 2}
-      propertyPath: _patrolArea._min
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013169153096, guid: 35854a56616594b2abaec989df609b09,
-        type: 2}
-      propertyPath: _patrolArea._max
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013169153096, guid: 35854a56616594b2abaec989df609b09,
-        type: 2}
-      propertyPath: _id
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012735630028, guid: 35854a56616594b2abaec989df609b09,
-        type: 2}
-      propertyPath: _id
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35854a56616594b2abaec989df609b09, type: 2}
   m_IsPrefabParent: 0
@@ -31729,7 +31704,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2046461968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 670c7a249f7fe43af8d170756d0b0e34, type: 2}
   m_CullingMode: 0
@@ -32354,7 +32329,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2080286285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 670c7a249f7fe43af8d170756d0b0e34, type: 2}
   m_CullingMode: 0
