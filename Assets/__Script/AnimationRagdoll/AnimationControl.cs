@@ -53,6 +53,9 @@ public class AnimationControl : MonoBehaviour {
 	}
 
 	void SwitchToAnimation(){
+//		if (m_AnimController == null) {
+//			m_AnimController = gameObject.GetComponent<Animator> ();
+//		}
 		if (!m_AnimController.enabled) {
 			m_AnimController.enabled = true;
 			foreach (Rigidbody2D _rig in m_RigidArray) {
@@ -64,6 +67,9 @@ public class AnimationControl : MonoBehaviour {
 	}
 
 	void SwitchToRigidBody(){
+//		if (m_AnimController == null) {
+//			m_AnimController = gameObject.GetComponent<Animator> ();
+//		}
 		if (m_AnimController.enabled) {
 			m_AnimController.enabled = false;
 			foreach (Rigidbody2D _rig in m_RigidArray) {

@@ -14,10 +14,11 @@ public class IterrogationGuardHandle : MonoBehaviour {
 	}
 	IG_GuardState m_GS;
 	Animator m_Anim;
+	[SerializeField] InterrogationPrisonerHandler m_IPHandle;
 	[SerializeField] Transform m_StartX;
 	[SerializeField] Transform m_EndX;
 	[SerializeField] GameObject m_Bottom;
-	[SerializeField] SpriteRenderer m_LeftArm;
+	//[SerializeField] SpriteRenderer m_LeftArm;
 	[SerializeField] float m_Speed;
 	[SerializeField] float[] m_WaitTime;
 
@@ -44,7 +45,7 @@ public class IterrogationGuardHandle : MonoBehaviour {
 		Behaviour ();
 		//CheckWalkPos ();
 		if(Input.GetKeyDown(KeyCode.S)){
-			if (!m_IsAnswer) {
+			if (!m_IsAnswer && (m_GS == IG_GuardState.Question || m_GS == IG_GuardState.PushQuestion)) {
 				m_IsAnswer = true;
 				print ("Answer!!!");
 			}
@@ -75,6 +76,7 @@ public class IterrogationGuardHandle : MonoBehaviour {
 		case IG_GuardState.Question:
 			m_CurWaitTime = 4f;
 			m_StartTime = Time.time;
+
 			m_Anim.Play ("IG-Question");
 			break;
 		case IG_GuardState.WalkToRight:
@@ -88,11 +90,13 @@ public class IterrogationGuardHandle : MonoBehaviour {
 			m_CurWaitTime = -1f;
 			m_StartTime = Time.time;
 			m_Anim.Play ("IG-ForceRead");
+			m_IPHandle.ForceToRead ();
 			break;
 		case IG_GuardState.BackToIdle:
-			m_CurWaitTime = 2f;
+			m_CurWaitTime = 3f;
 			m_StartTime = Time.time;
 			m_Anim.Play ("IG-BackToIdle");
+			m_IPHandle.BackToIdle ();
 			break;
 		}
 	}
@@ -157,14 +161,14 @@ public class IterrogationGuardHandle : MonoBehaviour {
 		foreach (SpriteRenderer spr in m_BottomSpr) {
 			spr.sortingOrder = spr.sortingOrder - 10;
 		}
-		m_LeftArm.sortingOrder = m_LeftArm.sortingOrder - 10;
+		//m_LeftArm.sortingOrder = m_LeftArm.sortingOrder - 10;
 	}
 
 	void ShowLegSprites(){
 		foreach (SpriteRenderer spr in m_BottomSpr) {
 			spr.sortingOrder = spr.sortingOrder + 10;
 		}
-		m_LeftArm.sortingOrder = m_LeftArm.sortingOrder + 10;
+		//m_LeftArm.sortingOrder = m_LeftArm.sortingOrder + 10;
 	}
 
 	void Flip(){
