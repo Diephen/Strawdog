@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IterrogationGuardHandle : MonoBehaviour {
+public class InterrogationGuardHandle : MonoBehaviour {
 	enum IG_GuardState{
 		Idle = 0,
 		Question,           // waiting for answer when idling 
@@ -32,11 +32,11 @@ public class IterrogationGuardHandle : MonoBehaviour {
 	bool m_IsAtStart = true;
 	// Use this for initialization
 	void Awake () {
-		m_GS = IG_GuardState.Idle;
+		m_GS = IG_GuardState.PushQuestion;
 		m_Anim = GetComponent<Animator> ();
-		m_CurWaitTime = 2f;
-		m_StartTime = Time.time;
-		//ChangeState ();
+		//m_CurWaitTime = 2f;
+		//m_StartTime = Time.time;
+		ChangeState ();
 		m_BottomSpr = m_Bottom.GetComponentsInChildren<SpriteRenderer>();
 	}
 	
