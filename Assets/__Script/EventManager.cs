@@ -249,7 +249,19 @@ public class EnableMoveEvent: GameEvent {
 public class DisableMoveEvent: GameEvent {
 }
 
+public class IsWalkingEvent : GameEvent {
+	public CharacterIdentity WhoAmI { get; private set; }
+	public bool IsWalking { get; private set; }
+	public bool IsLeft { get; private set; }
+	public IsWalkingEvent(CharacterIdentity whoAmI, bool isWalking, bool isLeft){
+		WhoAmI = whoAmI;
+		IsWalking = isWalking;
+		IsLeft = isLeft;
+	}
+}
 
 public class EventManager : MonoBehaviour {
 }
+
+
 

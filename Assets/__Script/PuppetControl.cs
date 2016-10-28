@@ -119,8 +119,10 @@ public class PuppetControl : MonoBehaviour {
 	void Walk(charState dir){
 		_isWalking = true;
 		if (dir == charState.left) {
+			Events.G.Raise (new IsWalkingEvent (_whoAmI, _isWalking, true));
 			transform.Translate (Vector3.left * m_MoveSpeed * Time.deltaTime);
 		} else if (dir == charState.right) {
+			Events.G.Raise (new IsWalkingEvent (_whoAmI, _isWalking, false));
 			transform.Translate (Vector3.right * m_MoveSpeed * Time.deltaTime);
 		}
 	}
@@ -319,6 +321,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 			if (m_charState != charState.left && m_charState != charState.right) {
 				_isWalking = false;
+				Events.G.Raise (new IsWalkingEvent (_whoAmI, _isWalking, true));
 				if (m_AudioSource [0] != null) {
 					m_AudioSource[0].Stop ();
 				}
