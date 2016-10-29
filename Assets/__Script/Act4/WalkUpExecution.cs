@@ -17,7 +17,7 @@ public class WalkUpExecution : MonoBehaviour {
 		if (_moveLine && !_gotShot && !_isTurnToBeShot) {
 			// wait for a second before walking
 			if (_walkTimer.TimePassed >= 1.0f) {
-				gameObject.transform.Translate (Vector2.left * Time.deltaTime * 2.0f);
+				gameObject.transform.Translate (Vector2.right * Time.deltaTime * 2.0f);
 				if (_walkTimer.IsOffCooldown) {
 					_moveLine = false;
 				}
@@ -29,7 +29,7 @@ public class WalkUpExecution : MonoBehaviour {
 		}
 
 		if (_moveToExec) {
-			gameObject.transform.Translate (Vector2.left * Time.deltaTime * 2.0f);	
+			gameObject.transform.Translate (Vector2.right * Time.deltaTime * 2.0f);	
 		}
 	}
 
