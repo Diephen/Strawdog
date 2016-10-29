@@ -726,9 +726,8 @@ GameObject:
   - 4: {fileID: 4000011709097902}
   - 61: {fileID: 61000013614155794}
   - 50: {fileID: 50000011711896718}
-  - 114: {fileID: 114000013923636844}
   - 23: {fileID: 23000011092298148}
-  - 114: {fileID: 114000011215590354}
+  - 114: {fileID: 114000010847800384}
   m_Layer: 0
   m_Name: GuardStructure
   m_TagString: Guard
@@ -2901,7 +2900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whoAmI: 0
   flip: 0
---- !u!114 &114000011215590354
+--- !u!114 &114000010847800384
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2909,10 +2908,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012993326464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bced31bef2354a3fa09d9259576af38, type: 3}
+  m_Script: {fileID: 11500000, guid: c62bf25db0267497ea975bb8ac2896fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _guard: {fileID: 1000010142914354}
+  _stairRenderer: {fileID: 0}
+  _screenTranslucencyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: -0.008298576
+      value: 0.90625
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.98852485
+      value: 0.3395606
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  _fullTranslucencyCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _isGuardTop: 0
+  _code: {fileID: 0}
+  _foodStorageWall: {fileID: 0}
+  _stairStartPosition: 33
 --- !u!114 &114000011281823848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3033,29 +3059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000013923636844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012993326464}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35cc7ab189169439995fc3c82386015e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isGuardTop: 0
-  _guard: {fileID: 1000010142914354}
-  _stairStartPosition: 33.6
-  _stairRenderer: {fileID: 0}
-  _doorRenderer: {fileID: 0}
-  _bombRenderer: {fileID: 0}
-  _secretDoorRenderer: {fileID: 0}
-  _bomb: {fileID: 0}
-  _groundCollider1: {fileID: 0}
-  _groundCollider2: {fileID: 0}
-  _leftFlap: {fileID: 0}
-  _rightFlap: {fileID: 0}
 --- !u!212 &212000010040442954
 SpriteRenderer:
   m_ObjectHideFlags: 1

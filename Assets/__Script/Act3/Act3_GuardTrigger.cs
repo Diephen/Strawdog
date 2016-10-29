@@ -79,10 +79,13 @@ public class Act3_GuardTrigger : MonoBehaviour {
 				_climbStair = true;
 			}
 		}
-		else if(_climbStair && !_isGuardTop)
-		{
+		else if (_climbStair && !_isGuardTop) {
 			_guard.transform.Translate ((Vector3.left + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
+		}
+		else if (_climbStair && _isGuardTop) {
+			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
+//			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
 
 	}
