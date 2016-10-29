@@ -6,7 +6,8 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	[SerializeField] GameObject _guard;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
-	GameObject _otherGameObject = null;
+	//GameObject _otherGameObject = null;
+	ShotDeathPrisonerHandle m_CurrentSP = null;
 	bool _execute = false;
 	int _shootCnt = 0;
 	int _shootSwitchCnt = 2;
@@ -20,10 +21,12 @@ public class Act4_GuardTrigger : MonoBehaviour {
 		if (_execute) {
 			if (Input.GetKey (_guardKeyCodes [0])) {
 				if (Input.GetKey (_guardKeyCodes [3])) {
-					_otherGameObject.gameObject.SetActive (false);
+					//_otherGameObject.gameObject.SetActive (false);
+					m_CurrentSP.Executed();
 					Events.G.Raise (new EnableMoveEvent ());
 					_shootCnt++;
 					_execute = false;
+					m_CurrentSP = null;
 				}
 			}
 		}
@@ -40,15 +43,18 @@ public class Act4_GuardTrigger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Execution") {
+			print ("Exe!!!");
 			_execute = true;
-			_otherGameObject = other.gameObject;
+			//_otherGameObject = other.gameObject;
+			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle>();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Execution") {
 			_execute = false;
-			_otherGameObject = null;
+			//_otherGameObject = null;
+			//m_CurrentSP = null;
 		}
 	}
 
