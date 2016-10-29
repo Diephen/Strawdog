@@ -4113,7 +4113,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010210851682, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000010746247262, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_IsActive
@@ -6026,9 +6026,9 @@ MonoBehaviour:
   - -0.2
   - 0.5
   m_CrouchMoveDistance:
-  - -2
-  - -2
-  - -2
+  - 0
+  - 0.1
+  - 0.2
   m_PickupMoveDistance:
   - 2
   - -1
