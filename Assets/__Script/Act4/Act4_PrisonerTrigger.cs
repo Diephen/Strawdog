@@ -24,9 +24,6 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (KeyCode.RightShift)) {
-			Events.G.Raise (new ShootEvent());
-		}
 //		if (_isStairs) {
 //			//			Debug.Log (_guard.transform.position.y);
 //			if (((_prisoner.transform.position.y < _stairRange.Min) && (_stairTempPosition>_stairRange.Min)) 

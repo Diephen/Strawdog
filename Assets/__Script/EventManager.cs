@@ -115,6 +115,10 @@ public class DidNotShootEvent : GameEvent {
 public class ShootEvent : GameEvent {
 }
 
+public class ShootSwitchEvent : GameEvent {
+}
+
+
 public class PrisonerShotEvent : GameEvent {
 }
 
