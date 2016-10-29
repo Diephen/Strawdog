@@ -57,6 +57,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 		if (Input.GetKeyDown (_prisonerKeyCodes [3]) && _isStairs) {
 			_goToStart = true;
+			_isStairs = false;
 			//_highlightsFX.enabled = false;
 			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_prisonerPuppetController.DisableKeyInput ();

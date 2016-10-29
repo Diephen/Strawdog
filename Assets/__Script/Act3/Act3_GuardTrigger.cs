@@ -6,14 +6,17 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	guardState _guardState = guardState.Act3Begin;
 
 	[SerializeField] GameObject _guard;
-	[SerializeField] PuppetControl _guardPuppetController;
+	PuppetControl _guardPuppetController;
 //	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _guardKeyCodes;
+
+	[SerializeField] Renderer _stairRenderer;
 
 	[SerializeField] AnimationCurve _screenTranslucencyCurve;
 	[SerializeField] AnimationCurve _fullTranslucencyCurve;
 	Color _tempColor;
 	float _tempAlpha;
+	[SerializeField] bool _isGuardTop = false;
 
 	[SerializeField] TextMesh _code;
 	[SerializeField] Renderer _foodStorageWall;
@@ -21,16 +24,36 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //	bool _isStairs = false;
 //	float _stairTempPosition;
 
+	[SerializeField] float _stairStartPosition = 28f;
+	bool _goToStart = false;
+	Timer _stairStartTimer;
+	bool _climbStair = false;
+	Vector3 _tempPosition;
+	bool _isStairs = false;
 //	int _waveCnt = 0;
-	Renderer _screenRenderer;
+	SpriteRenderer _screenRenderer;
 	bool _bombPlanted = false;
 
 	void Start(){
+		_stairStartTimer = new Timer (1f);
+		_guardPuppetController = _guard.GetComponent<PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
 
 	}
 
 	void Update(){
+		if (Input.GetKeyDown (_guardKeyCodes [3])) {
+			if (_isStairs) {
+				_goToStart = true;
+				//_highlightsFX.enabled = false;
+				_isStairs = false;
+				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+				_guardPuppetController.DisableKeyInput ();
+				_tempPosition = _guard.transform.position;
+				_stairStartTimer.Reset ();
+				Events.G.Raise (new GuardStairsStartEvent ());
+			}
+		}
 //		if (_isStairs) {
 ////			Debug.Log (_guard.transform.position.y);
 //			if (((_guard.transform.position.y < _stairRange.Min) && (_stairTempPosition>_stairRange.Min)) 
@@ -47,14 +70,35 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //			Debug.Log ("Guard Found Bomb");
 //		}
 
+		if (_goToStart) {
+			_tempPosition.x = Mathf.Lerp (_tempPosition.x, _stairStartPosition, _stairStartTimer.PercentTimePassed);
+			_guard.transform.position = _tempPosition;
+			if (_stairStartTimer.IsOffCooldown) {
+				SoldierFlip ();
+				_goToStart = false;
+				_climbStair = true;
+			}
+		}
+		else if(_climbStair && !_isGuardTop)
+		{
+			_guard.transform.Translate ((Vector3.left + Vector3.up) * 2.0f * Time.deltaTime);
+			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
+		}
 
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
+		if (other.tag == "Stairs") {
+			_isStairs = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			//_highlightsFX.objectRenderer = _stairRenderer;
+			//_highlightsFX.enabled = true;
+		}
+
 		if (other.name == "Glass") {
-			_screenRenderer = other.gameObject.GetComponent <Renderer> ();
-			_tempColor = _screenRenderer.material.color;
+			_screenRenderer = other.gameObject.GetComponent <SpriteRenderer> ();
+			_tempColor = _screenRenderer.color;
 			StartCoroutine (ScreenFadeOut ());
 
 
@@ -86,12 +130,12 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = _screenTranslucencyCurve.Evaluate ((Time.time - startTime)*2f);
+			_tempAlpha = _screenTranslucencyCurve.Evaluate ((Time.time - startTime));
 			_tempColor.a = _tempAlpha;
-			_screenRenderer.material.color = _tempColor;
+			_screenRenderer.color = _tempColor;
 //			Debug.Log (_screenTimer.PercentTimePassed);
 			yield return null;
-			if ((Time.time - startTime)*2f > 1.0f) {
+			if ((Time.time - startTime) > 1.0f) {
 				i = false;
 			}
 		}
@@ -101,12 +145,12 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = _screenTranslucencyCurve.Evaluate (1.0f - (Time.time - startTime)*2f);
+			_tempAlpha = _screenTranslucencyCurve.Evaluate (1.0f - (Time.time - startTime));
 			_tempColor.a = _tempAlpha;
-			_screenRenderer.material.color = _tempColor;
+			_screenRenderer.color = _tempColor;
 			//			Debug.Log (_screenTimer.PercentTimePassed);
 			yield return null;
-			if ((Time.time - startTime)*2f > 1.0f) {
+			if ((Time.time - startTime) > 1.0f) {
 				i = false;
 			}
 		}
@@ -181,8 +225,8 @@ public class Act3_GuardTrigger : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "Glass") {
-			_screenRenderer = other.gameObject.GetComponent <Renderer> ();
-			_tempColor = _screenRenderer.material.color;
+			_screenRenderer = other.gameObject.GetComponent <SpriteRenderer> ();
+			_tempColor = _screenRenderer.color;
 			StartCoroutine (ScreenFadeIn());
 
 
@@ -190,13 +234,25 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			//			Events.G.Raise (new LeftCellUnlockedEvent());
 			//			_guard.SetActive (false);
 		}
-//		if (other.tag == "Stairs") {
-//			_isStairs = false;
-//			_guardPuppetController.SetIsStairs (_isStairs);
-//		}
+		else if (other.tag == "Stairs") {
+			_isStairs = false;
+			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+		}
+
 //		if (other.name == "Bomb") {
 //			_waveCnt = 0;
 //		}
+	}
+
+	void SoldierFlip(){
+		Vector3 _temp = _guard.transform.localPosition;
+		_temp.x += 2.1f;
+		_guard.transform.localPosition = _temp;
+		_temp = _guard.transform.localScale;
+		_temp.x = _temp.x * -1.0f;
+		_guard.transform.localScale = _temp;
+
 	}
 
 	void OnEnable()

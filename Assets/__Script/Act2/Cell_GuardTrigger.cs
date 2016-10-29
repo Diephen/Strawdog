@@ -60,6 +60,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_goToStart = true;
+				_isStairs = false;
 				//_highlightsFX.enabled = false;
 				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_guardPuppetController.DisableKeyInput ();
