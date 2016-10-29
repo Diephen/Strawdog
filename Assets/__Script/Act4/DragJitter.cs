@@ -10,6 +10,7 @@ public class DragJitter : MonoBehaviour {
 	Timer _pushTimer;
 
 	[SerializeField] bool _isThePrisoner;
+	[SerializeField] bool _isExecution = false;
 	int _inputCount = 0;
 	int _freedomCount = 20;
 
@@ -26,9 +27,11 @@ public class DragJitter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		gameObject.transform.Translate (Vector2.left * Time.deltaTime * _joltCurve.Evaluate (_pushTimer.PercentTimePassed) * 5.0f);
-		if (_pushTimer.IsOffCooldown) {
-			_pushTimer.Reset ();
+		if (!_isExecution) {
+			gameObject.transform.Translate (Vector2.left * Time.deltaTime * _joltCurve.Evaluate (_pushTimer.PercentTimePassed) * 5.0f);
+			if (_pushTimer.IsOffCooldown) {
+				_pushTimer.Reset ();
+			}
 		}
 
 		if (_isThePrisoner) {
@@ -42,7 +45,9 @@ public class DragJitter : MonoBehaviour {
 
 		if (_inputCount > _freedomCount) {
 			_prisonerPuppetControl.EnableContinuousWalk ();
-			Events.G.Raise (new BrokeFree());
+			if (!_isExecution) {
+				Events.G.Raise (new BrokeFree ());
+			}
 			this.enabled = false;
 		}
 	}

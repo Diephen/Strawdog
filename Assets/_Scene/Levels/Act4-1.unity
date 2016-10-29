@@ -1849,6 +1849,7 @@ GameObject:
   - 233: {fileID: 194907858}
   - 233: {fileID: 194907857}
   - 114: {fileID: 194907856}
+  - 114: {fileID: 194907861}
   m_Layer: 0
   m_Name: cloth_1
   m_TagString: Untagged
@@ -1976,6 +1977,26 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &194907861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194907854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489dbf9ab2d5440f0913555be15cea41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _joltCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _pushOffset: 4
+  _isThePrisoner: 1
+  _isExecution: 1
 --- !u!1 &211944706
 GameObject:
   m_ObjectHideFlags: 0
@@ -15931,9 +15952,9 @@ GameObject:
   - 95: {fileID: 1250271399}
   - 61: {fileID: 1250271397}
   - 50: {fileID: 1250271396}
-  - 114: {fileID: 1250271395}
   - 114: {fileID: 1250271401}
   - 114: {fileID: 1250271398}
+  - 114: {fileID: 1250271395}
   m_Layer: 0
   m_Name: prisoner
   m_TagString: Untagged
@@ -15968,9 +15989,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1250271393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
+  m_Script: {fileID: 11500000, guid: 489dbf9ab2d5440f0913555be15cea41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joltCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _pushOffset: 4
+  _isThePrisoner: 1
+  _isExecution: 1
 --- !u!50 &1250271396
 Rigidbody2D:
   serializedVersion: 2
@@ -16106,7 +16136,7 @@ MonoBehaviour:
   - 2
   - -1
   - 2
-  m_Continuous: 010001
+  m_Continuous: 000000
   m_MoveSpeed: 3
   _spotlight: {fileID: 339936827}
   _lightControl: {fileID: 320693799}

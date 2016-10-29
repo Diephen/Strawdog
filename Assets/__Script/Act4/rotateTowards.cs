@@ -19,18 +19,18 @@ public class rotateTowards : MonoBehaviour {
 
 //	Timer _alertTimer;
 
-//	bool _isStraying = false;
+	bool _isStraying = false;
 
 	void Start() {
 		_spotLight = gameObject.GetComponent <Light> ();
 		_originalColor = _spotLight.color;
 //		_alertTimer = new Timer (2.0f);
-//		_patrolTimer = new Timer (_patrolDuration);
+		_patrolTimer = new Timer (_patrolDuration);
 	}
 
 	void Update () {
 
-//		if (_isStraying) {
+		if (_isStraying) {
 			Vector2 dir = target.position - transform.position;
 
 			angle = Vector2.Angle (Vector2.right, dir);
@@ -41,21 +41,21 @@ public class rotateTowards : MonoBehaviour {
 			_rotation = Quaternion.Euler (angle, 90f, transform.rotation.z);
 			transform.localRotation = _rotation;
 			_spotLight.spotAngle = MathHelpers.LinMapFrom01 (40.0f, 150.0f, _spotAngleCurve.Evaluate (MathHelpers.LinMapTo01 (0.0f, 180.0f, angle)));
-//		}
-//		if (_alertTimer.IsOffCooldown && !_isStraying) {
+		}
+		if (!_isStraying) {
 
-//			angle = MathHelpers.LinMapFrom01 (_patrolArea.Min, _patrolArea.Max, _patrolCurve.Evaluate (_patrolTimer.PercentTimePassed));
+			angle = MathHelpers.LinMapFrom01 (_patrolArea.Min, _patrolArea.Max, _patrolCurve.Evaluate (_patrolTimer.PercentTimePassed));
 //
-//			_rotation = Quaternion.Euler (angle, 90f, transform.rotation.z);
-//			transform.localRotation = _rotation;
-//			if (_patrolTimer.IsOffCooldown) {
-//				_patrolTimer.Reset ();
-//			}
-//		}
+			_rotation = Quaternion.Euler (angle, 90f, transform.rotation.z);
+			transform.localRotation = _rotation;
+			if (_patrolTimer.IsOffCooldown) {
+				_patrolTimer.Reset ();
+			}
+		}
 	}
 
 	void SetStray(AboutToStrayOutOfLineEvent e) {
-//		_isStraying = e.Straying;
+		_isStraying = e.Straying;
 		if (e.Straying) {
 			_spotLight.color = _alertColor;
 		} else {
