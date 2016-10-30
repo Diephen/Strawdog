@@ -123,6 +123,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				Debug.Log ("[Hide] stand hide");
 			}
 			else if (other.tag == "SecretDoor") {
+				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 				_secretDoor = true;
 				//_highlightsFX.objectRenderer = _secretDoorRenderer;
 				//_highlightsFX.enabled = true;
@@ -184,6 +185,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				Events.G.Raise (new PrisonerHideEvent (_isHidden));
 			}
 			else if (other.tag == "SecretDoor") {
+				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_secretDoor = false;
 				//_highlightsFX.enabled = false;
 			}

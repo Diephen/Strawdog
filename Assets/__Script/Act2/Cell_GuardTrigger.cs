@@ -14,7 +14,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _goToStart = false;
 	Timer _stairStartTimer;
 	bool _climbStair = false;
-
+	bool _secretDoor = false;
 	Vector3 _tempPosition;
 
 
@@ -96,6 +96,13 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
+
+		if (_isGuardTop) {
+			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {
+				Events.G.Raise (new CallSecretDoorEvent ());
+				//_highlightsFX.enabled = false;
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -104,6 +111,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
+		} else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			_secretDoor = true;
 		} else if (other.name == "LockCell") {
 			//_highlightsFX.objectRenderer = _doorRenderer;
 			//_highlightsFX.enabled = true;
@@ -153,7 +163,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isStairs = false;
 			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-		} else if (other.name == "LockCell") {
+		} 
+		else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			_secretDoor = false;
+		}
+		else if (other.name == "LockCell") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			if (_isOnFlap) {
 				//_highlightsFX.objectRenderer = _rightFlap;

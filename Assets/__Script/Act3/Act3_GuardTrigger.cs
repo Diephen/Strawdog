@@ -10,7 +10,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _guardKeyCodes;
 
-	[SerializeField] Renderer _stairRenderer;
+//	[SerializeField] Renderer _stairRenderer;
 
 	[SerializeField] AnimationCurve _screenTranslucencyCurve;
 	[SerializeField] AnimationCurve _fullTranslucencyCurve;
@@ -33,6 +33,8 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //	int _waveCnt = 0;
 	SpriteRenderer _screenRenderer;
 	bool _bombPlanted = false;
+	bool _secretDoor = false;
+	bool _foodStorage = false;
 
 	void Start(){
 		_stairStartTimer = new Timer (1f);
@@ -47,7 +49,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 				_goToStart = true;
 				//_highlightsFX.enabled = false;
 				_isStairs = false;
-				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+//				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 				_guardPuppetController.DisableKeyInput ();
 				_tempPosition = _guard.transform.position;
 				_stairStartTimer.Reset ();
@@ -87,6 +89,14 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 //			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
+		if (_isGuardTop) {
+			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {
+				Events.G.Raise (new CallSecretDoorEvent ());
+				//_highlightsFX.enabled = false;
+			} else if(_foodStorage && Input.GetKeyDown (_guardKeyCodes [3])){
+				Events.G.Raise (new Plant_EnterFoodStorageEvent());
+			}
+		}
 
 	}
 
@@ -97,6 +107,9 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
+		} else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			_secretDoor = true;
 		}
 
 		if (other.name == "Glass") {
@@ -109,14 +122,17 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //			Events.G.Raise (new LeftCellUnlockedEvent());
 //			_guard.SetActive (false);
 		}else if (other.name == "EnterFoodStorage") {
-			Events.G.Raise (new Plant_EnterFoodStorageEvent());
+			_foodStorage = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			Debug.Log ("Found");
+//			Events.G.Raise (new Plant_EnterFoodStorageEvent());
 		} 
 		else if (other.name == "LeaveFoodStorage" && _bombPlanted) {
 			_tempColor = _foodStorageWall.material.color;
 			StartCoroutine (WallFadeOut (_foodStorageWall));
 		} else if (other.name == "Encounter") {
 			Events.G.Raise (new Guard_EncounterEvent());
-		}
+		} 
 //
 //		if (other.tag == "Stairs") {
 //			Debug.Log ("But Does this Fire?");
@@ -230,7 +246,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		if (other.name == "Glass") {
 			_screenRenderer = other.gameObject.GetComponent <SpriteRenderer> ();
 			_tempColor = _screenRenderer.color;
-			StartCoroutine (ScreenFadeIn());
+			StartCoroutine (ScreenFadeIn ());
 
 
 			//			_guardState = guardState.LeftUnlocked;
@@ -240,6 +256,14 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		else if (other.tag == "Stairs") {
 			_isStairs = false;
 			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		}
+		else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			_secretDoor = false;
+		}
+		else if (other.name == "EnterFoodStorage") {
+			_foodStorage = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		}
 
