@@ -2,8 +2,10 @@
 using System.Collections;
 
 public class Act4_GuardTrigger : MonoBehaviour {
-
+	[SerializeField] Animator m_Anim;
+	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] GameObject _guard;
+	[SerializeField] AnimationInjectionExecute m_AnimInjection;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
 	//GameObject _otherGameObject = null;
@@ -12,24 +14,24 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	int _shootCnt = 0;
 	int _shootSwitchCnt = 2;
 
+
+	bool m_IsHandUp = false;
+
+
+
 	void Start(){
 		_guardPuppetController = _guard.GetComponent<PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
 	}
 
 	void Update(){
-		if (_execute) {
-			if (Input.GetKey (_guardKeyCodes [0])) {
-				if (Input.GetKey (_guardKeyCodes [3])) {
-					//_otherGameObject.gameObject.SetActive (false);
-					m_CurrentSP.Executed();
-					Events.G.Raise (new EnableMoveEvent ());
-					_shootCnt++;
-					_execute = false;
-					m_CurrentSP = null;
-				}
-			}
-		}
+//		if (_execute) {
+//			if (Input.GetKey (_guardKeyCodes [0])) {
+//				if (Input.GetKey (_guardKeyCodes [3])) {
+//			
+//				}
+//			}
+//		}
 	}
 
 	void FixedUpdate(){
@@ -43,10 +45,13 @@ public class Act4_GuardTrigger : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Execution") {
-			print ("Exe!!!");
+			//print ("Exe!!!");
+			StartExecution();
 			_execute = true;
 			//_otherGameObject = other.gameObject;
 			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle>();
+			m_AnimInjection.SetEngage ();
+
 		}
 	}
 
@@ -67,4 +72,45 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	{
 //		Events.G.RemoveListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 	}
+
+	public void StartExecution(){
+		m_Anim.Play ("g-ShootIdle");
+		m_Anim.SetBool ("IsHandUp", false);
+		m_IsHandUp = false;
+		m_AnimCtrl.SetAnimation (true);
+	}
+
+
+	public void EndExecution(){
+		m_Anim.SetBool ("IsHandUp", false);
+		m_IsHandUp = false;
+		m_AnimCtrl.SetAnimation (false);
+		m_AnimInjection.SetLeave ();
+
+	}
+
+	public void HandUp(){
+		m_IsHandUp = true;
+		m_Anim.SetBool ("IsHandUp", true);
+	}
+
+	public void HandDown(){
+		m_IsHandUp = false;
+		m_Anim.SetBool ("IsHandUp", false);
+	}
+
+	public void Shoot(){
+		if (m_IsHandUp && _execute) {
+			m_Anim.Play ("g-Shoot");
+			m_IsHandUp = false;
+			//_otherGameObject.gameObject.SetActive (false);
+			m_CurrentSP.Executed();
+			//Events.G.Raise (new EnableMoveEvent ());
+			_shootCnt++;
+			_execute = false;
+			m_CurrentSP = null;
+		}
+	}
+		
+
 }
