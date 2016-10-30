@@ -6,6 +6,9 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	prisonerState _prisonerState = prisonerState.Act4Begin;
 
 	[SerializeField] GameObject _prisoner;
+	[SerializeField] SpriteRenderer[] _whiteBase = new SpriteRenderer[17];
+	Color _originalColor;
+
 	PuppetControl _prisonerPuppetController;
 //	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _prisonerKeyCodes;
@@ -16,6 +19,10 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	bool _isSafe = true;
 
 	bool _secretDoor = false;
+	bool _isOnFlap = false;
+	bool _isOnGuard = false;
+
+	[SerializeField] SpriteRenderer _rightFlap;
 
 	void Start(){
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
@@ -46,20 +53,46 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 		if (_secretDoor && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 			Events.G.Raise (new CallSecretDoorEvent ());
 			//_highlightsFX.enabled = false;
+		} else if(_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+//			_guard.SetActive (false);
+			//_highlightsFX.enabled = false;
+			_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			_isOnFlap = false;
+
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "AlertTrigger") {
 			_isSafe = true;
-			Events.G.Raise (new AboutToStrayOutOfLineEvent(false));
-		} else if(other.name == "Encounter"){
-			Events.G.Raise (new Prisoner_EncounterEvent());
+			Events.G.Raise (new AboutToStrayOutOfLineEvent (false));
+		}
+		else if (other.name == "Encounter") {
+			Events.G.Raise (new Prisoner_EncounterEvent ());
 			_prisonerPuppetController.DisableContinuousWalk ();
 			other.enabled = false;
-		} else if (other.tag == "SecretDoor") {
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+		}
+		else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_secretDoor = true;
+		}
+		else if (other.name == "open-right") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+			//_highlightsFX.objectRenderer = _rightFlap;
+			//_highlightsFX.enabled = true;
+			_isOnFlap = true;
+			if (_isOnGuard) {
+				for (int i = 0; i < _whiteBase.Length; i++) {
+					_whiteBase [i].color = _originalColor;
+				}
+			}
+		}
+		else if (other.tag == "Guard") {
+			_isOnGuard = true;
+			_originalColor = _whiteBase [0].color;
+			for (int i = 0; i < _whiteBase.Length; i++) {
+				_whiteBase [i].color = Color.white;
+			}
 		}
 
 //		if (other.tag == "Stairs") {
@@ -95,10 +128,26 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 		if (other.name == "AlertTrigger") {
 			_isSafe = false;
 			_alertTimer.Reset ();
-			Events.G.Raise (new AboutToStrayOutOfLineEvent(true));
-		} else if (other.tag == "SecretDoor") {
-			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			Events.G.Raise (new AboutToStrayOutOfLineEvent (true));
+		}
+		else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 			_secretDoor = false;
+		}
+		else if (other.name == "open-right") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			_isOnFlap = false;
+			if (_isOnGuard) {
+				for (int i = 0; i < _whiteBase.Length; i++) {
+					_whiteBase [i].color = Color.white;
+				}
+			}
+		}
+		else if (other.tag == "Guard") {
+			_isOnGuard = false;
+			for (int i = 0; i < _whiteBase.Length; i++) {
+				_whiteBase [i].color = _originalColor;
+			}
 		}
 //		if (other.tag == "Stairs") {
 //			_isStairs = false;
