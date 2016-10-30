@@ -139,7 +139,8 @@ public class FollowCam : MonoBehaviour {
 
 	void GuardEncounter(Guard_EncounterEvent e) {
 		timer = 0f;
-		_cameraToggle = cameraPos.Right;
+		_followObj = _followPrisoner;
+		_cameraToggle = cameraPos.Left;
 	}
 
 	void BreakFree(BrokeFree e) {
@@ -149,7 +150,8 @@ public class FollowCam : MonoBehaviour {
 
 	void PrisonerEncounter(Prisoner_EncounterEvent e) {
 		timer = 0f;
-		_cameraToggle = cameraPos.Left;
+		_followObj = _followGuard;
+		_cameraToggle = cameraPos.Right;
 	}
 
 	void CloseDoor(LockCellEvent e){

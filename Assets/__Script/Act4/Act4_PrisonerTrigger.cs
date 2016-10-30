@@ -14,8 +14,8 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	Timer _alertTimer;
 
 	bool _isSafe = true;
-//	bool _isStairs = false;
-//	float _stairTempPosition;
+
+	bool _secretDoor = false;
 
 	void Start(){
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
@@ -42,6 +42,11 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			Events.G.Raise (new StrayOutOfLineEvent());
 			//Leads to triggering Death Anim
 		}
+			
+		if (_secretDoor && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+			Events.G.Raise (new CallSecretDoorEvent ());
+			//_highlightsFX.enabled = false;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -50,7 +55,11 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			Events.G.Raise (new AboutToStrayOutOfLineEvent(false));
 		} else if(other.name == "Encounter"){
 			Events.G.Raise (new Prisoner_EncounterEvent());
+			_prisonerPuppetController.DisableContinuousWalk ();
 			other.enabled = false;
+		} else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			_secretDoor = true;
 		}
 
 //		if (other.tag == "Stairs") {
@@ -87,6 +96,9 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			_isSafe = false;
 			_alertTimer.Reset ();
 			Events.G.Raise (new AboutToStrayOutOfLineEvent(true));
+		} else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			_secretDoor = false;
 		}
 //		if (other.tag == "Stairs") {
 //			_isStairs = false;
