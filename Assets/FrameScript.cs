@@ -31,6 +31,7 @@ public class FrameScript : MonoBehaviour {
 		_leftSprite = _leftFlap.GetComponent<SpriteRenderer> ();
 		_rightSprite = _rightFlap.GetComponent<SpriteRenderer> ();
 		_color = _leftSprite.color;
+		Events.G.Raise (new DisableMoveEvent ());
 	}
 	
 	void Update () {
@@ -56,6 +57,7 @@ public class FrameScript : MonoBehaviour {
 			if (_flapTimer.PercentTimePassed == 1.0f) {
 				_done = true;
 				if (_open) {
+					Events.G.Raise (new EnableMoveEvent ());
 					_bc1.enabled = true;
 					_bc2.enabled = true;
 				}
@@ -79,6 +81,7 @@ public class FrameScript : MonoBehaviour {
 	}
 
 	public void CloseFlap(){
+		Events.G.Raise (new DisableMoveEvent ());
 		_bc1.enabled = false;
 		_bc2.enabled = false;
 		_flapTimer.Reset();

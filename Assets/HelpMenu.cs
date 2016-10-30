@@ -3,16 +3,15 @@ using System.Collections;
 using UnityEngine.VR;
 
 public class HelpMenu : MonoBehaviour {
-	Canvas _canvas;
-	// Use this for initialization
-	void Start () {
-		_canvas = gameObject.GetComponent<Canvas> ();
-	}
-	
-	// Update is called once per frame
+	[SerializeField] GameObject _controls;
+	[SerializeField] GameObject _start;
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.H)) {
-			_canvas.enabled = !_canvas.enabled;
+			_controls.SetActive(!_controls.activeSelf);
+		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			_start.SetActive (false);
 		}
 	}
 }
