@@ -131,6 +131,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			_tempColor = _foodStorageWall.material.color;
 			StartCoroutine (WallFadeOut (_foodStorageWall));
 		} else if (other.name == "Encounter") {
+			_guardPuppetController.DisableContinuousWalk ();
 			Events.G.Raise (new Guard_EncounterEvent());
 		} 
 //
