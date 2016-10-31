@@ -35,6 +35,8 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	bool _bombPlanted = false;
 	bool _secretDoor = false;
 	bool _foodStorage = false;
+	[SerializeField] BoxCollider2D _groundCollider1;
+	[SerializeField] BoxCollider2D _groundCollider2;
 
 	void Start(){
 		_stairStartTimer = new Timer (1f);
@@ -86,6 +88,8 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			Events.G.Raise (new Plant_UpStairsEvent ());
 		}
 		else if (_climbStair && _isGuardTop) {
+			_groundCollider1.enabled = false;
+			_groundCollider2.enabled = false;
 			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Plant_DownStairsEvent ());		
 		}
@@ -105,8 +109,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-			//_highlightsFX.objectRenderer = _stairRenderer;
-			//_highlightsFX.enabled = true;
 		} else if (other.tag == "SecretDoor") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			_secretDoor = true;
@@ -275,12 +277,16 @@ public class Act3_GuardTrigger : MonoBehaviour {
 
 	void SoldierFlip(){
 		Vector3 _temp = _guard.transform.localPosition;
-		_temp.x += 2.1f;
+		if (_guard.transform.localScale.x >= 0) {
+			_temp.x += 2.1f;
+		}
+		else {
+			_temp.x -= 2.1f;
+		}
 		_guard.transform.localPosition = _temp;
 		_temp = _guard.transform.localScale;
 		_temp.x = _temp.x * -1.0f;
 		_guard.transform.localScale = _temp;
-
 	}
 
 	void OnEnable()

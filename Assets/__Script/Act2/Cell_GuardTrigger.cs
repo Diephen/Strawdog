@@ -254,6 +254,5 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		_temp = _guard.transform.localScale;
 		_temp.x = _temp.x * -1.0f;
 		_guard.transform.localScale = _temp;
-
 	}
 }

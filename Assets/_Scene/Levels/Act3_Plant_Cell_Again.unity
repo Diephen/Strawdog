@@ -2247,7 +2247,7 @@ MonoBehaviour:
   _followGuard: {fileID: 400225631}
   _followPrisoner: {fileID: 1449688636}
   XYZ: 010000
-  _cameraToggle: 2
+  _cameraToggle: 1
   _leftCameraPos: 2
   _rightCameraPos: -2
   ActNumber: 1
@@ -5439,7 +5439,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000012165659832, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 64.5
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 4000012165659832, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5481,13 +5481,13 @@ Prefab:
       objectReference: {fileID: 1384982690}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
-      propertyPath: m_ListenKey.Array.data[1]
-      value: 105
+      propertyPath: m_ListenKey.Array.data[3]
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
-      propertyPath: m_ListenKey.Array.data[3]
-      value: 107
+      propertyPath: m_ListenKey.Array.data[1]
+      value: 105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
@@ -7897,9 +7897,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -4.650173, y: -0.40324292}
+  m_Offset: {x: -4.1551666, y: -0.40324292}
   serializedVersion: 2
-  m_Size: {x: 7.377495, y: 11.506485}
+  m_Size: {x: 6.3874884, y: 11.506485}
 --- !u!1 &2004982382
 GameObject:
   m_ObjectHideFlags: 0
