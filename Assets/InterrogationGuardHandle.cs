@@ -32,12 +32,16 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	bool m_IsAtStart = true;
 	// Use this for initialization
 	void Awake () {
-		m_GS = IG_GuardState.PushQuestion;
+		
 		m_Anim = GetComponent<Animator> ();
 		//m_CurWaitTime = 2f;
 		//m_StartTime = Time.time;
-		ChangeState ();
 		m_BottomSpr = m_Bottom.GetComponentsInChildren<SpriteRenderer>();
+	}
+
+	void Start(){
+		m_GS = IG_GuardState.PushQuestion;
+		ChangeState ();
 	}
 	
 	// Update is called once per frame

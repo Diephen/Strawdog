@@ -49,6 +49,9 @@ public class NoteSymbol : MonoBehaviour {
 	}
 
 	public void Hide(){
-		m_Sprite.material.color=m_StartColor;
+		if (m_Sprite != null) {
+			m_Sprite.material.color=m_StartColor;
+		}
+
 	}
 }
