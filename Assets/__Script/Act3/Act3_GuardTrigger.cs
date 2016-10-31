@@ -83,11 +83,11 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		}
 		else if (_climbStair && !_isGuardTop) {
 			_guard.transform.Translate ((Vector3.left + Vector3.up) * 2.0f * Time.deltaTime);
-			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
+			Events.G.Raise (new Plant_UpStairsEvent ());
 		}
 		else if (_climbStair && _isGuardTop) {
 			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
-//			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
+			Events.G.Raise (new Plant_DownStairsEvent ());		
 		}
 		if (_isGuardTop) {
 			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {

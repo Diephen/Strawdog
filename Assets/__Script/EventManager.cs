@@ -140,6 +140,13 @@ public class BrokeFree : GameEvent {
 
 /* Act 4-3 Plant Bomb */
 
+public class Plant_UpStairsEvent : GameEvent {
+}
+
+public class Plant_DownStairsEvent : GameEvent {
+}
+
+
 public class Plant_EnterFoodStorageEvent : GameEvent {
 }
 

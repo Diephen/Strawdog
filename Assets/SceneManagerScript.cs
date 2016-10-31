@@ -18,12 +18,13 @@ public class SceneManagerScript : MonoBehaviour {
 		Act3_No = 9,
 		Act3_Yes = 10,
 		Act3_Plant_Cell = 11,
-		Act3_Plant = 12,
-		Act3_Plant_Bomb = 13,
-		Act3_Plant_Done = 14,
-		Act4_1 = 15,
-		Act4_2 = 16,
-		Act4_3_Encounter = 17
+		Act3_Plant_Cell_Again = 12,
+		Act3_Plant = 13,
+		Act3_Plant_Bomb = 14,
+		Act3_Plant_Done = 15,
+		Act4_1 = 16,
+		Act4_2 = 17,
+		Act4_3_Encounter = 18
 	};
 
 	FrameScript _frameScript;
@@ -71,6 +72,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.AddListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
+		Events.G.AddListener<Plant_UpStairsEvent>(LoadPlantUp);
+		Events.G.AddListener<Plant_DownStairsEvent>(LoadPlantDown);
 		Events.G.AddListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
 		Events.G.AddListener<TriggerWarningEndEvent>(LoadAct0);
 
@@ -107,6 +110,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.RemoveListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
 
+		Events.G.RemoveListener<Plant_UpStairsEvent>(LoadPlantUp);
+		Events.G.RemoveListener<Plant_DownStairsEvent>(LoadPlantDown);
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
 		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadAct0);
 
@@ -202,6 +207,14 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadFoodStorage_Prisoner(Taken_EnterFoodStorageEvent e){
+	}
+
+	void LoadPlantUp(Plant_UpStairsEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant, 1f));
+	}
+
+	void LoadPlantDown(Plant_DownStairsEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell_Again, 1f));
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
