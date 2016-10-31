@@ -49,7 +49,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	void Update () {
 		Behaviour ();
 		//CheckWalkPos ();
-		if(Input.GetKeyDown(KeyCode.S)){
+		if(Input.GetKeyDown(KeyCode.W)){
 			if (!m_IsAnswer && (m_GS == IG_GuardState.Question || m_GS == IG_GuardState.PushQuestion)) {
 				m_IsAnswer = true;
 				print ("Answer!!!");

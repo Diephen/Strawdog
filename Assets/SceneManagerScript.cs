@@ -249,7 +249,7 @@ public class SceneManagerScript : MonoBehaviour {
 	void OpenScreen(Scene scene, LoadSceneMode mode){
 		if (scene.name == "TriggerWarning") {
 		}
-		else if (scene.name == "Level0") {
+		else if (scene.name == "Act0") {
 			_start = true;
 		}
 		else {

@@ -7,6 +7,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	} 
 	private greetState m_SoldierState = greetState.idle;
 	[SerializeField] Animator m_Anim;
+	[SerializeField] PuppetControl m_GuardPuppetCtrl;
 	private bool isGateOpen = false;
 	[SerializeField] GameObject m_GateBlock;
 	Animator m_DoorAnim;
@@ -26,7 +27,7 @@ public class FrontGateGuardHandle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (m_SoldierState == greetState.salute) {
-			if (Input.GetKeyDown (KeyCode.K)) {
+			if (Input.GetKeyDown (m_GuardPuppetCtrl.GetKeyCodes()[1])) {
 				m_SoldierState = greetState.talk;
 				CheckState (m_SoldierState);
 			}

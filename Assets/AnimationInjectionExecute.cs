@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class AnimationInjectionExecute : AnimationInjectionBase {
+	[SerializeField] bool m_IsPrisoner;
 	[SerializeField] PuppetControl _puppetControl;
 	[SerializeField] Act4_GuardTrigger m_GuardHandle;
 
@@ -62,7 +63,10 @@ public class AnimationInjectionExecute : AnimationInjectionBase {
 
 	protected override void CrouchPressed(CrouchPressedEvent e){
 		base.CrouchPressed(e);
-		m_GuardHandle.Shoot ();
+		if (!m_IsPrisoner) {
+			m_GuardHandle.Shoot ();
+		}
+
 	}
 	//	protected override void WalkLeft(){
 	//
@@ -72,14 +76,20 @@ public class AnimationInjectionExecute : AnimationInjectionBase {
 	//	}
 	protected override void APressed(APressedEvent e){
 		base.APressed (e);
-		Debug.Log ("Hold gun");
-		m_GuardHandle.HandUp ();
+		if (!m_IsPrisoner) {
+			Debug.Log ("Hold gun");
+			m_GuardHandle.HandUp ();
+		}
+
 
 	}
 	protected override void AReleased(AReleasedEvent e){
 		base.AReleased (e);
-		Debug.Log ("Put down gun");
-		m_GuardHandle.HandDown();
+		if (!m_IsPrisoner) {
+			Debug.Log ("Put down gun");
+			m_GuardHandle.HandDown();
+		}
+
 
 	}
 	//	protected override void SPressed(){
@@ -88,13 +98,12 @@ public class AnimationInjectionExecute : AnimationInjectionBase {
 	//	}
 	protected override void DPressed(DPressedEvent e){
 		base.DPressed (e);
-		//m_GuardHandle.LeaveDog ();
 	}
 	//
 	protected override void DHold(DHoldEvent e){
 		// choose to leave 
 		base.DHold(e);
-		//m_GuardHandle.LeaveDog ();
+
 	}
 	//
 	//	protected override void DReleased(){

@@ -11,11 +11,15 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	//GameObject _otherGameObject = null;
 	ShotDeathPrisonerHandle m_CurrentSP = null;
 	bool _execute = false;
+	bool m_IsPrisoner = false;
 	int _shootCnt = 0;
 	int _shootSwitchCnt = 2;
 
 
 	bool m_IsHandUp = false;
+
+	// UI testing & input
+	
 
 
 
@@ -25,6 +29,8 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
+		// test ui input 
+
 //		if (_execute) {
 //			if (Input.GetKey (_guardKeyCodes [0])) {
 //				if (Input.GetKey (_guardKeyCodes [3])) {
@@ -46,12 +52,16 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Execution") {
 			//print ("Exe!!!");
-			StartExecution();
+			StartExecution ();
 			_execute = true;
 			//_otherGameObject = other.gameObject;
-			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle>();
-			m_AnimInjection.SetEngage ();
+			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle> ();
+			//m_AnimInjection.SetEngage ();
 
+		} else if (other.tag == "Prisoner") {
+			StartExecution ();
+			_execute = true;
+			//m_AnimInjection.SetEngage ();
 		}
 	}
 
@@ -78,6 +88,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 		m_Anim.SetBool ("IsHandUp", false);
 		m_IsHandUp = false;
 		m_AnimCtrl.SetAnimation (true);
+		m_AnimInjection.SetEngage ();
 	}
 
 
@@ -101,14 +112,20 @@ public class Act4_GuardTrigger : MonoBehaviour {
 
 	public void Shoot(){
 		if (m_IsHandUp && _execute) {
-			m_Anim.Play ("g-Shoot");
-			m_IsHandUp = false;
-			//_otherGameObject.gameObject.SetActive (false);
-			m_CurrentSP.Executed();
-			//Events.G.Raise (new EnableMoveEvent ());
-			_shootCnt++;
-			_execute = false;
-			m_CurrentSP = null;
+			if (!m_IsPrisoner) {
+				m_Anim.Play ("g-Shoot");
+				m_IsHandUp = false;
+				//_otherGameObject.gameObject.SetActive (false);
+				m_CurrentSP.Executed ();
+				//Events.G.Raise (new EnableMoveEvent ());
+				_shootCnt++;
+				_execute = false;
+				m_CurrentSP = null;
+			} else {
+				print ("Call Prisoner Animation");
+
+			}
+		
 		}
 	}
 		

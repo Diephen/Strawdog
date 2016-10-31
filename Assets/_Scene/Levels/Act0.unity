@@ -9993,6 +9993,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 573963936}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &587471197 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011073985580, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1054566746}
+  m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
 --- !u!1 &610337834
 GameObject:
   m_ObjectHideFlags: 0
@@ -14637,6 +14643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Anim: {fileID: 0}
+  m_GuardPuppetCtrl: {fileID: 587471197}
   m_GateBlock: {fileID: 166897122}
 --- !u!61 &1014398179
 BoxCollider2D:
@@ -15162,6 +15169,16 @@ Prefab:
         type: 2}
       propertyPath: m_ConnectedAnchor.x
       value: 13.1814
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011073985580, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[1]
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011073985580, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[3]
+      value: 107
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}

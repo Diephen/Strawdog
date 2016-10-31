@@ -27972,6 +27972,16 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[3]
       value: 115
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013917200714, guid: 13bfd0992eeaa4d6faf4b8679f16b031,
+        type: 2}
+      propertyPath: m_LightCtrl
+      value: 
+      objectReference: {fileID: 320693799}
+    - target: {fileID: 114000011805893528, guid: 13bfd0992eeaa4d6faf4b8679f16b031,
+        type: 2}
+      propertyPath: _lightControl
+      value: 
+      objectReference: {fileID: 320693799}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 13bfd0992eeaa4d6faf4b8679f16b031, type: 2}
   m_IsPrefabParent: 0

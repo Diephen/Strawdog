@@ -37,14 +37,14 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!m_IsBombFound) {
-			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+			if (Input.GetKeyDown (KeyCode.S)) {
 				if (!m_IsReadingNote && !m_IsHoldDown) {
 					m_IsReadingNote = true;
 					NoteReading ();
 				}
 			}
 
-			if (Input.GetKeyUp (KeyCode.LeftShift)) {
+			if (Input.GetKeyUp (KeyCode.S)) {
 				if (m_IsReadingNote && !m_IsHoldDown) {
 					m_IsReadingNote = false;
 					StopReading ();
