@@ -119,7 +119,8 @@ public class GuardHandle : MonoBehaviour {
 		if (m_GuardAnim != null && !m_IsStartTorture) {
 			Debug.Log ("Start Torture");
 			m_AnimCtrl.SetAnimation (true);	
-			m_GuardAnim.SetTrigger ("TriggerStartTorture");
+			//m_GuardAnim.SetTrigger ("TriggerStartTorture");
+			m_GuardAnim.SetBool("IsBack", false);
 			m_IsStartTorture = true;
 			StartCoroutine (m_ProgressBar.FadeIn (3f));
 		}
@@ -171,7 +172,8 @@ public class GuardHandle : MonoBehaviour {
 		// m_AnimCtrl.SetAnimation(false);
 		if(!m_IsTorture){
 			m_IsStartTorture = false;
-			m_GuardAnim.SetTrigger ("TriggerBack");
+			//m_GuardAnim.SetTrigger ("TriggerBack");
+			m_GuardAnim.SetBool("IsBack", true);
 			m_PrisonerHandle.LeaveCalledByGuard ();
 			m_PC.MoveRight ();
 			StartCoroutine (m_ProgressBar.FadeOut (2f));
@@ -182,7 +184,8 @@ public class GuardHandle : MonoBehaviour {
 	public void LeaveCalledByPrisoner(){
 		// m_AnimCtrl.SetAnimation(false);
 		m_IsStartTorture = false;
-		m_GuardAnim.SetTrigger ("TriggerBack");
+		//m_GuardAnim.SetTrigger ("TriggerBack");
+		m_GuardAnim.SetBool("IsBack", true);
 		m_PC.MoveRight ();
 		StartCoroutine (m_ProgressBar.FadeOut (2f));
 	}
@@ -190,6 +193,7 @@ public class GuardHandle : MonoBehaviour {
 
 	public void DisableAnim(){
 		m_AnimCtrl.SetAnimation(false);
+		m_GuardAnim.SetBool("IsBack", false);
 	} 
 
 

@@ -92,7 +92,7 @@ public class AnimationInjectionTutorial : AnimationInjectionBase {
 	protected override void DHold(DHoldEvent e){
 		// choose to leave 
 		base.DHold(e);
-		m_GuardHandle.LeaveDog ();
+		//m_GuardHandle.LeaveDog ();
 	}
 //
 //	protected override void DReleased(){
