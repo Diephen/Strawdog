@@ -61,6 +61,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 		} else if (other.tag == "Prisoner") {
 			StartExecution ();
 			_execute = true;
+			m_IsPrisoner = true;
 			//m_AnimInjection.SetEngage ();
 		}
 	}
