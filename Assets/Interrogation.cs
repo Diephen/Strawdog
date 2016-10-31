@@ -18,14 +18,9 @@ public class Interrogation : MonoBehaviour {
 	void Update () {
 		//print (_interrogationTimer.TimeLeft);
 		if (_interrogationTimer.IsOffCooldown) {
-			if (_bombFound) {
-				print ("Go to execution");
-				Events.G.Raise (new TriggerExecutionEvent ());
+			// call last animation 
+
 			
-			} else {
-				print ("Go to Ditch");
-				Events.G.Raise (new TriggerTakenAwayEvent ());
-			}
 		} else {
 			ClockTick ();
 		} 
@@ -36,6 +31,17 @@ public class Interrogation : MonoBehaviour {
 		Vector3 eularAngle = m_ClockHand.transform.eulerAngles;
 		eularAngle.z -= rotateSpeed * Time.deltaTime;
 		m_ClockHand.transform.rotation= Quaternion.Euler(eularAngle);
+	}
+
+	public void NextScene(){
+		if (_bombFound) {
+			print ("Go to execution");
+			Events.G.Raise (new TriggerExecutionEvent ());
+
+		} else {
+			print ("Go to Ditch");
+			Events.G.Raise (new TriggerTakenAwayEvent ());
+		}
 	}
 
 }

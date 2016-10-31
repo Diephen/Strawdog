@@ -36,14 +36,14 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			if (!m_IsReadingNote) {
+			if (!m_IsReadingNote && !m_IsHoldDown) {
 				m_IsReadingNote = true;
 				NoteReading ();
 			}
 		}
 
 		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			if (m_IsReadingNote) {
+			if (m_IsReadingNote && !m_IsHoldDown) {
 				m_IsReadingNote = false;
 				StopReading ();
 			}
@@ -72,6 +72,14 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	public void BackToIdle(){
 		m_Anim.Play ("IP-BackToIdle");
 
+	}
+
+	public void EndScene(){
+		m_Anim.Play ("IP-BackToIdle");
+		m_IsReadingNote = false;
+		m_IsHoldDown = false;
+		StopReading ();
+		m_HiNote.DisableHighlight ();
 	}
 		
 	void NoteReading(){

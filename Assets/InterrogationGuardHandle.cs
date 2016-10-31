@@ -7,13 +7,13 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		Question,           // waiting for answer when idling 
 		PushQuestion,       // waiting for answer when pushing prisoner
 		WalkToRight,
-		WalkToLeft,
 		BackToIdle,
-		Engage,
-		EndKick
+		EndKickAfterIdle,
+		EndKickAfterPush,
 	}
 	IG_GuardState m_GS;
 	Animator m_Anim;
+	[SerializeField] Interrogation m_ItrSceneManager;
 	[SerializeField] InterrogationPrisonerHandler m_IPHandle;
 	[SerializeField] Transform m_StartX;
 	[SerializeField] Transform m_EndX;
@@ -30,6 +30,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	bool m_IsAnswer = false;
 	bool m_IsWalk = false;
 	bool m_IsAtStart = true;
+	bool m_IsEnd = false;
 	// Use this for initialization
 	void Awake () {
 		
@@ -102,6 +103,18 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_Anim.Play ("IG-BackToIdle");
 			m_IPHandle.BackToIdle ();
 			break;
+		case IG_GuardState.EndKickAfterIdle:
+			m_CurWaitTime = 3f;
+			m_StartTime = Time.time;
+			m_Anim.Play ("IG-Kick");
+			m_IPHandle.EndScene ();
+			break;
+		case IG_GuardState.EndKickAfterPush:
+			m_CurWaitTime = 3f;
+			m_StartTime = Time.time;
+			m_Anim.Play ("IG-BackToIdle");
+			m_IPHandle.EndScene ();
+			break;
 		}
 	}
 
@@ -110,6 +123,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		case IG_GuardState.Idle:
 			if (!CheckStateEnd()) {
 				print ("Idle");
+				EndSequence ();
 			} else {
 				m_GS = IG_GuardState.Question;
 				ChangeState ();
@@ -125,6 +139,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 					// question idling
 					print("Question Idle");
 				}
+				EndSequence ();
 			} else {
 				m_GS = IG_GuardState.PushQuestion;
 				ChangeState ();
@@ -155,10 +170,50 @@ public class InterrogationGuardHandle : MonoBehaviour {
 				ChangeState ();
 			}
 			break;
+		case IG_GuardState.EndKickAfterIdle:
+			//m_CurWaitTime = 3f;
+			//m_StartTime = Time.time;
+			if (CheckStateEnd ()) {
+				// goes to the end 
+				m_ItrSceneManager.NextScene();
+			}
+			break;
+		case IG_GuardState.EndKickAfterPush:
+			if (CheckStateEnd ()) {
+				m_GS = IG_GuardState.EndKickAfterIdle;
+				ChangeState ();
+			}
+			break;
 		}
+			
+	}
 
+	public void EndInterrogation(){
+		if (!m_IsEnd) {
+			m_IsEnd = true;
+		}
+	}
 
-		
+	// checkeck which state to go to after the sequence ends 
+	void EndSequence(){
+		if (m_IsEnd) {
+			if (m_GS == IG_GuardState.Idle) {
+				m_GS = IG_GuardState.EndKickAfterIdle;
+			}
+			if (m_GS == IG_GuardState.Question ) {
+				m_GS = IG_GuardState.EndKickAfterIdle;
+			}
+			if (m_GS == IG_GuardState.WalkToRight) {
+				m_GS = IG_GuardState.Idle;
+			}
+			if (m_GS == IG_GuardState.PushQuestion) {
+				m_GS = IG_GuardState.EndKickAfterPush;
+			}
+			if (m_GS == IG_GuardState.BackToIdle) {
+				m_GS = IG_GuardState.EndKickAfterIdle;
+			}
+		}
+	
 	}
 
 	void HideLegSprites(){
