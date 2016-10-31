@@ -8,6 +8,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	PuppetControl _prisonerPuppetController;
 	KeyCode[] _prisonerKeyCodes;
 
+	[SerializeField] bool _backDown = false;
+
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _bedRenderer;
 	[SerializeField] Renderer _bombRenderer;
@@ -106,7 +108,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
 		}
-		else if (other.name == "Bed" && _guardLeftCell) {
+		else if (other.name == "Bed" && _guardLeftCell || (other.name == "Bed" && _backDown)) {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			//_highlightsFX.objectRenderer = _bedRenderer;
 			//_highlightsFX.enabled = true;
@@ -138,7 +140,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			}
 		}
 
-		if (other.name == "Bed" && _guardLeftCell) {
+		if (other.name == "Bed" && _guardLeftCell || (other.name == "Bed" && _backDown)) {
 			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				Debug.Log ("Prisoner going to bed");
 				Events.G.Raise (new SleepInCellEvent ());

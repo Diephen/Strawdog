@@ -5,6 +5,27 @@ using Giverspace;
 
 public class SceneManagerScript : MonoBehaviour {
 
+	enum SceneIndex {
+		TriggerWarning = 0, 
+		Act0 = 1, 
+		Act1 = 2,
+		Title = 3,
+		Act2 = 4,
+		Act2_PDown = 5,
+		Act2_Explore = 6,
+		Act2_GDown = 7,
+		Act2_Patrol = 8,
+		Act3_No = 9,
+		Act3_Yes = 10,
+		Act3_Plant_Cell = 11,
+		Act3_Plant = 12,
+		Act3_Plant_Bomb = 13,
+		Act3_Plant_Done = 14,
+		Act4_1 = 15,
+		Act4_2 = 16,
+		Act4_3_Encounter = 17
+	};
+
 	FrameScript _frameScript;
 	bool _start = false;
 	bool _once = false;
@@ -32,8 +53,10 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
 		Events.G.AddListener<Act2_PrisonerWalkedDownStairsEvent>(LoadAct2Explore_down);
 		Events.G.AddListener<Act2_GuardWalkedUpStairsEvent>(LoadAct2Patrol);
+		Events.G.AddListener<Act2_GuardWalkedDownStairsEvent>(LoadAct2Patrol_down);
 
 		Events.G.AddListener<SleepInCellEvent>(LoadAct3_No);
+		Events.G.AddListener<GuardSleepEvent>(LoadGuardSleep);
 		Events.G.AddListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
 		Events.G.AddListener<GuardFoundBombEvent>(LoadAct3_Plant);
 		Events.G.AddListener<CaughtSneakingEvent>(LoadCaught);
@@ -65,8 +88,10 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
 		Events.G.RemoveListener<Act2_PrisonerWalkedDownStairsEvent>(LoadAct2Explore_down);
 		Events.G.RemoveListener<Act2_GuardWalkedUpStairsEvent>(LoadAct2Patrol);
+		Events.G.RemoveListener<Act2_GuardWalkedDownStairsEvent>(LoadAct2Patrol_down);
 
 		Events.G.RemoveListener<SleepInCellEvent>(LoadAct3_No);
+		Events.G.RemoveListener<GuardSleepEvent>(LoadGuardSleep);
 		Events.G.RemoveListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
 		Events.G.RemoveListener<GuardFoundBombEvent>(LoadAct3_Plant);
 		Events.G.RemoveListener<CaughtSneakingEvent>(LoadCaught);
@@ -88,69 +113,77 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 	void LoadAct0(TriggerWarningEndEvent e){
-		print ("Load Act 0");
-		StartCoroutine(ChangeFade(1, 2f));
+		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 2f));
 	}
 
 	void LoadVertical(Act0EndedEvent e){
 		Log.Metrics.Message("End Act 0");
-		StartCoroutine(ChangeLevel(2, 1.7f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act1, 1.7f));
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Leave");
-		StartCoroutine(ChangeLevel(4, 1.5f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Drown");
-		StartCoroutine(ChangeLevel(4, 4f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
 	}
 
 		
 	void LoadAct2(TitleEndedEvent e){
-		StartCoroutine(ChangeLevel(4, 0.5f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2, 0.5f));
 	}
 
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(3, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Explore, 2f));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){
-		StartCoroutine(ChangeLevel(4, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_PDown, 2f));
 	}
 
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(3, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f));
+	}
+
+	void LoadAct2Patrol_down(Act2_GuardWalkedDownStairsEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_GDown, 2f));
 	}
 
 	void LoadAct3_No(SleepInCellEvent e){
 		Log.Metrics.Message("CHOICE 3: Bed");
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel(3, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
 	}
+
+	void LoadGuardSleep(GuardSleepEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
+	}
+
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
-		StartCoroutine(ChangeLevel(7, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
-		StartCoroutine(ChangeLevel(6, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell, 3f));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
 
 
 	void LoadExecution(TriggerExecutionEvent e){
-		StartCoroutine(ChangeLevel(8, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f));
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
-		StartCoroutine(ChangeLevel(8, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2, 1f));
 	}
 	void LoadPlantBomb(TriggerPlantBombEvent e){
 		StartCoroutine(ChangeLevel(8, 1f));
@@ -166,7 +199,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
-		StartCoroutine(ChangeLevel(8, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Bomb, 1f));
 	}
 
 

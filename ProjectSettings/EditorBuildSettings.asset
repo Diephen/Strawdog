@@ -5,39 +5,39 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Scene/vs1-2.unity
-  - enabled: 0
-    path: Assets/_Scene/vs1-4.unity
-  - enabled: 0
-    path: Assets/_Scene/testweek6-yiwen.unity
   - enabled: 1
-    path: Assets/_Scene/TriggerWarning.unity
+    path: Assets/_Scene/Levels/TriggerWarning.unity
   - enabled: 1
-    path: Assets/_Scene/Levels/Level0.unity
+    path: Assets/_Scene/Levels/Act0.unity
   - enabled: 1
-    path: Assets/_Scene/Levels/vs3.unity
+    path: Assets/_Scene/Levels/Act1.unity
   - enabled: 1
     path: Assets/_Scene/Levels/Title.unity
   - enabled: 1
     path: Assets/_Scene/Levels/Act2.unity
   - enabled: 1
+    path: Assets/_Scene/Levels/Act2_PDown.unity
+  - enabled: 1
     path: Assets/_Scene/Levels/Act2_Explore.unity
-  - enabled: 0
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act2_GDown.unity
+  - enabled: 1
     path: Assets/_Scene/Levels/Act2_Patrol.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scene/Levels/Act3_No.unity
-  - enabled: 0
-    path: Assets/_Scene/Levels/Act3_Plant.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scene/Levels/Act3_Yes.unity
-  - enabled: 0
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act3_Plant_Cell.unity
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act3_Plant.unity
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act3_Plant_Bomb.unity
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act3_Plant-Done.unity
+  - enabled: 1
     path: Assets/_Scene/Levels/Act4-1.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Scene/Levels/Act4-2.unity
-  - enabled: 0
-    path: Assets/_Scene/Levels/Act4-3.unity
-  - enabled: 0
-    path: Assets/_Scene/Levels/Act4-Encounter.unity
-  - enabled: 0
-    path: Assets/OutlineTest/highlightScene.unity
+  - enabled: 1
+    path: Assets/_Scene/Levels/Act4-3-Encounter.unity

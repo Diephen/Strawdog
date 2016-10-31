@@ -9,6 +9,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	bool _isStairs = false;
 	bool _isDoor = false;
+	bool _isSleep = false;
+	bool _isBomb = false;
+	bool _isBombArea = false;
 
 	[SerializeField] float _stairStartPosition = 28f;
 	bool _goToStart = false;
@@ -28,7 +31,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
-	[SerializeField] Renderer _bombRenderer;
 	[SerializeField] Renderer _secretDoorRenderer;
 
 	[SerializeField] GameObject _bomb;
@@ -52,7 +54,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		if (_isGuardTop) {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
-			_bombRenderer = _bomb.GetComponent<Renderer> ();
 		}
 	}
 
@@ -87,20 +88,32 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_tempPosition.x = Mathf.Lerp (_tempPosition.x, _stairStartPosition, _stairStartTimer.PercentTimePassed);
 			_guard.transform.position = _tempPosition;
 			if (_stairStartTimer.IsOffCooldown) {
+				SoldierFlip ();
 				_goToStart = false;
 				_climbStair = true;
 			}
 		}
-		else if(_climbStair && !_isGuardTop)
-		{
-			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
+		else if (_climbStair && !_isGuardTop) {
+			_guard.transform.Translate ((Vector3.left + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
+		}
+		else if (_climbStair && _isGuardTop) {
+			_groundCollider1.enabled = false;
+			_groundCollider2.enabled = false;
+			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
+			Events.G.Raise (new Act2_GuardWalkedDownStairsEvent ());
 		}
 
 		if (_isGuardTop) {
 			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {
 				Events.G.Raise (new CallSecretDoorEvent ());
-				//_highlightsFX.enabled = false;
+			}
+			if (_isSleep && Input.GetKeyDown (_guardKeyCodes [3])) {
+				Events.G.Raise (new GuardSleepEvent ());
+			}
+			if (_isBomb && Input.GetKeyDown (_guardKeyCodes [3])) {
+				_bomb.SetActive (false);
+				Events.G.Raise (new GuardFoundBombEvent ());
 			}
 		}
 	}
@@ -108,57 +121,62 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Stairs") {
 			_isStairs = true;
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
-		} else if (other.tag == "SecretDoor") {
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+		}
+		else if (other.tag == "SecretDoor") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_secretDoor = true;
-		} else if (other.name == "LockCell") {
+		}
+		else if (other.name == "LockCell") {
 			//_highlightsFX.objectRenderer = _doorRenderer;
 			//_highlightsFX.enabled = true;
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isDoor = true;
-		} else if (other.name == "Bomb") {
-			//_highlightsFX.objectRenderer = _bombRenderer;
-			//_highlightsFX.enabled = true;
-		} else if (other.name == "open-right") {
+		}
+		else if (other.name == "Bomb") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+			_isBomb = true;
+		}
+		else if (other.name == "open-right") {
 			if (!_isDoor) {
-				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 				//_highlightsFX.objectRenderer = _rightFlap;
 				//_highlightsFX.enabled = true;
 			}
 			_isOnFlap = true;
 		}
 		else if (other.name == "open-left") {
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			//_highlightsFX.objectRenderer = _leftFlap;
 			//_highlightsFX.enabled = true;
 			_isOnFlap = true;
 		}
+		else if (other.name == "sh-front_0") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+			_isSleep = true;
+		}
+		else if (other.name == "BombArea") {
+			_isBombArea = true;
+		}
 	}
 
-	void OnTriggerStay2D(Collider2D other){
-		if (other.name == "Bomb") {
-			if (Input.GetKeyDown (_guardKeyCodes [3])) {
-				//_highlightsFX.enabled = false;
-				_bomb.SetActive (false);
-				Events.G.Raise (new GuardFoundBombEvent ());
-			}
-		}
-		if (other.name == "BombArea") {
-			if(Input.GetKeyDown (_guardKeyCodes[2])){
-				_waveCnt++;
-				if (_waveCnt == 3) {
-					_bombScript.ThrowBomb ();
-				}
-			}
-		}
-	}
+//	void OnTriggerStay2D(Collider2D other){
+//		if (other.name == "BombArea") {
+//			if(Input.GetKeyDown (_guardKeyCodes[2])){
+//				_waveCnt++;
+//				if (_waveCnt == 3) {
+//					_bombScript.ThrowBomb ();
+//				}
+//			}
+//		}
+//	}
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "BombArea") {
 			_waveCnt = 0;
+			_isBombArea = false;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
 			//_highlightsFX.enabled = false;
@@ -182,6 +200,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			}
 			_isDoor = false;
 		} else if (other.name == "Bomb") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			_isBomb = false;
 			//_highlightsFX.enabled = false;
 		} else if (other.name == "open-right") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -201,6 +221,24 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
+		} else if (other.name == "sh-front_0") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			_isSleep = false;
 		}
+	}
+
+	void SoldierFlip(){
+		Vector3 _temp = _guard.transform.localPosition;
+		if (_guard.transform.localScale.x >= 0) {
+			_temp.x += 2.1f;
+		}
+		else {
+			_temp.x -= 2.1f;
+		}
+		_guard.transform.localPosition = _temp;
+		_temp = _guard.transform.localScale;
+		_temp.x = _temp.x * -1.0f;
+		_guard.transform.localScale = _temp;
+
 	}
 }

@@ -55,6 +55,9 @@ public class PrisonerFoundBombEvent : GameEvent {
 public class GuardFoundBombEvent : GameEvent {
 }
 
+public class GuardSleepEvent : GameEvent {
+}
+
 public class CaughtSneakingEvent : GameEvent {
 }
 
@@ -65,6 +68,9 @@ public class PrisonerStairsStartEvent : GameEvent {
 }
 
 public class Act2_GuardWalkedUpStairsEvent : GameEvent {
+}
+
+public class Act2_GuardWalkedDownStairsEvent : GameEvent {
 }
 
 public class Act2_PrisonerWalkedUpStairsEvent : GameEvent {
