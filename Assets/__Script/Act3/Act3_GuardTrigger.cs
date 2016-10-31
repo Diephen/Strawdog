@@ -120,14 +120,9 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			StartCoroutine (ScreenFadeOut ());
 
 
-//			_guardState = guardState.LeftUnlocked;
-//			Events.G.Raise (new LeftCellUnlockedEvent());
-//			_guard.SetActive (false);
 		}else if (other.name == "EnterFoodStorage") {
 			_foodStorage = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-			Debug.Log ("Found");
-//			Events.G.Raise (new Plant_EnterFoodStorageEvent());
 		} 
 		else if (other.name == "LeaveFoodStorage" && _bombPlanted) {
 			_tempColor = _foodStorageWall.material.color;
@@ -136,17 +131,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			_guardPuppetController.DisableContinuousWalk ();
 			Events.G.Raise (new Guard_EncounterEvent());
 		} 
-//
-//		if (other.tag == "Stairs") {
-//			Debug.Log ("But Does this Fire?");
-//			_isStairs = true;
-//			_stairTempPosition = _guard.transform.position.y;
-//			_guardPuppetController.SetIsStairs (_isStairs);
-//		}
-		//		if (other.name == "EngagePrisoner") {
-		//			_guardState = guardState.EngagedPrisoner;
-		//			Events.G.Raise(new GuardEngaginPrisonerEvent(true));
-		//		}
 	}
 	IEnumerator ScreenFadeOut(){
 		float startTime = Time.time;

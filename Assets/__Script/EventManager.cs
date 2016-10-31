@@ -149,6 +149,8 @@ public class Plant_DownStairsEvent : GameEvent {
 
 public class Plant_EnterFoodStorageEvent : GameEvent {
 }
+public class Plant_LeaveFoodStorageEvent : GameEvent {
+}
 
 
 public class Guard_EncounterEvent : GameEvent {

@@ -75,6 +75,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Plant_UpStairsEvent>(LoadPlantUp);
 		Events.G.AddListener<Plant_DownStairsEvent>(LoadPlantDown);
 		Events.G.AddListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
+		Events.G.AddListener<Plant_LeaveFoodStorageEvent>(LoadLeaveFoodStorage);
 
 		Events.G.AddListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.AddListener<Guard_EncounterEvent>(LoadEncounter2);
@@ -117,6 +118,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Plant_UpStairsEvent>(LoadPlantUp);
 		Events.G.RemoveListener<Plant_DownStairsEvent>(LoadPlantDown);
 		Events.G.RemoveListener<Plant_EnterFoodStorageEvent>(LoadFoodStorage_Guard);
+		Events.G.RemoveListener<Plant_LeaveFoodStorageEvent>(LoadLeaveFoodStorage);
 
 		Events.G.RemoveListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.RemoveListener<Guard_EncounterEvent>(LoadEncounter2);
@@ -229,6 +231,10 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Bomb, 1f));
+	}
+
+	void LoadLeaveFoodStorage(Plant_LeaveFoodStorageEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Done, 1f));
 	}
 
 	void LoadEncounter1(Prisoner_EncounterEvent e){
