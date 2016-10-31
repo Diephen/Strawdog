@@ -6390,6 +6390,7 @@ GameObject:
   - 124: {fileID: 544408507}
   - 81: {fileID: 544408506}
   - 114: {fileID: 544408511}
+  - 114: {fileID: 544408512}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6486,6 +6487,18 @@ MonoBehaviour:
   _leftCameraPos: 2
   _rightCameraPos: -2
   ActNumber: 0
+--- !u!114 &544408512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 544408505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93c260e114f8454481ce77071441535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wantedAspectRatio: 1.777778
 --- !u!1 &549116385
 GameObject:
   m_ObjectHideFlags: 0
@@ -11453,6 +11466,16 @@ Prefab:
         type: 2}
       propertyPath: m_Size.x
       value: 7.1653976
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[1]
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[3]
+      value: 107
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013735076058, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
