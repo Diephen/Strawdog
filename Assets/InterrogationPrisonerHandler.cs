@@ -4,7 +4,7 @@ using System.Collections;
 public class InterrogationPrisonerHandler : MonoBehaviour {
 	// no animation injection for this one -- use puppet control 
 	[SerializeField] Animator m_Anim;
-	[SerializeField] GuardHandle m_GuardHandle;
+	//[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] NoteSymbol[] m_Notes;            // the content of the note
@@ -15,6 +15,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 
 	int m_UnClockSymbolCount = -1;
 	bool m_IsHoldDown = false;
+	bool m_IsBombFound = false;
 
 	// note reading 
 	bool m_IsReadingNote = false;
@@ -35,28 +36,31 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.LeftShift)) {
-			if (!m_IsReadingNote && !m_IsHoldDown) {
-				m_IsReadingNote = true;
-				NoteReading ();
+		if (!m_IsBombFound) {
+			if (Input.GetKeyDown (KeyCode.LeftShift)) {
+				if (!m_IsReadingNote && !m_IsHoldDown) {
+					m_IsReadingNote = true;
+					NoteReading ();
+				}
+			}
+
+			if (Input.GetKeyUp (KeyCode.LeftShift)) {
+				if (m_IsReadingNote && !m_IsHoldDown) {
+					m_IsReadingNote = false;
+					StopReading ();
+				}
+			}
+
+			if (!m_IsHoldDown && m_IsReadingNote) {
+				CheckNotes ();
+			} else {
+				m_HiNote.DisableFlicker ();
 			}
 		}
+	}
 
-		if (Input.GetKeyUp (KeyCode.LeftShift)) {
-			if (m_IsReadingNote && !m_IsHoldDown) {
-				m_IsReadingNote = false;
-				StopReading ();
-			}
-		}
-
-		if (!m_IsHoldDown && m_IsReadingNote) {
-			CheckNotes ();
-		} else {
-			m_HiNote.DisableFlicker ();
-		}
-
-
-	
+	public void SetBombState(bool isfound){
+		m_IsBombFound = isfound;
 	}
 
 	public void ForceToRead(){
