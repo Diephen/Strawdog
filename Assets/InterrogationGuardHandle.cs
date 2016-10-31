@@ -104,15 +104,15 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_IPHandle.BackToIdle ();
 			break;
 		case IG_GuardState.EndKickAfterIdle:
-			m_CurWaitTime = 3f;
+			m_CurWaitTime = 1.5f;
 			m_StartTime = Time.time;
-			m_Anim.Play ("IG-Kick");
-			m_IPHandle.EndScene ();
+			m_Anim.Play ("IG-WalkToKick");
+			//m_IPHandle.EndScene ();
 			break;
 		case IG_GuardState.EndKickAfterPush:
-			m_CurWaitTime = 3f;
+			m_CurWaitTime = 2f;
 			m_StartTime = Time.time;
-			m_Anim.Play ("IG-BackToIdle");
+			m_Anim.Play ("IG-Kick");
 			m_IPHandle.EndScene ();
 			break;
 		}
@@ -123,15 +123,20 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		case IG_GuardState.Idle:
 			if (!CheckStateEnd()) {
 				print ("Idle");
-				EndSequence ();
+
 			} else {
-				m_GS = IG_GuardState.Question;
-				ChangeState ();
+				if (!m_IsEnd) {
+					m_GS = IG_GuardState.Question;
+					ChangeState ();
+				} else {
+					EndSequence ();
+				}
+
 			}
 			break;
 		case IG_GuardState.Question:
 			if (!CheckStateEnd ()) {
-				if (m_IsAnswer) {
+				if (m_IsAnswer && !m_IsEnd) {
 					m_GS = IG_GuardState.WalkToRight;
 					ChangeState ();
 					m_IsAnswer = false;
@@ -139,10 +144,13 @@ public class InterrogationGuardHandle : MonoBehaviour {
 					// question idling
 					print("Question Idle");
 				}
-				EndSequence ();
 			} else {
-				m_GS = IG_GuardState.PushQuestion;
-				ChangeState ();
+				if (!m_IsEnd) {
+					m_GS = IG_GuardState.PushQuestion;
+					ChangeState ();
+				} else {
+					EndSequence ();
+				}
 			}
 			break;
 		case IG_GuardState.WalkToRight:
@@ -150,38 +158,51 @@ public class InterrogationGuardHandle : MonoBehaviour {
 				CheckWalkPos ();
 			} else {
 				m_IsWalk = false;
-				m_GS = IG_GuardState.Idle;
-				ChangeState ();
+				if (!m_IsEnd) {
+					m_GS = IG_GuardState.Idle;
+					ChangeState ();
+				} else {
+					EndSequence ();
+				}
+
 			}
 			break;
 		case IG_GuardState.PushQuestion:
-			if (m_IsAnswer) {
-				m_GS = IG_GuardState.BackToIdle;
-				ChangeState ();
-				m_IsAnswer = false;
+			if (!m_IsEnd) {
+				if (m_IsAnswer) {
+					m_GS = IG_GuardState.BackToIdle;
+					ChangeState ();
+					m_IsAnswer = false;
+				} else {
+					// question idling
+					print ("Pushing Question Idle");
+				}
 			} else {
-				// question idling
-				print("Pushing Question Idle");
+				EndSequence ();
 			}
+
 			break;
 		case IG_GuardState.BackToIdle:
 			if (CheckStateEnd ()) {
-				m_GS = IG_GuardState.Idle;
-				ChangeState ();
+				if (!m_IsEnd) {
+					m_GS = IG_GuardState.Idle;
+					ChangeState ();
+				} else {
+					EndSequence ();
+				}
 			}
 			break;
 		case IG_GuardState.EndKickAfterIdle:
-			//m_CurWaitTime = 3f;
-			//m_StartTime = Time.time;
 			if (CheckStateEnd ()) {
 				// goes to the end 
-				m_ItrSceneManager.NextScene();
+				m_GS = IG_GuardState.EndKickAfterPush;
+				ChangeState ();
 			}
 			break;
 		case IG_GuardState.EndKickAfterPush:
 			if (CheckStateEnd ()) {
-				m_GS = IG_GuardState.EndKickAfterIdle;
-				ChangeState ();
+				//m_GS = IG_GuardState.EndKickAfterIdle;
+				m_ItrSceneManager.NextScene();
 			}
 			break;
 		}
@@ -197,6 +218,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	// checkeck which state to go to after the sequence ends 
 	void EndSequence(){
 		if (m_IsEnd) {
+			print ("Check ending");
 			if (m_GS == IG_GuardState.Idle) {
 				m_GS = IG_GuardState.EndKickAfterIdle;
 			}
@@ -212,6 +234,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			if (m_GS == IG_GuardState.BackToIdle) {
 				m_GS = IG_GuardState.EndKickAfterIdle;
 			}
+			ChangeState ();
 		}
 	
 	}

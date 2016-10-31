@@ -75,11 +75,14 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	}
 
 	public void EndScene(){
-		m_Anim.Play ("IP-BackToIdle");
+		m_AnimCtrl.SetAnimation (true);
+		//		if(m_Anim.isActiveAndEnabled){
+		m_Anim.Play ("IP-Fall");
+		//		}
 		m_IsReadingNote = false;
 		m_IsHoldDown = false;
+		m_HiNote.DisableHighlight();
 		StopReading ();
-		m_HiNote.DisableHighlight ();
 	}
 		
 	void NoteReading(){

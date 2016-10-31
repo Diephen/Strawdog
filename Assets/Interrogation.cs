@@ -19,7 +19,7 @@ public class Interrogation : MonoBehaviour {
 		//print (_interrogationTimer.TimeLeft);
 		if (_interrogationTimer.IsOffCooldown) {
 			// call last animation 
-
+			m_IG.EndInterrogation();
 			
 		} else {
 			ClockTick ();
