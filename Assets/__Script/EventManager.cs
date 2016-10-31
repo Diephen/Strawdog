@@ -52,6 +52,9 @@ public class SleepInCellEvent : GameEvent {
 public class PrisonerFoundBombEvent : GameEvent {
 }
 
+public class PrisonerWentBack : GameEvent {
+}
+
 public class GuardFoundBombEvent : GameEvent {
 }
 
@@ -270,6 +273,9 @@ public class IsWalkingEvent : GameEvent {
 		IsWalking = isWalking;
 		IsLeft = isLeft;
 	}
+}
+
+public class StaticCamera: GameEvent {
 }
 
 public class EventManager : MonoBehaviour {

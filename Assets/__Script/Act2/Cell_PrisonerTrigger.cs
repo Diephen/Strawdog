@@ -12,12 +12,15 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _bedRenderer;
-	[SerializeField] Renderer _bombRenderer;
 	[SerializeField] Renderer _secretDoorRenderer;
 
 	int _waveCnt = 0;
 
 	bool _isStairs = false;
+	bool _isBombArea = false;
+	bool _isBomb = false;
+	bool _isBed = false;
+	bool _isOnFlap = false;
 	[SerializeField] float _stairStartPosition = 28.6f;
 
 
@@ -34,12 +37,13 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	Vector3 _tempPosition;
 
 	Camera _mainCam;
-	//HighlightsFX _highlightsFX;
 	[SerializeField] GameObject _bomb;
 	Bomb _bombScript;
 
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
+
+	[SerializeField] GameObject _leftFlap;
 
 	void Start(){
 		gameObject.tag = "Prisoner";
@@ -47,11 +51,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		_prisonerKeyCodes = _prisonerPuppetController.GetKeyCodes ();
 		_stairStartTimer = new Timer (1f);
 		_mainCam = Camera.main;
-		//_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
 		if (_isPrisonerTop) {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
-			_bombRenderer = _bomb.GetComponent<Renderer> ();
 		}
 	}
 
@@ -60,7 +62,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (Input.GetKeyDown (_prisonerKeyCodes [3]) && _isStairs) {
 			_goToStart = true;
 			_isStairs = false;
-			//_highlightsFX.enabled = false;
 			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_prisonerPuppetController.DisableKeyInput ();
 			_tempPosition = _prisoner.transform.position;
@@ -89,7 +90,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 		if (_secretDoor && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 			Events.G.Raise (new CallSecretDoorEvent ());
-			//_highlightsFX.enabled = false;
 		}
 
 		//Checking if prisoner should be detectable or not
@@ -99,27 +99,91 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		else if (!_isHidden && gameObject.tag == "Untagged") {
 			gameObject.tag = "Prisoner";
 		}
+
+		if (_isBed && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+			Events.G.Raise (new SleepInCellEvent ());
+		}
+
+		if (_isPrisonerTop) {
+			if (_isBomb && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+				_bomb.SetActive (false);
+				Events.G.Raise (new PrisonerFoundBombEvent ());
+			} else if (_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+				Events.G.Raise (new PrisonerWentBack ());
+				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				_isOnFlap = false;
+			}
+
+			if (_isBombArea) {
+				Debug.Log (_waveCnt);
+				if (_waveCnt == 0) {
+					if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
+						_waveCnt = 1;
+					}
+					else if (
+						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [3])) {
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 1) {
+					if (Input.GetKeyDown (_prisonerKeyCodes [1])) {
+						_waveCnt = 2;
+					}
+					else if (
+						Input.GetKeyDown (_prisonerKeyCodes [0]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [3])) {
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 2) {
+					if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
+						_waveCnt = 3;
+					}
+					else if (
+						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [3])) {
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 3) {
+					if (Input.GetKeyDown (_prisonerKeyCodes [0])) {
+						_waveCnt = 4;
+						_bombScript.ThrowBomb ();
+					}
+					else if (
+						Input.GetKeyDown (_prisonerKeyCodes [0]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
+						Input.GetKeyDown (_prisonerKeyCodes [3])) {
+						_waveCnt = 0;
+					}
+				}
+			}
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-			//_highlightsFX.objectRenderer = _stairRenderer;
-			//_highlightsFX.enabled = true;
 		}
 		else if (other.name == "Bed" && _guardLeftCell || (other.name == "Bed" && _backDown)) {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-			//_highlightsFX.objectRenderer = _bedRenderer;
-			//_highlightsFX.enabled = true;
+			_isBed = true;
 		}
 		else if (other.name == "Bomb") {
-			//_highlightsFX.objectRenderer = _bombRenderer;
-			//_highlightsFX.enabled = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			_isBomb = true;
 		}
 
 		if (_isPrisonerTop) {
-			if (other.tag == "StandHide") {
+			if (other.name == "BombArea") {
+				_isBombArea = true;
+			} 
+			else if (other.tag == "StandHide") {
 				_isHidden = true;
 				Events.G.Raise (new PrisonerHideEvent (_isHidden));
 				Debug.Log ("[Hide] stand hide");
@@ -127,8 +191,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			else if (other.tag == "SecretDoor") {
 				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 				_secretDoor = true;
-				//_highlightsFX.objectRenderer = _secretDoorRenderer;
-				//_highlightsFX.enabled = true;
+			} else if (other.name == "open-left") {
+				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+				_isOnFlap = true;
 			}
 		}
 	}
@@ -139,43 +204,22 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				_crouchHideReady = true;
 			}
 		}
-
-		if (other.name == "Bed" && _guardLeftCell || (other.name == "Bed" && _backDown)) {
-			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
-				Debug.Log ("Prisoner going to bed");
-				Events.G.Raise (new SleepInCellEvent ());
-			}
-		}
-		else if (other.name == "Bomb") {
-			if (Input.GetKeyDown (_prisonerKeyCodes [3])) {
-				//_highlightsFX.enabled = false;
-				_bomb.SetActive (false);
-				Events.G.Raise (new PrisonerFoundBombEvent ());
-			}
-		}
-		if (other.name == "BombArea") {
-			if(Input.GetKeyDown (_prisonerKeyCodes[2])){
-				_waveCnt++;
-				if (_waveCnt == 3) {
-					_bombScript.ThrowBomb ();
-				}
-			}
-		}
 	}
 
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "BombArea") {
+			_isBombArea = false;
 			_waveCnt = 0;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
-			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		} else if (other.name == "Bed") {
-			//_highlightsFX.enabled = false;
+			_isBed = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		} else if (other.name == "Bomb") {
-			//_highlightsFX.enabled = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			_isBomb = false;
 		}
 
 		if (_isPrisonerTop) {
@@ -189,7 +233,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			else if (other.tag == "SecretDoor") {
 				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_secretDoor = false;
-				//_highlightsFX.enabled = false;
+			} else if (other.name == "open-left") {
+				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+				_isOnFlap = false;
 			}
 		}
 	}

@@ -84,6 +84,8 @@ public class FollowCam : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Events.G.AddListener<StaticCamera>(StaticCam);
+
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<Guard_EncounterEvent>(GuardEncounter);
@@ -97,6 +99,8 @@ public class FollowCam : MonoBehaviour {
 
 	void OnDisable ()
 	{
+		Events.G.RemoveListener<StaticCamera>(StaticCam);
+
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<Guard_EncounterEvent>(GuardEncounter);
@@ -105,6 +109,10 @@ public class FollowCam : MonoBehaviour {
 		Events.G.RemoveListener<LockCellEvent>(CloseDoor);
 		Events.G.RemoveListener<TransitionSecretDoorEvent>(TransitionSecret);
 		Events.G.RemoveListener<ShootSwitchEvent>(ShootSwitch);
+	}
+
+	void StaticCam(StaticCamera e){
+		_cameraToggle = cameraPos.Static;
 	}
 
 	void TransitionSecret(TransitionSecretDoorEvent e){

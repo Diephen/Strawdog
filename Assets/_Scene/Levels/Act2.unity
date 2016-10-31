@@ -7379,6 +7379,16 @@ Prefab:
       propertyPath: _stairStartPosition
       value: 35.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[3]
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[1]
+      value: 119
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
@@ -7546,12 +7556,22 @@ Prefab:
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[0]
-      value: 108
+      value: 106
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[2]
-      value: 106
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[3]
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[1]
+      value: 105
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
@@ -10076,7 +10096,6 @@ MonoBehaviour:
   _backDown: 0
   _stairRenderer: {fileID: 1384982690}
   _bedRenderer: {fileID: 1537473836}
-  _bombRenderer: {fileID: 0}
   _secretDoorRenderer: {fileID: 0}
   _stairStartPosition: 28.6
   _bomb: {fileID: 0}
@@ -19171,7 +19190,6 @@ MonoBehaviour:
   _stairStartPosition: 28.6
   _stairRenderer: {fileID: 1384982690}
   _doorRenderer: {fileID: 1059143570}
-  _bombRenderer: {fileID: 0}
   _secretDoorRenderer: {fileID: 0}
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}

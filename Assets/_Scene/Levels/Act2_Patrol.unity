@@ -218,7 +218,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 342.5
+      value: 94.01
       objectReference: {fileID: 0}
     - target: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_LocalPosition.y
@@ -338,6 +338,36 @@ Prefab:
     - target: {fileID: 1000012783869652, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_TagString
       value: Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014294529408, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 98.96141
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014294529408, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 4.1971455
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014099036230, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 102.3914
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014099036230, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 5.1571455
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000011641026702, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: 99.9814
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000011641026702, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 7.107146
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236, type: 2}

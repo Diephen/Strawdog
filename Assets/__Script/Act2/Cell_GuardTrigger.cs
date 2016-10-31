@@ -19,15 +19,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _climbStair = false;
 	bool _secretDoor = false;
 	Vector3 _tempPosition;
-
-
 	int _waveCnt = 0;
 
 	bool _locked = true;
 
 
 	Camera _mainCam;
-	//HighlightsFX _highlightsFX;
 
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
@@ -50,7 +47,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
 		_stairStartTimer = new Timer (1f);
 		_mainCam = Camera.main;
-		//_highlightsFX = _mainCam.GetComponent <HighlightsFX> ();
 		if (_isGuardTop) {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
@@ -62,7 +58,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			if (_isStairs) {
 				_goToStart = true;
 				_isStairs = false;
-				//_highlightsFX.enabled = false;
 				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_guardPuppetController.DisableKeyInput ();
 				_tempPosition = _guard.transform.position;
@@ -76,7 +71,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			else if (_isOnFlap) {
 				Events.G.Raise (new LeftCellUnlockedEvent ());
 				_guard.SetActive (false);
-				//_highlightsFX.enabled = false;
 				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_isOnFlap = false;
@@ -108,12 +102,61 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {
 				Events.G.Raise (new CallSecretDoorEvent ());
 			}
-			if (_isSleep && Input.GetKeyDown (_guardKeyCodes [3])) {
+			else if (_isSleep && Input.GetKeyDown (_guardKeyCodes [3])) {
 				Events.G.Raise (new GuardSleepEvent ());
 			}
-			if (_isBomb && Input.GetKeyDown (_guardKeyCodes [3])) {
+			else if (_isBomb && Input.GetKeyDown (_guardKeyCodes [3])) {
 				_bomb.SetActive (false);
 				Events.G.Raise (new GuardFoundBombEvent ());
+			}
+
+			if (_isBombArea) {
+				if (_waveCnt == 0) {
+					if (Input.GetKeyDown (_guardKeyCodes [0])) {
+						_waveCnt = 1;
+					}
+					else if(
+						Input.GetKeyDown(_guardKeyCodes[1]) || 
+						Input.GetKeyDown(_guardKeyCodes[2]) || 
+						Input.GetKeyDown(_guardKeyCodes[3])) 
+					{
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 1) {
+					if (Input.GetKeyDown (_guardKeyCodes [1])) {
+						_waveCnt = 2;
+					}
+					else if(
+						Input.GetKeyDown(_guardKeyCodes[0]) || 
+						Input.GetKeyDown(_guardKeyCodes[2]) || 
+						Input.GetKeyDown(_guardKeyCodes[3])){
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 2) {
+					if (Input.GetKeyDown (_guardKeyCodes [0])) {
+						_waveCnt = 3;
+					}
+					else if(
+						Input.GetKeyDown(_guardKeyCodes[1]) || 
+						Input.GetKeyDown(_guardKeyCodes[2]) || 
+						Input.GetKeyDown(_guardKeyCodes[3])) {
+						_waveCnt = 0;
+					}
+				}
+				else if (_waveCnt == 3) {
+					if (Input.GetKeyDown (_guardKeyCodes [2])) {
+						_waveCnt = 4;
+						_bombScript.ThrowBomb ();
+					}
+					else if(
+						Input.GetKeyDown(_guardKeyCodes[0]) || 
+						Input.GetKeyDown(_guardKeyCodes[1]) || 
+						Input.GetKeyDown(_guardKeyCodes[3])) {
+						_waveCnt = 0;
+					}
+				}
 			}
 		}
 	}
@@ -122,16 +165,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-			//_highlightsFX.objectRenderer = _stairRenderer;
-			//_highlightsFX.enabled = true;
 		}
 		else if (other.tag == "SecretDoor") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_secretDoor = true;
 		}
 		else if (other.name == "LockCell") {
-			//_highlightsFX.objectRenderer = _doorRenderer;
-			//_highlightsFX.enabled = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isDoor = true;
 		}
@@ -142,15 +181,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		else if (other.name == "open-right") {
 			if (!_isDoor) {
 				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-				//_highlightsFX.objectRenderer = _rightFlap;
-				//_highlightsFX.enabled = true;
 			}
 			_isOnFlap = true;
 		}
 		else if (other.name == "open-left") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-			//_highlightsFX.objectRenderer = _leftFlap;
-			//_highlightsFX.enabled = true;
 			_isOnFlap = true;
 		}
 		else if (other.name == "sh-front_0") {
@@ -162,24 +197,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		}
 	}
 
-//	void OnTriggerStay2D(Collider2D other){
-//		if (other.name == "BombArea") {
-//			if(Input.GetKeyDown (_guardKeyCodes[2])){
-//				_waveCnt++;
-//				if (_waveCnt == 3) {
-//					_bombScript.ThrowBomb ();
-//				}
-//			}
-//		}
-//	}
-
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "BombArea") {
 			_waveCnt = 0;
 			_isBombArea = false;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
-			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		} 
 		else if (other.tag == "SecretDoor") {
@@ -189,12 +212,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		else if (other.name == "LockCell") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			if (_isOnFlap) {
-				//_highlightsFX.objectRenderer = _rightFlap;
 				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			}
 			else {
-				//_highlightsFX.enabled = false;
 				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 
 			}
@@ -202,23 +222,18 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		} else if (other.name == "Bomb") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 			_isBomb = false;
-			//_highlightsFX.enabled = false;
 		} else if (other.name == "open-right") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 			if (_isDoor) {
 				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-				//_highlightsFX.objectRenderer = _doorRenderer;
 			}
 			else {
-				//_highlightsFX.enabled = false;
 				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				//_isOnFlap = false;
 			}
 		}
 		else if (other.name == "open-left") {
-			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 		} else if (other.name == "sh-front_0") {
