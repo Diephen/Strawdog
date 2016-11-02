@@ -20,6 +20,10 @@ public class TutorialTree : MonoBehaviour {
 		if (m_BumpCnt >= 2) {
 			m_DropFlower.GetComponent<HingeJoint2D> ().enabled = false;
 		}
+
+		if (m_DropFlower.transform.position.y <= -15) {
+			Destroy(m_DropFlower);
+		}
 	}
 
 
