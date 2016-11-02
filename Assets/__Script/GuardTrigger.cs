@@ -85,25 +85,23 @@ public class GuardTrigger : MonoBehaviour {
 		if (other.name == "EngagePrisoner") {
 			_guardState = guardState.EngagedPrisoner;
 			Events.G.Raise (new GuardEngaginPrisonerEvent (true));
-		}
-		else if (other.tag == "Stairs") {
+		} else if (other.tag == "Stairs") {
 			_isStairs = true;
 			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
-		}
-		else if (other.name == "open-right") {
+		} else if (other.name == "open-right") {
 			//_highlightsFX.objectRenderer = _rightFlap;
 			//_highlightsFX.enabled = true;
 			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
-		}
-		else if (other.name == "open-left") {
+		} else if (other.name == "open-left") {
 			//_highlightsFX.objectRenderer = _leftFlap;
 			//_highlightsFX.enabled = true;
 			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
 		}
+			
 	}
 
 
