@@ -2,11 +2,12 @@
 using System.Collections;
 
 public class Cell_PrisonerHandle : MonoBehaviour {
-	[SerializeField] Animator m_PrisonerAnim;
+	[SerializeField] Animator m_Anim;
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] LightControl m_LightCtrl;
+	[SerializeField] bool m_IsStartWithAnimation = false;
 
 	[SerializeField] PuppetControl _prisonerPuppetControl;
 
@@ -15,6 +16,15 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	//[SerializeField] Animator m_GuardAnim;
 
 //	private bool m_IsStartTorture = false;
+
+	void Start(){
+		if (m_Anim == null && GetComponent<Animator> ()) {
+			m_Anim = GetComponent<Animator> ();
+		}
+		if(m_IsStartWithAnimation){
+			m_AnimCtrl.SetAnimation(true);
+		}
+	}
  	
 	void OnEnable ()
 	{
@@ -38,10 +48,15 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 //		return m_isUnderTorture;
 //	}
 
+	void EnablePrisonerMovement(){
+		_prisonerPuppetControl.EnableKeyInput ();
+		m_AnimCtrl.SetAnimation (false);
+	}
 
 	void LeftCellUnlocked (LeftCellUnlockedEvent e)
 	{
-		_prisonerPuppetControl.EnableKeyInput ();
+		print ("enable prisoner");
+		m_Anim.Play ("p-jc-GetUp");
 	}
 
 //	void ActivatePrisoner(){

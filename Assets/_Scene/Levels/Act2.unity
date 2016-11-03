@@ -13665,8 +13665,6 @@ MonoBehaviour:
   _stairRenderer: {fileID: 1384982690}
   _bedRenderer: {fileID: 1537473836}
   _secretDoorRenderer: {fileID: 0}
-  m_Anim: {fileID: 0}
-  m_AnimCtrl: {fileID: 0}
   _stairStartPosition: 28.6
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
@@ -20961,11 +20959,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6658c7c8cf1147d7a41c524369ffa6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PrisonerAnim: {fileID: 0}
+  m_Anim: {fileID: 0}
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1250271400}
   m_ItrAudio: {fileID: 1800800385}
   m_LightCtrl: {fileID: 320693799}
+  m_IsStartWithAnimation: 0
   _prisonerPuppetControl: {fileID: 1250271402}
 --- !u!95 &1250271399
 Animator:
@@ -23460,11 +23459,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6658c7c8cf1147d7a41c524369ffa6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PrisonerAnim: {fileID: 0}
+  m_Anim: {fileID: 1370304182}
   m_GuardHandle: {fileID: 0}
   m_AnimCtrl: {fileID: 1370304183}
   m_ItrAudio: {fileID: 0}
   m_LightCtrl: {fileID: 0}
+  m_IsStartWithAnimation: 1
   _prisonerPuppetControl: {fileID: 1370304184}
 --- !u!114 &1370304179
 MonoBehaviour:
@@ -27468,8 +27468,6 @@ MonoBehaviour:
   _stairRenderer: {fileID: 1384982690}
   _bedRenderer: {fileID: 1537473836}
   _secretDoorRenderer: {fileID: 0}
-  m_Anim: {fileID: 1370304182}
-  m_AnimCtrl: {fileID: 1370304183}
   _stairStartPosition: 35.5
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}

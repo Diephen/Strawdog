@@ -14,10 +14,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	[SerializeField] Renderer _bedRenderer;
 	[SerializeField] Renderer _secretDoorRenderer;
 
-	// for animation control 
-	[SerializeField] Animator m_Anim;
-	[SerializeField] AnimationControl m_AnimCtrl;
-
 	int _waveCnt = 0;
 
 	bool _isStairs = false;
@@ -60,8 +56,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_bombScript = _bomb.GetComponent<Bomb> ();
 		}
 
-		// start with aniamtion
-		m_AnimCtrl.SetAnimation(true);
 	}
 
 	void Update(){
@@ -249,9 +243,6 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	void LeftCellUnlocked(LeftCellUnlockedEvent e){
 		_guardLeftCell = true;
-		print ("enable prisoner");
-		m_Anim.Play ("p-jc-GetUp");
-
 	}
 
 	void CrouchHide(CrouchHideEvent e){
