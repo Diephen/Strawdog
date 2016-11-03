@@ -39,7 +39,8 @@ public class AnimationControl : MonoBehaviour {
 			SwitchToRigidBody ();
 		}
 
-		// test 
+		// editior debugging only  
+		#if UNITY_EDITOR
 		if(Input.GetKeyDown(KeyCode.X)){
 			//Debug.Log ("Toggle Animtion and Rigidbody");
 			m_IsAnimating = !m_IsAnimating;
@@ -50,6 +51,8 @@ public class AnimationControl : MonoBehaviour {
 				SwitchToRigidBody ();
 			}
 		}
+		#endif
+
 	}
 
 	void SwitchToAnimation(){
