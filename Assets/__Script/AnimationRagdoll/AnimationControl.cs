@@ -99,5 +99,9 @@ public class AnimationControl : MonoBehaviour {
 		}
 	}
 
+	void DisableAnimation(){
+		SetAnimation (false);
+	}
+
 
 }
