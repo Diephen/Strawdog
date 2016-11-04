@@ -42,6 +42,12 @@ public class SceneManagerScript : MonoBehaviour {
 				Log.Metrics.Message("Start Time");
 			}
 		}
+		if (Input.GetKeyDown (KeyCode.Minus)) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		}
+		if (Input.GetKeyDown (KeyCode.Equals)) {
+			SceneManager.LoadScene (0);
+		}
 	}
 
 	void OnEnable ()
