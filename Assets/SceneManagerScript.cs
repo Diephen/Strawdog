@@ -25,7 +25,8 @@ public class SceneManagerScript : MonoBehaviour {
 		Act3_Plant_Done = 15,
 		Act4_1 = 16,
 		Act4_2 = 17,
-		Act4_3_Encounter = 18
+		Act4_2_Ditch = 18,
+		Act4_3_Encounter = 19
 	};
 
 	FrameScript _frameScript;

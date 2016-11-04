@@ -55,11 +55,11 @@ public class FrameScript : MonoBehaviour {
 			_leftFlap.transform.localPosition = _leftTempPos;
 			_rightFlap.transform.localPosition = _rightTempPos;
 			if (_flapTimer.PercentTimePassed == 1.0f) {
-				_done = true;
-				if (_open) {
-					_bc1.enabled = true;
-					_bc2.enabled = true;
-				}
+					_done = true;
+					if (_open) {
+						_bc1.enabled = true;
+						_bc2.enabled = true;
+					}
 			}
 		}
 
