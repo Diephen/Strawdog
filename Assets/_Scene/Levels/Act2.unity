@@ -10359,7 +10359,8 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[1]
       value: 105
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &519720320 stripped

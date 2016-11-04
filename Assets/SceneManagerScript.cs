@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Giverspace;
+using UnityEditor;
 
 public class SceneManagerScript : MonoBehaviour {
 
@@ -30,6 +31,7 @@ public class SceneManagerScript : MonoBehaviour {
 	FrameScript _frameScript;
 	bool _start = false;
 	bool _once = false;
+	[SerializeField] VoiceOverManager _voManager;
 
 	void Update(){
 		if(_start){
@@ -137,19 +139,19 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadVertical(Act0EndedEvent e){
 		Log.Metrics.Message("End Act 0");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act1, 1.7f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act1, 2f));
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Leave");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4.5f, "VoiceOver/01_NoDrown"));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Drown");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f, "VoiceOver/03_Drown"));
 	}
 
 		
@@ -271,14 +273,19 @@ public class SceneManagerScript : MonoBehaviour {
 
 	}
 
-	IEnumerator ChangeLevel(int index, float duration){
+	IEnumerator ChangeLevel(int index, float duration, string path = null){
 		if (!_once) {
 			_once = true;
 			yield return new WaitForSeconds (duration);
 			if (_frameScript != null) {
 				_frameScript.CloseFlap ();
 			}
-			yield return new WaitForSeconds (1.0f);
+			float waitTime = 1.0f;
+			if (path != null) {
+				yield return new WaitForSeconds (1.0f);
+				waitTime = _voManager.PlayVoiceOver (path);
+			}
+			yield return new WaitForSeconds (waitTime);
 			SceneManager.LoadScene (index);
 		}
 	}

@@ -8,19 +8,33 @@ public class VoiceOverManager : MonoBehaviour {
 	void Start () {
 		_voiceOverSource = gameObject.GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
-	void OnEnable()
-	{
-//		Events.G.AddListener<LightOffEvent> (StopCaught1);
-	}
 
-	void OnDisable ()
-	{
-//		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
+//	void OnEnable()
+//	{
+//		Events.G.AddListener<Act1EndedEvent> (PlayDrown);
+//		Events.G.AddListener<GuardLeavingCellEvent> (PlayLeft);
+//	}
+//
+//	void OnDisable ()
+//	{
+//		Events.G.RemoveListener<Act1EndedEvent>(PlayDrown);
+//		Events.G.RemoveListener<GuardLeavingCellEvent>(PlayLeft);
+//	}
+//
+//	void PlayDrown(Act1EndedEvent e){
+//		_voiceOverSource.clip = Resources.Load<AudioClip>("VoiceOver/03_Drown");
+//		_voiceOverSource.Play ();
+//	}
+//
+//	void PlayLeft(GuardLeavingCellEvent e){
+//		_voiceOverSource.clip = Resources.Load<AudioClip>("VoiceOver/01_NoDrown");
+//		_voiceOverSource.Play ();
+//	}
+
+	public float PlayVoiceOver(string path){
+		_voiceOverSource.clip = Resources.Load<AudioClip>(path);
+		_voiceOverSource.Play ();
+		return _voiceOverSource.clip.length;
 	}
 }
