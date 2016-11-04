@@ -7,6 +7,7 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioSource _audioSource;
 	[SerializeField] AudioSource _soundSource1;
 	[SerializeField] AudioSource _soundSource2;
+	[SerializeField] AudioSource _voiceOverSource;
 	AudioSource _tempAudioSource;
 	float _goalVolume;
 	[SerializeField] AudioClip _lockCell;

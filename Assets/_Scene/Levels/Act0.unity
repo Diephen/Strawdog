@@ -10581,6 +10581,17 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011883309656, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_Text
+      value: "Press the <i><b>'H'</b></i> Key for Controls\n\n     Press <i><b>'Space'</b></i>
+        to Begin"
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012390178748, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c818f12a002284629955913fc144a9ef, type: 2}
   m_IsPrefabParent: 0
