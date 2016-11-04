@@ -57,7 +57,6 @@ public class FrameScript : MonoBehaviour {
 			if (_flapTimer.PercentTimePassed == 1.0f) {
 				_done = true;
 				if (_open) {
-					Events.G.Raise (new EnableMoveEvent ());
 					_bc1.enabled = true;
 					_bc2.enabled = true;
 				}
@@ -93,6 +92,7 @@ public class FrameScript : MonoBehaviour {
 	}
 
 	public void OpenFlap(){
+		Events.G.Raise (new EnableMoveEvent ()); 
 		_flapTimer.Reset ();
 		_open = true;
 		_done = false;

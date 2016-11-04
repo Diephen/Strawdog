@@ -45,6 +45,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	[SerializeField] GameObject _leftFlap;
 
+	GameObject _crouchTemp;
+
 	void Start(){
 		gameObject.tag = "Prisoner";
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
@@ -187,6 +189,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			else if (other.tag == "StandHide") {
 				_isHidden = true;
 				Events.G.Raise (new PrisonerHideEvent (_isHidden));
+				if (other.gameObject.GetComponent<HideFeedback> () != null) {
+					other.gameObject.GetComponent<HideFeedback> ().LightUp (other.gameObject);
+				}
 				Debug.Log ("[Hide] stand hide");
 			}
 			else if (other.tag == "SecretDoor") {
@@ -203,6 +208,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_isPrisonerTop) {
 			if (other.tag == "CrouchHide") {
 				_crouchHideReady = true;
+				_crouchTemp = other.gameObject;
 			}
 		}
 	}
@@ -226,10 +232,15 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_isPrisonerTop) {
 			if (other.tag == "CrouchHide") {
 				_crouchHideReady = false;
+//				other.gameObject.GetComponent<HideFeedback> ().LightDown ();
 			}
 			else if (other.tag == "StandHide") {
 				_isHidden = false;
 				Events.G.Raise (new PrisonerHideEvent (_isHidden));
+
+				if (other.gameObject.GetComponent<HideFeedback> () != null) {
+					other.gameObject.GetComponent<HideFeedback> ().LightDown (other.gameObject);
+				}
 			}
 			else if (other.tag == "SecretDoor") {
 				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -250,6 +261,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_isHidden = true;
 			Events.G.Raise (new PrisonerHideEvent (_isHidden));
 			Debug.Log ("[Hide] crouch hide");
+			_crouchTemp.GetComponent<HideFeedback> ().LightUp (_crouchTemp);
 		}
 	}
 
@@ -257,6 +269,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_crouchHideReady) {
 			_isHidden = false;
 			Events.G.Raise (new PrisonerHideEvent (_isHidden));
+			_crouchTemp.GetComponent<HideFeedback> ().LightDown (_crouchTemp);
 		}
 	}
 

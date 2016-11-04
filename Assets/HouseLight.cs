@@ -4,6 +4,7 @@ using System.Collections;
 public class HouseLight : MonoBehaviour {
 	[SerializeField] GameObject _light;
 	SpriteRenderer _lightRenderer;
+	[SerializeField] SpriteRenderer _glowOverRenderer;
 	BoxCollider2D _lightCollider;
 	bool _coloring = false;
 	Timer _colorTimer;
@@ -21,7 +22,6 @@ public class HouseLight : MonoBehaviour {
 		if (_coloring) {
 			
 			_tempColor = Color.Lerp (Color.white, Color.red, _colorTimer.PercentTimePassed);
-			Debug.Log (_tempColor);
 			_lightRenderer.color = _tempColor;
 		}
 	}
@@ -29,6 +29,7 @@ public class HouseLight : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "soldier") {
 			_lightRenderer.enabled = true;
+			_glowOverRenderer.enabled = true;
 			_lightCollider.enabled = true;
 		}
 	}
@@ -36,6 +37,7 @@ public class HouseLight : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "soldier") {
 			_lightRenderer.enabled = false;
+			_glowOverRenderer.enabled = false;
 			_lightCollider.enabled = false;
 		}
 	}
