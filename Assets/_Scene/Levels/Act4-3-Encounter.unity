@@ -934,7 +934,7 @@ GameObject:
   - 212: {fileID: 46889036}
   m_Layer: 0
   m_Name: prisoner-whitebase_16
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1704,7 +1704,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 142.44983, y: 11.232344}
+  m_ConnectedAnchor: {x: 142.76982, y: 11.232344}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2789,7 +2789,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 140.20982, y: 6.773423}
+  m_ConnectedAnchor: {x: 140.52982, y: 6.773423}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -5744,7 +5744,7 @@ GameObject:
   - 212: {fileID: 295456592}
   m_Layer: 0
   m_Name: prisoner-whitebase_14
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9113,6 +9113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904e9f7a629a84e639308975edf97dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_StartColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
+  m_EndColor: {r: 0.9485294, g: 0.9081255, b: 0.8648356, a: 1}
 --- !u!114 &496957694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11038,9 +11040,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.0000114779505, y: -3.2902296}
+  m_Offset: {x: -3.2533848, y: -3.2902296}
   serializedVersion: 2
-  m_Size: {x: 5.38, y: 5.349654}
+  m_Size: {x: 4.976938, y: 5.349654}
 --- !u!1 &604940631
 GameObject:
   m_ObjectHideFlags: 0
@@ -11372,7 +11374,7 @@ GameObject:
   - 212: {fileID: 632071971}
   m_Layer: 0
   m_Name: prisoner-whitebase_20
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17833,7 +17835,7 @@ GameObject:
   - 212: {fileID: 1228833552}
   m_Layer: 0
   m_Name: p
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18186,7 +18188,7 @@ GameObject:
   - 212: {fileID: 1235280564}
   m_Layer: 0
   m_Name: pwb-head
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20652,7 +20654,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1451624516}
-  - 114: {fileID: 1451624519}
   - 61: {fileID: 1451624518}
   - 114: {fileID: 1451624517}
   m_Layer: 0
@@ -20724,29 +20725,6 @@ BoxCollider2D:
   m_Offset: {x: -0.34698352, y: -0.6191385}
   serializedVersion: 2
   m_Size: {x: 5.8236, y: 8.252456}
---- !u!114 &1451624519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000013547779556, guid: 13bfd0992eeaa4d6faf4b8679f16b031,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1451624515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c881498a166f04a51b3e7619cdc11a8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isPrisonerTop: 1
-  _prisoner: {fileID: 496957692}
-  _backDown: 0
-  _stairRenderer: {fileID: 0}
-  _bedRenderer: {fileID: 0}
-  _secretDoorRenderer: {fileID: 0}
-  _stairStartPosition: 33.6
-  _bomb: {fileID: 0}
-  _groundCollider1: {fileID: 0}
-  _groundCollider2: {fileID: 0}
-  _leftFlap: {fileID: 0}
 --- !u!1 &1452445880
 GameObject:
   m_ObjectHideFlags: 0
@@ -21028,7 +21006,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010210851682, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 61000011868901574, guid: d0965eff08aed44d889e8f4e130a0e80,
         type: 2}
@@ -22642,7 +22620,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 496957692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 137.35, y: -1.85, z: -0.8}
+  m_LocalPosition: {x: 137.67, y: -1.85, z: -0.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.1973333}
   m_Children:
@@ -23600,7 +23578,7 @@ GameObject:
   - 212: {fileID: 1768726423}
   m_Layer: 0
   m_Name: prisoner-whitebase_2
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24036,7 +24014,7 @@ GameObject:
   - 212: {fileID: 1813775644}
   m_Layer: 0
   m_Name: prisoner-whitebase_3
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24490,7 +24468,7 @@ GameObject:
   - 212: {fileID: 797646781}
   m_Layer: 0
   m_Name: guard-witebase_body
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25390,7 +25368,7 @@ GameObject:
   - 212: {fileID: 1933772345}
   m_Layer: 0
   m_Name: prisoner-whitebase_15
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26022,7 +26000,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 144.62984, y: 4.6371455}
+  m_ConnectedAnchor: {x: 144.94983, y: 4.6371455}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -26477,7 +26455,7 @@ GameObject:
   - 212: {fileID: 2026320296}
   m_Layer: 0
   m_Name: prisoner-whitebase_17
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27882,7 +27860,7 @@ GameObject:
   - 212: {fileID: 2137468813}
   m_Layer: 0
   m_Name: pwb-down
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28009,7 +27987,7 @@ GameObject:
   - 212: {fileID: 785027800}
   m_Layer: 0
   m_Name: items-wb_1
-  m_TagString: Untagged
+  m_TagString: WhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

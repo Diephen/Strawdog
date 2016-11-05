@@ -312,5 +312,15 @@ public class StaticCamera: GameEvent {
 public class EventManager : MonoBehaviour {
 }
 
+// Encounter -- when prisoner overlap guard
+public class EncounterTouchEvent:GameEvent{
+	public bool OnGuard { get; private set; }
+	public EncounterTouchEvent(bool onguard){
+		OnGuard = onguard;
+	}
+	
+	
+}
+
 
 

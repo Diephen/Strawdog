@@ -6,6 +6,7 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	[SerializeField] GuardEncounterHandle m_GuardHandle;
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
 	private bool isEngaged = false;
+	//private bool isPrisonerDead = false;
 
 	public void SetEngage(){
 		if (!isEngaged) {

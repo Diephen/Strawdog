@@ -82,17 +82,20 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = true;
 			_isOnFlap = true;
 			if (_isOnGuard) {
-				for (int i = 0; i < _whiteBase.Length; i++) {
-					_whiteBase [i].color = _originalColor;
-				}
+				Events.G.Raise (new EncounterTouchEvent (false));
+//				for (int i = 0; i < _whiteBase.Length; i++) {
+//					_whiteBase [i].color = _originalColor;
+//				}
 			}
 		}
 		else if (other.tag == "Guard") {
+			// raise event 
 			_isOnGuard = true;
-			_originalColor = _whiteBase [0].color;
-			for (int i = 0; i < _whiteBase.Length; i++) {
-				_whiteBase [i].color = Color.white;
-			}
+			Events.G.Raise (new EncounterTouchEvent (true));
+//			_originalColor = _whiteBase [0].color;
+//			for (int i = 0; i < _whiteBase.Length; i++) {
+//				_whiteBase [i].color = Color.white;
+//			}
 		}
 
 //		if (other.tag == "Stairs") {
@@ -138,16 +141,20 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 			_isOnFlap = false;
 			if (_isOnGuard) {
-				for (int i = 0; i < _whiteBase.Length; i++) {
-					_whiteBase [i].color = Color.white;
-				}
+				Events.G.Raise (new EncounterTouchEvent (true));
+//				for (int i = 0; i < _whiteBase.Length; i++) {
+//					_whiteBase [i].color = Color.white;
+//				}
 			}
 		}
 		else if (other.tag == "Guard") {
+			// raise event to disable lightup
 			_isOnGuard = false;
-			for (int i = 0; i < _whiteBase.Length; i++) {
-				_whiteBase [i].color = _originalColor;
-			}
+			Events.G.Raise (new EncounterTouchEvent (false));
+//			_isOnGuard = false;
+//			for (int i = 0; i < _whiteBase.Length; i++) {
+//				_whiteBase [i].color = _originalColor;
+//			}
 		}
 //		if (other.tag == "Stairs") {
 //			_isStairs = false;

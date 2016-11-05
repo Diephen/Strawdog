@@ -4,6 +4,7 @@ using System.Collections;
 public class GuardEncounterHandle : MonoBehaviour {
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
 	[SerializeField] BoxCollider2D m_BlockColl;
+	//SpriteRenderer[] m_WhiteBase;
 	Animator m_Anim;
 	AnimationControl m_AnimCtrl;
 	AnimationInjectionEncounter m_AnimInjection;
@@ -44,6 +45,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_Anim.Play ("g-ecnt-HoldGunUp");
 			m_BlockColl.enabled = true;
 			m_IsHandUp = true;
+			m_PrisonerHandle.GuardHoldGun ();
 		}
 	}
 
@@ -53,6 +55,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_BlockColl.enabled = false;
 			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner));
 			m_IsHandUp = false;
+			m_PrisonerHandle.GuardReleaseGun ();
 		}
 
 	}
