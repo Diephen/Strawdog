@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum CharacterIdentity {Guard, Prisoner};
+public enum CharacterIdentity {Guard, Prisoner, Both};
 
 public class PuppetControl : MonoBehaviour {
 	[SerializeField] CharacterIdentity _whoAmI;
@@ -418,8 +418,10 @@ public class PuppetControl : MonoBehaviour {
 	}
 
 	void EnableMove(EnableMoveEvent e){
-		_stateHandling [4] = true;
-		_stateHandling [3] = true;
+		if (e.WhoAmI == CharacterIdentity.Both || e.WhoAmI == _whoAmI) {
+			_stateHandling [4] = true;
+			_stateHandling [3] = true;
+		}
 	}
 	void DisableMove(DisableMoveEvent e){
 		_stateHandling [4] = false;
