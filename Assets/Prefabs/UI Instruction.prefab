@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011457539798
 GameObject:
   m_ObjectHideFlags: 1
@@ -938,14 +938,16 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 70
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hit the <i><b>'H'</b></i> Key for Controls\n\n  Press <i><b>'Space'</b></i>
-    to Begin"
+  m_Text: 'Press the <i><b>''H''</b></i> Key for Controls
+
+
+    Press <i><b>''Space''</b></i> to Begin'
 --- !u!114 &114000011954489236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2114,8 +2116,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: -426}
-  m_SizeDelta: {x: 900, y: 500}
+  m_AnchoredPosition: {x: 26, y: -423}
+  m_SizeDelta: {x: 1199, y: 505}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000012468080354
 RectTransform:

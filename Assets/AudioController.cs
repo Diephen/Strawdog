@@ -4,9 +4,10 @@ using Giverspace;
 using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour {
-	[SerializeField] float[] volume = new float[] {0.1f, 0.3f, 0.7f};
+	float[] volume = new float[] {0.5f, 0.7f, 1.0f};
 	[SerializeField] AudioSource _musicSource1;
 	[SerializeField] AudioSource _musicSource2;
+	[SerializeField] AudioSource _musicSource3;
 	[SerializeField] AudioSource _soundSource1;
 	[SerializeField] AudioSource _soundSource2_Light;
 	[SerializeField] AudioSource _soundSource3;
@@ -20,8 +21,24 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioClip _prisonerStairs;
 	[SerializeField] AudioClip _guardWalkOut;
 
-	bool _soundOff = true;
-	Timer _soundOffTimer = new Timer(0.5f);
+	bool _musicOff1 = false;
+	bool _musicOff2 = false;
+	bool _musicOff3 = false;
+	bool _musicOn1 = false;
+	bool _musicOn2 = false;
+	bool _musicOn3 = false;
+	Timer _musicOffTimer = new Timer(4f);
+	Timer _musicOnTimer = new Timer(4f);
+	[SerializeField] AnimationCurve _musicOffCurve;
+	[SerializeField] AnimationCurve _musicOnCurve;
+
+	bool _soundOff1 = false;
+	bool _soundOff2 = false;
+	bool _soundOff3 = false;
+	bool _soundOff4 = false;
+	Timer _soundOffTimer = new Timer(1f);
+
+	float _musicVolume = 1.0f;
 
 	static AudioController _instance = null;
 	int _currentSceneIndex = 0;
@@ -35,11 +52,6 @@ public class AudioController : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		}
 	}
-		
-	void Start () {
-		_musicSource1.volume = volume [0];
-	}
-
 
 	void FixedUpdate () {
 
@@ -55,24 +67,25 @@ public class AudioController : MonoBehaviour {
 			}
 		}
 
-		if (_soundOff) {
-			if (Mathf.Approximately (_soundSource2_Light.volume, 0.0f)) {
-				_soundSource2_Light.Stop ();
-				_soundOff = false;
-			} else {
-				_soundSource2_Light.volume = MathHelpers.LinMapFrom01 (_soundSource2_Light.volume, 0.0f, _soundOffTimer.PercentTimePassed);
+		MusicFadeControl ();
+		SoundFadeControl ();
+
+
+
+
+		if (_currentSceneIndex == 1) {
+			if (!_musicSource1.isPlaying && !_musicSource2.isPlaying) {
+				_musicSource2.loop = true;
+				_musicSource2.Play ();
 			}
 		}
-
-		if (_currentSceneIndex == 0) {
-			Debug.Log ("0 Loop");
-
+		else if (_currentSceneIndex == 20) {
+			if(Input.GetKeyDown(KeyCode.Space) && !_soundSource1.isPlaying){
+				_soundOffTimer.Reset ();
+				_soundOff3 = true;
+				_soundSource1.Play ();
+			}
 		}
-//		else if (_currentSceneIndex == 20) {
-//			if(Input.GetKeyDown(KeyCode.Space)){
-//
-//			}
-//		}
 	}
 
 	void PlayLock(LockCellEvent e){
@@ -128,20 +141,29 @@ public class AudioController : MonoBehaviour {
 		if (e.Hidden) {
 //			_soundSource2.Stop ();
 			_soundOffTimer.Reset();
-			_soundOff = true;
+			_soundOff2 = true;
 		}
 	}
 
 	void StopCaught1(LightOffEvent e){
 //		_soundSource2.Stop ();
 		_soundOffTimer.Reset ();
-		_soundOff = true;
+		_soundOff2 = true;
 	}
 
+	void LoadTransitionAct1(Act0EndedEvent e){
+		_musicSource3.volume = 1.0f;
+		_musicSource3.Play ();
+		_musicOffTimer.Reset ();
+		_musicOff1 = true;
+		_musicOff2 = true;
+	}
 
 	void OnEnable ()
 	{
 		SceneManager.activeSceneChanged += NewScene;
+
+		Events.G.AddListener<Act0EndedEvent>(LoadTransitionAct1);
 
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
@@ -163,6 +185,8 @@ public class AudioController : MonoBehaviour {
 	{
 		SceneManager.activeSceneChanged -= NewScene;
 
+		Events.G.RemoveListener<Act0EndedEvent>(LoadTransitionAct1);
+
 		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.RemoveListener<LeftCellUnlockedEvent> (LeftCell);
@@ -181,7 +205,6 @@ public class AudioController : MonoBehaviour {
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
-		_tempAudioSource = _musicSource1;
 		_goalVolume = volume [1];
 	}
 
@@ -189,25 +212,139 @@ public class AudioController : MonoBehaviour {
 	{
 		if (e.Engaged) 
 		{
-			_tempAudioSource = _musicSource1;
 			_goalVolume = volume [2];
 		} 
 		else 
 		{
-			_tempAudioSource = _musicSource1;
 			_goalVolume = volume [1];
 		}
 	}
 
 	void NewScene(Scene previousScene, Scene newScene){
-		_currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
-
+		_currentSceneIndex = newScene.buildIndex;
+		Debug.Log (_currentSceneIndex);
 		if (_currentSceneIndex == 0) {
-			_soundSource4.clip = Resources.Load<AudioClip>("Sounds/Opening/OpeningSound");
-			_soundSource3.clip = Resources.Load<AudioClip>("Sounds/Opening/vinylSound");
+			_soundSource4.clip = Resources.Load<AudioClip> ("Sounds/Opening/OpeningSteps");
+			_soundSource3.clip = Resources.Load<AudioClip> ("Sounds/Opening/vinylSound");
 			_soundSource3.loop = true;
 			_soundSource4.Play ();
 			_soundSource3.Play ();
+		}
+		else if (_currentSceneIndex == 20) {
+			_soundSource1.clip = Resources.Load<AudioClip> ("Sounds/Opening/PickUpNeedle");
+			_soundSource1.loop = false;
+		}
+		else if (_currentSceneIndex == 1) {
+			_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/Music/Piece_No1");
+			_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/Music/Loop1");
+			_musicSource3.clip = Resources.Load<AudioClip> ("SOunds/Music/Transition1");
+			_musicSource1.loop = false;
+			_musicVolume = 1.0f;
+			_musicSource1.Play ();
+		}
+		else if (_currentSceneIndex == 2) {
+			_musicSource3.clip = Resources.Load<AudioClip> ("SOunds/Music/Transition1");
+			_musicOnTimer.Reset ();
+			_musicVolume = 0.5f;
+			if (!_musicSource1.isPlaying) {
+				_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/Music/SatrioSound");
+				_musicSource1.volume = 0.0f;
+				_musicSource1.loop = true;
+				_musicOn1 = true;
+				_tempAudioSource = _musicSource1;
+			}
+			else if (!_musicSource2.isPlaying) {
+				_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/Music/SatrioSound");
+				_musicSource2.volume = 0.0f;
+				_musicSource2.loop = true;
+				_musicOn2 = true;
+				_tempAudioSource = _musicSource2;
+			}
+			_musicOff3 = true;
+		}
+	}
+
+
+	void MusicFadeControl(){
+		if (_musicOff1) {
+			if (Mathf.Approximately (_musicSource1.volume, 0.0f)) {
+				_musicSource1.Stop ();
+				_musicOff1 = false;
+			}
+			_musicSource1.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+		}
+		else if (_musicOn1) {
+			if (!_musicSource1.isPlaying) {
+				_musicSource1.Play ();
+			}
+			if (Mathf.Approximately (_musicSource1.volume, _musicVolume)) {
+				_musicOn1 = false;
+			}
+			_musicSource1.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+		}
+		if (_musicOff2) {
+			if (Mathf.Approximately (_musicSource2.volume, 0.0f)) {
+				_musicSource2.Stop ();
+				_musicOff2 = false;
+			} 
+			_musicSource2.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+		}
+		else if (_musicOn2) {
+			
+			if (!_musicSource2.isPlaying) {
+				_musicSource2.Play ();
+			}
+			if (_musicSource2.volume == _musicVolume) {
+				_musicOn2 = false;
+			}
+			_musicSource2.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+		}
+		if (_musicOff3) {
+			if (Mathf.Approximately (_musicSource3.volume, 0.0f)) {
+				_musicSource3.Stop ();
+				_musicOff3 = false;
+			}
+			_musicSource3.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+		}
+		else if (_musicOn3) {
+			if (!_musicSource3.isPlaying) {
+				_musicSource3.Play ();
+			}
+			if (Mathf.Approximately (_musicSource3.volume, _musicVolume)) {
+				_musicOn3 = false;
+			}
+			_musicSource3.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+		}
+	}
+
+	void SoundFadeControl(){
+		if (_soundOff1) {
+			if (Mathf.Approximately (_soundSource1.volume, 0.0f)) {
+				_soundSource1.Stop ();
+				_soundOff1 = false;
+			}
+			_soundSource1.volume = MathHelpers.LinMapFrom01 (_soundSource1.volume, 0.0f, _soundOffTimer.PercentTimePassed);
+		}
+		if (_soundOff2) {
+			if (Mathf.Approximately (_soundSource2_Light.volume, 0.0f)) {
+				_soundSource2_Light.Stop ();
+				_soundOff2 = false;
+			}
+			_soundSource2_Light.volume = MathHelpers.LinMapFrom01 (_soundSource2_Light.volume, 0.0f, _soundOffTimer.PercentTimePassed);
+		}
+		if (_soundOff3) {
+			if (Mathf.Approximately (_soundSource3.volume, 0.0f)) {
+				_soundSource3.Stop ();
+				_soundOff3 = false;
+			}
+			_soundSource3.volume = MathHelpers.LinMapFrom01 (_soundSource3.volume, 0.0f, _soundOffTimer.PercentTimePassed);
+		}
+		if (_soundOff4) {
+			if (Mathf.Approximately (_soundSource4.volume, 0.0f)) {
+				_soundSource4.Stop ();
+				_soundOff4 = false;
+			}
+			_soundSource4.volume = MathHelpers.LinMapFrom01 (_soundSource4.volume, 0.0f, _soundOffTimer.PercentTimePassed);
 		}
 	}
 

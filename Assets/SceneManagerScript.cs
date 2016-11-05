@@ -141,7 +141,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 	void LoadAct0(TriggerWarningEndEvent e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 2f));
+		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 3f));
 	}
 
 	void LoadVertical(Act0EndedEvent e){
