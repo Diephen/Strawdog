@@ -254,6 +254,10 @@ public class PrisonerHideEvent: GameEvent {
 
 //Call to Enable Movement
 public class EnableMoveEvent: GameEvent {
+	public CharacterIdentity WhoAmI { get; private set; }
+	public EnableMoveEvent(CharacterIdentity whoAmI = CharacterIdentity.Both){
+		WhoAmI = whoAmI;
+	}
 }
 public class DisableMoveEvent: GameEvent {
 }

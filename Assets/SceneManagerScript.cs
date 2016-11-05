@@ -273,7 +273,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	IEnumerator WaitBeforeOpen(){
 		yield return new WaitForSeconds(1.0f);
-		if (GameObject.Find ("Frame").GetComponent<FrameScript> ()!= null) {
+		if (GameObject.Find ("Frame")!= null) {
 			_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
 			_frameScript.OpenFlap ();
 		}
