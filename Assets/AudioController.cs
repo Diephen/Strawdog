@@ -13,7 +13,7 @@ public class AudioController : MonoBehaviour {
 	[SerializeField] AudioSource _soundSource3;
 	[SerializeField] AudioSource _soundSource4;
 	AudioSource _tempAudioSource;
-	float _goalVolume;
+	float _goalVolume = 9999.9f;
 	[SerializeField] AudioClip _lockCell;
 	[SerializeField] AudioClip _openCell;
 	[SerializeField] AudioClip _pickUpBomb;
@@ -55,7 +55,7 @@ public class AudioController : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		if (_tempAudioSource != null && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
+		if (_tempAudioSource != null &&_goalVolume != 9999.9f && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
 		{
 			if (_tempAudioSource.volume > _goalVolume) 
 			{
@@ -101,15 +101,15 @@ public class AudioController : MonoBehaviour {
 		}
 	}
 	void LeftCell(LeftCellUnlockedEvent e){
-		_soundSource2_Light.clip = _guardWalkOut;
-		_soundSource2_Light.volume = 1.0f;
-		_soundSource2_Light.Play ();
+		_soundSource3.clip = _guardWalkOut;
+		_soundSource3.volume = 1.0f;
+		_soundSource3.Play ();
 		Log.Metrics.Message("CHOICE 2: Unlock");
 	}
 	void LeaveCell(GuardLeavingCellEvent e){
-		_soundSource2_Light.clip = _guardWalkOut;
-		_soundSource2_Light.volume = 1.0f;
-		_soundSource2_Light.Play ();
+		_soundSource3.clip = _guardWalkOut;
+		_soundSource3.volume = 1.0f;
+		_soundSource3.Play ();
 	}
 	void PlayPickUpBomb(PrisonerFoundBombEvent e){
 		_soundSource1.clip = _pickUpBomb;
@@ -262,6 +262,11 @@ public class AudioController : MonoBehaviour {
 			}
 			_musicOff3 = true;
 		}
+		else if (_currentSceneIndex == 3) {
+			//Reinitializing volume change variables
+			_tempAudioSource = null;
+			_goalVolume = 9999.9f;
+		}
 	}
 
 
@@ -277,7 +282,7 @@ public class AudioController : MonoBehaviour {
 			if (!_musicSource1.isPlaying) {
 				_musicSource1.Play ();
 			}
-			if (Mathf.Approximately (_musicSource1.volume, _musicVolume)) {
+			else if (_musicSource1.volume > _musicVolume-0.02f) {
 				_musicOn1 = false;
 			}
 			_musicSource1.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
@@ -294,10 +299,10 @@ public class AudioController : MonoBehaviour {
 			if (!_musicSource2.isPlaying) {
 				_musicSource2.Play ();
 			}
-			if (_musicSource2.volume == _musicVolume) {
+			else if (_musicSource2.volume > _musicVolume-0.02f) {
 				_musicOn2 = false;
 			}
-			_musicSource2.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+			_musicSource2.volume = MathHelpers.LinMapFrom01(0.0f, _musicVolume, _musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed));
 		}
 		if (_musicOff3) {
 			if (Mathf.Approximately (_musicSource3.volume, 0.0f)) {
@@ -310,7 +315,7 @@ public class AudioController : MonoBehaviour {
 			if (!_musicSource3.isPlaying) {
 				_musicSource3.Play ();
 			}
-			if (Mathf.Approximately (_musicSource3.volume, _musicVolume)) {
+			else if (_musicSource3.volume > _musicVolume-0.02f) {
 				_musicOn3 = false;
 			}
 			_musicSource3.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);

@@ -54,7 +54,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (_guardKeyCodes [3])) {
+		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
 			if (_isStairs) {
 				_goToStart = true;
 				_isStairs = false;

@@ -33,7 +33,7 @@ public class GuardTrigger : MonoBehaviour {
 		_guardPuppetController = _guard.GetComponent <PuppetControl>();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
 
-		_stairStartTimer = new Timer (2f);
+		_stairStartTimer = new Timer (1f);
 
 		//For The glow Effect
 		_mainCam = Camera.main;
@@ -43,6 +43,7 @@ public class GuardTrigger : MonoBehaviour {
 	void Update(){
 		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
 			_goToStart = true;
+			_isStairs = false;
 			//_highlightsFX.enabled = false;
 			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_guardPuppetController.DisableKeyInput ();
