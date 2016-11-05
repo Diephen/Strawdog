@@ -40,23 +40,7 @@ public class AudioController : MonoBehaviour {
 		_musicSource1.volume = volume [0];
 	}
 
-	void NewScene(){
-		_currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
 
-		if (_currentSceneIndex == 0) {
-			_soundSource4.clip = Resources.Load<AudioClip>("Sounds/Opening/OpeningSound");
-			_soundSource3.clip = Resources.Load<AudioClip>("Sounds/Opening/vinylSound");
-			_soundSource3.loop = true;
-			_soundSource4.Play ();
-			_soundSource3.Play ();
-//			SceneManager.GetSceneAt(_currentSceneIndex).name
-		}
-		else if (_currentSceneIndex == 1) {
-			Debug.Log ("1");
-
-		}
-	}
-	
 	void FixedUpdate () {
 
 		if (_tempAudioSource != null && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
@@ -84,10 +68,11 @@ public class AudioController : MonoBehaviour {
 			Debug.Log ("0 Loop");
 
 		}
-		else if (_currentSceneIndex == 1) {
-			Debug.Log ("1 Loop");
-
-		}
+//		else if (_currentSceneIndex == 20) {
+//			if(Input.GetKeyDown(KeyCode.Space)){
+//
+//			}
+//		}
 	}
 
 	void PlayLock(LockCellEvent e){
@@ -213,4 +198,17 @@ public class AudioController : MonoBehaviour {
 			_goalVolume = volume [1];
 		}
 	}
+
+	void NewScene(Scene previousScene, Scene newScene){
+		_currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
+
+		if (_currentSceneIndex == 0) {
+			_soundSource4.clip = Resources.Load<AudioClip>("Sounds/Opening/OpeningSound");
+			_soundSource3.clip = Resources.Load<AudioClip>("Sounds/Opening/vinylSound");
+			_soundSource3.loop = true;
+			_soundSource4.Play ();
+			_soundSource3.Play ();
+		}
+	}
+
 }
