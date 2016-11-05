@@ -114,22 +114,7 @@ public class AboutToStrayOutOfLineEvent : GameEvent {
 		Straying = straying;
 	}
 }
-
-public class StrayOutOfLineEvent : GameEvent {
-}
-
-public class DidNotShootEvent : GameEvent {
-}
-
-public class ShootEvent : GameEvent {
-}
-
-public class ShootSwitchEvent : GameEvent {
-}
-
-
-public class PrisonerShotEvent : GameEvent {
-}
+	
 
 /* Act 4-2 Taken Away */
 public class Taken_EnterFoodStorageEvent : GameEvent {
@@ -283,6 +268,39 @@ public class IsWalkingEvent : GameEvent {
 		IsLeft = isLeft;
 	}
 }
+
+//Endings
+
+public class RunAloneEndingEvent: GameEvent {
+}
+
+public class RunTogetherEndingEvent: GameEvent {
+}
+
+public class GuardAloneEndingEvent: GameEvent {
+}
+	
+
+
+
+public class StrayOutOfLineEvent : GameEvent {
+}
+
+public class DidNotShootEvent : GameEvent {
+}
+
+public class ShootEvent : GameEvent {
+}
+	
+public class ShootSwitchEvent : GameEvent {
+}
+
+
+public class PrisonerShotEvent : GameEvent {
+}
+
+
+
 
 public class StaticCamera: GameEvent {
 }

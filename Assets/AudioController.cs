@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Giverspace;
+using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour {
 	[SerializeField] float[] volume = new float[] {0.1f, 0.3f, 0.7f};
-	[SerializeField] AudioSource _audioSource;
+	[SerializeField] AudioSource _musicSource1;
+	[SerializeField] AudioSource _musicSource2;
 	[SerializeField] AudioSource _soundSource1;
-	[SerializeField] AudioSource _soundSource2;
+	[SerializeField] AudioSource _soundSource2_Light;
+	[SerializeField] AudioSource _soundSource3;
+	[SerializeField] AudioSource _soundSource4;
 	AudioSource _tempAudioSource;
 	float _goalVolume;
 	[SerializeField] AudioClip _lockCell;
@@ -19,23 +23,42 @@ public class AudioController : MonoBehaviour {
 	bool _soundOff = true;
 	Timer _soundOffTimer = new Timer(0.5f);
 
-//	static AudioController _instance = null;
-//
-//	void Awake() {
-//		if (_instance) {
-//			Destroy (gameObject);
-//		}
-//		else {
-//			_instance = this;
-//			DontDestroyOnLoad (gameObject);
-//		}
-//	}
+	static AudioController _instance = null;
+	int _currentSceneIndex = 0;
 
+	void Awake() {
+		if (_instance) {
+			Destroy (gameObject);
+		}
+		else {
+			_instance = this;
+			DontDestroyOnLoad (gameObject);
+		}
+	}
+		
 	void Start () {
-		_audioSource.volume = volume [0];
+		_musicSource1.volume = volume [0];
+	}
+
+	void NewScene(){
+		_currentSceneIndex = SceneManager.GetActiveScene ().buildIndex;
+
+		if (_currentSceneIndex == 0) {
+			_soundSource4.clip = Resources.Load<AudioClip>("Sounds/Opening/OpeningSound");
+			_soundSource3.clip = Resources.Load<AudioClip>("Sounds/Opening/vinylSound");
+			_soundSource3.loop = true;
+			_soundSource4.Play ();
+			_soundSource3.Play ();
+//			SceneManager.GetSceneAt(_currentSceneIndex).name
+		}
+		else if (_currentSceneIndex == 1) {
+			Debug.Log ("1");
+
+		}
 	}
 	
 	void FixedUpdate () {
+
 		if (_tempAudioSource != null && !Mathf.Approximately (_tempAudioSource.volume, _goalVolume)) 
 		{
 			if (_tempAudioSource.volume > _goalVolume) 
@@ -49,12 +72,21 @@ public class AudioController : MonoBehaviour {
 		}
 
 		if (_soundOff) {
-			if (Mathf.Approximately (_soundSource2.volume, 0.0f)) {
-				_soundSource2.Stop ();
+			if (Mathf.Approximately (_soundSource2_Light.volume, 0.0f)) {
+				_soundSource2_Light.Stop ();
 				_soundOff = false;
 			} else {
-				_soundSource2.volume = MathHelpers.LinMapFrom01 (_soundSource2.volume, 0.0f, _soundOffTimer.PercentTimePassed);
+				_soundSource2_Light.volume = MathHelpers.LinMapFrom01 (_soundSource2_Light.volume, 0.0f, _soundOffTimer.PercentTimePassed);
 			}
+		}
+
+		if (_currentSceneIndex == 0) {
+			Debug.Log ("0 Loop");
+
+		}
+		else if (_currentSceneIndex == 1) {
+			Debug.Log ("1 Loop");
+
 		}
 	}
 
@@ -71,15 +103,15 @@ public class AudioController : MonoBehaviour {
 		}
 	}
 	void LeftCell(LeftCellUnlockedEvent e){
-		_soundSource2.clip = _guardWalkOut;
-		_soundSource2.volume = 1.0f;
-		_soundSource2.Play ();
+		_soundSource2_Light.clip = _guardWalkOut;
+		_soundSource2_Light.volume = 1.0f;
+		_soundSource2_Light.Play ();
 		Log.Metrics.Message("CHOICE 2: Unlock");
 	}
 	void LeaveCell(GuardLeavingCellEvent e){
-		_soundSource2.clip = _guardWalkOut;
-		_soundSource2.volume = 1.0f;
-		_soundSource2.Play ();
+		_soundSource2_Light.clip = _guardWalkOut;
+		_soundSource2_Light.volume = 1.0f;
+		_soundSource2_Light.Play ();
 	}
 	void PlayPickUpBomb(PrisonerFoundBombEvent e){
 		_soundSource1.clip = _pickUpBomb;
@@ -101,10 +133,10 @@ public class AudioController : MonoBehaviour {
 	}
 
 	void PlayLightCaught(LightCaughtEvent e){
-		if (!_soundSource2.isPlaying) {
-			_soundSource2.Play ();
+		if (!_soundSource2_Light.isPlaying) {
+			_soundSource2_Light.Play ();
 		}
-		_soundSource2.volume = e.Volume;
+		_soundSource2_Light.volume = e.Volume;
 	}
 
 	void StopCaught(PrisonerHideEvent e){
@@ -124,6 +156,8 @@ public class AudioController : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		SceneManager.activeSceneChanged += NewScene;
+
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.AddListener<LeftCellUnlockedEvent> (LeftCell);
@@ -142,6 +176,8 @@ public class AudioController : MonoBehaviour {
 
 	void OnDisable ()
 	{
+		SceneManager.activeSceneChanged -= NewScene;
+
 		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.RemoveListener<LeftCellUnlockedEvent> (LeftCell);
@@ -160,7 +196,7 @@ public class AudioController : MonoBehaviour {
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
 	{
-		_tempAudioSource = _audioSource;
+		_tempAudioSource = _musicSource1;
 		_goalVolume = volume [1];
 	}
 
@@ -168,12 +204,12 @@ public class AudioController : MonoBehaviour {
 	{
 		if (e.Engaged) 
 		{
-			_tempAudioSource = _audioSource;
+			_tempAudioSource = _musicSource1;
 			_goalVolume = volume [2];
 		} 
 		else 
 		{
-			_tempAudioSource = _audioSource;
+			_tempAudioSource = _musicSource1;
 			_goalVolume = volume [1];
 		}
 	}
