@@ -266,6 +266,11 @@ public class AudioController : MonoBehaviour {
 			//Reinitializing volume change variables
 			_tempAudioSource = null;
 			_goalVolume = 9999.9f;
+
+			_musicOff2 = true;
+			_musicOff1 = true;
+			_musicSource3.clip = Resources.Load<AudioClip> ("Sounds/Music/Chimes");
+			_musicOn3 = true;
 		}
 	}
 
