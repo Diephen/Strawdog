@@ -269,15 +269,15 @@ public class SceneManagerScript : MonoBehaviour {
 
 	//Ending
 	void LoadEnd_RunAlone(RunAloneEndingEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/18_LetGo"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 1.5f, "VoiceOver/18_LetGo"));
 	}
 
 	void LoadEnd_RunTogether(RunTogetherEndingEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/16_EscapeTogether"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/16_EscapeTogether"));
 	}
 
 	void LoadEnd_GuardAlone(GuardAloneEndingEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/17_JustJob"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/17_JustJob"));
 	}
 
 	void LoadRetry(RetryEvent e){
