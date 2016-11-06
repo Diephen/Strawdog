@@ -5230,7 +5230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bde4a76f8ae437cb34503ed3c3ed06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startGuard: 0
+  _startGuard: 1
   _followGuard: {fileID: 655843664}
   _followPrisoner: {fileID: 853659963}
   XYZ: 010000
@@ -10910,7 +10910,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000010210851682, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
