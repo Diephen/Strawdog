@@ -6,6 +6,9 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	[SerializeField] GuardEncounterHandle m_GuardHandle;
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
 	private bool isEngaged = false;
+	private bool isGuardHandUp = false;
+	private bool isGuardReady = false;
+	private bool isPrisonerReady = false;
 	//private bool isPrisonerDead = false;
 
 	public void SetEngage(){
@@ -42,7 +45,10 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	}
 
 	void Update(){
-
+		if (isGuardReady && isPrisonerReady) {
+			Debug.Log ("Away together");
+			// raise event
+		}
 	}
 
 	//Have public scripts that will be called in place of the original function
@@ -60,12 +66,25 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	protected override void CrouchPressed(CrouchPressedEvent e){
 		base.CrouchPressed (e);
 		if (e.WhoAmI == CharacterIdentity.Guard) {
-			Debug.Log ("Shoot");
-			m_GuardHandle.Shoot ();
+			if (isGuardHandUp) {
+				Debug.Log ("Shoot");
+				m_GuardHandle.Shoot ();
+			} else {
+				Debug.Log ("G Interact");
+				m_GuardHandle.Interacte ();
+				isGuardReady = true;
+			}
+
+		}
+		if(e.WhoAmI == CharacterIdentity.Prisoner){
+			Debug.Log ("P Interact");
+			m_PrisonerHandle.GiveHand ();
+			isPrisonerReady = true;
 		}
 
 
 	}
+
 	//	protected override void WalkLeft(){
 	//
 	//	}
@@ -77,6 +96,7 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 		if (e.WhoAmI == CharacterIdentity.Guard) {
 			Debug.Log ("Hold Gun");
 			m_GuardHandle.HandUp ();
+			isGuardHandUp = true;
 			// enable collider box 
 		}
 
@@ -86,6 +106,7 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 		if (e.WhoAmI == CharacterIdentity.Guard) {
 			Debug.Log ("Release Gun");
 			m_GuardHandle.HandDown ();
+			isGuardHandUp = false;
 			// disable collider 
 
 		}
