@@ -123,6 +123,10 @@ public class Taken_EnterFoodStorageEvent : GameEvent {
 public class BrokeFree : GameEvent {
 }
 
+public class ExecutionBreakFree: GameEvent{
+	
+}
+
 /* Act 4-3 Plant Bomb */
 
 public class Plant_UpStairsEvent : GameEvent {

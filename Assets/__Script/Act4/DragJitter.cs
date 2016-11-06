@@ -61,6 +61,8 @@ public class DragJitter : MonoBehaviour {
 			_prisonerPuppetControl.EnableContinuousWalk ();
 			if (!_isExecution) {
 				Events.G.Raise (new BrokeFree ());
+			} else {
+				Events.G.Raise (new ExecutionBreakFree ());
 			}
 			this.enabled = false;
 		}
