@@ -9,10 +9,15 @@ public class DragJitter : MonoBehaviour {
 	KeyCode[] _prisonerKeyCodes;
 	Timer _pushTimer;
 
+	AudioSource _jitterSource;
+
 	[SerializeField] bool _isThePrisoner;
 	[SerializeField] bool _isExecution = false;
 	int _inputCount = 0;
 	int _freedomCount = 20;
+
+	[SerializeField] AudioClip[] _ropeTug;
+	[SerializeField] AudioClip _ropeBreak;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +28,7 @@ public class DragJitter : MonoBehaviour {
 			_prisonerPuppetControl = gameObject.GetComponent <PuppetControl> ();
 			_prisonerKeyCodes = _prisonerPuppetControl.GetKeyCodes ();
 		}
+		_jitterSource = gameObject.AddComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -39,11 +45,18 @@ public class DragJitter : MonoBehaviour {
 			   Input.GetKeyDown (_prisonerKeyCodes [1]) ||
 			   Input.GetKeyDown (_prisonerKeyCodes [2]) ||
 			   Input.GetKeyDown (_prisonerKeyCodes [3])) {
+
+				if (!_jitterSource.isPlaying) {
+					_jitterSource.clip = _ropeTug[Random.Range (0, 5)];
+					_jitterSource.Play ();
+				}
 				_inputCount++;
 			}
 		}
 
 		if (_inputCount > _freedomCount) {
+			_jitterSource.clip = _ropeBreak;
+			_jitterSource.Play ();
 			_prisonerPuppetControl.EnableContinuousWalk ();
 			if (!_isExecution) {
 				Events.G.Raise (new BrokeFree ());

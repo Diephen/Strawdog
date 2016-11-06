@@ -5156,6 +5156,8 @@ MonoBehaviour:
   _pushOffset: 2
   _isThePrisoner: 0
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!50 &366311476
 Rigidbody2D:
   serializedVersion: 2
@@ -11025,6 +11027,8 @@ MonoBehaviour:
   _pushOffset: 2
   _isThePrisoner: 0
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!50 &571453671
 Rigidbody2D:
   serializedVersion: 2
@@ -11428,6 +11432,8 @@ MonoBehaviour:
   _pushOffset: 4
   _isThePrisoner: 0
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!50 &632079445
 Rigidbody2D:
   serializedVersion: 2
@@ -18918,6 +18924,8 @@ MonoBehaviour:
   _pushOffset: 5
   _isThePrisoner: 0
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!50 &1143098323
 Rigidbody2D:
   serializedVersion: 2
@@ -23806,6 +23814,13 @@ MonoBehaviour:
   _pushOffset: 3
   _isThePrisoner: 1
   _isExecution: 0
+  _ropeTug:
+  - {fileID: 8300000, guid: 8da02646499264d6ba1c98171780e418, type: 3}
+  - {fileID: 8300000, guid: 1e0819ba7475a48afa1505e6d922b29a, type: 3}
+  - {fileID: 8300000, guid: 577004d5718574681836f40098cdddd2, type: 3}
+  - {fileID: 8300000, guid: b32eb8f208f6e4dbd8d6e2ea1fa33f10, type: 3}
+  - {fileID: 8300000, guid: 8d92656d0e22042d5a27e37b1d7ef9e3, type: 3}
+  _ropeBreak: {fileID: 8300000, guid: 043151d107bcf4de0bf700cb2febd0e1, type: 3}
 --- !u!1 &1430097591
 GameObject:
   m_ObjectHideFlags: 0
@@ -30827,6 +30842,8 @@ MonoBehaviour:
   _pushOffset: 3
   _isThePrisoner: 1
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!1 &1881020063
 GameObject:
   m_ObjectHideFlags: 0
