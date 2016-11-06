@@ -627,10 +627,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 33780165}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2544739, y: 0.50459814, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.229036, w: 0.97341794}
+  m_LocalPosition: {x: 0.97, y: 0.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.507004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.165899}
   m_Children:
   - {fileID: 69615330}
   - {fileID: 1230544288}
@@ -725,7 +725,7 @@ GameObject:
   - 212: {fileID: 42026658}
   m_Layer: 0
   m_Name: pwb-torso
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -934,7 +934,7 @@ GameObject:
   - 212: {fileID: 46889036}
   m_Layer: 0
   m_Name: prisoner-whitebase_16
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1249,7 +1249,7 @@ GameObject:
   - 212: {fileID: 69615331}
   m_Layer: 0
   m_Name: prisoner-whitebase_8
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1895,7 +1895,7 @@ GameObject:
   - 212: {fileID: 1692042770}
   m_Layer: 0
   m_Name: guard-witebase_RLrg
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2054,7 +2054,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0248911, y: 1.6150634, z: 0.22999945}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.856}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.941001}
   m_Children:
   - {fileID: 1557306509}
   - {fileID: 420098905}
@@ -2149,7 +2149,7 @@ GameObject:
   - 212: {fileID: 346466567}
   m_Layer: 0
   m_Name: guard-witebase_rarm
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2198,7 +2198,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0316571, y: -1.7688811, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 168.15001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 295456591}
   - {fileID: 2055576728}
@@ -2613,10 +2613,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 187660652}
-  m_LocalRotation: {x: -0, y: -0, z: 0.031523217, w: -0.999503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.20693348, y: 0.346578, z: -0.22999969}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.2780004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.407}
   m_Children:
   - {fileID: 42026657}
   - {fileID: 1912944746}
@@ -5744,7 +5744,7 @@ GameObject:
   - 212: {fileID: 295456592}
   m_Layer: 0
   m_Name: prisoner-whitebase_14
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6318,7 +6318,7 @@ GameObject:
   - 212: {fileID: 1598342752}
   m_Layer: 0
   m_Name: guard-witebase_RFoot
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7129,7 +7129,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.32204285, w: 0.9467252}
   m_LocalPosition: {x: -0.81, y: 0.55, z: 0.20075607}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.380001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.838}
   m_Children:
   - {fileID: 1576081905}
   - {fileID: 744283418}
@@ -7697,7 +7697,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.1914436, y: 0.3693025, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.031}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 768460882}
   - {fileID: 1998545662}
@@ -8720,7 +8720,7 @@ GameObject:
   - 212: {fileID: 359430265}
   m_Layer: 0
   m_Name: guard-witebase_LUpperLeg
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9714,7 +9714,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.32450244, y: -1.7883925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -87.643005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1228833551}
   - {fileID: 146131392}
@@ -10354,7 +10354,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.38211086, y: -1.8283925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -86.163}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.483}
   m_Children:
   - {fileID: 1933772344}
   - {fileID: 857090780}
@@ -11055,7 +11055,7 @@ GameObject:
   - 212: {fileID: 564540085}
   m_Layer: 0
   m_Name: guard-witebase_LLeg
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11374,7 +11374,7 @@ GameObject:
   - 212: {fileID: 632071971}
   m_Layer: 0
   m_Name: prisoner-whitebase_20
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11531,10 +11531,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645753308}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.146141, y: -1.0405756, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.96328217, w: 0.26849124}
+  m_LocalPosition: {x: -0.02, y: -0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -62.206}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 38.915}
   m_Children:
   - {fileID: 2002324899}
   - {fileID: 1245888792}
@@ -12007,7 +12007,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.031523217, w: -0.999503}
   m_LocalPosition: {x: -0.020461023, y: 0.80030155, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.072}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1723251752}
   - {fileID: 503784611}
@@ -12786,7 +12786,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6291182, y: -0.31103104, z: -0.20075655}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 37.412003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1881899193}
   - {fileID: 1777629907}
@@ -12905,7 +12905,7 @@ GameObject:
   - 212: {fileID: 296773843}
   m_Layer: 0
   m_Name: guard-witebase_rupperarm
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13031,7 +13031,7 @@ GameObject:
   - 212: {fileID: 62939748}
   m_Layer: 0
   m_Name: guard-witebase_rhand
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13322,7 +13322,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.045857877, y: -1.7537366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 166.31401}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 46889035}
   - {fileID: 1242759844}
@@ -13498,7 +13498,7 @@ GameObject:
   - 212: {fileID: 879212550}
   m_Layer: 0
   m_Name: prisoner-whitebase_7
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14185,7 +14185,7 @@ GameObject:
   - 212: {fileID: 245012663}
   m_Layer: 0
   m_Name: guard-witebase_down
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14358,10 +14358,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 924587723}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2489399, y: 0.53475964, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.14314412, w: 0.98970187}
+  m_LocalPosition: {x: -1.09, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 52.457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 32.786003}
   m_Children:
   - {fileID: 879212549}
   - {fileID: 1469377550}
@@ -15028,7 +15028,7 @@ GameObject:
   - 212: {fileID: 1619709874}
   m_Layer: 0
   m_Name: guard-witebase_LFoot
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17552,10 +17552,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1218803365}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2215447, y: -0.8746866, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.27391002, w: 0.96175534}
+  m_LocalPosition: {x: -1.37, y: -0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -59.519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -43.221}
   m_Children:
   - {fileID: 1370597392}
   - {fileID: 1691702083}
@@ -17804,7 +17804,7 @@ GameObject:
   - 212: {fileID: 1530317063}
   m_Layer: 0
   m_Name: guard-witebase_up
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17835,7 +17835,7 @@ GameObject:
   - 212: {fileID: 1228833552}
   m_Layer: 0
   m_Name: p
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18188,7 +18188,7 @@ GameObject:
   - 212: {fileID: 1235280564}
   m_Layer: 0
   m_Name: pwb-head
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18458,7 +18458,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.9450252, y: -0.9953586, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 33.206}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.489468}
   m_Children:
   - {fileID: 1813775643}
   m_Father: {fileID: 645753309}
@@ -18635,7 +18635,7 @@ GameObject:
   - 212: {fileID: 45061325}
   m_Layer: 0
   m_Name: guard-witebase_lhand
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19704,7 +19704,7 @@ GameObject:
   - 212: {fileID: 1370597393}
   m_Layer: 0
   m_Name: prisoner-whitebase_10
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21535,7 +21535,7 @@ GameObject:
   - 212: {fileID: 1557306510}
   m_Layer: 0
   m_Name: prisoner-whitebase_1
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21728,7 +21728,7 @@ GameObject:
   - 212: {fileID: 541489627}
   m_Layer: 0
   m_Name: guard-witebase_Lupperarm
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23056,10 +23056,10 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1691702082}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9140792, y: -0.93054855, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.36077574, w: 0.9326526}
+  m_LocalPosition: {x: -1.13, y: -0.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -46.134003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.036003}
   m_Children:
   - {fileID: 1768726422}
   m_Father: {fileID: 1218803366}
@@ -23578,7 +23578,7 @@ GameObject:
   - 212: {fileID: 1768726423}
   m_Layer: 0
   m_Name: prisoner-whitebase_2
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23662,7 +23662,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.1458819, y: 0.6780309, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1249342832}
   - {fileID: 1160752310}
@@ -24014,7 +24014,7 @@ GameObject:
   - 212: {fileID: 1813775644}
   m_Layer: 0
   m_Name: prisoner-whitebase_3
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24468,7 +24468,7 @@ GameObject:
   - 212: {fileID: 797646781}
   m_Layer: 0
   m_Name: guard-witebase_body
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24624,7 +24624,7 @@ GameObject:
   - 212: {fileID: 811978778}
   m_Layer: 0
   m_Name: guard-witebase_larm
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25368,7 +25368,7 @@ GameObject:
   - 212: {fileID: 1933772345}
   m_Layer: 0
   m_Name: prisoner-whitebase_15
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26149,7 +26149,7 @@ GameObject:
   - 212: {fileID: 2002324900}
   m_Layer: 0
   m_Name: prisoner-whitebase_11
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26214,7 +26214,7 @@ GameObject:
   - 212: {fileID: 58238619}
   m_Layer: 0
   m_Name: guard-witebase_neck
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26455,7 +26455,7 @@ GameObject:
   - 212: {fileID: 2026320296}
   m_Layer: 0
   m_Name: prisoner-whitebase_17
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26815,7 +26815,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.012428045, y: -1.2427819, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.801001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2026320295}
   m_Father: {fileID: 146131392}
@@ -27641,7 +27641,7 @@ GameObject:
   - 212: {fileID: 1752306923}
   m_Layer: 0
   m_Name: guard-witebase_RUpperLeg
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27860,7 +27860,7 @@ GameObject:
   - 212: {fileID: 2137468813}
   m_Layer: 0
   m_Name: pwb-down
-  m_TagString: WhiteBase
+  m_TagString: PWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27987,7 +27987,7 @@ GameObject:
   - 212: {fileID: 785027800}
   m_Layer: 0
   m_Name: items-wb_1
-  m_TagString: WhiteBase
+  m_TagString: GWhiteBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

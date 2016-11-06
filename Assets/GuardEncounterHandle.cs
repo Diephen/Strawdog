@@ -68,4 +68,10 @@ public class GuardEncounterHandle : MonoBehaviour {
 		}
 
 	}
+
+	public void Interacte(){
+		if (!m_IsHandUp && !m_IsShot) {
+			m_Anim.Play ("g-enct-HoldHand");
+		}
+	}
 }

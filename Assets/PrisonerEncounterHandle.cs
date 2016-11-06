@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class PrisonerEncounterHandle : MonoBehaviour {
-	GameObject[] m_WhiteBase;
+	GameObject[] m_PWhiteBase;
+	GameObject[] m_GWhiteBase;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] Color m_EndColor;
 	bool isLightUp = false;
@@ -30,13 +31,16 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		m_Anim = GetComponent<Animator> ();
 		m_AnimCtrl = GetComponent<AnimationControl> ();
 		m_AnimInjection = GetComponent<AnimationInjectionEncounter> ();
-		m_WhiteBase = GameObject.FindGameObjectsWithTag ("WhiteBase");
+		m_PWhiteBase = GameObject.FindGameObjectsWithTag ("PWhiteBase");
+		m_GWhiteBase = GameObject.FindGameObjectsWithTag ("GWhiteBase");
 	}
 
 	void StartAnimation(){
 		m_AnimCtrl.SetAnimation (true);
+		m_Anim.Play ("p-enct-Idle");
 		m_AnimInjection.SetEngage ();
-		DimPuppet ();
+
+
 	}
 
 	void EndAnimation(){
@@ -48,29 +52,39 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		if (e.OnGuard) {
 			m_IsTouch = true;
 			LightUpPuppet ();
+			StartAnimation ();
 		} else {
 			m_IsTouch = false;
 			DimPuppet ();
+			EndAnimation ();
 		}
 		
 	}
 
 	void LightUpPuppet(){
-		foreach (GameObject spr in m_WhiteBase) {
+		foreach (GameObject spr in m_PWhiteBase) {
+			spr.GetComponent<SpriteRenderer> ().color = m_EndColor;
+
+		}
+		foreach (GameObject spr in m_GWhiteBase) {
 			spr.GetComponent<SpriteRenderer> ().color = m_EndColor;
 
 		}
 	}
 
 	void DimPuppet(){
-		foreach (GameObject spr in m_WhiteBase) {
+		foreach (GameObject spr in m_PWhiteBase) {
 			spr.GetComponent<SpriteRenderer> ().color = m_StartColor;
+		}
+		foreach (GameObject spr in m_GWhiteBase) {
+			spr.GetComponent<SpriteRenderer> ().color = m_StartColor;
+
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-	
+		DimPuppet ();
 	}
 	
 	// Update is called once per frame
@@ -107,6 +121,18 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	public void GuardReleaseGun(){
 		if (m_IsTouch) {
 			LightUpPuppet ();
+		}
+	}
+
+	public void GiveHand(){
+		if (m_IsTouch) {
+			m_Anim.Play ("p-enct-GiveHandToGuard");
+		}
+	}
+
+	public void WithdrawHand(){
+		if (m_IsTouch) {
+			m_Anim.Play ("p-enct-WithDrawHand");
 		}
 	}
 
