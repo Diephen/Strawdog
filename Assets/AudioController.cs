@@ -305,7 +305,15 @@ public class AudioController : MonoBehaviour {
 			_soundSource2_Light.loop = true;
 			_soundSource2_Light.Play ();
 		}
-
+		else if (_currentSceneIndex == 15) {
+			_soundOff2 = true;
+		}
+		else if (_currentSceneIndex == 16) {
+			_soundOff2 = true;
+		}
+		else if (_currentSceneIndex == 18) {
+			_soundOff2 = true;
+		}
 	}
 
 
@@ -392,4 +400,16 @@ public class AudioController : MonoBehaviour {
 		}
 	}
 
+	public void LoopSound(AudioClip _loopClip){
+		_soundSource2_Light.clip = _loopClip;
+		_soundSource2_Light.volume = 1.0f;
+		_soundSource2_Light.loop = true;
+		_soundSource2_Light.Play ();
+	}
+
+	public void SingleSound(AudioClip _singleClip){
+		_soundSource4.clip = _singleClip;
+		_soundSource4.volume = 1.0f;
+		_soundSource4.Play ();
+	}
 }

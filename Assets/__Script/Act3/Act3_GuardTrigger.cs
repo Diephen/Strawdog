@@ -6,6 +6,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	guardState _guardState = guardState.Act3Begin;
 
 	[SerializeField] GameObject _guard;
+	[SerializeField] GameObject _heldBomb;
 	PuppetControl _guardPuppetController;
 //	[SerializeField] MinMax _stairRange = new MinMax(0.2f, 9.8f); 
 	KeyCode[] _guardKeyCodes;
@@ -18,9 +19,8 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	float _tempAlpha;
 	[SerializeField] bool _isGuardTop = false;
 
-	[SerializeField] TextMesh _code;
 	[SerializeField] Renderer _foodStorageWall;
-	bool _codeOnce = true;
+	[SerializeField] AudioController _audioController;
 //	bool _isStairs = false;
 //	float _stairTempPosition;
 
@@ -33,10 +33,18 @@ public class Act3_GuardTrigger : MonoBehaviour {
 //	int _waveCnt = 0;
 	SpriteRenderer _screenRenderer;
 	bool _bombPlanted = false;
+	Timer _bombTimer = new Timer (1f);
+	bool _bombArea = false;
 	bool _secretDoor = false;
 	bool _foodStorage = false;
+	bool _crawlExit = false;
+	Vector3 _bombPlantPosition = new Vector3(-3.06f, -2.886f, 0.0f);
+	GameObject _bombObject;
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
+
+	[SerializeField] AudioClip _bombTick;
+	[SerializeField] AudioClip _bombPlace;
 
 	void Start(){
 		_stairStartTimer = new Timer (1f);
@@ -49,7 +57,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_goToStart = true;
-				//_highlightsFX.enabled = false;
 				_isStairs = false;
 //				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 				_guardPuppetController.DisableKeyInput ();
@@ -58,21 +65,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 				Events.G.Raise (new GuardStairsStartEvent ());
 			}
 		}
-//		if (_isStairs) {
-////			Debug.Log (_guard.transform.position.y);
-//			if (((_guard.transform.position.y < _stairRange.Min) && (_stairTempPosition>_stairRange.Min)) 
-//				|| ((_stairTempPosition < _stairRange.Max) &&(_guard.transform.position.y > _stairRange.Max))) {
-//				_isStairs = false;
-//
-//				_guardPuppetController.SetIsStairs (_isStairs);
-//			}
-//		}
-//
-//		if (_waveCnt >= 3) {
-//			_waveCnt = 0;
-//			Events.G.Raise(new GuardFoundBombEvent());
-//			Debug.Log ("Guard Found Bomb");
-//		}
 
 		if (_goToStart) {
 			_tempPosition.x = Mathf.Lerp (_tempPosition.x, _stairStartPosition, _stairStartTimer.PercentTimePassed);
@@ -96,12 +88,31 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		if (_isGuardTop) {
 			if (_secretDoor && Input.GetKeyDown (_guardKeyCodes [3])) {
 				Events.G.Raise (new CallSecretDoorEvent ());
-				//_highlightsFX.enabled = false;
-			} else if(_foodStorage && Input.GetKeyDown (_guardKeyCodes [3])){
-				Events.G.Raise (new Plant_EnterFoodStorageEvent());
+			}
+			else if (_foodStorage && Input.GetKeyDown (_guardKeyCodes [3])) {
+				Events.G.Raise (new Plant_EnterFoodStorageEvent ());
+			}
+			else if (_bombArea && !_bombPlanted && Input.GetKeyDown (_guardKeyCodes [3])) {
+				_bombObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+				_heldBomb.transform.SetParent (_bombObject.transform);
+				_bombPlantPosition.z = _heldBomb.transform.position.z;
+				_bombPlanted = true;
+				_heldBomb.transform.rotation = Quaternion.identity;
+				_bombTimer.Reset ();
+				_audioController.SingleSound (_bombPlace);
+				_audioController.LoopSound (_bombTick);
+			}
+			else if (_crawlExit && _bombPlanted && Input.GetKeyDown (_guardKeyCodes [3])) {
+				Events.G.Raise (new Plant_LeaveFoodStorageEvent ());
+				_crawlExit = false;
 			}
 		}
+	}
 
+	void FixedUpdate(){
+		if (_bombPlanted && !_bombTimer.IsOffCooldown) {
+			_heldBomb.transform.localPosition = Vector3.Lerp (_heldBomb.transform.localPosition, _bombPlantPosition, _bombTimer.PercentTimePassed);
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other)
@@ -136,6 +147,15 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		else if (other.name == "GuardExitEnd") {
 			Events.G.Raise (new GuardAloneEndingEvent ());
 		}
+		else if (other.name == "BombPlant" && !_bombPlanted) {
+			_bombArea = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			_bombObject = other.gameObject;
+		}
+		else if (other.name == "CrawlExit" && _bombPlanted) {
+			_crawlExit = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+		}
 	}
 	IEnumerator ScreenFadeOut(){
 		float startTime = Time.time;
@@ -144,7 +164,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			_tempAlpha = _screenTranslucencyCurve.Evaluate ((Time.time - startTime));
 			_tempColor.a = _tempAlpha;
 			_screenRenderer.color = _tempColor;
-//			Debug.Log (_screenTimer.PercentTimePassed);
 			yield return null;
 			if ((Time.time - startTime) > 1.0f) {
 				i = false;
@@ -159,7 +178,6 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			_tempAlpha = _screenTranslucencyCurve.Evaluate (1.0f - (Time.time - startTime));
 			_tempColor.a = _tempAlpha;
 			_screenRenderer.color = _tempColor;
-			//			Debug.Log (_screenTimer.PercentTimePassed);
 			yield return null;
 			if ((Time.time - startTime) > 1.0f) {
 				i = false;
@@ -167,20 +185,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		}
 	}
 
-	IEnumerator CodeFadeIn(){
-		float startTime = Time.time;
-		bool i = true;
-		while (i) {
-			_tempAlpha = _screenTranslucencyCurve.Evaluate (1.0f - (Time.time - startTime)/3f);
-			_tempColor.a = _tempAlpha;
-			_code.color = _tempColor;
-			//			Debug.Log (_screenTimer.PercentTimePassed);
-			yield return null;
-			if ((Time.time - startTime)/3f > 1.0f) {
-				i = false;
-			}
-		}
-	}
+
 
 	IEnumerator WallFadeIn(Renderer render){
 		float startTime = Time.time;
@@ -212,42 +217,15 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerStay2D(Collider2D other){
-//		if (_guardState == guardState.Act2Begin && other.name == "LockCell") {
-//			if(Input.GetKeyDown (_guardKeyCodes[3])){
-//				_guardState = guardState.Locked;
-//				Debug.Log ("Guard Locked the door");
-//				Events.G.Raise(new LockCellEvent());
-//			}
-//		}
-		if (other.name == "BombPlant") {
-			if (Input.GetKeyDown (_guardKeyCodes [3])) {
-				Debug.Log ("Planted Bomb");
-				_bombPlanted = true;
-				if (_codeOnce) {
-					_tempColor = _code.color;
-					StartCoroutine (CodeFadeIn ());
-					_codeOnce = false;
-				}
-			}
-		}
-	}
-
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "Glass") {
 			_screenRenderer = other.gameObject.GetComponent <SpriteRenderer> ();
 			_tempColor = _screenRenderer.color;
 			StartCoroutine (ScreenFadeIn ());
-
-
-			//			_guardState = guardState.LeftUnlocked;
-			//			Events.G.Raise (new LeftCellUnlockedEvent());
-			//			_guard.SetActive (false);
 		}
 		else if (other.tag == "Stairs") {
 			_isStairs = false;
-			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 		}
 		else if (other.tag == "SecretDoor") {
@@ -256,12 +234,16 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		}
 		else if (other.name == "EnterFoodStorage") {
 			_foodStorage = false;
-			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 		}
-
-//		if (other.name == "Bomb") {
-//			_waveCnt = 0;
-//		}
+		else if (other.name == "BombPlant" && !_bombPlanted) {
+			_bombArea = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		}
+		else if (other.name == "CrawlExit" && _bombPlanted) {
+			_crawlExit = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		}
 	}
 
 	void SoldierFlip(){
