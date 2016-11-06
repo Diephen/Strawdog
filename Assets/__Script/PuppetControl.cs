@@ -12,7 +12,7 @@ public class PuppetControl : MonoBehaviour {
 	//add animators 
 	private Animator[] m_Animator = new Animator[4];
 	//1 for walk, 2 for speak
-	public AudioClip[] m_Audio = new AudioClip[3];
+	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
 	[SerializeField] float[] m_MoveDistance = new float[3];
@@ -426,6 +426,11 @@ public class PuppetControl : MonoBehaviour {
 	void DisableMove(DisableMoveEvent e){
 		_stateHandling [4] = false;
 		_stateHandling [3] = false;
+	}
+
+	public void SwitchWalk(AudioClip _audioClip){
+		m_Audio [0] = _audioClip;
+		m_AudioSource [0].clip = m_Audio [0];
 	}
 
 	void OnEnable(){
