@@ -46,6 +46,9 @@ public class PuppetControl : MonoBehaviour {
 	[SerializeField] bool _disableKeys = false;
 
 
+	// debug moving speed 
+	bool _speedUp = false;
+
 	// Will be used to selectively disable functionality to be replaced with animation
 	/* 
 	 * [0]: PickUp Down
@@ -72,6 +75,7 @@ public class PuppetControl : MonoBehaviour {
 	// Use this for initialization
 	void Start (){
 		StringCalculation ();
+
 	}
 
 
@@ -105,6 +109,18 @@ public class PuppetControl : MonoBehaviour {
 			KeyHandle ();
 			//LerpHandle ();
 		}
+
+		#if UNITY_EDITOR
+		if(Input.GetKeyDown(KeyCode.LeftControl)){
+			_speedUp = !_speedUp;
+		}
+		if(_speedUp){
+			m_MoveSpeed = 10f;
+		}else{
+			m_MoveSpeed = 3f;
+		}
+
+		#endif
 	}
 
 	void FixedUpdate(){

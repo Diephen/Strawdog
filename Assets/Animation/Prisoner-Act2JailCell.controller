@@ -28,7 +28,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: p-jc-Sleep
-  m_Speed: 1
+  m_Speed: 0.6
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -100,13 +100,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102000013647613158}
-    m_Position: {x: 396, y: 132, z: 0}
+    m_Position: {x: 384, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012367255260}
     m_Position: {x: 384, y: 12, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000010922115482}
-    m_Position: {x: 419, y: 77, z: 0}
+    m_Position: {x: 384, y: 72, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

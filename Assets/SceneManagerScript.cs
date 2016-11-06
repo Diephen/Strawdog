@@ -203,7 +203,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Log.Metrics.Message("CHOICE 3: Bed");
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 3f));
 	}
 
 	void LoadWentBack(PrisonerWentBack e){
