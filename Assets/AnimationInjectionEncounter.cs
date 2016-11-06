@@ -6,9 +6,11 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	[SerializeField] GuardEncounterHandle m_GuardHandle;
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
 	private bool isEngaged = false;
+	private bool isShot = false;
 	private bool isGuardHandUp = false;
 	private bool isGuardReady = false;
 	private bool isPrisonerReady = false;
+	private bool isAwayTogether = false;
 	//private bool isPrisonerDead = false;
 
 	public void SetEngage(){
@@ -45,8 +47,9 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	}
 
 	void Update(){
-		if (isGuardReady && isPrisonerReady) {
+		if (!isAwayTogether && isGuardReady && isPrisonerReady) {
 			Debug.Log ("Away together");
+			isAwayTogether = true;
 			// raise event
 		}
 	}
@@ -65,22 +68,32 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 
 	protected override void CrouchPressed(CrouchPressedEvent e){
 		base.CrouchPressed (e);
-		if (e.WhoAmI == CharacterIdentity.Guard) {
-			if (isGuardHandUp) {
-				Debug.Log ("Shoot");
-				m_GuardHandle.Shoot ();
-			} else {
-				Debug.Log ("G Interact");
-				m_GuardHandle.Interacte ();
-				isGuardReady = true;
-			}
+		if (!isAwayTogether && !isShot) {
+			if (e.WhoAmI == CharacterIdentity.Guard) {
+				if (isGuardHandUp) {
+					Debug.Log ("Shoot");
+					m_GuardHandle.Shoot ();
+					isShot = true;
+				} else {
+					if (!isGuardReady) {
+						Debug.Log ("G Interact");
+						isGuardReady = true;
+					}
 
+				}
+
+			}
+			if(e.WhoAmI == CharacterIdentity.Prisoner){
+				//m_PrisonerHandle.GiveHand ();
+				if(!isPrisonerReady){
+					Debug.Log ("P Interact");
+					isPrisonerReady = true;
+				}
+
+			}
+		
 		}
-		if(e.WhoAmI == CharacterIdentity.Prisoner){
-			Debug.Log ("P Interact");
-			m_PrisonerHandle.GiveHand ();
-			isPrisonerReady = true;
-		}
+
 
 
 	}
@@ -93,17 +106,18 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	//	}
 	protected override void APressed(APressedEvent e){
 		base.APressed (e);
-		if (e.WhoAmI == CharacterIdentity.Guard) {
+		if (!isAwayTogether && e.WhoAmI == CharacterIdentity.Guard) {
 			Debug.Log ("Hold Gun");
 			m_GuardHandle.HandUp ();
 			isGuardHandUp = true;
+			isGuardReady = false;
 			// enable collider box 
 		}
 
 	}
 	protected override void AReleased(AReleasedEvent e){
 		base.AReleased (e);
-		if (e.WhoAmI == CharacterIdentity.Guard) {
+		if (!isAwayTogether && e.WhoAmI == CharacterIdentity.Guard) {
 			Debug.Log ("Release Gun");
 			m_GuardHandle.HandDown ();
 			isGuardHandUp = false;

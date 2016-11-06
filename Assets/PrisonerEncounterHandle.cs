@@ -11,6 +11,7 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	Animator m_Anim;
 	AnimationControl m_AnimCtrl;
 	AnimationInjectionEncounter m_AnimInjection;
+	[SerializeField] PuppetControl m_PuppetControl;
 
 	// touch 
 	bool m_IsTouch = false;
@@ -33,11 +34,12 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		m_AnimInjection = GetComponent<AnimationInjectionEncounter> ();
 		m_PWhiteBase = GameObject.FindGameObjectsWithTag ("PWhiteBase");
 		m_GWhiteBase = GameObject.FindGameObjectsWithTag ("GWhiteBase");
+		m_PuppetControl = GetComponent<PuppetControl> ();
 	}
 
 	void StartAnimation(){
 		m_AnimCtrl.SetAnimation (true);
-		m_Anim.Play ("p-enct-Idle");
+		//m_Anim.Play ("p-enct-Idle");
 		m_AnimInjection.SetEngage ();
 
 
@@ -52,11 +54,11 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		if (e.OnGuard) {
 			m_IsTouch = true;
 			LightUpPuppet ();
-			StartAnimation ();
+			//StartAnimation ();
 		} else {
 			m_IsTouch = false;
 			DimPuppet ();
-			EndAnimation ();
+			//EndAnimation ();
 		}
 		
 	}
@@ -101,7 +103,31 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 			}
 		}
 		#endif
+
+		if (m_IsTouch && !m_IsDead) {
+			if (Input.GetKeyDown (m_PuppetControl.GetKeyCodes()[3])) {
+				StartAnimation ();
+				GiveHand ();
+			}
+
+			if (Input.GetKeyUp (m_PuppetControl.GetKeyCodes () [3])) {
+				EndAnimation ();
+			}
+		}
+
 	
+	}
+
+	public void OnGunUpIdle(){
+		m_AnimCtrl.SetAnimation (true);
+		m_Anim.Play ("p-enct-OnGunIdle");
+		m_AnimInjection.SetEngage ();
+	}
+
+	public void OnGunDownFree(){
+		m_AnimCtrl.SetAnimation (false);
+		//m_Anim.Play ("p-enct-Idle");
+		m_AnimInjection.SetLeave ();
 	}
 
 	public void Death(){
@@ -126,7 +152,7 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 
 	public void GiveHand(){
 		if (m_IsTouch) {
-			m_Anim.Play ("p-enct-GiveHandToGuard");
+			m_Anim.Play ("p-enct-GiveHand");
 		}
 	}
 
