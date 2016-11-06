@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GuardEncounterHandle : MonoBehaviour {
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
-	[SerializeField] BoxCollider2D m_BlockColl;
+	//[SerializeField] BoxCollider2D m_BlockColl;
 	//SpriteRenderer[] m_WhiteBase;
 	Animator m_Anim;
 	AnimationControl m_AnimCtrl;
@@ -34,14 +34,14 @@ public class GuardEncounterHandle : MonoBehaviour {
 	}
 
 	void Start(){
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 		StartAnimation ();
-
 	}
 
 	void StartAnimation(){
 		m_AnimCtrl.SetAnimation (true);
 		m_Anim.Play("g-ecnt-Idle");
-		m_BlockColl.enabled = false;
+		//m_BlockColl.enabled = false;
 		m_IsHandUp = false;
 		m_AnimInjection.SetEngage ();
 	}
@@ -88,7 +88,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_Anim.Play("g-ecnt-GunDown");
 			m_PrisonerHandle.OnGunDownFree();
 			//m_BlockColl.enabled = false;
-			//Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner));
+
 			m_IsHandUp = false;
 			m_PrisonerHandle.GuardReleaseGun ();
 		}
@@ -101,6 +101,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_PrisonerHandle.Death ();
 			m_IsShot = true;
 			Events.G.Raise (new PrisonerShotEvent ());
+
 		}
 
 	}
@@ -108,7 +109,8 @@ public class GuardEncounterHandle : MonoBehaviour {
 	void EnableGuardMovement(){
 		m_AnimCtrl.SetAnimation (false);
 		m_AnimInjection.SetLeave ();
-//		Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+		Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+
 	}
 
 	public void GiveHand(){

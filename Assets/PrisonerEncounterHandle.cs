@@ -7,6 +7,7 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	[SerializeField] float m_Speed;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] Color m_EndColor;
+	[SerializeField] BoxCollider2D[] m_Colls;
 	bool isLightUp = false;
 	//[SerializeField] GuardEncounterHandle m_GuardHandle;
 	Animator m_Anim;
@@ -36,6 +37,7 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		m_PWhiteBase = GameObject.FindGameObjectsWithTag ("PWhiteBase");
 		m_GWhiteBase = GameObject.FindGameObjectsWithTag ("GWhiteBase");
 		m_PuppetControl = GetComponent<PuppetControl> ();
+		m_Colls = GetComponentsInChildren<BoxCollider2D> ();
 	}
 
 	void StartAnimation(){
@@ -143,6 +145,9 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 			StartAnimation ();
 			m_Anim.Play ("p-enct-Death");
 			m_IsDead = true;
+			foreach (BoxCollider2D bc in m_Colls) {
+				bc.enabled = false;
+			}
 		}
 	}
 

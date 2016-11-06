@@ -987,49 +987,6 @@ SpriteRenderer:
   m_Color: {r: 0.45762712, g: 0.4615722, b: 0.46551725, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &47442823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 47442824}
-  - 61: {fileID: 47442825}
-  m_Layer: 0
-  m_Name: STOPRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &47442824
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 47442823}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0700073, y: 0.7, z: 0}
-  m_LocalScale: {x: 0.6958579, y: 0.6958579, z: 0.6958579}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1094253578}
-  m_RootOrder: 4
---- !u!61 &47442825
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 47442823}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -5.3807425, y: -1.5882849}
-  serializedVersion: 2
-  m_Size: {x: 3.0096748, y: 9.038661}
 --- !u!1 &54479157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,7 +1404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PrisonerHandle: {fileID: 496957693}
-  m_BlockColl: {fileID: 47442825}
 --- !u!95 &74962044
 Animator:
   serializedVersion: 3
@@ -1523,7 +1479,7 @@ MonoBehaviour:
   - -4
   - -2
   - -2
-  m_Continuous: 000000
+  m_Continuous: 010001
   m_MoveSpeed: 3
   _spotlight: {fileID: 1112361597}
   _lightControl: {fileID: 320693799}
@@ -9116,6 +9072,7 @@ MonoBehaviour:
   m_Speed: 3
   m_StartColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
   m_EndColor: {r: 0.9485294, g: 0.9081255, b: 0.8648356, a: 1}
+  m_Colls: []
   m_HugPos: {fileID: 524827125}
 --- !u!114 &496957694
 MonoBehaviour:
@@ -10967,8 +10924,9 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1284760688}
+  - {fileID: 647192560}
   m_Father: {fileID: 1094253578}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &591014060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11070,9 +11028,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -5.4355083, y: -2.5335262}
+  m_Offset: {x: 0.22060637, y: -3.3592343}
   serializedVersion: 2
-  m_Size: {x: 0.6126834, y: 3.8362477}
+  m_Size: {x: 5.6495624, y: 5.4876637}
 --- !u!1 &604940631
 GameObject:
   m_ObjectHideFlags: 0
@@ -11670,6 +11628,49 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &647192559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 647192560}
+  - 61: {fileID: 647192561}
+  m_Layer: 0
+  m_Name: EncounterInteract
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &647192560
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 647192559}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 591014059}
+  m_RootOrder: 1
+--- !u!61 &647192561
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 647192559}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -4.7786984, y: -1.7509624}
+  serializedVersion: 2
+  m_Size: {x: 0.9270443, y: 4.501925}
 --- !u!1 &651651263
 GameObject:
   m_ObjectHideFlags: 0
@@ -15901,7 +15902,6 @@ Transform:
   - {fileID: 2058809153}
   - {fileID: 1104527115}
   - {fileID: 583960403}
-  - {fileID: 47442824}
   - {fileID: 591014059}
   m_Father: {fileID: 2119516614}
   m_RootOrder: 0

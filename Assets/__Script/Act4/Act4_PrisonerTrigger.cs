@@ -89,7 +89,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //				}
 			}
 		}
-		else if (other.tag == "Guard") {
+		else if (other.name == "EncounterInteract") {
 			// raise event 
 			_isOnGuard = true;
 			Events.G.Raise (new EncounterTouchEvent (true));
@@ -148,7 +148,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //				}
 			}
 		}
-		else if (other.tag == "Guard") {
+		else if (other.name == "EncounterInteract") {
 			// raise event to disable lightup
 			_isOnGuard = false;
 			Events.G.Raise (new EncounterTouchEvent (false));

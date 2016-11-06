@@ -424,8 +424,10 @@ public class PuppetControl : MonoBehaviour {
 		}
 	}
 	void DisableMove(DisableMoveEvent e){
-		_stateHandling [4] = false;
-		_stateHandling [3] = false;
+		if (e.WhoAmI == CharacterIdentity.Both || e.WhoAmI == _whoAmI) {
+			_stateHandling [4] = false;
+			_stateHandling [3] = false;
+		}
 	}
 
 	public void SwitchWalk(AudioClip _audioClip){

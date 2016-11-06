@@ -260,6 +260,10 @@ public class EnableMoveEvent: GameEvent {
 	}
 }
 public class DisableMoveEvent: GameEvent {
+	public CharacterIdentity WhoAmI { get; private set; }
+	public DisableMoveEvent(CharacterIdentity whoAmI = CharacterIdentity.Both){
+		WhoAmI = whoAmI;
+	}
 }
 
 public class IsWalkingEvent : GameEvent {
