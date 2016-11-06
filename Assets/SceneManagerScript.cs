@@ -261,6 +261,9 @@ public class SceneManagerScript : MonoBehaviour {
 		else if (scene.name == "Act0") {
 			_start = true;
 		}
+		//Capture all ending Scenes
+		else if (scene.name == "EndingTemplate") {
+		}
 		else {
 			StartCoroutine (WaitBeforeOpen ());
 		}
