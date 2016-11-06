@@ -6,6 +6,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] GameObject _guard;
 	[SerializeField] AnimationInjectionExecute m_AnimInjection;
+	[SerializeField] InteractionSound m_ItrSound;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
 	//GameObject _otherGameObject = null;
@@ -104,6 +105,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	public void HandUp(){
 		m_IsHandUp = true;
 		m_Anim.SetBool ("IsHandUp", true);
+		//m_ItrSound.PlayReload ();
 	}
 
 	public void HandDown(){
@@ -111,10 +113,12 @@ public class Act4_GuardTrigger : MonoBehaviour {
 		m_Anim.SetBool ("IsHandUp", false);
 	}
 
+
 	public void Shoot(){
 		if (m_IsHandUp && _execute) {
 			if (!m_IsPrisoner) {
 				m_Anim.Play ("g-Shoot");
+				m_ItrSound.PlayGun ();
 				m_IsHandUp = false;
 				//_otherGameObject.gameObject.SetActive (false);
 				m_CurrentSP.Executed ();

@@ -3,13 +3,16 @@ using System.Collections;
 
 public class AnimationInjection : MonoBehaviour {
 	[SerializeField] PuppetControl _puppetControl;
+	[SerializeField] ExecutionGuardHandle m_GuardHandle;
+	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
+
 	[SerializeField] bool[] _animInject = new bool[11];
-	[SerializeField] GuardHandle m_guard;
-	[SerializeField] PrisonerHandle m_prisoner;
 	bool[] _tempStateHandling = new bool[11];
 	int state = 0;
 
-	bool _isGuardTorturing = false;       // if the guard is doing the torture action 
+
+	private bool isEngaged = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -19,54 +22,23 @@ public class AnimationInjection : MonoBehaviour {
 		//Debug.Log ("Torturing?? " + _isGuardTorturing);	
 	}
 
-	void OnEnable ()
-	{
-		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
-		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 
-		// all the events for controls
-		Events.G.AddListener<PickUpPressedEvent>(PickUpPressed);
-		Events.G.AddListener<PickupReleasedEvent>(PickupReleased);
-		Events.G.AddListener<CrouchPressedEvent>(CrouchPressed);
-		Events.G.AddListener<WalkLeftEvent>(WalkLeft);
-		Events.G.AddListener<WalkRightEvent>(WalkRight);
-		Events.G.AddListener<APressedEvent>(APressed);
-		Events.G.AddListener<AReleasedEvent>(AReleased);
-		Events.G.AddListener<SPressedEvent>(SPressed);
-		Events.G.AddListener<SReleasedEvent>(SReleased);
-		Events.G.AddListener<DPressedEvent>(DPressed);
-		Events.G.AddListener<DHoldEvent>(DHold);
-		Events.G.AddListener<DReleasedEvent>(DReleased);
+	public void SetEngage(){
+		if (!isEngaged) {
+			isEngaged = true;
+			CheckInteractionState ();
+		}
 	}
 
-	void OnDisable ()
-	{
-		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
-		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
-
-		// for all the controls 
-		Events.G.RemoveListener<PickUpPressedEvent>(PickUpPressed);
-		Events.G.RemoveListener<PickupReleasedEvent>(PickupReleased);
-		Events.G.RemoveListener<CrouchPressedEvent>(CrouchPressed);
-		Events.G.RemoveListener<WalkLeftEvent>(WalkLeft);
-		Events.G.RemoveListener<WalkRightEvent>(WalkRight);
-		Events.G.RemoveListener<APressedEvent>(APressed);
-		Events.G.RemoveListener<AReleasedEvent>(AReleased);
-		Events.G.RemoveListener<SPressedEvent>(SPressed);
-		Events.G.RemoveListener<SReleasedEvent>(SReleased);
-		Events.G.RemoveListener<DPressedEvent>(DPressed);
-		Events.G.RemoveListener<DHoldEvent>(DHold);
-		Events.G.RemoveListener<DReleasedEvent>(DReleased);
+	public void SetLeave(){
+		if (isEngaged) {
+			isEngaged = false;
+			CheckInteractionState ();
+		}
 	}
 
-	void OnGuardEnterCell (GuardEnteringCellEvent e)
-	{
-		state = 0;
-	}
-
-	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
-	{
-		if (e.Engaged) {
+	void CheckInteractionState(){
+		if (isEngaged) {
 			state = 1;
 			for (int i = 0; i < _animInject.Length; i++) {
 				_tempStateHandling [i] = _puppetControl._stateHandling [i];
@@ -80,9 +52,52 @@ public class AnimationInjection : MonoBehaviour {
 		}
 	}
 
-	//Have public scripts that will be called in place of the original function
-	// each of these scripts are containers for different scripts that will be
-	// swapped based on the state of the interaction
+	void OnEnable ()
+	{
+		// all the events for controls
+		Events.G.AddListener<PickUpPressedEvent>(PickUpPressed);
+		Events.G.AddListener<PickupReleasedEvent>(PickupReleased);
+		Events.G.AddListener<CrouchPressedEvent>(CrouchPressed);
+		Events.G.AddListener<WalkLeftEvent>(WalkLeft);
+		Events.G.AddListener<WalkRightEvent>(WalkRight);
+		Events.G.AddListener<APressedEvent>(APressed);
+		Events.G.AddListener<AReleasedEvent>(AReleased);
+		Events.G.AddListener<SPressedEvent>(SPressed);
+		Events.G.AddListener<SReleasedEvent>(SReleased);
+		Events.G.AddListener<DPressedEvent>(DPressed);
+		Events.G.AddListener<DHoldEvent>(DHold);
+		Events.G.AddListener<DReleasedEvent>(DReleased);
+
+		// 
+		Events.G.AddListener<BrokeFree>(OnPrisonerBreak);
+			
+	}
+
+	void OnDisable ()
+	{
+		// for all the controls 
+		Events.G.RemoveListener<PickUpPressedEvent>(PickUpPressed);
+		Events.G.RemoveListener<PickupReleasedEvent>(PickupReleased);
+		Events.G.RemoveListener<CrouchPressedEvent>(CrouchPressed);
+		Events.G.RemoveListener<WalkLeftEvent>(WalkLeft);
+		Events.G.RemoveListener<WalkRightEvent>(WalkRight);
+		Events.G.RemoveListener<APressedEvent>(APressed);
+		Events.G.RemoveListener<AReleasedEvent>(AReleased);
+		Events.G.RemoveListener<SPressedEvent>(SPressed);
+		Events.G.RemoveListener<SReleasedEvent>(SReleased);
+		Events.G.RemoveListener<DPressedEvent>(DPressed);
+		Events.G.RemoveListener<DHoldEvent>(DHold);
+		Events.G.RemoveListener<DReleasedEvent>(DReleased);
+
+		//
+		Events.G.RemoveListener<BrokeFree>(OnPrisonerBreak);
+	}
+
+	void OnPrisonerBreak(BrokeFree e){
+		
+		
+	}
+
 
 	void PickUpPressed(PickUpPressedEvent e){
 	}
@@ -98,20 +113,19 @@ public class AnimationInjection : MonoBehaviour {
 	}
 	void APressed(APressedEvent e){
 		if (e.WhoAmI == CharacterIdentity.Guard) {
-			// guard torture
-			Debug.Log("Call Torture");
-			m_guard.Torture();
+
+		
 		} else {
-			m_prisoner.Resist ();
+
 		}
 
 
 	}
 	void AReleased(AReleasedEvent e){
 		if (e.WhoAmI == CharacterIdentity.Guard) {
-			m_guard.ReleaseTorture ();
+			
 		} else {
-			m_prisoner.ReleaseResist ();
+			
 		}
 	}
 	void SPressed(SPressedEvent e){
@@ -121,7 +135,7 @@ public class AnimationInjection : MonoBehaviour {
 	void DPressed(DPressedEvent e){
 		// choose to leave 
 		if (e.WhoAmI != CharacterIdentity.Guard)  {
-			m_prisoner.Resist ();
+			
 		}
 	}
 
@@ -129,7 +143,7 @@ public class AnimationInjection : MonoBehaviour {
 		// choose to leave 
 		if (e.WhoAmI == CharacterIdentity.Guard) {
 			// guard torture
-			m_guard.Leave();
+
 			//_puppetControl.MoveRight ();
 		}
 	}
@@ -139,7 +153,7 @@ public class AnimationInjection : MonoBehaviour {
 			// guard torture
 			// m_guard.Torture();
 		} else {
-			m_prisoner.ReleaseResist ();
+			
 		}
 	}
 }

@@ -9,6 +9,7 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 	[SerializeField] Color m_EndColor;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] float m_Duration;
+	AudioSource m_Audio;
 	Timer m_ColorTimer;
 	BoxCollider2D m_TriggerCol;
 	bool isExecuted = false;
@@ -22,7 +23,7 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 			spr.material.color = m_StartColor;
 		}
 		m_ColorTimer = new Timer (m_Duration);
-
+		m_Audio = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -48,5 +49,11 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 			spr.material.color = Color.Lerp (m_StartColor, m_EndColor, m_ColorTimer.PercentTimePassed);
 		}
 		//lerpedColor = Color.Lerp(Color.white, Color.black, Time.deltaTime);
+	}
+
+	public void PlayBodyFall(){
+		if (!m_Audio.isPlaying) {
+			m_Audio.Play ();
+		}
 	}
 }
