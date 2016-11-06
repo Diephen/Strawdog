@@ -13,6 +13,59 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	private bool isAwayTogether = false;
 	//private bool isPrisonerDead = false;
 
+	void OnEnable(){
+		Events.G.AddListener<EncountEndStateEvent>(OnUpdateEndingSate);
+		Events.G.AddListener<PickUpPressedEvent>(PickUpPressed);
+		Events.G.AddListener<PickupReleasedEvent>(PickupReleased);
+		Events.G.AddListener<CrouchPressedEvent>(CrouchPressed);
+		Events.G.AddListener<WalkLeftEvent>(WalkLeft);
+		Events.G.AddListener<WalkRightEvent>(WalkRight);
+		Events.G.AddListener<APressedEvent>(APressed);
+		Events.G.AddListener<AReleasedEvent>(AReleased);
+		Events.G.AddListener<SPressedEvent>(SPressed);
+		Events.G.AddListener<SReleasedEvent>(SReleased);
+		Events.G.AddListener<DPressedEvent>(DPressed);
+		Events.G.AddListener<DHoldEvent>(DHold);
+		Events.G.AddListener<DReleasedEvent>(DReleased);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<EncountEndStateEvent>(OnUpdateEndingSate);
+		Events.G.RemoveListener<PickUpPressedEvent>(PickUpPressed);
+		Events.G.RemoveListener<PickupReleasedEvent>(PickupReleased);
+		Events.G.RemoveListener<CrouchPressedEvent>(CrouchPressed);
+		Events.G.RemoveListener<WalkLeftEvent>(WalkLeft);
+		Events.G.RemoveListener<WalkRightEvent>(WalkRight);
+		Events.G.RemoveListener<APressedEvent>(APressed);
+		Events.G.RemoveListener<AReleasedEvent>(AReleased);
+		Events.G.RemoveListener<SPressedEvent>(SPressed);
+		Events.G.RemoveListener<SReleasedEvent>(SReleased);
+		Events.G.RemoveListener<DPressedEvent>(DPressed);
+		Events.G.RemoveListener<DHoldEvent>(DHold);
+		Events.G.RemoveListener<DReleasedEvent>(DReleased);
+	}
+
+	void OnUpdateEndingSate(EncountEndStateEvent e){
+		if (e.WhoAmI == CharacterIdentity.Guard) {
+			isGuardReady = e.IsReady;
+		}
+		if (e.WhoAmI == CharacterIdentity.Prisoner) {
+			isPrisonerReady = e.IsReady;
+		}
+	}
+
+	public void PEndState(bool istrue){
+		isPrisonerReady = istrue;
+		print ("P: " + isPrisonerReady);
+		print ("Away?" + isAwayTogether);
+	}
+
+	public void GEndState(bool istrue){
+		isGuardReady = istrue;
+		print ("G: " + isGuardReady);
+		print ("Away?" + isAwayTogether);
+	}
+
 	public void SetEngage(){
 		if (!isEngaged) {
 			isEngaged = true;
@@ -47,12 +100,18 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	}
 
 	void Update(){
+		print ("P: " + isPrisonerReady + " G: " + isGuardReady);
 		if (!isAwayTogether && isGuardReady && isPrisonerReady) {
 			Debug.Log ("Away together");
 			isAwayTogether = true;
+			StartCoroutine (m_GuardHandle.Hug ());
+//			m_GuardHandle.Hug ();
+//			m_PrisonerHandle.Hug ();
 			// raise event
 		}
 	}
+
+
 
 	//Have public scripts that will be called in place of the original function
 	// each of these scripts are containers for different scripts that will be
@@ -74,28 +133,10 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 					Debug.Log ("Shoot");
 					m_GuardHandle.Shoot ();
 					isShot = true;
-				} else {
-					if (!isGuardReady) {
-						Debug.Log ("G Interact");
-						isGuardReady = true;
-					}
-
-				}
+				} 
 
 			}
-			if(e.WhoAmI == CharacterIdentity.Prisoner){
-				//m_PrisonerHandle.GiveHand ();
-				if(!isPrisonerReady){
-					Debug.Log ("P Interact");
-					isPrisonerReady = true;
-				}
-
-			}
-		
 		}
-
-
-
 	}
 
 	//	protected override void WalkLeft(){
@@ -113,6 +154,7 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 			isGuardReady = false;
 			// enable collider box 
 		}
+			
 
 	}
 	protected override void AReleased(AReleasedEvent e){

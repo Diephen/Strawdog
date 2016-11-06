@@ -58,6 +58,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = false;
 			_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
+			Events.G.Raise (new RunAloneEndingEvent ());
 
 		}
 	}

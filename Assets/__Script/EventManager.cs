@@ -325,5 +325,14 @@ public class EncounterTouchEvent:GameEvent{
 	
 }
 
+public class EncountEndStateEvent:GameEvent{
+	public CharacterIdentity WhoAmI { get; private set; }
+	public bool IsReady { get; private set; }
+	public EncountEndStateEvent(CharacterIdentity whoAmI, bool isReady){
+		WhoAmI = whoAmI;
+		IsReady = isReady;
+	}
+}
+
 
 

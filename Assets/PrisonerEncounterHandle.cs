@@ -4,6 +4,7 @@ using System.Collections;
 public class PrisonerEncounterHandle : MonoBehaviour {
 	GameObject[] m_PWhiteBase;
 	GameObject[] m_GWhiteBase;
+	[SerializeField] float m_Speed;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] Color m_EndColor;
 	bool isLightUp = false;
@@ -11,11 +12,11 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	Animator m_Anim;
 	AnimationControl m_AnimCtrl;
 	AnimationInjectionEncounter m_AnimInjection;
-	[SerializeField] PuppetControl m_PuppetControl;
-
+	PuppetControl m_PuppetControl;
+	[SerializeField] Transform m_HugPos;
 	// touch 
 	bool m_IsTouch = false;
-
+	bool m_IsEnd = false;
 
 	bool m_IsDead = false;
 
@@ -51,16 +52,17 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	}
 
 	void OnPrisonerTouchGuard(EncounterTouchEvent e){
-		if (e.OnGuard) {
-			m_IsTouch = true;
-			LightUpPuppet ();
-			//StartAnimation ();
-		} else {
-			m_IsTouch = false;
-			DimPuppet ();
-			//EndAnimation ();
+		if (!m_IsEnd) {
+			if (e.OnGuard) {
+				m_IsTouch = true;
+				LightUpPuppet ();
+				//StartAnimation ();
+			} else {
+				m_IsTouch = false;
+				DimPuppet ();
+				//EndAnimation ();
+			}
 		}
-		
 	}
 
 	void LightUpPuppet(){
@@ -104,18 +106,24 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		}
 		#endif
 
-		if (m_IsTouch && !m_IsDead) {
+		if (m_IsTouch && !m_IsDead && !m_IsEnd) {
 			if (Input.GetKeyDown (m_PuppetControl.GetKeyCodes()[3])) {
 				StartAnimation ();
 				GiveHand ();
+				//m_AnimInjection.PEndState (true);
+				Events.G.Raise(new EncountEndStateEvent(CharacterIdentity.Prisoner, true));
 			}
 
 			if (Input.GetKeyUp (m_PuppetControl.GetKeyCodes () [3])) {
 				EndAnimation ();
+				//m_AnimInjection.PEndState (false);
+				Events.G.Raise(new EncountEndStateEvent(CharacterIdentity.Prisoner, false));
 			}
 		}
 
-	
+		if (m_IsEnd) {
+			MoveToFinalPos ();
+		}
 	}
 
 	public void OnGunUpIdle(){
@@ -160,6 +168,26 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 		if (m_IsTouch) {
 			m_Anim.Play ("p-enct-WithDrawHand");
 		}
+	}
+
+	public void Hug(){
+		if (!m_IsEnd) {
+			//transform.position = m_HugPos.position;
+			LightUpPuppet();
+			m_IsEnd = true;
+			m_Anim.Play ("p-enct-End");
+		}
+	}
+
+	void MoveToFinalPos(){
+		Vector3 npos = transform.position;
+		if (transform.position.x + m_Speed * Time.deltaTime < m_HugPos.position.x) {
+			npos.x += m_Speed * Time.deltaTime;
+			transform.position = npos;
+		} else {
+			npos.x = m_HugPos.position.x;
+		}
+
 	}
 
 

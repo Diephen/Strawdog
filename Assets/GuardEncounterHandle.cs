@@ -12,6 +12,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 	bool m_IsHandUp = false;
 	bool m_IsShot = false;
 	bool m_IsTouch = false;
+	bool m_IsEnd = false;
 	// Use this for initialization
 	void OnEnable(){
 		Events.G.AddListener<EncounterTouchEvent>(OnPrisonerTouchGuard);
@@ -52,13 +53,17 @@ public class GuardEncounterHandle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_IsTouch && !m_IsShot && !m_IsHandUp) {
+		if (!m_IsEnd && m_IsTouch && !m_IsShot && !m_IsHandUp) {
 			if (Input.GetKeyDown (m_PuppetControl.GetKeyCodes()[3])) {
 				GiveHand ();
+				//m_AnimInjection.GEndState (true);
+				Events.G.Raise(new EncountEndStateEvent(CharacterIdentity.Guard, true));
 			}
 
 			if (Input.GetKeyUp (m_PuppetControl.GetKeyCodes () [3])) {
 				WithdrawHand ();
+				//m_AnimInjection.GEndState (false);
+				Events.G.Raise(new EncountEndStateEvent(CharacterIdentity.Guard, false));
 			}
 		}
 	
@@ -95,6 +100,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_Anim.Play ("g-enct-Shoot");
 			m_PrisonerHandle.Death ();
 			m_IsShot = true;
+			Events.G.Raise (new PrisonerShotEvent ());
 		}
 
 	}
@@ -105,5 +111,17 @@ public class GuardEncounterHandle : MonoBehaviour {
 
 	public void WithdrawHand(){
 		m_Anim.Play("g-enct-WithDrawHand");
+	}
+
+
+	public IEnumerator Hug(){
+		yield return new WaitForSeconds (1);
+		if (!m_IsEnd) {
+			m_Anim.Play ("g-enct-End");
+			m_IsEnd = true;
+			Events.G.Raise (new RunTogetherEndingEvent ());
+		}
+		m_PrisonerHandle.Hug ();
+
 	}
 }
