@@ -4,7 +4,6 @@ using System.Collections;
 public class ShotDeathPrisonerHandle : MonoBehaviour {
 	
 	[SerializeField] Animator m_Anim;
-	[SerializeField] BoxCollider2D m_StopCol;
 	[SerializeField] SpriteRenderer[] m_Sprites;
 	[SerializeField] Color m_EndColor;
 	[SerializeField] Color m_StartColor;
@@ -38,7 +37,6 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 		if (!isExecuted) {
 			isExecuted = true;
 			m_Anim.Play ("SP-death");
-			m_StopCol.enabled = false;
 			m_TriggerCol.enabled = false;
 			m_ColorTimer.Reset ();
 		}
