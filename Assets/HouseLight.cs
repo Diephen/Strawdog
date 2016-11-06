@@ -62,7 +62,7 @@ public class HouseLight : MonoBehaviour {
 	}
 
 	void OnDisable(){
-		Events.G.AddListener<LightCaughtEvent>(StartColor);
-		Events.G.AddListener<LightOffEvent>(StopColor);
+		Events.G.RemoveListener<LightCaughtEvent>(StartColor);
+		Events.G.RemoveListener<LightOffEvent>(StopColor);
 	}
 }

@@ -224,6 +224,14 @@ public class AudioController : MonoBehaviour {
 		_currentSceneIndex = newScene.buildIndex;
 		Debug.Log (_currentSceneIndex);
 		if (_currentSceneIndex == 0) {
+			_musicSource1.Stop ();
+			_musicSource2.Stop ();
+			_musicSource3.Stop ();
+			_soundSource1.Stop ();
+			_soundSource2_Light.Stop ();
+			_soundSource3.Stop ();
+			_soundSource4.Stop ();
+
 			_soundSource4.clip = Resources.Load<AudioClip> ("Sounds/Opening/OpeningSteps");
 			_soundSource3.clip = Resources.Load<AudioClip> ("Sounds/Opening/vinylSound");
 			_soundSource3.loop = true;
@@ -293,6 +301,7 @@ public class AudioController : MonoBehaviour {
 			_soundSource2_Light.loop = true;
 			_soundSource2_Light.Play ();
 		}
+
 	}
 
 
