@@ -54,7 +54,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
+		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_goToStart = true;
 				_isStairs = false;
@@ -64,10 +64,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_stairStartTimer.Reset ();
 				Events.G.Raise (new GuardStairsStartEvent ());
 			}
-			else if (_isDoor) {
-				_locked = !_locked;
-				Events.G.Raise (new LockCellEvent (_locked));
-			}
 			else if (_isOnFlap) {
 				Events.G.Raise (new LeftCellUnlockedEvent ());
 				_guard.SetActive (false);
@@ -76,6 +72,14 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_isOnFlap = false;
 
 			}
+			else if (_isDoor) {
+				_locked = !_locked;
+				Events.G.Raise (new LockCellEvent (_locked));
+				if (_locked) {
+					Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+				}
+			}
+
 		}
 
 		if (_goToStart) {
@@ -179,10 +183,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isBomb = true;
 		}
 		else if (other.name == "open-right") {
-			if (!_isDoor) {
-				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+			if (_isDoor) {
+				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 			}
 			_isOnFlap = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 		}
 		else if (other.name == "open-left") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
@@ -227,10 +232,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isOnFlap = false;
 			if (_isDoor) {
 				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-			}
-			else {
-				//other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-				//_isOnFlap = false;
 			}
 		}
 		else if (other.name == "open-left") {

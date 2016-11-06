@@ -235,26 +235,26 @@ public class AudioController : MonoBehaviour {
 			_soundSource1.loop = false;
 		}
 		else if (_currentSceneIndex == 1) {
-			_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/Music/Piece_No1");
-			_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/Music/Loop1");
-			_musicSource3.clip = Resources.Load<AudioClip> ("SOunds/Music/Transition1");
+			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Piece_No1");
+			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicSource1.loop = false;
 			_musicVolume = 1.0f;
 			_musicSource1.Play ();
 		}
 		else if (_currentSceneIndex == 2) {
-			_musicSource3.clip = Resources.Load<AudioClip> ("SOunds/Music/Transition1");
+			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicOnTimer.Reset ();
 			_musicVolume = 0.5f;
 			if (!_musicSource1.isPlaying) {
-				_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/Music/SatrioSound");
+				_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
 				_musicSource1.volume = 0.0f;
 				_musicSource1.loop = true;
 				_musicOn1 = true;
 				_tempAudioSource = _musicSource1;
 			}
 			else if (!_musicSource2.isPlaying) {
-				_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/Music/SatrioSound");
+				_musicSource2.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
 				_musicSource2.volume = 0.0f;
 				_musicSource2.loop = true;
 				_musicOn2 = true;
@@ -269,8 +269,29 @@ public class AudioController : MonoBehaviour {
 
 			_musicOff2 = true;
 			_musicOff1 = true;
-			_musicSource3.clip = Resources.Load<AudioClip> ("Sounds/Music/Chimes");
+			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Chimes");
 			_musicOn3 = true;
+		}
+		else if (_currentSceneIndex == 4) {
+			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.loop = true;
+			_musicOn2 = true;
+		}
+		else if (_currentSceneIndex == 6) {
+			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/Light-Ring-1");
+			_soundSource2_Light.loop = true;
+		}
+		else if (_currentSceneIndex == 9) {
+			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
+			_soundSource2_Light.volume = 1.0f;
+			_soundSource2_Light.loop = true;
+			_soundSource2_Light.Play ();
+		}
+		else if (_currentSceneIndex == 10) {
+			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
+			_soundSource2_Light.volume = 1.0f;
+			_soundSource2_Light.loop = true;
+			_soundSource2_Light.Play ();
 		}
 	}
 

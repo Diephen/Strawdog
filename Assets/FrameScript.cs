@@ -63,20 +63,20 @@ public class FrameScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.LeftBracket)) {
-			_flapTimer.Reset ();
-			_open = true;
-			_done = false;
-			_audioSource.clip = _openSound;
-			_audioSource.Play ();
-		}
-		if (Input.GetKeyDown (KeyCode.RightBracket)) {
-			_flapTimer.Reset ();
-			_open = false;
-			_done = false;
-			_audioSource.clip = _closeSound;
-			_audioSource.Play ();
-		}
+//		if (Input.GetKeyDown (KeyCode.LeftBracket)) {
+//			_flapTimer.Reset ();
+//			_open = true;
+//			_done = false;
+//			_audioSource.clip = _openSound;
+//			_audioSource.Play ();
+//		}
+//		if (Input.GetKeyDown (KeyCode.RightBracket)) {
+//			_flapTimer.Reset ();
+//			_open = false;
+//			_done = false;
+//			_audioSource.clip = _closeSound;
+//			_audioSource.Play ();
+//		}
 	}
 
 	public void CloseFlap(){

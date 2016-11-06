@@ -20,7 +20,7 @@ public class EnterInteriorTriggerHandle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (m_PlayerPos != null) {
-			Debug.Log ("[Test]" + m_PlayerPos.position);
+//			Debug.Log ("[Test]" + m_PlayerPos.position);
 		}
 	}
 

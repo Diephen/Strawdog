@@ -12,7 +12,7 @@ public class PuppetControl : MonoBehaviour {
 	//add animators 
 	private Animator[] m_Animator = new Animator[4];
 	//1 for walk, 2 for speak
-	[SerializeField] AudioClip[] m_Audio = new AudioClip[3];
+	public AudioClip[] m_Audio = new AudioClip[3];
 	[SerializeField] AudioSource[] m_AudioSource = new AudioSource[3];
 	[SerializeField] KeyCode[] m_ListenKey = new KeyCode[] {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.Space};
 	[SerializeField] float[] m_MoveDistance = new float[3];

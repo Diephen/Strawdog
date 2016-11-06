@@ -1166,6 +1166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f57a7fc799724fb28463c87810953c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _voManager: {fileID: 0}
 --- !u!4 &251352131
 Transform:
   m_ObjectHideFlags: 0
@@ -1722,7 +1723,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1 &375679776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2018,19 +2019,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec8bdca8c47394ac6bedd8cf639178b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume:
-  - 0.1
-  - 0.3
-  - 0.7
-  _audioSource: {fileID: 489008589}
+  _musicSource1: {fileID: 0}
+  _musicSource2: {fileID: 0}
+  _musicSource3: {fileID: 0}
   _soundSource1: {fileID: 489008592}
-  _soundSource2: {fileID: 489008593}
+  _soundSource2_Light: {fileID: 0}
+  _soundSource3: {fileID: 0}
+  _soundSource4: {fileID: 0}
   _lockCell: {fileID: 0}
   _openCell: {fileID: 0}
   _pickUpBomb: {fileID: 0}
   _guardStairs: {fileID: 0}
   _prisonerStairs: {fileID: 0}
   _guardWalkOut: {fileID: 0}
+  _musicOffCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _musicOnCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &489008591
 Transform:
   m_ObjectHideFlags: 0
@@ -4851,7 +4864,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &1289754471 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012217008788, guid: d0965eff08aed44d889e8f4e130a0e80,
@@ -6882,48 +6895,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &2112633600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2112633602}
-  - 114: {fileID: 2112633601}
-  m_Layer: 0
-  m_Name: Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2112633601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a51a25142344641a2eba207023cc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: 24a1c30fd118a40f28fbe679da782e33, type: 3}
-  fadeSpeed: 1
---- !u!4 &2112633602
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32454127, y: -1.11855, z: 4.3671875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1 &2119516613
 GameObject:
   m_ObjectHideFlags: 0
