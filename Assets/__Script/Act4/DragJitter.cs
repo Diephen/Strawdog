@@ -29,6 +29,7 @@ public class DragJitter : MonoBehaviour {
 			_prisonerKeyCodes = _prisonerPuppetControl.GetKeyCodes ();
 		}
 		_jitterSource = gameObject.AddComponent<AudioSource> ();
+		_jitterSource.volume = 0.7f;
 	}
 	
 	// Update is called once per frame
