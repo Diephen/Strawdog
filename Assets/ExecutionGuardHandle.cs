@@ -2,15 +2,17 @@
 using System.Collections;
 
 public class ExecutionGuardHandle : MonoBehaviour {
-	[SerializeField] Animator m_Anim;
-	[SerializeField] AnimationControl m_AnimCtrl;
+	Animator m_Anim;
+	AnimationControl m_AnimCtrl;
+	[SerializeField] InteractionSound m_ItrSound;
 
 	bool m_IsHandUp = false;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		m_Anim = GetComponent<Animator> ();
+		m_AnimCtrl = GetComponent<AnimationControl> ();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +48,10 @@ public class ExecutionGuardHandle : MonoBehaviour {
 			m_Anim.Play ("g-Shoot");
 			m_IsHandUp = false;
 		}
+	}
+
+	void PlayReloadAfterShoot(){
+		m_ItrSound.PlayReload ();
 	}
 
 

@@ -5,7 +5,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	[SerializeField] Animator m_Anim;
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] GameObject _guard;
-	[SerializeField] AnimationInjectionExecute m_AnimInjection;
+	[SerializeField] AnimationInjectionExecution m_AnimInjection;
 	[SerializeField] InteractionSound m_ItrSound;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
