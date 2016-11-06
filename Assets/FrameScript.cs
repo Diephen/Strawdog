@@ -24,6 +24,9 @@ public class FrameScript : MonoBehaviour {
 	[SerializeField] BoxCollider2D _bc1;
 	[SerializeField] BoxCollider2D _bc2;
 
+	[SerializeField] bool _disableGuard = false;
+	[SerializeField] bool _disablePrisoner = false;
+
 	void Start () {
 		_leftTempPos = _leftFlap.transform.localPosition;
 		_rightTempPos = _rightFlap.transform.localPosition;
@@ -92,7 +95,12 @@ public class FrameScript : MonoBehaviour {
 	}
 
 	public void OpenFlap(){
-		Events.G.Raise (new EnableMoveEvent ()); 
+		if (!_disableGuard) {
+			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard)); 
+		}
+		if (!_disablePrisoner) {
+			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner)); 
+		}
 		_flapTimer.Reset ();
 		_open = true;
 		_done = false;

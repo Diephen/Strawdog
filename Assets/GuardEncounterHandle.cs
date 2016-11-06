@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GuardEncounterHandle : MonoBehaviour {
 	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
+	[SerializeField] BoxCollider2D m_GuardsEncounterTrigger;
 	//[SerializeField] BoxCollider2D m_BlockColl;
 	//SpriteRenderer[] m_WhiteBase;
 	Animator m_Anim;
@@ -100,8 +101,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 			m_Anim.Play ("g-enct-Shoot");
 			m_PrisonerHandle.Death ();
 			m_IsShot = true;
-			Events.G.Raise (new PrisonerShotEvent ());
-
+			m_GuardsEncounterTrigger.enabled = false;
 		}
 
 	}
@@ -109,6 +109,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 	void EnableGuardMovement(){
 		m_AnimCtrl.SetAnimation (false);
 		m_AnimInjection.SetLeave ();
+		Events.G.Raise (new PrisonerShotEvent ());
 		Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
 
 	}
