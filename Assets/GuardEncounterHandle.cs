@@ -105,6 +105,12 @@ public class GuardEncounterHandle : MonoBehaviour {
 
 	}
 
+	void EnableGuardMovement(){
+		m_AnimCtrl.SetAnimation (false);
+		m_AnimInjection.SetLeave ();
+//		Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+	}
+
 	public void GiveHand(){
 		m_Anim.Play ("g-enct-GiveHandToPrisoner");
 	}

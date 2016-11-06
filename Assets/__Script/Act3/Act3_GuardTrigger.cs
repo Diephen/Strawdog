@@ -120,17 +120,22 @@ public class Act3_GuardTrigger : MonoBehaviour {
 			StartCoroutine (ScreenFadeOut ());
 
 
-		}else if (other.name == "EnterFoodStorage") {
+		}
+		else if (other.name == "EnterFoodStorage") {
 			_foodStorage = true;
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
-		} 
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+		}
 		else if (other.name == "LeaveFoodStorage" && _bombPlanted) {
 			_tempColor = _foodStorageWall.material.color;
 			StartCoroutine (WallFadeOut (_foodStorageWall));
-		} else if (other.name == "Encounter") {
+		}
+		else if (other.name == "Encounter") {
 			_guardPuppetController.DisableContinuousWalk ();
-			Events.G.Raise (new Guard_EncounterEvent());
-		} 
+			Events.G.Raise (new Guard_EncounterEvent ());
+		}
+		else if (other.name == "GuardExitEnd") {
+			Events.G.Raise (new GuardAloneEndingEvent ());
+		}
 	}
 	IEnumerator ScreenFadeOut(){
 		float startTime = Time.time;
