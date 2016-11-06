@@ -28,6 +28,7 @@ public class GuardTutorialHandle : MonoBehaviour {
 		m_GuardAnim.SetBool ("IsSeeDog", true);
 		isStartInteraction = false;
 		isEndInteraction = false;
+		m_PC.StopWalkAudio ();
 	}
 
 	// guard press D

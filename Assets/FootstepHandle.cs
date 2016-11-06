@@ -2,14 +2,20 @@
 using System.Collections;
 
 public class FootstepHandle : MonoBehaviour {
-	[SerializeField] AudioClip _footStep;
+	[SerializeField] AudioClip _guardfootStep;
 	[SerializeField] PuppetControl _guardPuppetControl;
 
+
+	[SerializeField] AudioClip _prisonerfootStep;
+	[SerializeField] PuppetControl _prisonerPuppetControl;
+
 	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log ("Footstep "+ other.tag);
 		if (other.tag == "Guard") {
-			Debug.Log ("SAD");
-			_guardPuppetControl.SwitchWalk (_footStep);;
+			_guardPuppetControl.SwitchWalk (_guardfootStep);
 		}
-		Debug.Log ("NOPE");
+		else if (other.tag == "Prisoner") {
+			_prisonerPuppetControl.SwitchWalk (_prisonerfootStep);
+		}
 	}
 }

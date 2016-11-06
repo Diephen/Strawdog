@@ -41,6 +41,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 				if (!m_IsReadingNote && !m_IsHoldDown) {
 					m_IsReadingNote = true;
 					NoteReading ();
+					m_ItrAudio.PlayRead ();
 				}
 			}
 
@@ -48,6 +49,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 				if (m_IsReadingNote && !m_IsHoldDown) {
 					m_IsReadingNote = false;
 					StopReading ();
+					m_ItrAudio.StopPlay ();
 				}
 			}
 
@@ -87,6 +89,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 		m_IsHoldDown = false;
 		m_HiNote.DisableHighlight();
 		StopReading ();
+		m_ItrAudio.PlayFallOffChair ();
 	}
 		
 	void NoteReading(){

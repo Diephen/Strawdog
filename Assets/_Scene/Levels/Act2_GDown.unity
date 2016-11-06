@@ -7441,9 +7441,34 @@ Prefab:
       propertyPath: _stairStartPosition
       value: 35.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 513616788}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
+    - target: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &513616788 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+    type: 2}
+  m_PrefabInternal: {fileID: 513616787}
 --- !u!1 &514746644
 GameObject:
   m_ObjectHideFlags: 0
@@ -7625,12 +7650,37 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[1]
       value: 105
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 519720321}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a40814098e7b4acaa2029e7673230f6, type: 3}
+    - target: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &519720320 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236,
+    type: 2}
+  m_PrefabInternal: {fileID: 519720319}
+--- !u!82 &519720321 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
     type: 2}
   m_PrefabInternal: {fileID: 519720319}
 --- !u!1 &534554094
@@ -16713,12 +16763,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6658c7c8cf1147d7a41c524369ffa6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PrisonerAnim: {fileID: 0}
+  m_Anim: {fileID: 0}
   m_GuardHandle: {fileID: 235587886}
   m_AnimCtrl: {fileID: 1250271400}
   m_ItrAudio: {fileID: 1800800385}
   m_LightCtrl: {fileID: 320693799}
+  m_IsStartWithAnimation: 0
   _prisonerPuppetControl: {fileID: 1250271402}
+  m_SleepPos: {fileID: 0}
 --- !u!95 &1250271399
 Animator:
   serializedVersion: 3

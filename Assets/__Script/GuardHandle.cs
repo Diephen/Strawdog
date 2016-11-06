@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Giverspace;
 
 public class GuardHandle : MonoBehaviour {
 	[SerializeField] Animator m_GuardAnim;
@@ -62,6 +61,7 @@ public class GuardHandle : MonoBehaviour {
 		}
 		//Checks if the guard engaged prisoner for fading out
 		m_EngagedPrisoner = true;
+		m_PC.StopWalkAudio ();
 	}
 
 	void Update(){
@@ -93,9 +93,6 @@ public class GuardHandle : MonoBehaviour {
 					m_PC.DisableKeyInput ();
 					m_LightCtrl.TurnOffFlicker ();
 					m_IsFaint = true;
-
-					Log.Metrics.Message("Hold Time - Drown: 5");
-
 					//Fading to Black
 					Events.G.Raise(new Act1EndedEvent());
 				}
@@ -154,7 +151,6 @@ public class GuardHandle : MonoBehaviour {
 				m_ItrAudio.StopDrown ();
 			}
 			m_IsTorture = false;
-			Log.Metrics.Message("Hold Time - Drown: "+ m_AHoldTime);
 		}
 
 

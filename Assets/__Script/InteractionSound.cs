@@ -128,11 +128,23 @@ public class InteractionSound : MonoBehaviour {
 		}
 	}
 
+	public void PlayRead(){
+		m_audio.clip = m_sounds [12];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayFallOffChair(){
+		m_audio.clip = m_sounds [13];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
 	public void StopPlay(){
 		if(m_audio.isPlaying){
 			m_audio.Stop();
 		}
 	}
-
-
 }

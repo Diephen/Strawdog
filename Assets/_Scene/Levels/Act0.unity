@@ -15118,7 +15118,8 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: dd7499f9813884aebbd748f2b4c563df, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114000010965402698, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1059139728
@@ -28855,8 +28856,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339de80520dad4aa89bc44c92875fbfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _footStep: {fileID: 8300000, guid: dd7499f9813884aebbd748f2b4c563df, type: 3}
+  _guardfootStep: {fileID: 8300000, guid: dd7499f9813884aebbd748f2b4c563df, type: 3}
   _guardPuppetControl: {fileID: 587471197}
+  _prisonerfootStep: {fileID: 0}
+  _prisonerPuppetControl: {fileID: 0}
 --- !u!61 &2083636461
 BoxCollider2D:
   m_ObjectHideFlags: 0

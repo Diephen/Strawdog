@@ -169,6 +169,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		Debug.Log ("Prisoner "+ other.tag);
 		if (other.tag == "Stairs") {
 			_isStairs = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();

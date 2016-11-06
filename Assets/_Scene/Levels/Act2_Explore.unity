@@ -5879,7 +5879,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -6456,6 +6456,7 @@ GameObject:
   - 4: {fileID: 435803515}
   - 212: {fileID: 435803514}
   - 61: {fileID: 435803516}
+  - 114: {fileID: 435803517}
   m_Layer: 0
   m_Name: Cart
   m_TagString: Untagged
@@ -6522,9 +6523,24 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -1.7771909, y: 1.4707637}
+  m_Offset: {x: -7.1181736, y: 1.4707636}
   serializedVersion: 2
-  m_Size: {x: 19.781794, y: 14.891527}
+  m_Size: {x: 30.463764, y: 14.891527}
+--- !u!114 &435803517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 435803513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339de80520dad4aa89bc44c92875fbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guardfootStep: {fileID: 0}
+  _guardPuppetControl: {fileID: 0}
+  _prisonerfootStep: {fileID: 8300000, guid: fcbef9995f6a74f76ab60869954c8987, type: 3}
+  _prisonerPuppetControl: {fileID: 781804538}
 --- !u!1 &435940595
 GameObject:
   m_ObjectHideFlags: 0
@@ -11501,6 +11517,62 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000010703102038, guid: 18303c44fec924ea0a115981fece80ac,
     type: 2}
   m_PrefabInternal: {fileID: 623260406}
+--- !u!1001 &623856301
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 281.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerPuppetControl
+      value: 
+      objectReference: {fileID: 781804538}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerfootStep
+      value: 
+      objectReference: {fileID: 8300000, guid: 0121a39a0fb894ee589df3c93202bb37, type: 3}
+    - target: {fileID: 1000011289049958, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_Name
+      value: FootStepTrigger (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &627576716
 GameObject:
   m_ObjectHideFlags: 0
@@ -12970,6 +13042,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &781804538 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+    type: 2}
+  m_PrefabInternal: {fileID: 1340546754}
+  m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
 --- !u!1 &784534022
 GameObject:
   m_ObjectHideFlags: 0
@@ -15502,11 +15580,11 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.25566077, y: 1.3833781}
+  m_Offset: {x: -0.25566077, y: 1.0381998}
   serializedVersion: 2
-  m_Size: {x: 1.3699998, y: 6.0188885}
+  m_Size: {x: 1.3699998, y: 3.3725033}
 --- !u!82 &955272976
 AudioSource:
   m_ObjectHideFlags: 0
@@ -19207,6 +19285,62 @@ SpriteRenderer:
   m_Color: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 0.428}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &1180527661
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 173.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011289049958, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_Name
+      value: FootStepTrigger (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerPuppetControl
+      value: 
+      objectReference: {fileID: 781804538}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerfootStep
+      value: 
+      objectReference: {fileID: 8300000, guid: fcbef9995f6a74f76ab60869954c8987, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1180656321
 GameObject:
   m_ObjectHideFlags: 0
@@ -20500,9 +20634,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puppetControl: {fileID: 1250271402}
-  m_GuardHandle: {fileID: 0}
-  m_PrisonerHandle: {fileID: 0}
   _animInject: 0000000000000000000000
+  m_guard: {fileID: 0}
+  m_prisoner: {fileID: 0}
 --- !u!114 &1250271402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21136,6 +21270,62 @@ SpriteRenderer:
   m_Color: {r: 0.14646412, g: 0.1491499, b: 0.1544118, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &1300356974
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 264.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerPuppetControl
+      value: 
+      objectReference: {fileID: 781804538}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerfootStep
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d250188593324209a11cc17e94b258e, type: 3}
+    - target: {fileID: 1000011289049958, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_Name
+      value: FootStepTrigger (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1302194717
 GameObject:
   m_ObjectHideFlags: 0
@@ -22039,12 +22229,46 @@ Prefab:
       propertyPath: m_Size.y
       value: 6.534505
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 1340546756}
+    - target: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
+    - target: {fileID: 61000011716610030, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: -0.4012392
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000011716610030, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 3.8338377
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010423987834, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1340546755 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013200042514, guid: 0a57582b2cf47491abdb975d22ba7917,
+    type: 2}
+  m_PrefabInternal: {fileID: 1340546754}
+--- !u!82 &1340546756 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
     type: 2}
   m_PrefabInternal: {fileID: 1340546754}
 --- !u!1 &1342825346
@@ -24812,9 +25036,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puppetControl: {fileID: 1505586827}
-  m_GuardHandle: {fileID: 0}
-  m_PrisonerHandle: {fileID: 0}
   _animInject: 0000000000000000000000
+  m_guard: {fileID: 0}
+  m_prisoner: {fileID: 0}
 --- !u!114 &1505586827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30098,6 +30322,7 @@ GameObject:
   - 4: {fileID: 1897274537}
   - 212: {fileID: 1897274538}
   - 61: {fileID: 1897274539}
+  - 114: {fileID: 1897274540}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: StandHide
@@ -30162,9 +30387,24 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -2.4277337, y: 0}
   serializedVersion: 2
-  m_Size: {x: 17.34, y: 10.26}
+  m_Size: {x: 12.48452, y: 10.26}
+--- !u!114 &1897274540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897274536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339de80520dad4aa89bc44c92875fbfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guardfootStep: {fileID: 0}
+  _guardPuppetControl: {fileID: 0}
+  _prisonerfootStep: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
+  _prisonerPuppetControl: {fileID: 781804538}
 --- !u!1 &1898016322
 GameObject:
   m_ObjectHideFlags: 0
@@ -31884,6 +32124,58 @@ MonoBehaviour:
   _hideSprites:
   - {fileID: 1984128495}
   _house: 0
+--- !u!1001 &2003799509
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 191.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012216545934, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerPuppetControl
+      value: 
+      objectReference: {fileID: 781804538}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerfootStep
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d250188593324209a11cc17e94b258e, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2012337491
 GameObject:
   m_ObjectHideFlags: 0

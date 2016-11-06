@@ -28,7 +28,7 @@ public class PuppetControl : MonoBehaviour {
 
 	[SerializeField] float m_MoveSpeed = 2.0f;
 
-	enum charState {idle, left, right, crouch, pickup};
+	enum charState {idle, left, right, crouch, pickup, anim};
 	bool crouchStart = false;
 	bool _isWalking = false;
 	bool isSpeak = false;
@@ -460,5 +460,9 @@ public class PuppetControl : MonoBehaviour {
 	{
 		Events.G.RemoveListener<EnableMoveEvent> (EnableMove);
 		Events.G.RemoveListener<DisableMoveEvent> (DisableMove);
+	}
+
+	public void StopWalkAudio(){
+		m_charState = charState.anim;
 	}
 }

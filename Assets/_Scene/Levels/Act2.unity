@@ -4247,6 +4247,26 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a40814098e7b4acaa2029e7673230f6, type: 3}
+    - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 720953231}
+    - target: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_Pitch
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
@@ -4299,7 +4319,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5498,6 +5518,11 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!82 &720953231 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000013686649986, guid: de0c55a4026f54407bb73abc8c731236,
+    type: 2}
+  m_PrefabInternal: {fileID: 519720319}
 --- !u!1 &758400083
 GameObject:
   m_ObjectHideFlags: 0
@@ -8784,11 +8809,11 @@ MonoBehaviour:
   - {fileID: 224054535}
   - {fileID: 495547259}
   m_Audio:
-  - {fileID: 8300000, guid: 5a145e844db7d4b6a92482a2a25b16ce, type: 3}
+  - {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
   - {fileID: 8300000, guid: dcabbbc36eea64df2ade596c143f06fd, type: 3}
   - {fileID: 8300000, guid: 2f54292d3c4944ad1ad42ec23ae6b8a8, type: 3}
   m_AudioSource:
-  - {fileID: 0}
+  - {fileID: 521592114}
   - {fileID: 581648578}
   - {fileID: 0}
   m_ListenKey: 61000000770000006400000073000000

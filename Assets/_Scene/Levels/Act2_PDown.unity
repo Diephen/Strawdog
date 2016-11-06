@@ -7805,9 +7805,29 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[1]
       value: 119
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 513616788}
+    - target: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a57582b2cf47491abdb975d22ba7917, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &513616788 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000012028519188, guid: 0a57582b2cf47491abdb975d22ba7917,
+    type: 2}
+  m_PrefabInternal: {fileID: 513616787}
 --- !u!1 &514746644
 GameObject:
   m_ObjectHideFlags: 0
@@ -17117,6 +17137,7 @@ MonoBehaviour:
   m_LightCtrl: {fileID: 320693799}
   m_IsStartWithAnimation: 0
   _prisonerPuppetControl: {fileID: 1250271402}
+  m_SleepPos: {fileID: 0}
 --- !u!95 &1250271399
 Animator:
   serializedVersion: 3

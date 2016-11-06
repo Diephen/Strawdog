@@ -14651,7 +14651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &679594695
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37360,6 +37360,8 @@ MonoBehaviour:
   _pushOffset: 3
   _isThePrisoner: 1
   _isExecution: 0
+  _ropeTug: []
+  _ropeBreak: {fileID: 0}
 --- !u!1 &1879653046
 GameObject:
   m_ObjectHideFlags: 0

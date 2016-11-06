@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using Giverspace;
-using UnityEditor;
 
 public class SceneManagerScript : MonoBehaviour {
 
@@ -207,17 +206,21 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadWentBack(PrisonerWentBack e){
+		Log.Metrics.Message("CHOICE: Prisoner Return (No Bomb)");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
 	}
 
 	void LoadGuardSleep(GuardSleepEvent e){
+		Log.Metrics.Message("CHOICE: Guard Sleep");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
 	}
 
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
+		Log.Metrics.Message("CHOICE: Prisoner Bomb");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
+		Log.Metrics.Message("CHOICE: Guard Return (No Bomb)");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell, 3f));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
@@ -225,12 +228,15 @@ public class SceneManagerScript : MonoBehaviour {
 
 
 	void LoadExecution(TriggerExecutionEvent e){
+		Log.Metrics.Message("CHOICE: Execution");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f));
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
+		Log.Metrics.Message("CHOICE: Ditch");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2, 1f));
 	}
 	void LoadPlantBomb(TriggerPlantBombEvent e){
+		Log.Metrics.Message("CHOICE: Plant Bomb");
 		StartCoroutine(ChangeLevel(8, 1f));
 	}
 
@@ -269,14 +275,17 @@ public class SceneManagerScript : MonoBehaviour {
 
 	//Ending
 	void LoadEnd_RunAlone(RunAloneEndingEvent e){
+		Log.Metrics.Message("CHOICE: Run Alone");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 1.5f, "VoiceOver/18_LetGo"));
 	}
 
 	void LoadEnd_RunTogether(RunTogetherEndingEvent e){
+		Log.Metrics.Message("CHOICE: Escape Together");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/16_EscapeTogether"));
 	}
 
 	void LoadEnd_GuardAlone(GuardAloneEndingEvent e){
+		Log.Metrics.Message("CHOICE: Shot Prisoner");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/17_JustJob"));
 	}
 
