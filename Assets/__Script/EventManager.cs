@@ -303,6 +303,9 @@ public class ShootSwitchEvent : GameEvent {
 public class PrisonerShotEvent : GameEvent {
 }
 
+//Post Ending
+public class RetryEvent : GameEvent {
+}
 
 
 

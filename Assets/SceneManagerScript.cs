@@ -7,7 +7,7 @@ using UnityEditor;
 public class SceneManagerScript : MonoBehaviour {
 
 	enum SceneIndex {
-		TriggerWarning = 0, 
+		Logo = 0, 
 		Act0 = 1, 
 		Act1 = 2,
 		Title = 3,
@@ -26,7 +26,9 @@ public class SceneManagerScript : MonoBehaviour {
 		Act4_1 = 16,
 		Act4_2 = 17,
 		Act4_2_Ditch = 18,
-		Act4_3_Encounter = 19
+		Act4_3_Encounter = 19,
+		TriggerWarning = 20,
+		Ending = 21
 	};
 
 	FrameScript _frameScript;
@@ -91,6 +93,12 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.AddListener<TriggerWarningEndEvent>(LoadAct0);
 
+		Events.G.AddListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
+		Events.G.AddListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
+		Events.G.AddListener<GuardAloneEndingEvent>(LoadEnd_GuardAlone);
+
+		Events.G.AddListener<RetryEvent> (LoadRetry);
+
 		SceneManager.sceneLoaded += OpenScreen;
 	}
 
@@ -134,6 +142,11 @@ public class SceneManagerScript : MonoBehaviour {
 
 		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadAct0);
 
+		Events.G.RemoveListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
+		Events.G.RemoveListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
+		Events.G.RemoveListener<GuardAloneEndingEvent>(LoadEnd_GuardAlone);
+
+		Events.G.RemoveListener<RetryEvent> (LoadRetry);
 
 
 		SceneManager.sceneLoaded -= OpenScreen;
@@ -253,6 +266,24 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadEncounter2(Guard_EncounterEvent e){
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f));
 	}
+
+	//Ending
+	void LoadEnd_RunAlone(RunAloneEndingEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/18_LetGo"));
+	}
+
+	void LoadEnd_RunTogether(RunTogetherEndingEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/16_EscapeTogether"));
+	}
+
+	void LoadEnd_GuardAlone(GuardAloneEndingEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f, "VoiceOver/17_JustJob"));
+	}
+
+	void LoadRetry(RetryEvent e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
+	}
+		
 
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){

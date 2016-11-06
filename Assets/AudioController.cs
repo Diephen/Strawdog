@@ -274,6 +274,10 @@ public class AudioController : MonoBehaviour {
 			//Reinitializing volume change variables
 			_tempAudioSource = null;
 			_goalVolume = 9999.9f;
+			_soundSource1.Stop ();
+			_soundSource2_Light.Stop ();
+			_soundSource3.Stop ();
+			_soundSource4.Stop ();
 
 			_musicOff2 = true;
 			_musicOff1 = true;
