@@ -20,7 +20,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 	[SerializeField] bool _isGuardTop = false;
 
 	[SerializeField] Renderer _foodStorageWall;
-	[SerializeField] AudioController _audioController;
+	AudioController _audioController;
 //	bool _isStairs = false;
 //	float _stairTempPosition;
 
@@ -50,6 +50,7 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		_stairStartTimer = new Timer (1f);
 		_guardPuppetController = _guard.GetComponent<PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
+		_audioController = GameObject.FindObjectOfType<AudioController> ();
 
 	}
 
