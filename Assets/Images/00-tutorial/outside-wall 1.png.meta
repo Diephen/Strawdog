@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: 11adca07689ea445dabe8aa646ed30d6
-timeCreated: 1477820586
+guid: 8af5f9cbe4662491f958e548be060bc1
+timeCreated: 1478478263
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: pit_0
-    21300002: pit_1
-    21300004: pit_2
+    21300000: outside-wall 1_0
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +28,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 8192
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -46,7 +44,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 907, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -56,41 +54,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pit_0
+      name: outside-wall 1_0
       rect:
         serializedVersion: 2
-        x: 122
-        y: 753
-        width: 1459
-        height: 429
+        x: 906
+        y: 261
+        width: 1736
+        height: 1128
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: pit_1
-      rect:
-        serializedVersion: 2
-        x: 1748
-        y: 525
-        width: 2392
-        height: 678
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: pit_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 82
-        width: 4151
-        height: 386
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
