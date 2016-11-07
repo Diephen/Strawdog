@@ -40,7 +40,7 @@ public class Interrogation : MonoBehaviour {
 			// no note reading 
 			// no scene transition
 			// still minimum control
-			m_IP.SetBombState(false);
+			m_IP.SetBombState(true);
 		}
 
 	}

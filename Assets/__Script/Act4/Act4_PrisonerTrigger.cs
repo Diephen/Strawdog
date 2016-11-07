@@ -24,6 +24,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	bool _isOnRoad = false;
 	bool _isPrisonerFree = false;
 	bool _isEnd = false;
+	public bool _isExecute = false;
 
 	[SerializeField] SpriteRenderer _rightFlap;
 
@@ -59,6 +60,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 		} else if(_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 //			_guard.SetActive (false);
 			//_highlightsFX.enabled = false;
+
 			_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
 			Events.G.Raise (new RunAloneEndingEvent ());
@@ -83,15 +85,17 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_secretDoor = true;
 		} else if (other.name == "open-right") {
-			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
-			//_highlightsFX.objectRenderer = _rightFlap;
-			//_highlightsFX.enabled = true;
-			_isOnFlap = true;
-			if (_isOnGuard) {
-				Events.G.Raise (new EncounterTouchEvent (false));
+			if (!_isExecute) {
+				other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+				//_highlightsFX.objectRenderer = _rightFlap;
+				//_highlightsFX.enabled = true;
+				_isOnFlap = true;
+				if (_isOnGuard) {
+					Events.G.Raise (new EncounterTouchEvent (false));
 //				for (int i = 0; i < _whiteBase.Length; i++) {
 //					_whiteBase [i].color = _originalColor;
 //				}
+				}
 			}
 		} else if (other.name == "EncounterInteract") {
 			// raise event 
@@ -151,13 +155,15 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			_secretDoor = false;
 		}
 		else if (other.name == "open-right") {
-			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
-			_isOnFlap = false;
-			if (_isOnGuard) {
-				Events.G.Raise (new EncounterTouchEvent (true));
+			if (!_isExecute) {
+				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+				_isOnFlap = false;
+				if (_isOnGuard) {
+					Events.G.Raise (new EncounterTouchEvent (true));
 //				for (int i = 0; i < _whiteBase.Length; i++) {
 //					_whiteBase [i].color = Color.white;
 //				}
+				}
 			}
 		}
 		else if (other.name == "EncounterInteract") {

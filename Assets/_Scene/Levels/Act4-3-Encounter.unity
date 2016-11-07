@@ -5185,6 +5185,16 @@ Prefab:
       propertyPath: _guardPuppetControl
       value: 
       objectReference: {fileID: 74962046}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerPuppetControl
+      value: 
+      objectReference: {fileID: 496957699}
+    - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
+        type: 2}
+      propertyPath: _prisonerfootStep
+      value: 
+      objectReference: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1adf326ed9b324c4080eacf2e266e550, type: 2}
   m_IsPrefabParent: 0

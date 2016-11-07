@@ -7248,6 +7248,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _isExecute: 1
   _rightFlap: {fileID: 0}
 --- !u!4 &853659968
 Transform:
@@ -8985,7 +8986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2128f68b4751548cd831aa9265b1fde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 853659968}
   speed: 2
   _spotAngleCurve:
     serializedVersion: 2
@@ -16597,7 +16598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2128f68b4751548cd831aa9265b1fde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 853659968}
   speed: 2
   _spotAngleCurve:
     serializedVersion: 2

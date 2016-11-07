@@ -193,13 +193,13 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_isBomb = true;
 		}
 		else if (other.name == "open-right") {
-			if (_isDoor) {
-				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
-			}
 			_isOnFlap = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 		}
 		else if (other.name == "open-left") {
+			if (_isDoor) {
+				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+			}
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
 		}
