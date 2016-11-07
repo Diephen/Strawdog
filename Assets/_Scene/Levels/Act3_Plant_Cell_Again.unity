@@ -5302,6 +5302,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012248226786, guid: c818f12a002284629955913fc144a9ef, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c818f12a002284629955913fc144a9ef, type: 2}
   m_IsPrefabParent: 0
@@ -5489,9 +5493,29 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[1]
       value: 105
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_AudioSource.Array.data[0]
+      value: 
+      objectReference: {fileID: 1384550279}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_Audio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a40814098e7b4acaa2029e7673230f6, type: 3}
+    - target: {fileID: 82000010106728518, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1384550279 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82000010106728518, guid: eb8c475fcace54cf0a8e06b041823b28,
+    type: 2}
+  m_PrefabInternal: {fileID: 1384550278}
 --- !u!212 &1384982690 stripped
 SpriteRenderer:
   m_PrefabParentObject: {fileID: 212000010703102038, guid: 18303c44fec924ea0a115981fece80ac,

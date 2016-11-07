@@ -53,6 +53,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Execution") {
 			//print ("Exe!!!");
+			_guardPuppetController.StopWalkAudio();
 			StartExecution ();
 			_execute = true;
 			//_otherGameObject = other.gameObject;
@@ -60,6 +61,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 			//m_AnimInjection.SetEngage ();
 
 		} else if (other.tag == "Prisoner") {
+			_guardPuppetController.StopWalkAudio();
 			StartExecution ();
 			_execute = true;
 			m_IsPrisoner = true;

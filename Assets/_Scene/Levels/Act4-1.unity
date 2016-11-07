@@ -4113,7 +4113,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6005,7 +6005,6 @@ GameObject:
   - 114: {fileID: 655843672}
   - 114: {fileID: 655843671}
   - 95: {fileID: 655843670}
-  - 114: {fileID: 655843668}
   - 50: {fileID: 655843666}
   - 61: {fileID: 655843665}
   - 114: {fileID: 655843667}
@@ -6085,18 +6084,6 @@ MonoBehaviour:
   m_GuardHandle: {fileID: 655843669}
   m_PrisonerHandle: {fileID: 853659976}
   m_GuardTrigger: {fileID: 211190655}
---- !u!114 &655843668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 655843663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3c3a795c04643df88e34166be7a92a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &655843669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6164,11 +6151,11 @@ MonoBehaviour:
   - {fileID: 605371521}
   - {fileID: 211227765}
   m_Audio:
-  - {fileID: 8300000, guid: c8f9631f271474406827bdc74c45557d, type: 3}
+  - {fileID: 8300000, guid: 5ce21e30f03004282b0433a37515da9c, type: 3}
   - {fileID: 8300000, guid: 46d32b3e481124db0beab29f1eba85d7, type: 3}
   - {fileID: 8300000, guid: 2f54292d3c4944ad1ad42ec23ae6b8a8, type: 3}
   m_AudioSource:
-  - {fileID: 0}
+  - {fileID: 448350107}
   - {fileID: 332390373}
   - {fileID: 0}
   m_ListenKey: 6a000000690000006c0000006b000000
@@ -7396,11 +7383,11 @@ MonoBehaviour:
   - {fileID: 66834665}
   - {fileID: 1567666940}
   m_Audio:
-  - {fileID: 8300000, guid: 5a145e844db7d4b6a92482a2a25b16ce, type: 3}
+  - {fileID: 8300000, guid: fcbef9995f6a74f76ab60869954c8987, type: 3}
   - {fileID: 8300000, guid: dcabbbc36eea64df2ade596c143f06fd, type: 3}
   - {fileID: 8300000, guid: 2f54292d3c4944ad1ad42ec23ae6b8a8, type: 3}
   m_AudioSource:
-  - {fileID: 0}
+  - {fileID: 1123793316}
   - {fileID: 869856116}
   - {fileID: 0}
   m_ListenKey: 61000000770000006400000073000000
@@ -9206,7 +9193,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
