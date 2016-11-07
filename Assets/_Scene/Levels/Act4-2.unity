@@ -262,7 +262,7 @@ Prefab:
         type: 2}
       propertyPath: m_Fading
       value: 
-      objectReference: {fileID: 2112633601}
+      objectReference: {fileID: 0}
     - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: _stairRenderer
@@ -8332,7 +8332,7 @@ Transform:
   - {fileID: 1422874856}
   - {fileID: 440559346}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
 --- !u!61 &435803516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14697,7 +14697,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
 --- !u!1 &681063866
 GameObject:
   m_ObjectHideFlags: 0
@@ -15499,7 +15499,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
 --- !u!1 &735545604
 GameObject:
   m_ObjectHideFlags: 0
@@ -21003,7 +21003,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
 --- !u!1 &1032723450
 GameObject:
   m_ObjectHideFlags: 0
@@ -21249,7 +21249,7 @@ Transform:
   - {fileID: 555534651}
   - {fileID: 1546210701}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &1045422140
 GameObject:
   m_ObjectHideFlags: 0
@@ -25889,7 +25889,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
 --- !u!1 &1265286689
 GameObject:
   m_ObjectHideFlags: 0
@@ -30570,6 +30570,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _isExecute: 0
   _rightFlap: {fileID: 0}
 --- !u!1 &1503088516
 GameObject:
@@ -30604,7 +30605,7 @@ Transform:
   - {fileID: 1642113500}
   - {fileID: 412925692}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!1 &1505586818
 GameObject:
   m_ObjectHideFlags: 0
@@ -34202,7 +34203,7 @@ Prefab:
     - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
         type: 2}
@@ -34421,7 +34422,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
 --- !u!1 &1715159215
 GameObject:
   m_ObjectHideFlags: 0
@@ -40262,7 +40263,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013045777972, guid: 746843d40cc5e483294eb4326e223908, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 746843d40cc5e483294eb4326e223908, type: 2}
@@ -42030,48 +42031,6 @@ Transform:
   - {fileID: 994315745}
   m_Father: {fileID: 1526309918}
   m_RootOrder: 3
---- !u!1 &2112633600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2112633602}
-  - 114: {fileID: 2112633601}
-  m_Layer: 0
-  m_Name: Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2112633601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a51a25142344641a2eba207023cc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: 24a1c30fd118a40f28fbe679da782e33, type: 3}
-  fadeSpeed: 1
---- !u!4 &2112633602
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32454127, y: -1.11855, z: 4.3671875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
 --- !u!1001 &2113995683
 Prefab:
   m_ObjectHideFlags: 0

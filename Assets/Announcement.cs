@@ -23,7 +23,7 @@ public class Announcement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-			if (other.tag == "Guard") {
+		if (other.tag == "Guard" || other.tag == "Prisoner") {
 				_audioSource.Play ();
 				_box2d.enabled = false;
 			}
