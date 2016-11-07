@@ -6554,7 +6554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPrisonerTop: 0
-  _prisoner: {fileID: 2095210231}
+  _prisoner: {fileID: 1672654951}
   _backDown: 1
   _stairRenderer: {fileID: 1384982690}
   _bedRenderer: {fileID: 1537473836}
@@ -12724,11 +12724,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 921300178}
   m_RootOrder: 0
---- !u!1 &2095210231 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000013456230232, guid: 0a57582b2cf47491abdb975d22ba7917,
-    type: 2}
-  m_PrefabInternal: {fileID: 513616787}
 --- !u!1001 &2112051825
 Prefab:
   m_ObjectHideFlags: 0
