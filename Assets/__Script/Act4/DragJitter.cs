@@ -35,6 +35,7 @@ public class DragJitter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!_isExecution) {
+			// add the walking code here 
 			gameObject.transform.Translate (Vector2.left * Time.deltaTime * _joltCurve.Evaluate (_pushTimer.PercentTimePassed) * 5.0f);
 			if (_pushTimer.IsOffCooldown) {
 				_pushTimer.Reset ();

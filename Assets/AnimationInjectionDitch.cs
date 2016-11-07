@@ -104,7 +104,7 @@ public class AnimationInjectionDitch : AnimationInjectionBase {
 	protected override void APressed(APressedEvent e){
 		base.APressed (e);
 		if (e.WhoAmI == CharacterIdentity.Prisoner) {
-			
+			m_PrisonerHandle.Struggle (true);
 		} 
 
 
@@ -112,7 +112,9 @@ public class AnimationInjectionDitch : AnimationInjectionBase {
 	protected override void AReleased(AReleasedEvent e){
 		base.AReleased (e);
 		if (e.WhoAmI == CharacterIdentity.Prisoner) {
-
+			if (e.WhoAmI == CharacterIdentity.Prisoner) {
+				m_PrisonerHandle.BondIdle ();
+			}
 		} 
 
 
@@ -124,7 +126,7 @@ public class AnimationInjectionDitch : AnimationInjectionBase {
 	protected override void DPressed(DPressedEvent e){
 		base.DPressed (e);
 		if (e.WhoAmI == CharacterIdentity.Prisoner) {
-			
+			m_PrisonerHandle.Struggle (false);
 		} else {
 			//m_GuardHandle.HandDown ();
 		}
@@ -136,7 +138,11 @@ public class AnimationInjectionDitch : AnimationInjectionBase {
 
 	}
 	//
-	//	protected override void DReleased(){
-	//		
-	//	}
+	protected override void DReleased(DReleasedEvent e){
+		base.DReleased (e);
+		if (e.WhoAmI == CharacterIdentity.Prisoner) {
+			m_PrisonerHandle.BondIdle ();
+		}
+		
+	}
 }
