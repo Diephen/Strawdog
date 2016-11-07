@@ -10,6 +10,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 	AnimationControl m_AnimCtrl;
 	AnimationInjectionEncounter m_AnimInjection;
 	PuppetControl m_PuppetControl;
+	[SerializeField] InteractionSound m_intr;
 	bool m_IsHandUp = false;
 	bool m_IsShot = false;
 	bool m_IsTouch = false;
@@ -99,6 +100,7 @@ public class GuardEncounterHandle : MonoBehaviour {
 	public void Shoot(){
 		if (m_IsHandUp && !m_IsShot) {
 			m_Anim.Play ("g-enct-Shoot");
+			m_intr.PlayGun ();
 			m_PrisonerHandle.Death ();
 			m_IsShot = true;
 			m_GuardsEncounterTrigger.enabled = false;
