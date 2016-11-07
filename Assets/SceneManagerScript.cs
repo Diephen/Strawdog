@@ -232,7 +232,12 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadFoodStorage_Prisoner(Taken_EnterFoodStorageEvent e){
 		Log.Metrics.Message("CHOICE: Killed At Ditch");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 1.5f, "VoiceOver/14_Terrible"));
+		if (e.BrokeFree) {
+			StartCoroutine (ChangeLevel ((int)SceneIndex.Ending, 1.5f, "VoiceOver/15_Detrimental"));
+		}
+		else {
+			StartCoroutine (ChangeLevel ((int)SceneIndex.Ending, 1.5f, "VoiceOver/14_Terrible"));
+		}
 	}
 
 	void LoadExecution(TriggerExecutionEvent e){
