@@ -65,6 +65,7 @@ public class DragJitter : MonoBehaviour {
 			} else {
 				Events.G.Raise (new ExecutionBreakFree ());
 			}
+			Events.G.Raise (new EnableMoveEvent ());
 			this.enabled = false;
 		}
 	}
