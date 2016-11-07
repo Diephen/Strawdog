@@ -295,12 +295,18 @@ public class AudioController : MonoBehaviour {
 			_soundSource2_Light.loop = true;
 		}
 		else if (_currentSceneIndex == 9) {
+			_soundOff1 = true;
+			_soundOff3 = true;
+			_soundOff4 = true;
 			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
 			_soundSource2_Light.volume = 1.0f;
 			_soundSource2_Light.loop = true;
 			_soundSource2_Light.Play ();
 		}
 		else if (_currentSceneIndex == 10) {
+			_soundOff1 = true;
+			_soundOff3 = true;
+			_soundOff4 = true;
 			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
 			_soundSource2_Light.volume = 1.0f;
 			_soundSource2_Light.loop = true;

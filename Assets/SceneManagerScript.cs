@@ -47,8 +47,11 @@ public class SceneManagerScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Minus)) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
-		if (Input.GetKeyDown (KeyCode.Equals)) {
+		if (Input.GetKeyDown (KeyCode.Delete)) {
 			SceneManager.LoadScene (0);
+		}
+		if (Input.GetKeyDown (KeyCode.Equals)) {
+			SceneManager.LoadScene (4);
 		}
 	}
 
@@ -233,7 +236,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
 		Log.Metrics.Message("CHOICE: Ditch");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2_Ditch, 1f));
 	}
 	void LoadPlantBomb(TriggerPlantBombEvent e){
 		Log.Metrics.Message("CHOICE: Plant Bomb");
