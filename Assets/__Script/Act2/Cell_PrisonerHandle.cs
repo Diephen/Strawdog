@@ -8,7 +8,8 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] LightControl m_LightCtrl;
 	[SerializeField] bool m_IsStartWithAnimation = false;
-
+	[SerializeField] BoxCollider2D m_StopRightForPrisoner;
+	[SerializeField] BoxCollider2D m_StopLeftForGuard;
 
 	[SerializeField] PuppetControl _prisonerPuppetControl;
 
@@ -27,6 +28,7 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 		if(m_IsStartWithAnimation){
 			m_AnimCtrl.SetAnimation(true);
 		}
+		m_StopRightForPrisoner.enabled = false;
 	}
  	
 	void OnEnable ()
@@ -62,6 +64,10 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	{
 		print ("enable prisoner");
 		m_Anim.Play ("p-jc-GetUp");
+		// collider fix 
+		m_StopLeftForGuard.enabled = false;
+		m_StopRightForPrisoner.enabled = true;
+
 	}
 
 	void SleepInCell(SleepInCellEvent e){
