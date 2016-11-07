@@ -102,7 +102,8 @@ public class AudioController : MonoBehaviour {
 	}
 	void LeftCell(LeftCellUnlockedEvent e){
 		_soundSource3.clip = _guardWalkOut;
-		_soundSource3.volume = 1.0f;
+		_soundSource3.loop = false;
+		_soundSource3.volume = 0.8f;
 		_soundSource3.Play ();
 		Log.Metrics.Message("CHOICE 2: Unlock");
 	}

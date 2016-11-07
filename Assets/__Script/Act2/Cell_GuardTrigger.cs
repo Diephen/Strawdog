@@ -22,6 +22,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	int _waveCnt = 0;
 
 	bool _locked = true;
+	[SerializeField] bool _isAct2 = false;
 
 
 	Camera _mainCam;
@@ -36,6 +37,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] BoxCollider2D _groundCollider1;
 	[SerializeField] BoxCollider2D _groundCollider2;
 
+
+	[SerializeField] BoxCollider2D _guardStop;
+	[SerializeField] BoxCollider2D _prisonerStop;
 
 	bool _isOnFlap = false;
 	[SerializeField] SpriteRenderer _leftFlap;
@@ -56,6 +60,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	void Update(){
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
+				_guardPuppetController.StopWalkAudio ();
 				_goToStart = true;
 				_isStairs = false;
 				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -70,6 +75,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_isOnFlap = false;
+				_guardStop.enabled = false;
+				_prisonerStop.enabled = true;
 
 			}
 			else if (_isDoor) {
@@ -86,7 +93,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_tempPosition.x = Mathf.Lerp (_tempPosition.x, _stairStartPosition, _stairStartTimer.PercentTimePassed);
 			_guard.transform.position = _tempPosition;
 			if (_stairStartTimer.IsOffCooldown) {
-				SoldierFlip ();
+				if (!_isAct2) {
+					SoldierFlip ();
+				}
 				_goToStart = false;
 				_climbStair = true;
 			}

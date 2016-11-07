@@ -47,7 +47,7 @@ public class SceneManagerScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Minus)) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
-		if (Input.GetKeyDown (KeyCode.Delete)) {
+		if (Input.GetKeyDown (KeyCode.Backspace)) {
 			SceneManager.LoadScene (0);
 		}
 		if (Input.GetKeyDown (KeyCode.Equals)) {
@@ -167,13 +167,13 @@ public class SceneManagerScript : MonoBehaviour {
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Leave");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4.5f, "VoiceOver/01_NoDrown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Drown");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f, "VoiceOver/03_Drown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
 	}
 
 		

@@ -2623,6 +2623,7 @@ Transform:
   - {fileID: 136820948}
   - {fileID: 1201281750}
   - {fileID: 910325945}
+  - {fileID: 504786985}
   m_Father: {fileID: 0}
   m_RootOrder: 14
 --- !u!1 &246871279
@@ -3936,6 +3937,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileSizeX: 20
+--- !u!1 &504786984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 504786985}
+  - 61: {fileID: 504786986}
+  m_Layer: 0
+  m_Name: STOPLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504786985
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504786984}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -34.609997, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 228268876}
+  m_RootOrder: 6
+--- !u!61 &504786986
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504786984}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 10.111084, y: -0.20303154}
+  serializedVersion: 2
+  m_Size: {x: 21.222157, y: 9.689831}
 --- !u!1 &513665519
 GameObject:
   m_ObjectHideFlags: 0
@@ -4150,7 +4194,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -49.9
+      value: -49.36
       objectReference: {fileID: 0}
     - target: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4221,17 +4265,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014041149254, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[0]
-      value: 106
+      value: 108
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[2]
-      value: 108
+      value: 106
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
@@ -4266,6 +4310,41 @@ Prefab:
         type: 2}
       propertyPath: m_Pitch
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014099036230, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -45.950176
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000011641026702, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -43.540176
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000014294529408, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -42.520176
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _prisonerStop
+      value: 
+      objectReference: {fileID: 504786986}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _guardStop
+      value: 
+      objectReference: {fileID: 1094283967}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _isAct2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _stairStartPosition
+      value: 33.8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
@@ -6615,7 +6694,7 @@ GameObject:
   - 4: {fileID: 1094283966}
   - 61: {fileID: 1094283967}
   m_Layer: 0
-  m_Name: STOPLeft
+  m_Name: STOPRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
