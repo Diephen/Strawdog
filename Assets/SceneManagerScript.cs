@@ -230,6 +230,10 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadCaught(CaughtSneakingEvent e){
 	}
 
+	void LoadFoodStorage_Prisoner(Taken_EnterFoodStorageEvent e){
+		Log.Metrics.Message("CHOICE: Killed At Ditch");
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 1.5f, "VoiceOver/14_Terrible"));
+	}
 
 	void LoadExecution(TriggerExecutionEvent e){
 		Log.Metrics.Message("CHOICE: Execution");
@@ -254,9 +258,6 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAllGunnedDown(DidNotShootEvent e){
 	}
 	void LoadPrisonerShotDown(PrisonerShotEvent e){
-	}
-
-	void LoadFoodStorage_Prisoner(Taken_EnterFoodStorageEvent e){
 	}
 
 	void LoadPlantUp(Plant_UpStairsEvent e){

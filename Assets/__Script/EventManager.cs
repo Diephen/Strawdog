@@ -118,6 +118,10 @@ public class AboutToStrayOutOfLineEvent : GameEvent {
 
 /* Act 4-2 Taken Away */
 public class Taken_EnterFoodStorageEvent : GameEvent {
+	public bool BrokeFree { get; private set; }
+	public Taken_EnterFoodStorageEvent(bool brokeFree){
+		BrokeFree = brokeFree;
+	}
 }
 
 public class BrokeFree : GameEvent {
