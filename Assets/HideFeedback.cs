@@ -3,6 +3,8 @@ using System.Collections;
 
 public class HideFeedback : MonoBehaviour {
 	[SerializeField] SpriteRenderer[] _hideSprites;
+	Animator m_Anim;
+	GameObject m_UIHint;
 	Color _tempColor;
 	Color _origColor;
 	Color _newColor;
@@ -13,6 +15,11 @@ public class HideFeedback : MonoBehaviour {
 	Timer _transitionTimer;
 	// Use this for initialization
 	void Start () {
+		if (GetComponentInChildren<Animator> ()) {
+			m_Anim = GetComponentInChildren<Animator> ();
+			m_UIHint = m_Anim.gameObject;
+		}
+			
 		_transitionTimer = new Timer (0.5f);
 		if (_house) {
 			for (int i = 0; i < _hideSprites.Length; i++) {
@@ -96,6 +103,13 @@ public class HideFeedback : MonoBehaviour {
 			_transitionTimer.Reset ();
 			_lightUp = true;
 			_once = true;
+//			if (m_Anim != null) {
+//				m_Anim.Play ("ui-Pressed");
+//			}
+			if(m_UIHint!=null){
+				m_UIHint.SetActive (false);
+			}
+
 		}
 
 	}
@@ -106,6 +120,9 @@ public class HideFeedback : MonoBehaviour {
 			_transitionTimer.Reset ();
 			_lightUp = false;
 			_once = true;
+//			if (m_Anim != null) {
+//				m_Anim.Play ("ui-Idle");
+//			}
 		}
 	}
 }
