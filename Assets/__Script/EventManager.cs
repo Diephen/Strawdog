@@ -124,8 +124,11 @@ public class BrokeFree : GameEvent {
 }
 
 public class ExecutionBreakFree: GameEvent{
-	
 }
+
+public class LeaveDitchEvent: GameEvent{
+}
+
 
 /* Act 4-3 Plant Bomb */
 

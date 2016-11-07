@@ -84,6 +84,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<PrisonerShotEvent>(LoadPrisonerShotDown);
 
 		Events.G.AddListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
+		Events.G.AddListener<LeaveDitchEvent>(LoadLeaveDitch);
 
 		Events.G.AddListener<Plant_UpStairsEvent>(LoadPlantUp);
 		Events.G.AddListener<Plant_DownStairsEvent>(LoadPlantDown);
@@ -133,6 +134,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<PrisonerShotEvent>(LoadPrisonerShotDown);
 
 		Events.G.RemoveListener<Taken_EnterFoodStorageEvent>(LoadFoodStorage_Prisoner);
+		Events.G.RemoveListener<LeaveDitchEvent>(LoadLeaveDitch);
 
 		Events.G.RemoveListener<Plant_UpStairsEvent>(LoadPlantUp);
 		Events.G.RemoveListener<Plant_DownStairsEvent>(LoadPlantDown);
@@ -149,7 +151,6 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<GuardAloneEndingEvent>(LoadEnd_GuardAlone);
 
 		Events.G.RemoveListener<RetryEvent> (LoadRetry);
-
 
 		SceneManager.sceneLoaded -= OpenScreen;
 	}
@@ -238,6 +239,12 @@ public class SceneManagerScript : MonoBehaviour {
 		Log.Metrics.Message("CHOICE: Ditch");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2_Ditch, 1f));
 	}
+
+	void LoadLeaveDitch(LeaveDitchEvent e){
+		Log.Metrics.Message("CHOICE: Leave Ditch");
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2, 1f));
+	}
+
 	void LoadPlantBomb(TriggerPlantBombEvent e){
 		Log.Metrics.Message("CHOICE: Plant Bomb");
 		StartCoroutine(ChangeLevel(8, 1f));
