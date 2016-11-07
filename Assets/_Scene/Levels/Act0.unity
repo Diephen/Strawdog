@@ -3047,6 +3047,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010210851682, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
   m_IsPrefabParent: 0
@@ -8173,6 +8177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299defe35d5b649a3a5616c2a41168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interrogation: 0
 --- !u!61 &464795538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15118,6 +15123,69 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: dd7499f9813884aebbd748f2b4c563df, type: 3}
+    - target: {fileID: 4000011672892494, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 25.543625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011424155574, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 17.264332
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013932279214, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -25.834518
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010787986160, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.167667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000014051961488, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 6.5723343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010374618438, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012928035988, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 15.623001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013108764216, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 8.796331
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012024683206, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 11.781334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012595072416, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -4.5323334
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013388410464, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -15.002875
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011624663882, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 36.69723
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000012252974138, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 4.1971455
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000010247513338, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 5.1571455
+      objectReference: {fileID: 0}
+    - target: {fileID: 233000010597783964, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 7.107146
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010965402698, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
@@ -17607,6 +17675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299defe35d5b649a3a5616c2a41168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interrogation: 0
 --- !u!82 &1217810116
 AudioSource:
   m_ObjectHideFlags: 0

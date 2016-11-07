@@ -11,6 +11,9 @@ public class InteractionProgress : MonoBehaviour {
 
 	bool isComplete = false;
 	bool isFadeOut = false;
+	//int m_FadeOption = 0;     // 1 fade in || 2 fade out 
+	bool isFadingIn = false;
+	bool isFadingOut = false;
 	Color bckColor;
 	//public int timeToComplete = 3;
 	
@@ -71,9 +74,11 @@ public class InteractionProgress : MonoBehaviour {
 	}
 
 	public IEnumerator FadeIn(float fadeintime){
+		isFadeOut = false;
+		isFadingIn = true;
 		float i = 0;
 		float rate = 1 / fadeintime;
-		while (i < 1)
+		while (i < 1 && isFadingIn)
 		{
 			i += Time.deltaTime * rate;
 			m_Progress.material.SetFloat ("_AlphaValue", i);
@@ -81,18 +86,41 @@ public class InteractionProgress : MonoBehaviour {
 			m_Bck.material.SetColor ("_Color", bckColor);
 			yield return 0;
 		}
+		m_Progress.material.SetFloat ("_AlphaValue", 1);
+		bckColor.a = 1;
+		m_Bck.material.SetColor ("_Color", bckColor);
 	}
 
 	public IEnumerator FadeOut(float fadeintime){
+		isFadeOut = true;
+		isFadingIn =false;
 		float i = 1;
 		float rate = 1 / fadeintime;
-		while (i > 0)
+		while (i > 0 && isFadeOut)
 		{
 			i -= Time.deltaTime * rate;
 			m_Progress.material.SetFloat ("_AlphaValue", i);
 			bckColor.a = i;
 			m_Bck.material.SetColor ("_Color", bckColor);
 			yield return 0;
+//			if (isFadeOut) {
+//				i -= Time.deltaTime * rate;
+//				m_Progress.material.SetFloat ("_AlphaValue", i);
+//				bckColor.a = i;
+//				m_Bck.material.SetColor ("_Color", bckColor);
+//				yield return 0;
+//			} else {
+//				m_Progress.material.SetFloat ("_AlphaValue", 0);
+//				bckColor.a = 0;
+//				m_Bck.material.SetColor ("_Color", bckColor);
+//				break;
+//			}
+				
 		}
+		m_Progress.material.SetFloat ("_AlphaValue", 0);
+		bckColor.a = 0;
+		m_Bck.material.SetColor ("_Color", bckColor);
+		//break;
+
 	}
 }
