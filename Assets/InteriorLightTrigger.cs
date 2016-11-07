@@ -9,7 +9,11 @@ public class InteriorLightTrigger : MonoBehaviour {
 		if (GetComponent<Animator> ()) {
 			m_anim = GetComponent<Animator> ();
 		}
-		_audioSource = gameObject.GetComponent<AudioSource> ();
+
+		if (GetComponent<AudioSource> ()) {
+			_audioSource = gameObject.GetComponent<AudioSource> ();
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -21,7 +25,10 @@ public class InteriorLightTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.name == "GuardStructure"){
 			m_anim.SetBool ("IsOn", true);
-			_audioSource.Play ();
+			if (_audioSource != null) {
+				_audioSource.Play ();
+			}
+
 		}
 
 
@@ -30,7 +37,9 @@ public class InteriorLightTrigger : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		if(other.name == "GuardStructure"){
 			m_anim.SetBool ("IsOn", false);
-			_audioSource.Play ();
+			if (_audioSource != null) {
+				_audioSource.Play ();
+			}
 		}
 
 

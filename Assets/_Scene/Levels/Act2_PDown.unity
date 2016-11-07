@@ -19412,7 +19412,7 @@ Prefab:
     - target: {fileID: 212000014071688928, guid: 18303c44fec924ea0a115981fece80ac,
         type: 2}
       propertyPath: m_SortingOrder
-      value: 12
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 212000012251365242, guid: 18303c44fec924ea0a115981fece80ac,
         type: 2}
@@ -19811,12 +19811,15 @@ MonoBehaviour:
   _isGuardTop: 0
   _guard: {fileID: 235587881}
   _stairStartPosition: 28.6
+  _isAct2: 0
   _stairRenderer: {fileID: 1384982690}
   _doorRenderer: {fileID: 1059143570}
   _secretDoorRenderer: {fileID: 0}
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
+  _guardStop: {fileID: 0}
+  _prisonerStop: {fileID: 0}
   _leftFlap: {fileID: 0}
   _rightFlap: {fileID: 0}
 --- !u!61 &1485883823

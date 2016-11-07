@@ -2044,7 +2044,7 @@ GameObject:
   - 212: {fileID: 166897123}
   - 61: {fileID: 166897125}
   m_Layer: 0
-  m_Name: STOPLeft
+  m_Name: STOPRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2090,7 +2090,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 166897122}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.67, y: -6.94, z: 0}
+  m_LocalPosition: {x: 23.6, y: -6.94, z: 0}
   m_LocalScale: {x: 0.37078553, y: 1.4887645, z: 1.1235956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -3920,6 +3920,7 @@ GameObject:
   - 95: {fileID: 285541523}
   - 114: {fileID: 285541522}
   - 61: {fileID: 285541521}
+  - 82: {fileID: 285541525}
   m_Layer: 0
   m_Name: light
   m_TagString: Untagged
@@ -4017,6 +4018,80 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!82 &285541525
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 285541519}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 9161752c5ebc04e2981a38e6690d8e64, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &297098254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6007,7 +6082,7 @@ GameObject:
   - 82: {fileID: 402958471}
   - 114: {fileID: 402958470}
   m_Layer: 0
-  m_Name: STOPRight
+  m_Name: STOPLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11814,6 +11889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299defe35d5b649a3a5616c2a41168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interrogation: 0
 --- !u!61 &614930710
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19439,7 +19515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1145996247
 SpriteRenderer:
   m_ObjectHideFlags: 0
