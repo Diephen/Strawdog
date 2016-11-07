@@ -16769,6 +16769,8 @@ MonoBehaviour:
   m_ItrAudio: {fileID: 1800800385}
   m_LightCtrl: {fileID: 320693799}
   m_IsStartWithAnimation: 0
+  m_StopRightForPrisoner: {fileID: 0}
+  m_StopLeftForGuard: {fileID: 0}
   _prisonerPuppetControl: {fileID: 1250271402}
   m_SleepPos: {fileID: 0}
 --- !u!95 &1250271399
@@ -19448,12 +19450,15 @@ MonoBehaviour:
   _isGuardTop: 0
   _guard: {fileID: 235587881}
   _stairStartPosition: 28.6
+  _isAct2: 0
   _stairRenderer: {fileID: 1384982690}
   _doorRenderer: {fileID: 1059143570}
   _secretDoorRenderer: {fileID: 0}
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
+  _guardStop: {fileID: 0}
+  _prisonerStop: {fileID: 0}
   _leftFlap: {fileID: 0}
   _rightFlap: {fileID: 0}
 --- !u!61 &1485883823
