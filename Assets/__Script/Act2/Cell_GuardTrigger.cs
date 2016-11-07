@@ -74,6 +74,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				_guard.SetActive (false);
 				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 				_isOnFlap = false;
 				_guardStop.enabled = false;
 				_prisonerStop.enabled = true;

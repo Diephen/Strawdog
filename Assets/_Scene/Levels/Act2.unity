@@ -6110,6 +6110,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000014240496662, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
+      propertyPath: m_Name
+      value: open-right
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010746247262, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
+      propertyPath: m_Name
+      value: open-left
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
   m_IsPrefabParent: 0
@@ -6412,7 +6420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
-  flip: 0
+  flip: 1
 --- !u!1 &1009044682
 GameObject:
   m_ObjectHideFlags: 0
