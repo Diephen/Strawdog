@@ -21,6 +21,9 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	bool _secretDoor = false;
 	bool _isOnFlap = false;
 	bool _isOnGuard = false;
+	bool _isOnRoad = false;
+	bool _isPrisonerFree = false;
+	bool _isEnd = false;
 
 	[SerializeField] SpriteRenderer _rightFlap;
 
@@ -61,23 +64,25 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 			Events.G.Raise (new RunAloneEndingEvent ());
 
 		}
+
+		if (_isOnRoad && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+			Events.G.Raise (new LeaveDitchEvent ());
+			_isOnRoad = false;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "AlertTrigger") {
 			_isSafe = true;
 			Events.G.Raise (new AboutToStrayOutOfLineEvent (false));
-		}
-		else if (other.name == "Encounter") {
+		} else if (other.name == "Encounter") {
 			Events.G.Raise (new Prisoner_EncounterEvent ());
 			_prisonerPuppetController.DisableContinuousWalk ();
 			other.enabled = false;
-		}
-		else if (other.tag == "SecretDoor") {
+		} else if (other.tag == "SecretDoor") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_secretDoor = true;
-		}
-		else if (other.name == "open-right") {
+		} else if (other.name == "open-right") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			//_highlightsFX.objectRenderer = _rightFlap;
 			//_highlightsFX.enabled = true;
@@ -88,8 +93,7 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //					_whiteBase [i].color = _originalColor;
 //				}
 			}
-		}
-		else if (other.name == "EncounterInteract") {
+		} else if (other.name == "EncounterInteract") {
 			// raise event 
 			_isOnGuard = true;
 			Events.G.Raise (new EncounterTouchEvent (true));
@@ -97,6 +101,14 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //			for (int i = 0; i < _whiteBase.Length; i++) {
 //				_whiteBase [i].color = Color.white;
 //			}
+		} else if (other.name == "Road") {
+			_isOnRoad = true;
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+		} else if (other.name == "EndOfDitch") {
+			if (!_isEnd) {
+				Events.G.Raise (new Taken_EnterFoodStorageEvent (_isPrisonerFree));
+				_isEnd = true;
+			}
 		}
 
 //		if (other.tag == "Stairs") {
@@ -157,6 +169,11 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //				_whiteBase [i].color = _originalColor;
 //			}
 		}
+
+		else if (other.name == "Road"){
+			_isOnRoad = false;
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		}
 //		if (other.tag == "Stairs") {
 //			_isStairs = false;
 //			_prisonerPuppetController.SetIsStairs (_isStairs);
@@ -164,5 +181,9 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //		if (other.name == "Bomb") {
 //			_waveCnt = 0;
 //		}
+	}
+
+	public void UpdatePrisonerState(bool isFree){
+		_isPrisonerFree = isFree;
 	}
 }

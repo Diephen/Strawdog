@@ -6,6 +6,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 	AnimationControl m_AnimCtrl;
 	AnimationInjectionDitch m_AnimInjection;
 	PuppetControl m_PuppetControl;
+	Act4_PrisonerTrigger m_PrisonerTrigger;
 	//[SerializeField] ExecutionGuardHandle m_GuardHandle;
 	bool m_IsFree = false;
 
@@ -14,7 +15,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 		m_Anim = GetComponent<Animator> ();
 		m_AnimCtrl = GetComponent<AnimationControl> ();
 		m_AnimInjection = GetComponent<AnimationInjectionDitch> ();
-
+		m_PrisonerTrigger = GetComponentInChildren<Act4_PrisonerTrigger> ();
 	}
 
 	// Use this for initialization
@@ -39,6 +40,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 		print ("P Free stop animation");
 		m_IsFree = true;
 		EndAnimtion ();
+		m_PrisonerTrigger.UpdatePrisonerState (m_IsFree);
 	}
 
 	void StartAnimation(){
