@@ -185,7 +185,7 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Explore, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Explore, 2f, "VoiceOver/06_Explore"));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){
@@ -195,7 +195,7 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f, "VoiceOver/04_Unlock"));
 	}
 
 	void LoadAct2Patrol_down(Act2_GuardWalkedDownStairsEvent e){
@@ -206,26 +206,26 @@ public class SceneManagerScript : MonoBehaviour {
 		Log.Metrics.Message("CHOICE 3: Bed");
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 3f, "VoiceOver/05_Bed"));
 	}
 
 	void LoadWentBack(PrisonerWentBack e){
 		Log.Metrics.Message("CHOICE: Prisoner Return (No Bomb)");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f, "VoiceOver/09_GoBack"));
 	}
 
 	void LoadGuardSleep(GuardSleepEvent e){
 		Log.Metrics.Message("CHOICE: Guard Sleep");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f, "VoiceOver/07_GuardSleep"));
 	}
 
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
 		Log.Metrics.Message("CHOICE: Prisoner Bomb");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f, "VoiceOver/19_JustMaybe"));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
 		Log.Metrics.Message("CHOICE: Guard Return (No Bomb)");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell, 3f, "VoiceOver/20_MaybeHim"));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
@@ -242,10 +242,9 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void LoadExecution(TriggerExecutionEvent e){
 		Log.Metrics.Message("CHOICE: Execution");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f, "VoiceOver/10_BombCaught"));
 	}
 	void LoadTakenAway(TriggerTakenAwayEvent e){
-		Log.Metrics.Message("CHOICE: Ditch");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2_Ditch, 1f));
 	}
 
@@ -278,7 +277,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadLeaveFoodStorage(Plant_LeaveFoodStorageEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Done, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Done, 1f, "VoiceOver/22_DeedDone"));
 	}
 
 	void LoadEncounter1(Prisoner_EncounterEvent e){

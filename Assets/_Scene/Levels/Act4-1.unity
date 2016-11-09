@@ -565,7 +565,7 @@ Transform:
   - {fileID: 2061341490}
   - {fileID: 256814013}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &139424180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1726,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
 --- !u!1 &230788649
 GameObject:
   m_ObjectHideFlags: 0
@@ -4397,7 +4397,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1 &459952943
 GameObject:
   m_ObjectHideFlags: 0
@@ -7995,7 +7995,7 @@ Transform:
   m_Children:
   - {fileID: 2106555783}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &948233370
 GameObject:
   m_ObjectHideFlags: 0
@@ -13212,7 +13212,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010215768666, guid: 3a3f9525d2b3b4396a1ab02a386dcf77, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 82000013124893688, guid: 3a3f9525d2b3b4396a1ab02a386dcf77,
         type: 2}
@@ -16753,48 +16753,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   _patrolDuration: 12
---- !u!1 &2112633600
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2112633602}
-  - 114: {fileID: 2112633601}
-  m_Layer: 0
-  m_Name: Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2112633601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a51a25142344641a2eba207023cc2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: 24a1c30fd118a40f28fbe679da782e33, type: 3}
-  fadeSpeed: 1
---- !u!4 &2112633602
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2112633600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32454127, y: -1.11855, z: 4.3671875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &2119516613
 GameObject:
   m_ObjectHideFlags: 0
@@ -17143,7 +17101,7 @@ Transform:
   m_Children:
   - {fileID: 1081639658}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
 --- !u!1 &2138212375
 GameObject:
   m_ObjectHideFlags: 0

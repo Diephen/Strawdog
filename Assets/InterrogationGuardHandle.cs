@@ -23,6 +23,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	[SerializeField] float[] m_WaitTime;
 
 	SpriteRenderer[] m_BottomSpr;
+	bool _callOnce = true;
 
 	float dir = 1;
 	float m_CurWaitTime = -1;
@@ -202,7 +203,10 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		case IG_GuardState.EndKickAfterPush:
 			if (CheckStateEnd ()) {
 				//m_GS = IG_GuardState.EndKickAfterIdle;
-				m_ItrSceneManager.NextScene();
+				if (_callOnce) {
+					m_ItrSceneManager.NextScene ();
+					_callOnce = false;
+				}
 			}
 			break;
 		}
