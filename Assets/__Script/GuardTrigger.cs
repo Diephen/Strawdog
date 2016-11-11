@@ -25,6 +25,8 @@ public class GuardTrigger : MonoBehaviour {
 	[SerializeField] SpriteRenderer _leftFlap;
 	[SerializeField] SpriteRenderer _rightFlap;
 
+	bool _guardLeaveCell = false;
+
 	//Variables for Highlight
 	Camera _mainCam;
 	HighlightsFX _highlightsFX;
@@ -73,6 +75,12 @@ public class GuardTrigger : MonoBehaviour {
 			Events.G.Raise (new GuardLeavingCellEvent ());
 			_rightFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_leftFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+			_guardLeaveCell = true;
+		}
+
+		if (_guardLeaveCell) {
+			_guard.transform.Translate (Vector3.right* Time.deltaTime * 2.0f);
 		}
 	}
 

@@ -34,6 +34,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	bool _isHidden = false;
 	bool _secretDoor = false;
 
+	bool _leaveArea = false;
+
 	Vector3 _tempPosition;
 
 	Camera _mainCam;
@@ -115,6 +117,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				Events.G.Raise (new PrisonerWentBack ());
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_isOnFlap = false;
+				_leaveArea = true;
+				Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner));
 			}
 
 			if (_isBombArea) {
@@ -165,6 +169,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 					}
 				}
 			}
+		}
+
+		if (_leaveArea) {
+			_prisoner.transform.Translate (Vector3.left * Time.deltaTime * 2.0f);
 		}
 	}
 

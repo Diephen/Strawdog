@@ -168,13 +168,13 @@ public class SceneManagerScript : MonoBehaviour {
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Leave");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f, "VoiceOver/02_StopDrown"));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
 		Log.Metrics.Message("End Act 1");
 		Log.Metrics.Message("CHOICE 1: Drown");
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f, "VoiceOver/03_Drown"));
 	}
 
 		
@@ -195,7 +195,7 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f, "VoiceOver/04_Unlock"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f));
 	}
 
 	void LoadAct2Patrol_down(Act2_GuardWalkedDownStairsEvent e){
@@ -347,7 +347,7 @@ public class SceneManagerScript : MonoBehaviour {
 			}
 			float waitTime = 1.0f;
 			if (path != null) {
-				yield return new WaitForSeconds (1.0f);
+				yield return new WaitForSeconds (2.0f);
 				waitTime = _voManager.PlayVoiceOver (path);
 			}
 			yield return new WaitForSeconds (waitTime);

@@ -24,6 +24,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _locked = true;
 	[SerializeField] bool _isAct2 = false;
 
+	bool _isOnRight = false;
+	bool _walkOff = false;
+	Timer _walkOffTimer = new Timer (1.0f);
 
 	Camera _mainCam;
 
@@ -71,14 +74,15 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			}
 			else if (_isOnFlap) {
 				Events.G.Raise (new LeftCellUnlockedEvent ());
-				_guard.SetActive (false);
 				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 				_isOnFlap = false;
 				_guardStop.enabled = false;
 				_prisonerStop.enabled = true;
-
+				_walkOff = true;
+				_walkOffTimer.Reset ();
+				Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 			}
 			else if (_isDoor) {
 				_locked = !_locked;
@@ -88,6 +92,19 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				}
 			}
 
+		}
+
+		if (_walkOff) {
+			if (_isOnRight) {
+				_guard.transform.Translate (Vector3.right * Time.deltaTime * 3.0f);
+			}
+			else {
+				_guard.transform.Translate (Vector3.left * Time.deltaTime * 3.0f);
+			}
+			if (_walkOffTimer.IsOffCooldown) {
+				_guard.SetActive (false);
+				_walkOff = false;
+			}
 		}
 
 		if (_goToStart) {
@@ -194,6 +211,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		}
 		else if (other.name == "open-right") {
 			_isOnFlap = true;
+			_isOnRight = true;
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 		}
 		else if (other.name == "open-left") {
@@ -202,6 +220,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			}
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
+			_isOnRight = false;
 		}
 		else if (other.name == "sh-front_0") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
