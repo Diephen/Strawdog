@@ -6,11 +6,12 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	[SerializeField] ExecutionGuardHandle m_GuardHandle;
 	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
 	[SerializeField] GameObject m_Prisoner;
+	[SerializeField] SpriteRenderer m_GunSprite;
 	[SerializeField] float m_Speed;
 	[SerializeField] float WaitToCatchDuration = 1f;
 	[SerializeField] float CatchDuration = 3f;
 	[SerializeField] float WaitToShootBoth = 10f;
-	rotateTowards m_FlashLight;
+	GameObject m_FlashLight;
 	Timer m_CatchTimer;
 	Timer m_EncounterTimer;
 
@@ -24,11 +25,13 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		m_CatchTimer = new Timer (WaitToCatchDuration);
 		m_EncounterTimer = new Timer (WaitToShootBoth);
 		m_Anim = GetComponent<Animator> ();
+		//m_FlashLight = GameObject.FindObjectOfType<rotateTowards> ();
 	}
 
 	void OnEnable ()
 	{
 		Events.G.AddListener<AboutToStrayOutOfLineEvent>(OnPrisonerStray);
+		Events.G.AddListener<ExecutionBreakFree>(OnPrisonerBreakFree);
 		Events.G.AddListener<ShootSwitchEvent> (OnSwitchToGuard);
 		Events.G.AddListener<ExecutionEncounter> (OnEncounter);
 	}
@@ -36,6 +39,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<AboutToStrayOutOfLineEvent> (OnPrisonerStray);
+		Events.G.RemoveListener<ExecutionBreakFree>(OnPrisonerBreakFree);
 		Events.G.RemoveListener<ShootSwitchEvent> (OnSwitchToGuard);
 		Events.G.AddListener<ExecutionEncounter> (OnEncounter);
 	}
@@ -49,6 +53,10 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		if (e.ExeType == ExecutionType.Prisoner && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
 		}
+	}
+
+	void OnPrisonerBreakFree(ExecutionBreakFree e){
+		m_Anim.Play ("soldier-exe-Alert");
 	}
 
 
@@ -118,5 +126,9 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void EndOfExecution(){
 		Events.G.Raise (new SoldierExecuteBoth ());
+	}
+
+	void GunFront(){
+		m_GunSprite.sortingOrder += 1;
 	}
 }

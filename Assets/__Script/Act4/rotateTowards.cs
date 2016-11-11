@@ -55,7 +55,6 @@ public class rotateTowards : MonoBehaviour {
 	}
 
 	void SetStray(AboutToStrayOutOfLineEvent e) {
-		_isStraying = e.Straying;
 		if (e.Straying) {
 			_spotLight.color = _alertColor;
 		} else {
@@ -64,14 +63,20 @@ public class rotateTowards : MonoBehaviour {
 		}
 	}
 
+	void FollowPrisoner(ExecutionBreakFree e){
+		_isStraying = true;
+	}
+
 	void OnEnable ()
 	{
 		Events.G.AddListener<AboutToStrayOutOfLineEvent>(SetStray);
+		Events.G.AddListener<ExecutionBreakFree>(FollowPrisoner);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<AboutToStrayOutOfLineEvent> (SetStray);
+		Events.G.RemoveListener<ExecutionBreakFree> (FollowPrisoner);
 	}
 
 
