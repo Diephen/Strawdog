@@ -244,12 +244,19 @@ public class AudioController : MonoBehaviour {
 			_soundSource1.clip = Resources.Load<AudioClip> ("Sounds/Opening/PickUpNeedle");
 			_soundSource1.loop = false;
 		}
+		else if (_currentSceneIndex == 22) {
+			_musicSource2.volume = 0.6f;
+			_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
+			_musicSource2.loop = true;
+		}
 		else if (_currentSceneIndex == 1) {
+			_soundSource2_Light.Stop ();
 			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Piece_No1");
 			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicSource1.loop = false;
 			_musicVolume = 1.0f;
+			_musicSource2.volume = 1.0f;
 			_musicSource1.Play ();
 		}
 		else if (_currentSceneIndex == 2) {
