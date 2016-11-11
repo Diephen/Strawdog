@@ -21,11 +21,6 @@ public class HelpMenu : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.H)) {
 			_controls.SetActive (!_controls.activeSelf);
 		}
-		if (SceneManager.GetActiveScene ().name == "Tutorial") {
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				Events.G.Raise (new TutorialEndEvent ());
-			}
-		}
 	}
 
 	void OnEnable(){
