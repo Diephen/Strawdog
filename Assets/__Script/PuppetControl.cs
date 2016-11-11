@@ -160,6 +160,7 @@ public class PuppetControl : MonoBehaviour {
 				m_charState = charState.idle;
 			} else {
 				Events.G.Raise (new PickupReleasedEvent (_whoAmI));
+				m_charState = charState.idle;
 			}
 		}
 	}

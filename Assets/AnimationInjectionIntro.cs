@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class AnimationInjectionIntro : AnimationInjectionBase {
 	[SerializeField] PuppetControl _puppetControl;
@@ -10,6 +11,8 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 	private bool isGuardReady = false;
 	private bool isPrisonerReady = false;
 	private bool isAwayTogether = false;
+
+	Timer _endIntroTimer = new Timer(2.0f);
 	//private bool isPrisonerDead = false;
 
 	void OnEnable(){
@@ -97,6 +100,14 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 	void Update(){
 		if (!isAwayTogether && isGuardReady && isPrisonerReady) {
 			isAwayTogether = true;
+			_endIntroTimer.Reset ();
+		}
+
+		if (isAwayTogether && _endIntroTimer.IsOffCooldown) {
+			Events.G.Raise (new TutorialEndEvent ());
+		}
+		if(!isGuardReady || !isPrisonerReady) {
+			isAwayTogether = false;
 		}
 	}
 

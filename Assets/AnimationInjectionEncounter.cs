@@ -4,7 +4,7 @@ using System.Collections;
 public class AnimationInjectionEncounter : AnimationInjectionBase {
 	[SerializeField] PuppetControl _puppetControl;
 	[SerializeField] GuardEncounterHandle m_GuardHandle;
-	[SerializeField] PrisonerIntroHandle m_PrisonerHandle;
+	[SerializeField] PrisonerEncounterHandle m_PrisonerHandle;
 	private bool isEngaged = false;
 	private bool isShot = false;
 	private bool isGuardHandUp = false;
@@ -100,12 +100,13 @@ public class AnimationInjectionEncounter : AnimationInjectionBase {
 	}
 
 	void Update(){
+		print ("P: " + isPrisonerReady + " G: " + isGuardReady);
 		if (!isAwayTogether && isGuardReady && isPrisonerReady) {
 			isAwayTogether = true;
-			Events.G.Raise (new TutorialEndEvent ());
+			StartCoroutine (m_GuardHandle.Hug ());
+			// raise event
 		}
 	}
-
 
 
 	//Have public scripts that will be called in place of the original function

@@ -4208,6 +4208,7 @@ GameObject:
   - 50: {fileID: 669783770}
   - 114: {fileID: 669783769}
   - 114: {fileID: 669783775}
+  - 114: {fileID: 669783768}
   m_Layer: 0
   m_Name: Prisoner-Encounter
   m_TagString: Untagged
@@ -4234,7 +4235,7 @@ Transform:
   - {fileID: 814982793}
   m_Father: {fileID: 2119516614}
   m_RootOrder: 3
---- !u!114 &669783769
+--- !u!114 &669783768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -4242,13 +4243,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 669783766}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9792520fda46b48fb80475b57cabcbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animInject: 0000000000000000000000
+  _puppetControl: {fileID: 669783774}
+  m_GuardHandle: {fileID: 1147656821}
+  m_PrisonerHandle: {fileID: 669783775}
+--- !u!114 &669783769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 669783766}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc7a08e03a7b04a909ed772bfa9a31b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animInject: 0000000000000000000000
   _puppetControl: {fileID: 669783774}
   m_GuardHandle: {fileID: 0}
-  m_PrisonerHandle: {fileID: 669783775}
+  m_PrisonerHandle: {fileID: 0}
 --- !u!50 &669783770
 Rigidbody2D:
   serializedVersion: 2
