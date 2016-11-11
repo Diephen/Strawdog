@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class HelpMenu : MonoBehaviour {
 	[SerializeField] GameObject _controls;
-	[SerializeField] GameObject _start;
 
 	static HelpMenu _helpInstance = null;
 
@@ -22,8 +21,10 @@ public class HelpMenu : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.H)) {
 			_controls.SetActive (!_controls.activeSelf);
 		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			_start.SetActive (false);
+		if (SceneManager.GetActiveScene ().name == "Tutorial") {
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				Events.G.Raise (new TutorialEndEvent ());
+			}
 		}
 	}
 
@@ -36,9 +37,6 @@ public class HelpMenu : MonoBehaviour {
 	}
 
 	void CheckStartUI(Scene scene, LoadSceneMode mode){
-		if(scene.name == "Act0") {
-			_start.SetActive (true);
-		}
 		_controls.SetActive (false);
 	}
 }

@@ -27,23 +27,24 @@ public class SceneManagerScript : MonoBehaviour {
 		Act4_2_Ditch = 18,
 		Act4_3_Encounter = 19,
 		TriggerWarning = 20,
-		Ending = 21
+		Ending = 21,
+		Tutorial = 22
 	};
 
 	FrameScript _frameScript;
-	bool _start = false;
+//	bool _start = false;
 	bool _once = false;
 	[SerializeField] VoiceOverManager _voManager;
 
 	void Update(){
-		if(_start){
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
-				_frameScript.OpenFlap ();
-				_start = false;
-				Log.Metrics.Message("Start Time");
-			}
-		}
+//		if(_start){
+//			if (Input.GetKeyDown (KeyCode.Space)) {
+//				_frameScript = GameObject.Find ("Frame").GetComponent<FrameScript> ();
+//				_frameScript.OpenFlap ();
+//				_start = false;
+//				Log.Metrics.Message("Start Time");
+//			}
+//		}
 		if (Input.GetKeyDown (KeyCode.Minus)) {
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 		}
@@ -57,6 +58,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Events.G.AddListener<TutorialEndEvent>(LoadAct0);
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.AddListener<Act1EndedEvent>(LoadTitle);
@@ -94,7 +96,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.AddListener<Guard_EncounterEvent>(LoadEncounter2);
 
-		Events.G.AddListener<TriggerWarningEndEvent>(LoadAct0);
+		Events.G.AddListener<TriggerWarningEndEvent>(LoadTutorial);
 
 		Events.G.AddListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
 		Events.G.AddListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
@@ -107,6 +109,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnDisable ()
 	{
+		
+		Events.G.RemoveListener<TutorialEndEvent>(LoadAct0);
 		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.RemoveListener<Act1EndedEvent>(LoadTitle);
@@ -144,7 +148,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.RemoveListener<Guard_EncounterEvent>(LoadEncounter2);
 
-		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadAct0);
+		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadTutorial);
 
 		Events.G.RemoveListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
 		Events.G.RemoveListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
@@ -156,8 +160,12 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 
-	void LoadAct0(TriggerWarningEndEvent e){
+	void LoadAct0(TutorialEndEvent e){
 		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 3f));
+	}
+
+	void LoadTutorial(TriggerWarningEndEvent e){
+		StartCoroutine(ChangeFade((int)SceneIndex.Tutorial, 0.5f));
 	}
 
 	void LoadVertical(Act0EndedEvent e){
@@ -312,9 +320,6 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
 		if (scene.name == "TriggerWarning") {
-		}
-		else if (scene.name == "Act0") {
-			_start = true;
 		}
 		//Capture all ending Scenes
 		else if (scene.name == "EndingTemplate") {

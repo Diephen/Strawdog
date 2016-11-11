@@ -12,6 +12,9 @@ public class TriggerWarningEndEvent: GameEvent{
 	
 }
 
+public class TutorialEndEvent: GameEvent{
+}
+
 public class Act0EndedEvent : GameEvent {
 }
 
