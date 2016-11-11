@@ -88,6 +88,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 				}
 
 			} else if(e.ExeType == ExecutionType.Prisoner){
+				m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
 				if (!_execute) {
 					_execute = true;
 				} else {
@@ -105,6 +106,8 @@ public class ExecutionGuardHandle : MonoBehaviour {
 
 			} else {
 				m_CurrentSP = null;
+				m_IsPrisonerStandUp = false;
+				m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
 				//m_IsPrisoner = false;
 				//TODO - Add ending Condition
 				print("End of Execution Scene!!!!");
@@ -137,7 +140,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 
 	public void HandUp(){
 		m_IsHandUp = true;
-		m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
+		//m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
 		m_Anim.SetBool ("IsHandUp", true);
 	}
 
@@ -173,6 +176,11 @@ public class ExecutionGuardHandle : MonoBehaviour {
 
 	void PlayReloadAfterShoot(){
 		m_ItrSound.PlayReload ();
+	}
+
+	public void Death(){
+		print ("ShotBySoldier");
+		m_Anim.Play ("g-exe-ShotBySoldier");
 	}
 
 

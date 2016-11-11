@@ -103,6 +103,9 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<GuardAloneEndingEvent>(LoadEnd_GuardAlone);
 
 		Events.G.AddListener<RetryEvent> (LoadRetry);
+		Events.G.AddListener<RestartExecution> (ReLoadExecution);
+		Events.G.AddListener<SoldierExecuteBoth> (LoadExecutionEndBothDie);
+		Events.G.AddListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
 		SceneManager.sceneLoaded += OpenScreen;
 	}
@@ -155,6 +158,9 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<GuardAloneEndingEvent>(LoadEnd_GuardAlone);
 
 		Events.G.RemoveListener<RetryEvent> (LoadRetry);
+		Events.G.RemoveListener<RestartExecution> (ReLoadExecution);
+		Events.G.RemoveListener<SoldierExecuteBoth> (LoadExecutionEndBothDie);
+		Events.G.RemoveListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
 		SceneManager.sceneLoaded -= OpenScreen;
 	}
@@ -252,6 +258,20 @@ public class SceneManagerScript : MonoBehaviour {
 		Log.Metrics.Message("CHOICE: Execution");
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f, "VoiceOver/10_BombCaught"));
 	}
+
+	void ReLoadExecution(RestartExecution e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f));
+	}
+
+	// When decide not to execute the prisoner
+	void LoadExecutionEndBothDie(SoldierExecuteBoth e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/16_EscapeTogether"));
+	}
+
+	void LoadExecutionEndPrisonerDie(GuardExecutePrisoner e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 4f, "VoiceOver/16_EscapeTogether"));
+	}
+
 	void LoadTakenAway(TriggerTakenAwayEvent e){
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2_Ditch, 1f));
 	}

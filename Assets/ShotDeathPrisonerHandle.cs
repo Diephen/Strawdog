@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ShotDeathPrisonerHandle : MonoBehaviour {
-	
+	[SerializeField] bool m_IsStartDead = false;
 	[SerializeField] Animator m_Anim;
 	[SerializeField] SpriteRenderer[] m_Sprites;
 	[SerializeField] Color m_EndColor;
@@ -27,6 +27,14 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 		m_AnimTimer = new Timer (m_Duration);
 		m_AnimTimer.Reset ();
 		RandomIdleAnimation ();
+
+		if (m_IsStartDead) {
+			m_Anim.Play ("SP-StartAsDead");
+			m_TriggerCol.enabled = false;
+			foreach (SpriteRenderer spr in m_Sprites) {
+				spr.material.color = m_EndColor;
+			}
+		}
 	}
 	
 	// Update is called once per frame

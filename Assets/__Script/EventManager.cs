@@ -128,6 +128,18 @@ public class ExecutionEncounter:GameEvent{
 		SP = sp;
 	}
 }
+
+public class RestartExecution:GameEvent{
+	
+}
+
+public class SoldierExecuteBoth:GameEvent{
+	
+}
+
+public class GuardExecutePrisoner:GameEvent{
+	
+}
 	
 
 /* Act 4-2 Taken Away */

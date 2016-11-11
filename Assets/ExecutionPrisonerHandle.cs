@@ -12,6 +12,7 @@ public class ExecutionPrisonerHandle : MonoBehaviour {
 	[SerializeField] Color m_EndColor;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] float m_Duration;
+	[SerializeField] InteractionSound m_ItrSound;
 	Timer m_ColorTimer;
 	//[SerializeField] ExecutionGuardHandle m_GuardHandle;
 	bool m_IsFree = false;
@@ -138,6 +139,14 @@ public class ExecutionPrisonerHandle : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void PlayBodyFall(){
+		m_ItrSound.PlayPrisonerFall ();
+	}
+
+	void LoadEnding(){
+		Events.G.Raise (new GuardExecutePrisoner ());
 	}
 
 
