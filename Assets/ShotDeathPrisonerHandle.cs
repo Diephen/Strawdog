@@ -8,6 +8,7 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 	[SerializeField] Color m_EndColor;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] float m_Duration;
+	Timer m_AnimTimer;
 	AudioSource m_Audio;
 	Timer m_ColorTimer;
 	BoxCollider2D m_TriggerCol;
@@ -23,13 +24,22 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 		}
 		m_ColorTimer = new Timer (m_Duration);
 		m_Audio = GetComponent<AudioSource> ();
+		m_AnimTimer = new Timer (m_Duration);
+		m_AnimTimer.Reset ();
+		RandomIdleAnimation ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isExecuted) {
 			TurnDark ();
+		} else {
+			if (m_AnimTimer.IsOffCooldown) {
+				RandomIdleAnimation ();
+				RandomTimer ();
+			}
 		}
+
 	
 	}
 
@@ -53,5 +63,15 @@ public class ShotDeathPrisonerHandle : MonoBehaviour {
 		if (!m_Audio.isPlaying) {
 			m_Audio.Play ();
 		}
+	}
+
+	void RandomIdleAnimation(){
+		int AnimIdx = Random.Range (0, 2);
+		m_Anim.SetInteger ("IdleIdx", AnimIdx);
+	}
+
+	void RandomTimer(){
+		m_AnimTimer.CooldownTime = Random.Range (0, 3);
+		m_AnimTimer.Reset ();
 	}
 }

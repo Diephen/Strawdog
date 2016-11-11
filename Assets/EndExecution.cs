@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class EndExecution : StateMachineBehaviour {
-	Act4_GuardTrigger m_GuardHandle;
+	ExecutionGuardHandle m_GuardHandle;
 	void Awake(){
-		m_GuardHandle = GameObject.FindObjectOfType<Act4_GuardTrigger> ();
+		m_GuardHandle = GameObject.FindObjectOfType<ExecutionGuardHandle> ();
 	}
 
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state

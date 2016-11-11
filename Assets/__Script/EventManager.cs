@@ -114,6 +114,17 @@ public class AboutToStrayOutOfLineEvent : GameEvent {
 		Straying = straying;
 	}
 }
+
+public class ExecutionEncounter:GameEvent{
+	public ExecutionType ExeType { get; private set; }
+	public bool IsStart { get; private set;}
+	public ShotDeathPrisonerHandle SP{ get; private set; }
+	public ExecutionEncounter(ExecutionType exeType, ShotDeathPrisonerHandle sp, bool isStart){
+		ExeType = exeType;
+		IsStart = isStart;
+		SP = sp;
+	}
+}
 	
 
 /* Act 4-2 Taken Away */

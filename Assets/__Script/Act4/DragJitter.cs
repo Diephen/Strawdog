@@ -15,6 +15,7 @@ public class DragJitter : MonoBehaviour {
 	[SerializeField] bool _isExecution = false;
 	int _inputCount = 0;
 	int _freedomCount = 20;
+	bool isJitterEnabled = true;
 
 	[SerializeField] AudioClip[] _ropeTug;
 	[SerializeField] AudioClip _ropeBreak;
@@ -42,7 +43,7 @@ public class DragJitter : MonoBehaviour {
 			}
 		}
 
-		if (_isThePrisoner) {
+		if (_isThePrisoner && isJitterEnabled) {
 			if (Input.GetKeyDown (_prisonerKeyCodes [0]) ||
 			   Input.GetKeyDown (_prisonerKeyCodes [1]) ||
 			   Input.GetKeyDown (_prisonerKeyCodes [2]) ||
@@ -68,5 +69,9 @@ public class DragJitter : MonoBehaviour {
 			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner));
 			this.enabled = false;
 		}
+	}
+
+	public void DisableJitter(){
+		isJitterEnabled = false;
 	}
 }

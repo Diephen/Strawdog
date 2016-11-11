@@ -1,18 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum ExecutionType{
+	Prisoner,
+	ShootPrisoner
+}
+
 public class ExecutionGuardHandle : MonoBehaviour {
 	Animator m_Anim;
 	AnimationControl m_AnimCtrl;
+	AnimationInjectionExecution m_AnimInjection;
 	[SerializeField] InteractionSound m_ItrSound;
+	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
+	ShotDeathPrisonerHandle m_CurrentSP;
+	ShotDeathPrisonerHandle m_NextInLine = null;
+
+	// TODO: UI Shooting toturial 
+
+
+
+	bool _execute = false;
+	bool m_IsPrisoner = false;
+	int _shootCnt = 0;
+	int _shootSwitchCnt = 2;
 
 	bool m_IsHandUp = false;
+	bool m_IsPrisonerStandUp = false;
+
+
 
 
 	// Use this for initialization
 	void Start () {
 		m_Anim = GetComponent<Animator> ();
 		m_AnimCtrl = GetComponent<AnimationControl> ();
+		m_AnimInjection = GetComponent<AnimationInjectionExecution> ();
+
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<ExecutionEncounter> (OnExecutionEncounter);
+		Events.G.AddListener<ExecutionBreakFree> (OnPrisonerBreak);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<ExecutionEncounter> (OnExecutionEncounter);
+		Events.G.RemoveListener<ExecutionBreakFree> (OnPrisonerBreak);
 	}
 	
 	// Update is called once per frame
@@ -20,21 +53,91 @@ public class ExecutionGuardHandle : MonoBehaviour {
 	
 	}
 
-	public void StartExecution(){
-		m_Anim.SetBool ("IsHandUp", false);
-		m_IsHandUp = false;
-		m_AnimCtrl.SetAnimation (true);
+	void OnPrisonerBreak(ExecutionBreakFree e){
+		m_IsPrisonerStandUp = true;
 	}
 
 
-	void EndExecution(){
+
+	void FixedUpdate(){
+		if (_shootCnt == _shootSwitchCnt) {
+			Events.G.Raise (new ShootSwitchEvent ());
+			//not needed but code added to not have called multiple times
+			_shootCnt++;
+		}
+	}
+
+	void OnExecutionEncounter(ExecutionEncounter e){
+		if (e.IsStart) {
+			print ("GH Start Exe");
+			// TODO Prisoner has piority over cubes
+			if (e.ExeType == ExecutionType.ShootPrisoner) {
+				if (!m_IsPrisoner) {
+					_execute = true;
+					m_IsPrisoner = false;
+					if (m_NextInLine == null) {
+						m_CurrentSP = e.SP;
+					} else {
+						m_CurrentSP = m_NextInLine;
+						m_NextInLine = null;
+					}
+					StartExecution ();
+				} else {
+					m_NextInLine = e.SP;
+					m_NextInLine = null;
+				}
+
+			} else if(e.ExeType == ExecutionType.Prisoner){
+				if (!_execute) {
+					_execute = true;
+				} else {
+					m_NextInLine = m_CurrentSP;
+				}
+				m_CurrentSP = null;
+				m_IsPrisoner = true;
+				m_PrisonerHandle.EncounterGuard ();
+				StartExecution ();
+			}
+		} else {
+			
+			if (e.ExeType == ExecutionType.ShootPrisoner) {
+				m_CurrentSP = null;
+
+			} else {
+				m_CurrentSP = null;
+				//m_IsPrisoner = false;
+				//TODO - Add ending Condition
+				print("End of Execution Scene!!!!");
+			}
+		}
+	}
+
+	public void StartExecution(){
+		m_Anim.Play ("g-ShootIdle");
 		m_Anim.SetBool ("IsHandUp", false);
 		m_IsHandUp = false;
+		m_AnimCtrl.SetAnimation (true);
+		m_AnimInjection.SetEngage ();
+	}
+
+
+	public void EndExecution(){
+		m_Anim.SetBool ("IsHandUp", false);
+		m_Anim.SetBool ("IsPStand", false);
+		m_IsHandUp = false;
 		m_AnimCtrl.SetAnimation (false);
+		m_AnimInjection.SetLeave ();
+		if (m_NextInLine != null) {
+			m_CurrentSP = m_NextInLine;
+			m_NextInLine = null;
+			_execute = true;
+			StartExecution ();
+		}
 	}
 
 	public void HandUp(){
 		m_IsHandUp = true;
+		m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
 		m_Anim.SetBool ("IsHandUp", true);
 	}
 
@@ -44,9 +147,27 @@ public class ExecutionGuardHandle : MonoBehaviour {
 	}
 
 	public void Shoot(){
-		if (m_IsHandUp) {
-			m_Anim.Play ("g-Shoot");
-			m_IsHandUp = false;
+		if (m_IsHandUp && _execute) {
+			if (!m_IsPrisoner) {
+				m_Anim.Play ("g-Shoot");
+				m_ItrSound.PlayGun ();
+				m_IsHandUp = false;
+				m_CurrentSP.Executed ();
+				_shootCnt++;
+				_execute = false;
+				m_CurrentSP = null;
+			} else {
+				print ("Call Prisoner Animation");
+				m_PrisonerHandle.Death ();
+				m_Anim.Play ("g-Shoot");
+				m_ItrSound.PlayGun ();
+				m_IsHandUp = false;
+				_execute = false;
+				m_IsPrisoner = false;
+				m_IsPrisonerStandUp = false;
+				m_Anim.SetBool ("IsPStand", false);
+			}
+
 		}
 	}
 

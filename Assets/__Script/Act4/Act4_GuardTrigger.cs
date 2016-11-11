@@ -7,6 +7,7 @@ public class Act4_GuardTrigger : MonoBehaviour {
 	[SerializeField] GameObject _guard;
 	[SerializeField] AnimationInjectionExecution m_AnimInjection;
 	[SerializeField] InteractionSound m_ItrSound;
+	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
 	PuppetControl _guardPuppetController;
 	KeyCode[] _guardKeyCodes;
 	//GameObject _otherGameObject = null;
@@ -41,39 +42,45 @@ public class Act4_GuardTrigger : MonoBehaviour {
 //		}
 	}
 
-	void FixedUpdate(){
-		if (_shootCnt == _shootSwitchCnt) {
-			Events.G.Raise (new ShootSwitchEvent ());
-			//not needed but code added to not have called multiple times
-			_shootCnt++;
-		}
-	}
+//	void FixedUpdate(){
+//		if (_shootCnt == _shootSwitchCnt) {
+//			Events.G.Raise (new ShootSwitchEvent ());
+//			//not needed but code added to not have called multiple times
+//			_shootCnt++;
+//		}
+//	}
 
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Execution") {
 			//print ("Exe!!!");
 			_guardPuppetController.StopWalkAudio();
-			StartExecution ();
-			_execute = true;
-			//_otherGameObject = other.gameObject;
-			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle> ();
+			Events.G.Raise (new ExecutionEncounter (ExecutionType.ShootPrisoner, other.gameObject.GetComponent<ShotDeathPrisonerHandle> (), true));
+//			StartExecution ();
+//			_execute = true;
+//			//_otherGameObject = other.gameObject;
+//			m_CurrentSP = other.gameObject.GetComponent<ShotDeathPrisonerHandle> ();
 			//m_AnimInjection.SetEngage ();
 
 		} else if (other.tag == "Prisoner") {
 			_guardPuppetController.StopWalkAudio();
-			StartExecution ();
-			_execute = true;
-			m_IsPrisoner = true;
+			Events.G.Raise (new ExecutionEncounter (ExecutionType.Prisoner, null, true));
+//			StartExecution ();
+//			_execute = true;
+//			m_IsPrisoner = true;
 			//m_AnimInjection.SetEngage ();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Execution") {
-			_execute = false;
+			Events.G.Raise (new ExecutionEncounter (ExecutionType.ShootPrisoner, null, false));
+			//_execute = false;
 			//_otherGameObject = null;
 			//m_CurrentSP = null;
+		} else if (other.tag == "Prisoner") {
+			Events.G.Raise (new ExecutionEncounter (ExecutionType.Prisoner,null,  false));
+
 		}
 	}
 
@@ -87,54 +94,54 @@ public class Act4_GuardTrigger : MonoBehaviour {
 //		Events.G.RemoveListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 	}
 
-	public void StartExecution(){
-		m_Anim.Play ("g-ShootIdle");
-		m_Anim.SetBool ("IsHandUp", false);
-		m_IsHandUp = false;
-		m_AnimCtrl.SetAnimation (true);
-		m_AnimInjection.SetEngage ();
-	}
+//	public void StartExecution(){
+//		m_Anim.Play ("g-ShootIdle");
+//		m_Anim.SetBool ("IsHandUp", false);
+//		m_IsHandUp = false;
+//		m_AnimCtrl.SetAnimation (true);
+//		m_AnimInjection.SetEngage ();
+//	}
+//
+//
+//	public void EndExecution(){
+//		m_Anim.SetBool ("IsHandUp", false);
+//		m_IsHandUp = false;
+//		m_AnimCtrl.SetAnimation (false);
+//		m_AnimInjection.SetLeave ();
+//
+//	}
 
-
-	public void EndExecution(){
-		m_Anim.SetBool ("IsHandUp", false);
-		m_IsHandUp = false;
-		m_AnimCtrl.SetAnimation (false);
-		m_AnimInjection.SetLeave ();
-
-	}
-
-	public void HandUp(){
-		m_IsHandUp = true;
-		m_Anim.SetBool ("IsHandUp", true);
-		//m_ItrSound.PlayReload ();
-	}
-
-	public void HandDown(){
-		m_IsHandUp = false;
-		m_Anim.SetBool ("IsHandUp", false);
-	}
-
-
-	public void Shoot(){
-		if (m_IsHandUp && _execute) {
-			if (!m_IsPrisoner) {
-				m_Anim.Play ("g-Shoot");
-				m_ItrSound.PlayGun ();
-				m_IsHandUp = false;
-				//_otherGameObject.gameObject.SetActive (false);
-				m_CurrentSP.Executed ();
-				//Events.G.Raise (new EnableMoveEvent ());
-				_shootCnt++;
-				_execute = false;
-				m_CurrentSP = null;
-			} else {
-				print ("Call Prisoner Animation");
-
-			}
-		
-		}
-	}
+//	public void HandUp(){
+//		m_IsHandUp = true;
+//		m_Anim.SetBool ("IsHandUp", true);
+//		//m_ItrSound.PlayReload ();
+//	}
+//
+//	public void HandDown(){
+//		m_IsHandUp = false;
+//		m_Anim.SetBool ("IsHandUp", false);
+//	}
+//
+//
+//	public void Shoot(){
+//		if (m_IsHandUp && _execute) {
+//			if (!m_IsPrisoner) {
+//				m_Anim.Play ("g-Shoot");
+//				m_ItrSound.PlayGun ();
+//				m_IsHandUp = false;
+//				//_otherGameObject.gameObject.SetActive (false);
+//				m_CurrentSP.Executed ();
+//				//Events.G.Raise (new EnableMoveEvent ());
+//				_shootCnt++;
+//				_execute = false;
+//				m_CurrentSP = null;
+//			} else {
+//				print ("Call Prisoner Animation");
+//
+//			}
+//		
+//		}
+//	}
 		
 
 }

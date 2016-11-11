@@ -5,7 +5,7 @@ public class AnimationInjectionExecution : AnimationInjectionBase {
 	[SerializeField] PuppetControl _puppetControl;
 	[SerializeField] ExecutionGuardHandle m_GuardHandle;
 	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
-	[SerializeField] Act4_GuardTrigger m_GuardTrigger;
+	//[SerializeField] Act4_GuardTrigger m_GuardTrigger;
 	private bool isEngaged = false;
 	//private bool isPrisonerDead = false;
 
@@ -91,8 +91,9 @@ public class AnimationInjectionExecution : AnimationInjectionBase {
 	protected override void CrouchPressed(CrouchPressedEvent e){
 		base.CrouchPressed(e);
 		if (e.WhoAmI == CharacterIdentity.Guard) {
-			//m_GuardHandle.Shoot ();
-			m_GuardTrigger.Shoot();
+			m_GuardHandle.Shoot ();
+
+			//m_GuardTrigger.Shoot();
 		}
 
 	}
@@ -107,8 +108,9 @@ public class AnimationInjectionExecution : AnimationInjectionBase {
 		if (e.WhoAmI == CharacterIdentity.Prisoner) {
 			m_PrisonerHandle.Struggle (true);
 		} else {
-			//m_GuardHandle.HandUp ();
-			m_GuardTrigger.HandUp();
+			m_GuardHandle.HandUp ();
+			m_PrisonerHandle.OnGunUp ();
+			//m_GuardTrigger.HandUp();
 		}
 
 
@@ -118,8 +120,9 @@ public class AnimationInjectionExecution : AnimationInjectionBase {
 		if (e.WhoAmI == CharacterIdentity.Prisoner) {
 			
 		} else {
-			//m_GuardHandle.HandDown ();
-			m_GuardTrigger.HandDown ();
+			m_GuardHandle.HandDown ();
+			m_PrisonerHandle.OnGunDown ();
+			//m_GuardTrigger.HandDown ();
 		}
 
 
