@@ -169,6 +169,13 @@ public class InteractionSound : MonoBehaviour {
 		}
 	}
 
+	public void PlayInterroSteps(){
+		m_audio.clip = m_sounds [17];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
 	public void StopPlay(){
 		if(m_audio.isPlaying){
 			m_audio.Stop();
