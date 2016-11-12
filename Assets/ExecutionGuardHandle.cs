@@ -14,6 +14,8 @@ public class ExecutionGuardHandle : MonoBehaviour {
 	[SerializeField] ExecutionPrisonerHandle m_PrisonerHandle;
 	ShotDeathPrisonerHandle m_CurrentSP;
 	ShotDeathPrisonerHandle m_NextInLine = null;
+	[SerializeField] Transform[] m_GuardStartPos;
+	[SerializeField] GameObject[] m_TeachUI;
 
 	// TODO: UI Shooting toturial 
 
@@ -26,6 +28,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 
 	bool m_IsHandUp = false;
 	bool m_IsPrisonerStandUp = false;
+	bool m_IsTeaching = true;
 
 
 
@@ -35,6 +38,9 @@ public class ExecutionGuardHandle : MonoBehaviour {
 		m_Anim = GetComponent<Animator> ();
 		m_AnimCtrl = GetComponent<AnimationControl> ();
 		m_AnimInjection = GetComponent<AnimationInjectionExecution> ();
+		//Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
+		transform.position = m_GuardStartPos[0].position;
+		m_TeachUI [0].SetActive (false);
 
 	}
 
@@ -62,6 +68,9 @@ public class ExecutionGuardHandle : MonoBehaviour {
 	void FixedUpdate(){
 		if (_shootCnt == _shootSwitchCnt) {
 			Events.G.Raise (new ShootSwitchEvent ());
+			//print ("Move Gre;iojvnweioqupnvieuvqonpuieopnutvpq!!!");
+			//Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+			m_IsTeaching = false;
 			//not needed but code added to not have called multiple times
 			_shootCnt++;
 		}
@@ -136,21 +145,39 @@ public class ExecutionGuardHandle : MonoBehaviour {
 			_execute = true;
 			StartExecution ();
 		}
+
+		if (_shootCnt == 3){
+			//print ("Move Gre;iojvnweioqupnvieuvqonpuieopnutvpq!!!");
+			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+		}
+
 	}
 
 	public void HandUp(){
 		m_IsHandUp = true;
 		//m_Anim.SetBool ("IsPStand", m_IsPrisonerStandUp);
 		m_Anim.SetBool ("IsHandUp", true);
+		if (m_IsTeaching) {
+			m_TeachUI [0].SetActive (true);
+			m_TeachUI [1].SetActive (false);
+		}
 	}
 
 	public void HandDown(){
 		m_IsHandUp = false;
 		m_Anim.SetBool ("IsHandUp", false);
+		if (m_IsTeaching) {
+			m_TeachUI [1].SetActive (true);
+			m_TeachUI [0].SetActive (false);
+		}
 	}
 
 	public void Shoot(){
 		if (m_IsHandUp && _execute) {
+			if (m_IsTeaching) {
+				m_TeachUI [0].SetActive (false);
+				m_TeachUI [1].SetActive (false);
+			}
 			if (!m_IsPrisoner) {
 				m_Anim.Play ("g-Shoot");
 				m_ItrSound.PlayGun ();
@@ -159,6 +186,11 @@ public class ExecutionGuardHandle : MonoBehaviour {
 				_shootCnt++;
 				_execute = false;
 				m_CurrentSP = null;
+				if (_shootCnt == 1) {
+					this.transform.position = m_GuardStartPos [1].position;
+				} else if (_shootCnt == 2){
+					//Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+				}
 			} else {
 				print ("Call Prisoner Animation");
 				m_PrisonerHandle.Death ();
@@ -176,6 +208,10 @@ public class ExecutionGuardHandle : MonoBehaviour {
 
 	void PlayReloadAfterShoot(){
 		m_ItrSound.PlayReload ();
+		if (m_IsTeaching) {
+			m_TeachUI [0].SetActive (true);
+			m_TeachUI [1].SetActive (true);
+		}
 	}
 
 	public void Death(){

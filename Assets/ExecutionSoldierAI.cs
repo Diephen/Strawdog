@@ -18,7 +18,9 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	bool m_IsPrisonerStray;
 	bool m_IsCatch = false;
 	bool m_IsGuardEncounter = false;
+	bool m_IsReadyToShoot = false;
 	bool m_IsSwitchToGuard = false;
+	bool m_IsPrisonerDead = false;
 	float step;
 	// Use this for initialization
 	void Start () {
@@ -34,6 +36,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		Events.G.AddListener<ExecutionBreakFree>(OnPrisonerBreakFree);
 		Events.G.AddListener<ShootSwitchEvent> (OnSwitchToGuard);
 		Events.G.AddListener<ExecutionEncounter> (OnEncounter);
+		Events.G.AddListener<GuardExecutePrisoner> (OnPrisonerDead);
 	}
 
 	void OnDisable ()
@@ -42,6 +45,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		Events.G.RemoveListener<ExecutionBreakFree>(OnPrisonerBreakFree);
 		Events.G.RemoveListener<ShootSwitchEvent> (OnSwitchToGuard);
 		Events.G.AddListener<ExecutionEncounter> (OnEncounter);
+		Events.G.AddListener<GuardExecutePrisoner> (OnPrisonerDead);
 	}
 
 	void OnSwitchToGuard(ShootSwitchEvent e){
@@ -52,6 +56,8 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	void OnEncounter(ExecutionEncounter e){
 		if (e.ExeType == ExecutionType.Prisoner && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
+			m_IsReadyToShoot = true;
+			step = Time.deltaTime * Mathf.Abs (m_Prisoner.transform.position.x - transform.position.x);
 		}
 	}
 
@@ -70,6 +76,10 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		}
 	}
 
+	void OnPrisonerDead(GuardExecutePrisoner e){
+		m_IsPrisonerDead = true;
+	}
+
 	void MoveToPrisoner(){
 		print ("catching");
 		Vector3 FinalPos = transform.position;
@@ -85,6 +95,22 @@ public class ExecutionSoldierAI : MonoBehaviour {
 			m_IsCatch = false;
 			Events.G.Raise (new RestartExecution ());
 		}
+	}
+
+	void MoveToPrisonerRight(){
+		Vector3 FinalPos = transform.position;
+
+		FinalPos.x = m_Prisoner.transform.position.x + 2f;
+		//transform.position = FinalPos;
+		//Vector3.MoveTowards (transform.position, FinalPos, step);
+
+		if (Mathf.Abs (transform.position.x - FinalPos.x) > 0f) {
+			transform.position = Vector3.MoveTowards (transform.position, FinalPos, step);
+		} else {
+			print ("Ready To Shoot");
+			m_IsReadyToShoot = false;
+		}
+		
 	}
 		
 	
@@ -102,7 +128,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 			MoveToPrisoner ();
 		}
 
-		if (m_IsGuardEncounter && m_EncounterTimer.IsOffCooldown) {
+		if (m_IsReadyToShoot) {
+			MoveToPrisonerRight ();
+		}
+
+		if (m_IsGuardEncounter && m_EncounterTimer.IsOffCooldown && !m_IsPrisonerDead) {
 			// Shooting animation
 			ShootBoth();
 			m_IsGuardEncounter = false;
@@ -113,7 +143,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	}
 
 	void ShootBoth(){
-		m_Anim.Play ("soldier-exe-ShootLeft");
+		m_Anim.Play ("soldier-exe-ShootPrisoner");
 	}
 
 	void PrisonerDie(){
@@ -130,5 +160,9 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void GunFront(){
 		m_GunSprite.sortingOrder += 1;
+	}
+
+	void GunBack(){
+		m_GunSprite.sortingOrder -= 1;
 	}
 }

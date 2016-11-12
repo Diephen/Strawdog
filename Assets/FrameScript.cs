@@ -34,7 +34,7 @@ public class FrameScript : MonoBehaviour {
 		_leftSprite = _leftFlap.GetComponent<SpriteRenderer> ();
 		_rightSprite = _rightFlap.GetComponent<SpriteRenderer> ();
 		_color = _leftSprite.color;
-		Events.G.Raise (new DisableMoveEvent ());
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Both));
 	}
 	
 	void Update () {
