@@ -113,7 +113,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	}
 
 	void ShootBoth(){
-		m_Anim.Play ("soldier-exe-ShootBoth");
+		m_Anim.Play ("soldier-exe-ShootLeft");
 	}
 
 	void PrisonerDie(){
