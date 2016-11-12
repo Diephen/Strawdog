@@ -320,6 +320,7 @@ public class AudioController : MonoBehaviour {
 		else if (_currentSceneIndex == 2) {
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_musicVolume = 0.5f;
 			if (!_musicSource1.isPlaying) {
 				_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
@@ -340,6 +341,7 @@ public class AudioController : MonoBehaviour {
 		else if (_currentSceneIndex == 3) {
 			//Reinitializing volume change variables
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_tempAudioSource = null;
 			_goalVolume = 9999.9f;
 			_soundSource1.Stop ();
@@ -364,6 +366,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 9) {
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_soundOff1 = true;
 			_soundOff3 = true;
 			_soundOff4 = true;
@@ -380,6 +383,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 10) {
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_soundOff1 = true;
 			_soundOff3 = true;
 			_soundOff4 = true;
@@ -396,6 +400,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 15) {
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
 			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
@@ -404,6 +409,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 16) {
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
 			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
@@ -412,6 +418,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 18) {
 			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
 			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
