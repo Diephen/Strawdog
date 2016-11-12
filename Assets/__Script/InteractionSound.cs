@@ -133,9 +133,9 @@ public class InteractionSound : MonoBehaviour {
 	}
 
 	public void PlayRead(){
-		m_audio.clip = m_sounds [12];
-		if (!m_audio.isPlaying) {
-			m_audio.Play ();
+		m_audioDrown.clip = m_sounds [12];
+		if (!m_audioDrown.isPlaying) {
+			m_audioDrown.Play ();
 		}
 	}
 
@@ -156,7 +156,9 @@ public class InteractionSound : MonoBehaviour {
 	public void PlayInterroNicer(){
 		m_audio.clip = m_sounds [15];
 		if (!m_audio.isPlaying) {
+			
 			m_audio.Play ();
+			Debug.Log ("VOLVUE " + m_audio.volume);
 		}
 	}
 
@@ -170,6 +172,12 @@ public class InteractionSound : MonoBehaviour {
 	public void StopPlay(){
 		if(m_audio.isPlaying){
 			m_audio.Stop();
+		}
+	}
+
+	public void StopPlayDrown(){
+		if(m_audioDrown.isPlaying){
+			m_audioDrown.Stop();
 		}
 	}
 

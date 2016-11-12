@@ -59,7 +59,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 			} else {
 				m_HiNote.DisableFlicker ();
 				StartCoroutine(m_IntrProgress.FadeOut (0.5f));
-				m_ItrAudio.StopPlay ();
+				m_ItrAudio.StopPlayDrown ();
 			}
 		}
 	}
