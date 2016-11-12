@@ -14870,6 +14870,11 @@ Prefab:
       propertyPath: _bc2
       value: 
       objectReference: {fileID: 328513657}
+    - target: {fileID: 114000013312234630, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: _disableGuard
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
   m_IsPrefabParent: 0
