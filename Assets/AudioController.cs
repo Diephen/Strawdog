@@ -226,7 +226,7 @@ public class AudioController : MonoBehaviour {
 		} 
 		else 
 		{
-			_goalVolume = volume [1];
+			_goalVolume = volume [0];
 		}
 	}
 

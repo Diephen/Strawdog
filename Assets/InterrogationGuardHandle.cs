@@ -93,6 +93,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_Anim.Play ("IG-Walk");
 			m_IsWalk = true;
 			m_IsAtStart = false;
+			m_ItrAudio.PlayInterroSteps ();
 			break;
 		case IG_GuardState.PushQuestion:
 			m_CurWaitTime = -1f;
