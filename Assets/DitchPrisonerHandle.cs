@@ -11,7 +11,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 	[SerializeField] BoxCollider2D[] m_WholeBodyColl;
 	[SerializeField] Vector2 m_Force;
 	Rigidbody2D[] m_Body;
-
+	SpriteRenderer[] m_Sprites;
 
 	[SerializeField] HingeJoint2D[] m_StringJoints;
 
@@ -31,6 +31,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 			m_WholeBodyColl [i].enabled = false;
 		}
 		//m_WholeBodyColl.enabled = false;
+		m_Sprites = GetComponentsInChildren<SpriteRenderer>();
 
 	}
 
@@ -102,6 +103,12 @@ public class DitchPrisonerHandle : MonoBehaviour {
 
 	}
 
+	public void PrisonerStop(){
+		// play scard animation
+
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Prisoner));
+	}
+
 	public void Death(){
 		//m_AnimCtrl.SetAnimation (true);
 		//m_AnimInjection.SetEngage ();
@@ -112,6 +119,16 @@ public class DitchPrisonerHandle : MonoBehaviour {
 		}
 		foreach (HingeJoint2D hj in m_StringJoints){
 			hj.enabled = false;
+		}
+	}
+
+	public void Kick(){
+		foreach(Rigidbody2D rig in m_Body){
+			rig.AddForce(m_Force);
+		}
+
+		foreach (SpriteRenderer spr in m_Sprites) {
+			spr.sortingOrder -= 6;
 		}
 	}
 }

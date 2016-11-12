@@ -69,13 +69,21 @@ public class DitchSoldierAI : MonoBehaviour {
 	}
 
 	void CutPrisoner(){
-		m_PrisonerHandle.Death ();
 		m_IsCutting = false;
-		m_SoldierAnim.Play ("soldier-exe-Idle");
+		m_SoldierAnim.Play ("soldier-ditch-Prepare");
+		m_PrisonerHandle.PrisonerStop ();
 	}
 
 	void CutCPInLine(){
 		
+	}
+
+	void Kill(){
+		m_PrisonerHandle.Death ();
+	}
+
+	void Kick(){
+		m_PrisonerHandle.Kick ();
 	}
 
 
