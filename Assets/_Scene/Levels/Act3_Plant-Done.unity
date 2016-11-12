@@ -3139,7 +3139,6 @@ MonoBehaviour:
   _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
   _prisonerLight: {fileID: 339936829}
   _soldierLight: {fileID: 0}
-  _prisonerHandle: {fileID: 1250271398}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -14217,12 +14216,12 @@ Prefab:
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[0]
-      value: 106
+      value: 276
       objectReference: {fileID: 0}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[2]
-      value: 108
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 114000010771543988, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
@@ -14271,12 +14270,12 @@ Prefab:
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[1]
-      value: 105
+      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[3]
-      value: 107
+      value: 274
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000013735076058, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
@@ -15770,9 +15769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puppetControl: {fileID: 1250271402}
-  m_GuardHandle: {fileID: 0}
-  m_PrisonerHandle: {fileID: 0}
   _animInject: 0000000000000000000000
+  m_guard: {fileID: 0}
+  m_prisoner: {fileID: 0}
 --- !u!114 &1250271402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18527,9 +18526,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _puppetControl: {fileID: 1505586827}
-  m_GuardHandle: {fileID: 0}
-  m_PrisonerHandle: {fileID: 0}
   _animInject: 0000000000000000000000
+  m_guard: {fileID: 0}
+  m_prisoner: {fileID: 0}
 --- !u!114 &1505586827
 MonoBehaviour:
   m_ObjectHideFlags: 0

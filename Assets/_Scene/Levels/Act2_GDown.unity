@@ -3583,7 +3583,6 @@ MonoBehaviour:
   _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
   _prisonerLight: {fileID: 339936829}
   _soldierLight: {fileID: 549154274}
-  _prisonerHandle: {fileID: 0}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -7633,22 +7632,22 @@ Prefab:
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[0]
-      value: 106
+      value: 276
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[2]
-      value: 108
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[3]
-      value: 107
+      value: 274
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}
       propertyPath: m_ListenKey.Array.data[1]
-      value: 105
+      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 114000013920539838, guid: de0c55a4026f54407bb73abc8c731236,
         type: 2}

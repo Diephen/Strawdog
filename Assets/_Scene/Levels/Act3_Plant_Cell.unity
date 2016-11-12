@@ -1542,7 +1542,6 @@ MonoBehaviour:
   _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
   _prisonerLight: {fileID: 323587586}
   _soldierLight: {fileID: 731343645}
-  _prisonerHandle: {fileID: 0}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -5885,12 +5884,12 @@ Prefab:
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[1]
-      value: 105
+      value: 273
       objectReference: {fileID: 0}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
       propertyPath: m_ListenKey.Array.data[3]
-      value: 107
+      value: 274
       objectReference: {fileID: 0}
     - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
         type: 2}
@@ -5906,6 +5905,16 @@ Prefab:
         type: 2}
       propertyPath: m_Volume
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[0]
+      value: 276
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011281823848, guid: eb8c475fcace54cf0a8e06b041823b28,
+        type: 2}
+      propertyPath: m_ListenKey.Array.data[2]
+      value: 275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb8c475fcace54cf0a8e06b041823b28, type: 2}
@@ -6370,6 +6379,7 @@ MonoBehaviour:
   m_NoteDuration: 0
   m_StartColor: {r: 0, g: 0, b: 0, a: 0}
   m_EndColor: {r: 0, g: 0, b: 0, a: 0}
+  m_IntrProgress: {fileID: 0}
 --- !u!114 &1449688632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8441,6 +8451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299defe35d5b649a3a5616c2a41168e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interrogation: 0
 --- !u!82 &1995907828
 AudioSource:
   m_ObjectHideFlags: 0
