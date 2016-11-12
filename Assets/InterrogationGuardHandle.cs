@@ -15,6 +15,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	Animator m_Anim;
 	[SerializeField] Interrogation m_ItrSceneManager;
 	[SerializeField] InterrogationPrisonerHandler m_IPHandle;
+	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] Transform m_StartX;
 	[SerializeField] Transform m_EndX;
 	[SerializeField] GameObject m_Bottom;
@@ -32,6 +33,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	bool m_IsWalk = false;
 	bool m_IsAtStart = true;
 	bool m_IsEnd = false;
+	bool m_interroAggressiveOnce = false;
 	// Use this for initialization
 	void Awake () {
 		
@@ -83,6 +85,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_CurWaitTime = 4f;
 			m_StartTime = Time.time;
 			m_Anim.Play ("IG-Question");
+			m_ItrAudio.PlayInterroNicer ();
 			break;
 		case IG_GuardState.WalkToRight:
 			//m_CurWaitTime = 3f;
@@ -168,7 +171,6 @@ public class InterrogationGuardHandle : MonoBehaviour {
 				} else {
 					EndSequence ();
 				}
-
 			}
 			break;
 		case IG_GuardState.PushQuestion:
@@ -177,8 +179,13 @@ public class InterrogationGuardHandle : MonoBehaviour {
 					m_GS = IG_GuardState.BackToIdle;
 					ChangeState ();
 					m_IsAnswer = false;
+					m_interroAggressiveOnce = true;
 				} else {
 					// question idling
+					if (m_interroAggressiveOnce) {
+						m_ItrAudio.PlayInterroAggressive ();
+						m_interroAggressiveOnce = false;
+					}
 					print ("Pushing Question Idle");
 				}
 			} else {

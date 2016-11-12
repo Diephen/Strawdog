@@ -17,7 +17,10 @@ public class InteractionSound : MonoBehaviour {
 	// 9 -- Begging Dog
 	// 10 -- gun shot execution
 	// 11 -- gun reload
-	// 15 -- body fall
+	// 13 -- chair fall
+	// 14 -- Prisoner Fall
+	// 14 -- interro Nicer
+	// 15 -- interro Aggressive
 
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
@@ -145,6 +148,20 @@ public class InteractionSound : MonoBehaviour {
 
 	public void PlayPrisonerFall(){
 		m_audio.clip = m_sounds [14];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayInterroNicer(){
+		m_audio.clip = m_sounds [15];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayInterroAggressive(){
+		m_audio.clip = m_sounds [16];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
