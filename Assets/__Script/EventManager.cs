@@ -190,6 +190,7 @@ public class Guard_EncounterEvent : GameEvent {
 
 public class Prisoner_EncounterEvent: GameEvent {
 }
+	
 
 /* Act 5 */
 public class CallSecretDoorEvent: GameEvent{
@@ -198,6 +199,13 @@ public class TransitionSecretDoorEvent: GameEvent{
 	public bool SecretOn { get; private set; }
 	public TransitionSecretDoorEvent(bool secretOn){
 		SecretOn = secretOn;
+	}
+}
+
+public class TriggerAmbientWindEvent: GameEvent{
+	public bool Triggered { get; private set; }
+	public TriggerAmbientWindEvent(bool triggered){
+		Triggered = triggered;
 	}
 }
 

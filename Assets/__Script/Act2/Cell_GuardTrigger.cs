@@ -26,8 +26,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	bool _isOnRight = false;
 	bool _walkOff = false;
+	bool _bombGiven = false;
 	Timer _walkOffTimer = new Timer (1.0f);
-
+	Timer _offsetTimer = new Timer (0.3f);
 	Camera _mainCam;
 
 	[SerializeField] Renderer _stairRenderer;
@@ -47,7 +48,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _isOnFlap = false;
 	[SerializeField] SpriteRenderer _leftFlap;
 	[SerializeField] SpriteRenderer _rightFlap;
-
+	AudioSource _audioSource;
 
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
@@ -58,6 +59,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
 		}
+		_audioSource = gameObject.AddComponent<AudioSource> ();
+		_audioSource.clip = Resources.Load<AudioClip> ("Sounds/PianoPluckShorter");
+		_audioSource.volume = 0.4f;
 	}
 
 	void Update(){
@@ -141,54 +145,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				Events.G.Raise (new GuardFoundBombEvent ());
 			}
 
-			if (_isBombArea) {
-				if (_waveCnt == 0) {
-					if (Input.GetKeyDown (_guardKeyCodes [0])) {
-						_waveCnt = 1;
-					}
-					else if(
-						Input.GetKeyDown(_guardKeyCodes[1]) || 
-						Input.GetKeyDown(_guardKeyCodes[2]) || 
-						Input.GetKeyDown(_guardKeyCodes[3])) 
-					{
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 1) {
-					if (Input.GetKeyDown (_guardKeyCodes [1])) {
-						_waveCnt = 2;
-					}
-					else if(
-						Input.GetKeyDown(_guardKeyCodes[0]) || 
-						Input.GetKeyDown(_guardKeyCodes[2]) || 
-						Input.GetKeyDown(_guardKeyCodes[3])){
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 2) {
-					if (Input.GetKeyDown (_guardKeyCodes [0])) {
-						_waveCnt = 3;
-					}
-					else if(
-						Input.GetKeyDown(_guardKeyCodes[1]) || 
-						Input.GetKeyDown(_guardKeyCodes[2]) || 
-						Input.GetKeyDown(_guardKeyCodes[3])) {
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 3) {
-					if (Input.GetKeyDown (_guardKeyCodes [2])) {
-						_waveCnt = 4;
-						_bombScript.ThrowBomb ();
-					}
-					else if(
-						Input.GetKeyDown(_guardKeyCodes[0]) || 
-						Input.GetKeyDown(_guardKeyCodes[1]) || 
-						Input.GetKeyDown(_guardKeyCodes[3])) {
-						_waveCnt = 0;
-					}
-				}
-			}
+			BombDetection ();
+
 		}
 	}
 
@@ -284,5 +242,56 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		_temp = _guard.transform.localScale;
 		_temp.x = _temp.x * -1.0f;
 		_guard.transform.localScale = _temp;
+	}
+
+	void BombDetection(){
+		if (_isBombArea) {
+			if (_waveCnt == 0) {
+				if (Input.GetKeyDown (_guardKeyCodes [0])) {
+					_waveCnt = 1;
+					_audioSource.pitch = 1.0f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+				}
+				else if(Input.anyKeyDown) 
+				{
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 1 && _offsetTimer.IsOffCooldown) {
+				if (Input.GetKeyDown (_guardKeyCodes [1])) {
+					_waveCnt = 2;
+					_audioSource.pitch = 1.1f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+				}
+				else if(Input.anyKeyDown){
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 2 && _offsetTimer.IsOffCooldown) {
+				if (Input.GetKeyDown (_guardKeyCodes [0])) {
+					_waveCnt = 3;
+					_audioSource.pitch = 1.2f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+				}
+				else if(Input.anyKeyDown) {
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 3 && _offsetTimer.IsOffCooldown) {
+				if (Input.GetKeyDown (_guardKeyCodes [2])) {
+					_waveCnt = 4;
+					_bombScript.ThrowBomb ();
+					_audioSource.pitch = 0.9f;
+					_audioSource.Play ();
+					_bombGiven = true;
+				}
+				else if(Input.anyKeyDown) {
+					_waveCnt = 0;
+				}
+			}
+		}
 	}
 }

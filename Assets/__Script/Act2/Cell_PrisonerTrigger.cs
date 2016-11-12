@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Cell_PrisonerTrigger : MonoBehaviour {
 	[SerializeField] bool _isPrisonerTop = false;
@@ -35,9 +36,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	bool _secretDoor = false;
 
 	bool _leaveArea = false;
+	bool _bombGiven = false;
 
 	Vector3 _tempPosition;
-
+	Timer _offsetTimer = new Timer (0.3f);
 	Camera _mainCam;
 	[SerializeField] GameObject _bomb;
 	Bomb _bombScript;
@@ -46,7 +48,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	[SerializeField] BoxCollider2D _groundCollider2;
 
 	[SerializeField] GameObject _leftFlap;
-
+	AudioSource _audioSource;
 	GameObject _crouchTemp;
 
 	void Start(){
@@ -59,7 +61,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_bomb = GameObject.Find ("Bomb");
 			_bombScript = _bomb.GetComponent<Bomb> ();
 		}
-
+		_audioSource = gameObject.AddComponent<AudioSource> ();
+		_audioSource.clip = Resources.Load<AudioClip> ("Sounds/PianoPluckShorter");
+		_audioSource.volume = 0.4f;
 	}
 
 	void Update(){
@@ -121,54 +125,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 				Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Prisoner));
 			}
 
-			if (_isBombArea) {
-				Debug.Log (_waveCnt);
-				if (_waveCnt == 0) {
-					if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
-						_waveCnt = 1;
-					}
-					else if (
-						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [3])) {
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 1) {
-					if (Input.GetKeyDown (_prisonerKeyCodes [1])) {
-						_waveCnt = 2;
-					}
-					else if (
-						Input.GetKeyDown (_prisonerKeyCodes [0]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [3])) {
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 2) {
-					if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
-						_waveCnt = 3;
-					}
-					else if (
-						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [2]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [3])) {
-						_waveCnt = 0;
-					}
-				}
-				else if (_waveCnt == 3) {
-					if (Input.GetKeyDown (_prisonerKeyCodes [0])) {
-						_waveCnt = 4;
-						_bombScript.ThrowBomb ();
-					}
-					else if (
-						Input.GetKeyDown (_prisonerKeyCodes [0]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [1]) ||
-						Input.GetKeyDown (_prisonerKeyCodes [3])) {
-						_waveCnt = 0;
-					}
-				}
-			}
+			BombDetection ();
+
 		}
 
 		if (_leaveArea) {
@@ -291,5 +249,55 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<CrouchHideEvent>(CrouchHide);
 		Events.G.RemoveListener<CrouchReleaseHideEvent>(CrouchRelease);
+	}
+
+	void BombDetection(){
+		if (_isBombArea && !_bombGiven) {
+			if (_waveCnt == 0) {
+				if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
+					_waveCnt = 1;
+					_audioSource.Play ();
+					_audioSource.pitch = 1.0f;
+					_offsetTimer.Reset ();
+				}
+				else if (Input.anyKeyDown){
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 1) {
+				if (Input.GetKeyDown (_prisonerKeyCodes [1]) && _offsetTimer.IsOffCooldown) {
+					_waveCnt = 2;
+					_audioSource.Play ();
+					_audioSource.pitch = 1.1f;
+					_offsetTimer.Reset ();
+				}
+				else if (Input.anyKeyDown) {
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 2) {
+				if (Input.GetKeyDown (_prisonerKeyCodes [2]) && _offsetTimer.IsOffCooldown) {
+					_waveCnt = 3;
+					_audioSource.Play ();
+					_audioSource.pitch = 1.2f;
+					_offsetTimer.Reset ();
+				}
+				else if (Input.anyKeyDown) {
+					_waveCnt = 0;
+				}
+			}
+			else if (_waveCnt == 3) {
+				if (Input.GetKeyDown (_prisonerKeyCodes [0]) && _offsetTimer.IsOffCooldown) {
+					_waveCnt = 4;
+					_audioSource.Play ();
+					_bombScript.ThrowBomb ();
+					_audioSource.pitch = 0.9f;
+					_bombGiven = true;
+				}
+				else if (Input.anyKeyDown) {
+					_waveCnt = 0;
+				}
+			}
+		}
 	}
 }

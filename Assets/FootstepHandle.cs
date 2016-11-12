@@ -5,7 +5,6 @@ public class FootstepHandle : MonoBehaviour {
 	[SerializeField] AudioClip _guardfootStep;
 	[SerializeField] PuppetControl _guardPuppetControl;
 
-
 	[SerializeField] AudioClip _prisonerfootStep;
 	[SerializeField] PuppetControl _prisonerPuppetControl;
 

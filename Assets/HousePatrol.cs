@@ -8,6 +8,7 @@ public class HousePatrol : MonoBehaviour {
 	bool _isLeft = true;
 	bool _stop = true;
 	bool _caught = false;
+	bool _preventOtherTriggers = true;
 	Timer _caughtTimer = new Timer (5.0f);
 	// Use this for initialization
 	void Start () {
@@ -15,25 +16,26 @@ public class HousePatrol : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!_stop) {
-			if (_isLeft) {
-				_soldier.Translate (Vector2.left * Time.deltaTime * _speed);
-				if (_soldier.localPosition.x <= _patrolArea.Min) {
-					_isLeft = false;
+		if (!_preventOtherTriggers) {
+			if (!_stop) {
+				if (_isLeft) {
+					_soldier.Translate (Vector2.left * Time.deltaTime * _speed);
+					if (_soldier.localPosition.x <= _patrolArea.Min) {
+						_isLeft = false;
+					}
+				}
+				else {
+					_soldier.Translate (Vector2.right * Time.deltaTime * _speed);
+					if (_soldier.localPosition.x >= _patrolArea.Max) {
+						_isLeft = true;
+					}
 				}
 			}
-			else {
-				_soldier.Translate (Vector2.right * Time.deltaTime * _speed);
-				if (_soldier.localPosition.x >= _patrolArea.Max) {
-					_isLeft = true;
+			else if (_caught) {
+				Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed, 3));
+				if (_caughtTimer.IsOffCooldown) {
+					Events.G.Raise (new CaughtSneakingEvent ());
 				}
-			}
-		}
-		else if (_caught)
-		{
-			Events.G.Raise (new LightCaughtEvent (_caughtTimer.PercentTimePassed, 3));
-			if (_caughtTimer.IsOffCooldown) {
-				Events.G.Raise (new CaughtSneakingEvent ());
 			}
 		}
 	}
@@ -43,6 +45,7 @@ public class HousePatrol : MonoBehaviour {
 			_caughtTimer.Reset ();
 			_stop = false;
 			_caught = false;
+			_preventOtherTriggers = false;
 		}
 	}
 
@@ -55,8 +58,10 @@ public class HousePatrol : MonoBehaviour {
 	}
 
 	public void CarryOn(){
-		Events.G.Raise (new LightOffEvent ());
-		_stop = false;
-		_caught = false;
+		if (!_preventOtherTriggers) {
+			Events.G.Raise (new LightOffEvent ());
+			_stop = false;
+			_caught = false;
+		}
 	}
 }

@@ -43,6 +43,8 @@ public class AudioController : MonoBehaviour {
 	static AudioController _instance = null;
 	int _currentSceneIndex = 0;
 
+	bool _preventAmbientWindTwice = false;
+
 	void Awake() {
 		if (_instance) {
 			Destroy (gameObject);
@@ -167,6 +169,34 @@ public class AudioController : MonoBehaviour {
 		_musicOff2 = true;
 	}
 
+	void PlayAmbientWind(TriggerAmbientWindEvent e){
+		if (e.Triggered != _preventAmbientWindTwice) {
+			_preventAmbientWindTwice = e.Triggered;
+
+			if (e.Triggered) {
+				_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
+				_musicOn2 = false;
+				_musicOff2 = true;
+				_musicSource1.volume = 0.0f;
+				_musicSource1.loop = true;
+				_musicOff1 = false;
+				_musicOn1 = true;
+			}
+			else {
+				_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+				_musicOn1 = false;
+				_musicOff1 = true;
+				_musicSource2.volume = 0.0f;
+				_musicSource2.loop = true;
+				_musicOff2 = false;
+				_musicOn2 = true;
+			}
+		_musicOff3 = true;
+		_musicOnTimer.Reset ();
+		_musicOffTimer.Reset ();
+		}
+	}
+
 	void OnEnable ()
 	{
 		SceneManager.activeSceneChanged += NewScene;
@@ -191,6 +221,7 @@ public class AudioController : MonoBehaviour {
 
 		//Act3
 		Events.G.AddListener<InterrogationQuestioningEvent> (InterroSound);
+		Events.G.AddListener<TriggerAmbientWindEvent> (PlayAmbientWind);
 	}
 
 	void OnDisable ()
@@ -217,6 +248,7 @@ public class AudioController : MonoBehaviour {
 
 		//Act3
 		Events.G.RemoveListener<InterrogationQuestioningEvent> (InterroSound);
+		Events.G.RemoveListener<TriggerAmbientWindEvent> (PlayAmbientWind);
 	}
 
 	void InterroSound (InterrogationQuestioningEvent e){
@@ -363,7 +395,12 @@ public class AudioController : MonoBehaviour {
 			_soundSource2_Light.Play ();
 		}
 		else if (_currentSceneIndex == 15) {
+			_musicOnTimer.Reset ();
 			_soundOff2 = true;
+			_musicOff1 = true;
+			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.loop = true;
+			_musicOn2 = true;
 		}
 		else if (_currentSceneIndex == 16) {
 			_musicOnTimer.Reset ();
@@ -390,7 +427,7 @@ public class AudioController : MonoBehaviour {
 				_musicSource1.Stop ();
 				_musicOff1 = false;
 			}
-			_musicSource1.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+			_musicSource1.volume = MathHelpers.LinMapFrom01(0.0f, _musicSource1.volume, _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed));
 		}
 		else if (_musicOn1) {
 			if (!_musicSource1.isPlaying) {
@@ -406,7 +443,7 @@ public class AudioController : MonoBehaviour {
 				_musicSource2.Stop ();
 				_musicOff2 = false;
 			} 
-			_musicSource2.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+			_musicSource2.volume = MathHelpers.LinMapFrom01(0.0f, _musicSource2.volume, _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed));
 		}
 		else if (_musicOn2) {
 			
@@ -423,7 +460,7 @@ public class AudioController : MonoBehaviour {
 				_musicSource3.Stop ();
 				_musicOff3 = false;
 			}
-			_musicSource3.volume = _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed);
+			_musicSource3.volume =  MathHelpers.LinMapFrom01(0.0f, _musicSource3.volume, _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed));
 		}
 		else if (_musicOn3) {
 			if (!_musicSource3.isPlaying) {
