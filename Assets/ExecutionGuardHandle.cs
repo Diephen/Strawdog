@@ -105,8 +105,9 @@ public class ExecutionGuardHandle : MonoBehaviour {
 				}
 				m_CurrentSP = null;
 				m_IsPrisoner = true;
-				m_PrisonerHandle.EncounterGuard ();
+
 				StartExecution ();
+				m_PrisonerHandle.EncounterGuard ();
 			}
 		} else {
 			
@@ -198,6 +199,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 				m_ItrSound.PlayGun ();
 				m_IsHandUp = false;
 				_execute = false;
+				_shootCnt++;
 				m_IsPrisoner = false;
 				m_IsPrisonerStandUp = false;
 				m_Anim.SetBool ("IsPStand", false);

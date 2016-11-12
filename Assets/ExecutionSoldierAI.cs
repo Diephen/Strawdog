@@ -51,10 +51,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	void OnSwitchToGuard(ShootSwitchEvent e){
 		m_IsSwitchToGuard = true;
 		m_EncounterTimer.Reset ();
+
 	}
 
 	void OnEncounter(ExecutionEncounter e){
-		if (e.ExeType == ExecutionType.Prisoner && !m_IsGuardEncounter) {
+		if (e.ExeType == ExecutionType.Prisoner && e.IsStart && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
 			m_IsReadyToShoot = true;
 			step = Time.deltaTime * Mathf.Abs (m_Prisoner.transform.position.x - transform.position.x);

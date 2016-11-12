@@ -135,6 +135,10 @@ public class ExecutionEncounter:GameEvent{
 	}
 }
 
+public class ExecutionBreakFree: GameEvent{
+}
+
+
 public class RestartExecution:GameEvent{
 	
 }
@@ -159,11 +163,11 @@ public class Taken_EnterFoodStorageEvent : GameEvent {
 public class BrokeFree : GameEvent {
 }
 
-public class ExecutionBreakFree: GameEvent{
-}
 
 public class LeaveDitchEvent: GameEvent{
 }
+
+
 
 
 /* Act 4-3 Plant Bomb */
