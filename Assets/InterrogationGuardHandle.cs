@@ -82,7 +82,6 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		case IG_GuardState.Question:
 			m_CurWaitTime = 4f;
 			m_StartTime = Time.time;
-
 			m_Anim.Play ("IG-Question");
 			break;
 		case IG_GuardState.WalkToRight:
@@ -96,6 +95,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_CurWaitTime = -1f;
 			m_StartTime = Time.time;
 			m_Anim.Play ("IG-ForceRead");
+			Events.G.Raise (new InterrogationQuestioningEvent (true));
 			m_IPHandle.ForceToRead ();
 			break;
 		case IG_GuardState.BackToIdle:
@@ -116,6 +116,9 @@ public class InterrogationGuardHandle : MonoBehaviour {
 			m_Anim.Play ("IG-Kick");
 			m_IPHandle.EndScene ();
 			break;
+		}
+		if (m_GS != IG_GuardState.PushQuestion) {
+			Events.G.Raise (new InterrogationQuestioningEvent (false));
 		}
 	}
 

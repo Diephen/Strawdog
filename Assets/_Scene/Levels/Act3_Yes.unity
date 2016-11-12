@@ -697,7 +697,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b8b9460830f564138be393bb41b704a8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1416,7 +1416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &320693799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,11 +1461,10 @@ MonoBehaviour:
     _min: 4
     _max: 8
   _directionalLight: {fileID: 479197241}
-  _originalDLight: {r: 0.4509804, g: 0.5058824, b: 0.5137255, a: 1}
-  _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
-  _prisonerLight: {fileID: 0}
+  _originalDLight: {r: 0.6655173, g: 0.58966786, b: 0.5823276, a: 1}
+  _interactDLight: {r: 0.3275862, g: 0.25773326, b: 0.25773326, a: 1}
+  _prisonerLight: {fileID: 882806517}
   _soldierLight: {fileID: 0}
-  _prisonerHandle: {fileID: 0}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -6593,6 +6592,7 @@ MonoBehaviour:
   m_NoteDuration: 2
   m_StartColor: {r: 1, g: 1, b: 1, a: 0}
   m_EndColor: {r: 0.9117647, g: 0.99634886, b: 1, a: 1}
+  m_IntrProgress: {fileID: 0}
 --- !u!1 &2010530551
 GameObject:
   m_ObjectHideFlags: 0

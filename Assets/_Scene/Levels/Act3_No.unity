@@ -309,6 +309,53 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &71431860
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2119516614}
+    m_Modifications:
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011424736302, guid: 994814c2fcdc1413d9d13fad3ba869d9,
+        type: 2}
+      propertyPath: m_TimeToComplete
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 994814c2fcdc1413d9d13fad3ba869d9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &75035151
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +744,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b8b9460830f564138be393bb41b704a8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -724,7 +771,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 166340543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.88, y: 9.31, z: 5.629244}
+  m_LocalPosition: {x: -2.88, y: 9.31, z: 6.75}
   m_LocalScale: {x: 0.9031093, y: 0.9031093, z: 0.9031093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1414,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &320693799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,11 +1506,10 @@ MonoBehaviour:
     _min: 4
     _max: 8
   _directionalLight: {fileID: 479197241}
-  _originalDLight: {r: 0.4509804, g: 0.5058824, b: 0.5137255, a: 1}
-  _interactDLight: {r: 0.3602941, g: 0.3435218, b: 0.28876513, a: 1}
-  _prisonerLight: {fileID: 0}
+  _originalDLight: {r: 0.86551726, g: 0.84264016, b: 0.8350144, a: 1}
+  _interactDLight: {r: 0.3198327, g: 0.3275862, b: 0.27331156, a: 1}
+  _prisonerLight: {fileID: 882806517}
   _soldierLight: {fileID: 0}
-  _prisonerHandle: {fileID: 0}
 --- !u!4 &320693800
 Transform:
   m_ObjectHideFlags: 0
@@ -1889,7 +1935,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 1
-  m_Color: {r: 0.45415226, g: 0.5071888, b: 0.5147059, a: 1}
+  m_Color: {r: 0.8931034, g: 0.8704089, b: 0.8602688, a: 1}
   m_Intensity: 0.86
   m_Range: 10
   m_SpotAngle: 30
@@ -2379,6 +2425,17 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!4 &626187937 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011374128744, guid: 994814c2fcdc1413d9d13fad3ba869d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 71431860}
+--- !u!114 &626187938 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011424736302, guid: 994814c2fcdc1413d9d13fad3ba869d9,
+    type: 2}
+  m_PrefabInternal: {fileID: 71431860}
+  m_Script: {fileID: 11500000, guid: 5f9a37f51ab9a4735a27ca8775ee354f, type: 3}
 --- !u!1 &694361780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3128,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 882806515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.33, z: -1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_Children: []
@@ -3087,9 +3144,9 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3.7
   m_Range: 10
-  m_SpotAngle: 30
+  m_SpotAngle: 55
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -6438,6 +6495,7 @@ MonoBehaviour:
   m_NoteDuration: 2
   m_StartColor: {r: 1, g: 1, b: 1, a: 0}
   m_EndColor: {r: 0.9117647, g: 0.99634886, b: 1, a: 1}
+  m_IntrProgress: {fileID: 626187938}
 --- !u!1 &2010530551
 GameObject:
   m_ObjectHideFlags: 0
@@ -6670,6 +6728,7 @@ Transform:
   - {fileID: 50210782}
   - {fileID: 1967720893}
   - {fileID: 775182164}
+  - {fileID: 626187937}
   m_Father: {fileID: 770246187}
   m_RootOrder: 1
 --- !u!1 &2119759356

@@ -93,6 +93,12 @@ public class LightCaughtEvent : GameEvent {
 		Id = id;
 	}
 }
+public class InterrogationQuestioningEvent : GameEvent {
+	public bool Engaged { get; private set; }
+	public InterrogationQuestioningEvent(bool engaged){
+		Engaged = engaged;
+	}
+}
 
 public class LightOffEvent : GameEvent {
 }

@@ -188,6 +188,9 @@ public class AudioController : MonoBehaviour {
 		Events.G.AddListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.AddListener<PrisonerHideEvent>(StopCaught);
 		Events.G.AddListener<LightOffEvent> (StopCaught1);
+
+		//Act3
+		Events.G.AddListener<InterrogationQuestioningEvent> (InterroSound);
 	}
 
 	void OnDisable ()
@@ -211,6 +214,20 @@ public class AudioController : MonoBehaviour {
 		Events.G.RemoveListener<LightCaughtEvent>(PlayLightCaught);
 		Events.G.RemoveListener<PrisonerHideEvent>(StopCaught);
 		Events.G.RemoveListener<LightOffEvent> (StopCaught1);
+
+		//Act3
+		Events.G.RemoveListener<InterrogationQuestioningEvent> (InterroSound);
+	}
+
+	void InterroSound (InterrogationQuestioningEvent e){
+		if (e.Engaged) 
+		{
+			_goalVolume = volume [2];
+		} 
+		else 
+		{
+			_goalVolume = volume [1];
+		}
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
@@ -290,6 +307,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 3) {
 			//Reinitializing volume change variables
+			_musicOnTimer.Reset ();
 			_tempAudioSource = null;
 			_goalVolume = 9999.9f;
 			_soundSource1.Stop ();
@@ -303,6 +321,7 @@ public class AudioController : MonoBehaviour {
 			_musicOn3 = true;
 		}
 		else if (_currentSceneIndex == 4) {
+			_musicOnTimer.Reset ();
 			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
 			_musicSource2.loop = true;
 			_musicOn2 = true;
@@ -312,18 +331,32 @@ public class AudioController : MonoBehaviour {
 			_soundSource2_Light.loop = true;
 		}
 		else if (_currentSceneIndex == 9) {
+			_musicOnTimer.Reset ();
 			_soundOff1 = true;
 			_soundOff3 = true;
 			_soundOff4 = true;
+			_musicOff2 = true;
+			_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_musicSource1.volume = 1.0f;
+			_musicSource1.loop = true;
+			_musicOn1 = true;
+			_tempAudioSource = _musicSource1;
 			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
 			_soundSource2_Light.volume = 1.0f;
 			_soundSource2_Light.loop = true;
 			_soundSource2_Light.Play ();
 		}
 		else if (_currentSceneIndex == 10) {
+			_musicOnTimer.Reset ();
 			_soundOff1 = true;
 			_soundOff3 = true;
 			_soundOff4 = true;
+			_musicOff2 = true;
+			_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_musicSource1.volume = 1.0f;
+			_musicSource1.loop = true;
+			_musicOn1 = true;
+			_tempAudioSource = _musicSource1;
 			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
 			_soundSource2_Light.volume = 1.0f;
 			_soundSource2_Light.loop = true;
@@ -333,10 +366,20 @@ public class AudioController : MonoBehaviour {
 			_soundOff2 = true;
 		}
 		else if (_currentSceneIndex == 16) {
+			_musicOnTimer.Reset ();
 			_soundOff2 = true;
+			_musicOff1 = true;
+			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.loop = true;
+			_musicOn2 = true;
 		}
 		else if (_currentSceneIndex == 18) {
+			_musicOnTimer.Reset ();
 			_soundOff2 = true;
+			_musicOff1 = true;
+			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.loop = true;
+			_musicOn2 = true;
 		}
 	}
 

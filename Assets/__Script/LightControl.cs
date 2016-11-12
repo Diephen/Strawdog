@@ -30,7 +30,6 @@ public class LightControl : MonoBehaviour {
 	[SerializeField] Light _prisonerLight;
 	[SerializeField] Light _soldierLight;
 
-	[SerializeField] PrisonerHandle _prisonerHandle;
 	bool _prisonerFlicker = false;
 	float _timeOn = 0.1f;
 	float _timeOff = 0.05f;
@@ -73,17 +72,22 @@ public class LightControl : MonoBehaviour {
 			_dLightInteractOn = true;
 			_transitionalDLight = Color.Lerp (_interactDLight, _originalDLight, _dLightTimer.PercentTimeLeft);
 			_directionalLight.color = _transitionalDLight;
-
-			_soldierLight.intensity = Mathf.Lerp (_interactFlickerRange.Min, _soldierLight.intensity, _dLightTimer.PercentTimeLeft);
-			_prisonerLight.intensity = Mathf.Lerp (_interactFlickerRange.Min, _prisonerLight.intensity, _dLightTimer.PercentTimeLeft);
-
+			if (_soldierLight != null) {
+				_soldierLight.intensity = Mathf.Lerp (_interactFlickerRange.Min, _soldierLight.intensity, _dLightTimer.PercentTimeLeft);
+			}
+			if (_prisonerLight != null) {
+				_prisonerLight.intensity = Mathf.Lerp (_interactFlickerRange.Min, _prisonerLight.intensity, _dLightTimer.PercentTimeLeft);
+			}
 		} else if (!_dLightInteractStart && _dLightInteractOn){
 			//directional Light Lerp (non-interaction)
 			_transitionalDLight = Color.Lerp (_originalDLight, _transitionalDLight, _dLightTimer.PercentTimeLeft);
 			_directionalLight.color = _transitionalDLight;
-
-			_soldierLight.intensity = Mathf.Lerp (_flickerRange.Min, _soldierLight.intensity, _dLightTimer.PercentTimeLeft);
-			_prisonerLight.intensity = Mathf.Lerp (_flickerRange.Min, _prisonerLight.intensity, _dLightTimer.PercentTimeLeft);
+			if (_soldierLight != null) {
+				_soldierLight.intensity = Mathf.Lerp (_flickerRange.Min, _soldierLight.intensity, _dLightTimer.PercentTimeLeft);
+			}
+			if (_prisonerLight != null) {
+				_prisonerLight.intensity = Mathf.Lerp (_flickerRange.Min, _prisonerLight.intensity, _dLightTimer.PercentTimeLeft);
+			}
 
 			if (_dLightTimer.IsOffCooldown) {
 				_dLightInteractOn = false;
@@ -124,11 +128,22 @@ public class LightControl : MonoBehaviour {
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(ChangeDirectionalLightColor);
+		Events.G.AddListener<InterrogationQuestioningEvent>(ChangeInterrogationLight);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(ChangeDirectionalLightColor);
+		Events.G.RemoveListener<InterrogationQuestioningEvent>(ChangeInterrogationLight);
+	}
+
+	void ChangeInterrogationLight (InterrogationQuestioningEvent e){
+		_dLightTimer.Reset ();
+		if (e.Engaged) {
+			_dLightInteractStart = true;
+		} else {
+			_dLightInteractStart = false;
+		}
 	}
 
 	void ChangeDirectionalLightColor (GuardEngaginPrisonerEvent e)

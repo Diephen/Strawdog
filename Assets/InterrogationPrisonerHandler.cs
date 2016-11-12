@@ -12,6 +12,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 	[SerializeField] float m_NoteDuration;            // how long to read the note
 	[SerializeField] Color m_StartColor;
 	[SerializeField] Color m_EndColor;
+	[SerializeField] InteractionProgress m_IntrProgress;
 
 	int m_UnClockSymbolCount = -1;
 	bool m_IsHoldDown = false;
@@ -39,6 +40,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 		if (!m_IsBombFound) {
 			if (Input.GetKeyDown (KeyCode.S)) {
 				if (!m_IsReadingNote && !m_IsHoldDown) {
+					StartCoroutine(m_IntrProgress.FadeIn (1.0f));
 					m_IsReadingNote = true;
 					NoteReading ();
 					m_ItrAudio.PlayRead ();
@@ -49,7 +51,6 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 				if (m_IsReadingNote && !m_IsHoldDown) {
 					m_IsReadingNote = false;
 					StopReading ();
-					m_ItrAudio.StopPlay ();
 				}
 			}
 
@@ -57,6 +58,8 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 				CheckNotes ();
 			} else {
 				m_HiNote.DisableFlicker ();
+				StartCoroutine(m_IntrProgress.FadeOut (0.5f));
+				m_ItrAudio.StopPlay ();
 			}
 		}
 	}
@@ -123,7 +126,6 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 			if (!m_NoteTimer.IsOffCooldown) {
 				
 				m_Notes [TempCnt].ShowWithAlpha (Color.Lerp (m_StartColor, m_EndColor, m_NoteTimer.PercentTimePassed));
-
 			} else {
 				m_UnClockSymbolCount += 1;
 				m_Notes [m_UnClockSymbolCount].ShowSymbolIdle ();
@@ -143,6 +145,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 		} else {
 			m_NoteTimer.Reset();
 		}
+		m_IntrProgress.IncTime ((m_UnClockSymbolCount+1) * m_NoteTimer.CooldownTime + m_NoteTimer.TimePassed);
 	}
 
 	public void StopReading(){
