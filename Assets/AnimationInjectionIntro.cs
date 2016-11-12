@@ -12,7 +12,7 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 	private bool isPrisonerReady = false;
 	private bool isAwayTogether = false;
 
-	Timer _endIntroTimer = new Timer(2.0f);
+	Timer _endIntroTimer = new Timer(1.0f);
 	//private bool isPrisonerDead = false;
 
 	void OnEnable(){
@@ -105,6 +105,7 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 
 		if (isAwayTogether && _endIntroTimer.IsOffCooldown) {
 			Events.G.Raise (new TutorialEndEvent ());
+			isGuardReady = false;
 		}
 		if(!isGuardReady || !isPrisonerReady) {
 			isAwayTogether = false;

@@ -131,6 +131,13 @@ public class AudioController : MonoBehaviour {
 		Log.Metrics.Message("CHOICE 3: Prisoner Stairs");
 	}
 
+	void LoadTutorialEnd(TutorialEndEvent e){
+		if (!_soundSource3.isPlaying) {
+			_soundSource3.clip = Resources.Load<AudioClip> ("Sounds/PianoPluck");
+			_soundSource3.Play ();
+		}
+	}
+
 	void PlayLightCaught(LightCaughtEvent e){
 		if (!_soundSource2_Light.isPlaying) {
 			_soundSource2_Light.Play ();
@@ -163,6 +170,7 @@ public class AudioController : MonoBehaviour {
 	void OnEnable ()
 	{
 		SceneManager.activeSceneChanged += NewScene;
+		Events.G.AddListener<TutorialEndEvent>(LoadTutorialEnd);
 
 		Events.G.AddListener<Act0EndedEvent>(LoadTransitionAct1);
 
@@ -185,6 +193,7 @@ public class AudioController : MonoBehaviour {
 	void OnDisable ()
 	{
 		SceneManager.activeSceneChanged -= NewScene;
+		Events.G.AddListener<TutorialEndEvent>(LoadTutorialEnd);
 
 		Events.G.RemoveListener<Act0EndedEvent>(LoadTransitionAct1);
 
