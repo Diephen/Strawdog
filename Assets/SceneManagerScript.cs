@@ -265,11 +265,11 @@ public class SceneManagerScript : MonoBehaviour {
 
 	// When decide not to execute the prisoner
 	void LoadExecutionEndBothDie(SoldierExecuteBoth e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/16_EscapeTogether"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/12_NoChoice"));
 	}
 
 	void LoadExecutionEndPrisonerDie(GuardExecutePrisoner e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 4f, "VoiceOver/16_EscapeTogether"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 4f, "VoiceOver/11_Unfortunate"));
 	}
 
 	void LoadTakenAway(TriggerTakenAwayEvent e){
