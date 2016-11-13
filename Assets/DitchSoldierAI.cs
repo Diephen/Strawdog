@@ -9,6 +9,8 @@ public class DitchSoldierAI : MonoBehaviour {
 
 	bool m_IsPrisoner = false;
 	bool m_IsCutting = false;
+	bool m_IsLineArrived = false;       // if the line arrives the end 
+
 	// Use this for initialization
 	void Awake(){
 		m_CurrentCP = m_NextCP = null;
@@ -26,16 +28,27 @@ public class DitchSoldierAI : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
+		if (m_IsLineArrived) {
+			Events.G.Raise (new LineControlEvent (true));
+		}
 		if (other.tag == "Prisoner") {
 			// Cut prisoner
 			m_IsPrisoner = true;
+			Events.G.Raise (new CutPrisonerBrforeOthers ());
 			StartExecution ();
 
 		}else if(other.tag == "CutPrisoner"){
 			// Cut shoot prisoner 
+
 			m_CurrentCP = other.gameObject.GetComponentInChildren<CutDeathPrisoner>();
-			CutCPInLine();
+			StartExecution ();
 		}
+
+		if(!m_IsLineArrived){
+			m_IsLineArrived = true;
+		}
+
+	
 
 	}
 
@@ -49,15 +62,18 @@ public class DitchSoldierAI : MonoBehaviour {
 	void StartExecution(){
 		m_IsCutting = true;
 		if (m_IsPrisoner) {
+			
 			// rearrange cutting order: Prisoner first 
 			if (m_CurrentCP != null) {
+				
+				// pause this prisoner
 				m_NextCP = m_CurrentCP;
 				m_CurrentCP = null;
 			}
 			CutPrisoner ();
-
+			m_IsPrisoner = false;
 		} else {
-			
+			CutCPInLine();
 		
 
 		}
@@ -66,17 +82,34 @@ public class DitchSoldierAI : MonoBehaviour {
 
 	void EndExecution(){
 		m_IsCutting = false;
-
+		Events.G.Raise (new LineControlEvent (false));
+//		if (m_NextCP != null) {
+//			print ("CP in line");
+//			//m_CurrentCP = m_NextCP;
+//			//m_NextCP = null;
+//			//Events.G.Raise (new LineControlEvent (true));
+//			//CutCPInLine ();
+//		} else {
+//			Events.G.Raise (new LineControlEvent (false));
+//		}
 	}
 
 	void CutPrisoner(){
-		m_IsCutting = false;
+		//m_IsCutting = false;
 		m_SoldierAnim.Play ("soldier-ditch-Prepare");
 		m_PrisonerHandle.PrisonerStop ();
 	}
 
 	void CutCPInLine(){
+		m_SoldierAnim.Play ("soldier-ditch-CutCP");
+
+		//m_IsCutting = false;
+
+	}
+
+	void KillCP(){
 		m_CurrentCP.Death ();
+		m_CurrentCP = null;
 	}
 
 	void Kill(){

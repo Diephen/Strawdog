@@ -16,9 +16,15 @@ public class DragJitter : MonoBehaviour {
 	int _inputCount = 0;
 	int _freedomCount = 20;
 	bool isJitterEnabled = true;
+	bool isLineStop = false;
+	bool isPushBack = false;
+	float m_PushBackSpeed;
 
 	[SerializeField] AudioClip[] _ropeTug;
 	[SerializeField] AudioClip _ropeBreak;
+	Transform m_PrisonerTrans;
+
+	Vector3 m_PushbackPos;
 
 	// Use this for initialization
 	void Start () {
@@ -31,17 +37,25 @@ public class DragJitter : MonoBehaviour {
 		}
 		_jitterSource = gameObject.AddComponent<AudioSource> ();
 		_jitterSource.volume = 0.7f;
+		m_PrisonerTrans = GameObject.FindObjectOfType<DitchPrisonerHandle> ().transform;
+	}
+
+	void FixedUpdate(){
+		if (isLineStop && isPushBack) {
+			PushBack ();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!_isExecution) {
+		if (!_isExecution && !isLineStop) {
 			// add the walking code here 
 			gameObject.transform.Translate (Vector2.left * Time.deltaTime * _joltCurve.Evaluate (_pushTimer.PercentTimePassed) * 5.0f);
 			if (_pushTimer.IsOffCooldown) {
 				_pushTimer.Reset ();
 			}
 		}
+
 
 		if (_isThePrisoner && isJitterEnabled) {
 			if (Input.GetKeyDown (_prisonerKeyCodes [0]) ||
@@ -71,7 +85,56 @@ public class DragJitter : MonoBehaviour {
 		}
 	}
 
+	void OnEnable(){
+		Events.G.AddListener<LineControlEvent> (OnLineControl);
+		Events.G.AddListener<CutPrisonerBrforeOthers> (OnPrisonerCut);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<LineControlEvent> (OnLineControl);
+		Events.G.RemoveListener<CutPrisonerBrforeOthers> (OnPrisonerCut);
+	}
+
 	public void DisableJitter(){
 		isJitterEnabled = false;
+	}
+
+	void OnLineControl(LineControlEvent e){
+		if (e.IsStop) {
+			LineStop ();
+		}else{
+			LineResume ();
+		}
+	
+	}
+
+	void LineStop(){
+		print ("Stop Jitter");
+		isLineStop = true;
+	}
+
+	void LineResume(){
+		print ("Resume Jitter");
+		isLineStop = false;
+	}
+
+	void OnPrisonerCut(CutPrisonerBrforeOthers e){
+		print ("Make room for prisoner");
+		m_PushbackPos = gameObject.transform.position;
+		m_PushbackPos.x = m_PushbackPos.x - m_PrisonerTrans.position.x + 5f;
+		isPushBack = true;
+		m_PushBackSpeed = Time.deltaTime * Mathf.Abs (transform.position.x - m_PushbackPos.x);
+		if (!isLineStop) {
+			isLineStop = true;
+		}
+	}
+
+	void PushBack(){
+		print ("Make room for prisoner");
+		if (transform.position.x < m_PushbackPos.x) {
+			transform.position = Vector3.MoveTowards (transform.position, m_PushbackPos, m_PushBackSpeed);
+		} else {
+			isPushBack = false;
+		}
 	}
 }

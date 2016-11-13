@@ -167,7 +167,16 @@ public class BrokeFree : GameEvent {
 public class LeaveDitchEvent: GameEvent{
 }
 
+public class LineControlEvent:GameEvent{
+	public bool IsStop { get; private set; }
+	public LineControlEvent(bool isstop){
+		IsStop = isstop;
+	}
+}
 
+public class CutPrisonerBrforeOthers:GameEvent{
+	
+}
 
 
 /* Act 4-3 Plant Bomb */
