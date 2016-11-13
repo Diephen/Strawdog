@@ -7,6 +7,8 @@ public class DitchSoldierAI : MonoBehaviour {
 	Animator m_SoldierAnim;
 	[SerializeField] DitchPrisonerHandle m_PrisonerHandle;
 	[SerializeField] PuppetControl m_PC;
+	// TODO Sound
+	[SerializeField] InteractionSound m_ItrSound;
 
 
 	bool m_IsPrisoner = false;
@@ -126,14 +128,17 @@ public class DitchSoldierAI : MonoBehaviour {
 	void KillCP(){
 		m_CurrentCP.Death ();
 		m_CurrentCP = null;
+		m_ItrSound.PlayKillOtherPrisoners ();
 	}
 
 	void Kill(){
 		m_PrisonerHandle.Death ();
+		m_ItrSound.PlayKill ();
 	}
 
 	void Kick(){
 		m_PrisonerHandle.Kick ();
+		m_ItrSound.PlayKick ();
 	}
 
 	void EndScene(){

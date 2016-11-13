@@ -11,9 +11,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	[SerializeField] float WaitToCatchDuration = 1f;
 	[SerializeField] float CatchDuration = 3f;
 	[SerializeField] float WaitToShootBoth = 10f;
+	[SerializeField] InteractionSound m_ItrSound;
 	GameObject m_FlashLight;
 	Timer m_CatchTimer;
 	Timer m_EncounterTimer;
+
 
 	bool m_IsPrisonerStray;
 	bool m_IsCatch = false;
@@ -58,12 +60,16 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		if (e.ExeType == ExecutionType.Prisoner && e.IsStart && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
 			m_IsReadyToShoot = true;
+			if (m_Prisoner == null) {
+				m_Prisoner = GameObject.FindObjectOfType<ExecutionPrisonerHandle> ().gameObject;
+			}
 			step = Time.deltaTime * Mathf.Abs (m_Prisoner.transform.position.x - transform.position.x);
 		}
 	}
 
 	void OnPrisonerBreakFree(ExecutionBreakFree e){
 		m_Anim.Play ("soldier-exe-Alert");
+		m_ItrSound.PlaySoldierAlert ();
 	}
 
 
@@ -127,6 +133,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 		if (m_IsCatch) {
 			MoveToPrisoner ();
+			m_ItrSound.PlaySoldierFinalWarning ();
 		}
 
 		if (m_IsReadyToShoot) {
@@ -149,6 +156,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void PrisonerDie(){
 		m_PrisonerHandle.Death ();
+		m_ItrSound.PlaySoldierShoot ();
 	}
 
 	void GuardDie(){

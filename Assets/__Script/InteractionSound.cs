@@ -22,6 +22,8 @@ public class InteractionSound : MonoBehaviour {
 	// 14 -- interro Nicer
 	// 15 -- interro Aggressive
 
+	// 16 
+
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
 	[SerializeField] AudioSource m_audioDrown;
@@ -175,6 +177,56 @@ public class InteractionSound : MonoBehaviour {
 			m_audio.Play ();
 		}
 	}
+
+	// 4-1 
+	public void PlaySoldierAlert(){
+		m_audio.clip = m_sounds [1];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlaySoldierShoot(){
+		m_audio.clip = m_sounds [1];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlaySoldierFinalWarning(){
+		m_audio.clip = m_sounds [2];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+
+	// 4-2 
+	public void PlayKill(){
+		m_audio.clip = m_sounds [0];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayKick(){
+		m_audio.clip = m_sounds [1];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayKillOtherPrisoners(){
+		m_audio.clip = m_sounds [2];
+		if (!m_audio.isPlaying) {
+			m_audio.Play ();
+		}
+	}
+
+	public void PlayBodyHitDitch(){
+	
+	}
+
 
 	public void StopPlay(){
 		if(m_audio.isPlaying){

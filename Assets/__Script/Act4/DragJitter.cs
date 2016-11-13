@@ -37,7 +37,12 @@ public class DragJitter : MonoBehaviour {
 		}
 		_jitterSource = gameObject.AddComponent<AudioSource> ();
 		_jitterSource.volume = 0.7f;
-		m_PrisonerTrans = GameObject.FindObjectOfType<DitchPrisonerHandle> ().transform;
+		if (GameObject.FindObjectOfType<DitchPrisonerHandle> () != null) {
+			m_PrisonerTrans = GameObject.FindObjectOfType<DitchPrisonerHandle> ().transform;
+		} else {
+			
+		}
+
 	}
 
 	void FixedUpdate(){
