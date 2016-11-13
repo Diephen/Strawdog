@@ -8,6 +8,7 @@ public class DitchPrisonerHandle : MonoBehaviour {
 	PuppetControl m_PuppetControl;
 	Act4_PrisonerTrigger m_PrisonerTrigger;
 	HingeJoint2D[] m_AllJoints;
+	[SerializeField] DragJitter m_Drag;
 	[SerializeField] BoxCollider2D[] m_WholeBodyColl;
 	[SerializeField] Vector2 m_Force;
 	Rigidbody2D[] m_Body;
@@ -105,13 +106,16 @@ public class DitchPrisonerHandle : MonoBehaviour {
 
 	public void PrisonerStop(){
 		// play scard animation
-
+		if(!m_IsFree){
+			m_Drag.enabled = false;
+		}
 		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Prisoner));
 	}
 
 	public void Death(){
-		//m_AnimCtrl.SetAnimation (true);
+		m_AnimCtrl.SetAnimation (false);
 		//m_AnimInjection.SetEngage ();
+
 		print ("P death");
 		//m_Anim.Play ("p-ditch-Die");
 		foreach(BoxCollider2D bc in m_WholeBodyColl){
