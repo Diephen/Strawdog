@@ -261,14 +261,21 @@ public class Act3_GuardTrigger : MonoBehaviour {
 		_guard.transform.localScale = _temp;
 	}
 
+	void StopSecretDoor(StopSecretExitEvent e){
+		_secretDoor = !e.Stopped;
+	}
+
 	void OnEnable()
 	{
 		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
+		Events.G.AddListener<StopSecretExitEvent>(StopSecretDoor);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<Prisoner_EncounterEvent>(PrisonerEncounter);
+		Events.G.RemoveListener<StopSecretExitEvent>(StopSecretDoor);
+
 	}
 
 	void PrisonerEncounter(Prisoner_EncounterEvent e) {

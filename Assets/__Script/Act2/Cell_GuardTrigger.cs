@@ -244,6 +244,17 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		_guard.transform.localScale = _temp;
 	}
 
+	void StopSecretDoor(StopSecretExitEvent e){
+		_secretDoor = !e.Stopped;
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<StopSecretExitEvent>(StopSecretDoor);
+	}
+	void OnDisable(){
+		Events.G.RemoveListener<StopSecretExitEvent>(StopSecretDoor);
+	}
+
 	void BombDetection(){
 		if (_isBombArea) {
 			if (_waveCnt == 0) {

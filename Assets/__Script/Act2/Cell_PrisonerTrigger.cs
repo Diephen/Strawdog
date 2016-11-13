@@ -240,12 +240,18 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		}
 	}
 
+	void StopSecretDoor(StopSecretExitEvent e){
+		_secretDoor = !e.Stopped;
+	}
+
 	void OnEnable(){
+		Events.G.AddListener<StopSecretExitEvent>(StopSecretDoor);
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<CrouchHideEvent>(CrouchHide);
 		Events.G.AddListener<CrouchReleaseHideEvent>(CrouchRelease);
 	}
 	void OnDisable(){
+		Events.G.RemoveListener<StopSecretExitEvent>(StopSecretDoor);
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<CrouchHideEvent>(CrouchHide);
 		Events.G.RemoveListener<CrouchReleaseHideEvent>(CrouchRelease);

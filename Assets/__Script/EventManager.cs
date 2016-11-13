@@ -218,6 +218,13 @@ public class TriggerAmbientWindEvent: GameEvent{
 	}
 }
 
+public class StopSecretExitEvent: GameEvent{
+	public bool Stopped { get; private set; }
+	public StopSecretExitEvent(bool stopped){
+		Stopped = stopped;
+	}
+}
+
 
 
 /* Key Events */

@@ -189,6 +189,21 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 //		}
 	}
 
+	void StopSecretDoor(StopSecretExitEvent e){
+		_secretDoor = !e.Stopped;
+	}
+
+	void OnEnable()
+	{
+		Events.G.AddListener<StopSecretExitEvent>(StopSecretDoor);
+	}
+
+	void OnDisable ()
+	{
+		Events.G.RemoveListener<StopSecretExitEvent>(StopSecretDoor);
+
+	}
+
 	public void UpdatePrisonerState(bool isFree){
 		_isPrisonerFree = isFree;
 	}
