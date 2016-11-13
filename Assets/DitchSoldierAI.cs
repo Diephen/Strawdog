@@ -31,9 +31,10 @@ public class DitchSoldierAI : MonoBehaviour {
 			m_IsPrisoner = true;
 			StartExecution ();
 
-		}else if(other.tag == "Execution"){
+		}else if(other.tag == "CutPrisoner"){
 			// Cut shoot prisoner 
-			m_CurrentCP = other.gameObject.GetComponent<CutDeathPrisoner>();
+			m_CurrentCP = other.gameObject.GetComponentInChildren<CutDeathPrisoner>();
+			CutCPInLine();
 		}
 
 	}
@@ -75,7 +76,7 @@ public class DitchSoldierAI : MonoBehaviour {
 	}
 
 	void CutCPInLine(){
-		
+		m_CurrentCP.Death ();
 	}
 
 	void Kill(){
