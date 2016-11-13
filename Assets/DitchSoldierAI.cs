@@ -6,10 +6,13 @@ public class DitchSoldierAI : MonoBehaviour {
 	CutDeathPrisoner m_NextCP;
 	Animator m_SoldierAnim;
 	[SerializeField] DitchPrisonerHandle m_PrisonerHandle;
+	[SerializeField] PuppetControl m_PC;
+
 
 	bool m_IsPrisoner = false;
 	bool m_IsCutting = false;
 	bool m_IsLineArrived = false;       // if the line arrives the end 
+	bool m_IsPrisonerFree = false;
 
 	// Use this for initialization
 	void Awake(){
@@ -25,6 +28,19 @@ public class DitchSoldierAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<BrokeFree> (OnPrisonerBreakFree);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<BrokeFree> (OnPrisonerBreakFree);
+	}
+
+	void OnPrisonerBreakFree(BrokeFree e){
+		m_IsPrisonerFree = true;
+		
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -62,7 +78,7 @@ public class DitchSoldierAI : MonoBehaviour {
 	void StartExecution(){
 		m_IsCutting = true;
 		if (m_IsPrisoner) {
-			
+			m_PC.DisableKeyInput ();
 			// rearrange cutting order: Prisoner first 
 			if (m_CurrentCP != null) {
 				
@@ -118,6 +134,10 @@ public class DitchSoldierAI : MonoBehaviour {
 
 	void Kick(){
 		m_PrisonerHandle.Kick ();
+	}
+
+	void EndScene(){
+		Events.G.Raise (new Taken_EnterFoodStorageEvent (m_IsPrisonerFree));
 	}
 
 

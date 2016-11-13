@@ -414,6 +414,7 @@ public class PuppetControl : MonoBehaviour {
 
 	public void DisableKeyInput(){
 		_disableKeys = true; 
+		m_AudioSource [0].Stop ();
 	}
 
 	public void EnableKeyInput(){

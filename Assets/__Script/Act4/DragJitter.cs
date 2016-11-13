@@ -120,8 +120,11 @@ public class DragJitter : MonoBehaviour {
 
 	void OnPrisonerCut(CutPrisonerBrforeOthers e){
 		print ("Make room for prisoner");
-		m_PushbackPos = gameObject.transform.position;
-		m_PushbackPos.x = m_PushbackPos.x - m_PrisonerTrans.position.x + 5f;
+		m_PushbackPos = transform.position;
+		print (m_PrisonerTrans.position.x + 5f);
+		//m_PushbackPos.x = m_PushbackPos.x - m_PrisonerTrans.position.x + 5f;
+		m_PushbackPos.x += 3f;
+		print ("current: " + transform.position.x + " Target: " + m_PushbackPos.x );
 		isPushBack = true;
 		m_PushBackSpeed = Time.deltaTime * Mathf.Abs (transform.position.x - m_PushbackPos.x);
 		if (!isLineStop) {
@@ -130,8 +133,8 @@ public class DragJitter : MonoBehaviour {
 	}
 
 	void PushBack(){
-		print ("Make room for prisoner");
-		if (transform.position.x < m_PushbackPos.x) {
+		if (Mathf.Abs(transform.position.x - m_PushbackPos.x)>0) {
+			print ("Make room for prisoner");
 			transform.position = Vector3.MoveTowards (transform.position, m_PushbackPos, m_PushBackSpeed);
 		} else {
 			isPushBack = false;

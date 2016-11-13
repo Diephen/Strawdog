@@ -11,7 +11,8 @@ public class CutDeathPrisoner : MonoBehaviour {
 	[SerializeField] Vector2 m_Force;
 	[SerializeField] DragJitter m_Drag;
 	[SerializeField] Rigidbody2D m_WholeBodyRig;
-
+	Timer m_DestoryTimer;
+	bool isDead = false;
 	// Use this for initialization
 	void Awake(){
 		
@@ -25,6 +26,7 @@ public class CutDeathPrisoner : MonoBehaviour {
 		}
 		//m_WholeBodyColl.enabled = false;
 		m_Sprites = GetComponentsInChildren<SpriteRenderer>();
+		m_DestoryTimer = new Timer (15f);
 
 	}
 
@@ -43,7 +45,9 @@ public class CutDeathPrisoner : MonoBehaviour {
 			Death();
 		}
 		#endif
-	
+		if (m_DestoryTimer.IsOffCooldown && isDead) {
+			Destroy (gameObject);
+		}
 	}
 
 	public void Death(){
@@ -64,6 +68,8 @@ public class CutDeathPrisoner : MonoBehaviour {
 		foreach (BoxCollider2D bc in m_BoxColls) {
 			bc.enabled = true;
 		}
+		isDead = true;
+		m_DestoryTimer.Reset ();
 	
 	}
 
