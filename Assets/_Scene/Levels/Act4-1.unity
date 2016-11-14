@@ -1921,6 +1921,11 @@ Prefab:
       propertyPath: m_ItrSound
       value: 
       objectReference: {fileID: 1800800385}
+    - target: {fileID: 114000011130965038, guid: 91e86aa66f5a641e68168ac011f68bbd,
+        type: 2}
+      propertyPath: WaitToShootBoth
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e86aa66f5a641e68168ac011f68bbd, type: 2}
   m_IsPrefabParent: 0

@@ -76,6 +76,7 @@ public class ExecutionPrisonerHandle : MonoBehaviour {
 		StartAnimation ();
 		m_IsEncounterGuard = true;
 		m_PuppetControl.DisableKeyInput ();
+		m_Jitter.DisableJitter ();
 		//m_Jitter.DisableJitter ();
 		if (m_IsFree) {
 			m_Anim.Play ("p-exe-StandIdle");
