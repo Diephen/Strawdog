@@ -233,7 +233,7 @@ public class AudioController : MonoBehaviour {
 	void OnDisable ()
 	{
 		SceneManager.activeSceneChanged -= NewScene;
-		Events.G.AddListener<TutorialEndEvent>(LoadTutorialEnd);
+		Events.G.RemoveListener<TutorialEndEvent>(LoadTutorialEnd);
 
 		Events.G.RemoveListener<Act0EndedEvent>(LoadTransitionAct1);
 
