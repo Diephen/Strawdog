@@ -8,8 +8,10 @@ using System.Collections;
 //	}
 //}
 
+public class LoadVeryBeginningEvent: GameEvent{
+}
+
 public class TriggerWarningEndEvent: GameEvent{
-	
 }
 
 public class TutorialEndEvent: GameEvent{
@@ -225,6 +227,8 @@ public class StopSecretExitEvent: GameEvent{
 	}
 }
 
+public class StartAct5Event: GameEvent {
+}
 
 
 /* Key Events */

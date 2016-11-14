@@ -165,6 +165,7 @@ public class SecretDoorPanel : MonoBehaviour {
 			GlowSuccess ();
 			_solved = true;
 			_codeCnt = 0;
+			Events.G.Raise (new StartAct5Event ());
 		}
 		else {
 			GlowFail ();

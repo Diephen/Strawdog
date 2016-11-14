@@ -28,7 +28,8 @@ public class SceneManagerScript : MonoBehaviour {
 		Act4_3_Encounter = 19,
 		TriggerWarning = 20,
 		Ending = 21,
-		Tutorial = 22
+		Tutorial = 22,
+		Act5 = 23
 	};
 
 	FrameScript _frameScript;
@@ -58,6 +59,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Events.G.AddListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
 		Events.G.AddListener<TutorialEndEvent>(LoadAct0);
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
 
@@ -107,12 +109,15 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<SoldierExecuteBoth> (LoadExecutionEndBothDie);
 		Events.G.AddListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
+		Events.G.AddListener<StartAct5Event> (LoadAct5);
+
 		SceneManager.sceneLoaded += OpenScreen;
 	}
 
 	void OnDisable ()
 	{
 		
+		Events.G.RemoveListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
 		Events.G.RemoveListener<TutorialEndEvent>(LoadAct0);
 		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
 
@@ -162,9 +167,14 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<SoldierExecuteBoth> (LoadExecutionEndBothDie);
 		Events.G.RemoveListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
+		Events.G.RemoveListener<StartAct5Event> (LoadAct5);
+
 		SceneManager.sceneLoaded -= OpenScreen;
 	}
 
+	void LoadVeryBeginning (LoadVeryBeginningEvent e){
+		StartCoroutine(ChangeFade((int)SceneIndex.Logo, 2f));
+	}
 
 	void LoadAct0(TutorialEndEvent e){
 		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 3f));
@@ -336,13 +346,17 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
 	}
 		
-
+	void LoadAct5(StartAct5Event e){
+		StartCoroutine(ChangeFade((int)SceneIndex.Act5, 5f));
+	}
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
-		if (scene.name == "TriggerWarning") {
+		if (scene.buildIndex == (int)SceneIndex.TriggerWarning) {
 		}
 		//Capture all ending Scenes
-		else if (scene.name == "EndingTemplate") {
+		else if (scene.buildIndex == (int)SceneIndex.Ending) {
+		}
+		else if (scene.buildIndex == (int)SceneIndex.Act5) {
 		}
 		else {
 			StartCoroutine (WaitBeforeOpen ());

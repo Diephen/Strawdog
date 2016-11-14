@@ -9,6 +9,8 @@ public class Fading : MonoBehaviour {
 	private int drawDepth = -1000; // the texture's order in the draw hierarchy: a low number means render on top
 	private float alpha = 1.0f; // the texture's alpha value between 0 - 1
 	private int fadeDir = -1; // the direction to fade: in = -1 or out = 1
+	[SerializeField] bool _noStartFade = false;
+
 	void Start(){
 		Cursor.visible = false;
 	}
@@ -32,7 +34,9 @@ public class Fading : MonoBehaviour {
 	//OnLevelWasLoaded is called when a level is loaded. takes loaded level index as a parameter
 	void OnLevelWasLoaded() {
 		//alpha = 1
-		BeginFade (-1);
+		if (!_noStartFade) {
+			BeginFade (-1);
+		}
 	}
 
 //	void WhenLevelLoads(Scene scene, LoadSceneMode mode){
