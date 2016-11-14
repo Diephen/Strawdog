@@ -180,21 +180,21 @@ public class InteractionSound : MonoBehaviour {
 
 	// 4-1 
 	public void PlaySoldierAlert(){
-		m_audio.clip = m_sounds [1];
+		m_audio.clip = m_sounds [16];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
 	}
 
 	public void PlaySoldierShoot(){
-		m_audio.clip = m_sounds [1];
+		m_audio.clip = m_sounds [18];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
 	}
 
 	public void PlaySoldierFinalWarning(){
-		m_audio.clip = m_sounds [2];
+		m_audio.clip = m_sounds [19];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
@@ -203,21 +203,21 @@ public class InteractionSound : MonoBehaviour {
 
 	// 4-2 
 	public void PlayKill(){
-		m_audio.clip = m_sounds [0];
+		m_audio.clip = m_sounds [20];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
 	}
 
 	public void PlayKick(){
-		m_audio.clip = m_sounds [1];
+		m_audio.clip = m_sounds [21];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
 	}
 
 	public void PlayKillOtherPrisoners(){
-		m_audio.clip = m_sounds [2];
+		m_audio.clip = m_sounds [22];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}

@@ -23,6 +23,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	bool m_IsReadyToShoot = false;
 	bool m_IsSwitchToGuard = false;
 	bool m_IsPrisonerDead = false;
+	bool _once = false;
 	float step;
 	// Use this for initialization
 	void Start () {
@@ -46,8 +47,8 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		Events.G.RemoveListener<AboutToStrayOutOfLineEvent> (OnPrisonerStray);
 		Events.G.RemoveListener<ExecutionBreakFree>(OnPrisonerBreakFree);
 		Events.G.RemoveListener<ShootSwitchEvent> (OnSwitchToGuard);
-		Events.G.AddListener<ExecutionEncounter> (OnEncounter);
-		Events.G.AddListener<GuardExecutePrisoner> (OnPrisonerDead);
+		Events.G.RemoveListener<ExecutionEncounter> (OnEncounter);
+		Events.G.RemoveListener<GuardExecutePrisoner> (OnPrisonerDead);
 	}
 
 	void OnSwitchToGuard(ShootSwitchEvent e){
@@ -133,7 +134,10 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 		if (m_IsCatch) {
 			MoveToPrisoner ();
-			m_ItrSound.PlaySoldierFinalWarning ();
+			if (!_once) {
+				m_ItrSound.PlaySoldierFinalWarning ();
+				_once = true;
+			}
 		}
 
 		if (m_IsReadyToShoot) {

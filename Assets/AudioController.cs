@@ -2,6 +2,7 @@
 using System.Collections;
 using Giverspace;
 using UnityEngine.SceneManagement;
+using System.Runtime.ConstrainedExecution;
 
 public class AudioController : MonoBehaviour {
 	float[] volume = new float[] {0.5f, 0.7f, 1.0f};
@@ -45,6 +46,9 @@ public class AudioController : MonoBehaviour {
 
 	bool _preventAmbientWindTwice = false;
 
+	AudioClip _loopClip;
+	AudioClip _satrioClip;
+
 	void Awake() {
 		if (_instance) {
 			Destroy (gameObject);
@@ -52,6 +56,8 @@ public class AudioController : MonoBehaviour {
 		else {
 			_instance = this;
 			DontDestroyOnLoad (gameObject);
+			_loopClip = Resources.Load<AudioClip> ("Music/Loop1");
+			_satrioClip = Resources.Load<AudioClip> ("Music/SatrioSound");
 		}
 	}
 
@@ -310,7 +316,7 @@ public class AudioController : MonoBehaviour {
 		else if (_currentSceneIndex == 1) {
 			_soundSource2_Light.Stop ();
 			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Piece_No1");
-			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.clip = _loopClip;
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicSource1.loop = false;
 			_musicVolume = 1.0f;
@@ -323,14 +329,14 @@ public class AudioController : MonoBehaviour {
 			_musicOffTimer.Reset ();
 			_musicVolume = 0.5f;
 			if (!_musicSource1.isPlaying) {
-				_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+				_musicSource1.clip = _satrioClip;
 				_musicSource1.volume = 0.0f;
 				_musicSource1.loop = true;
 				_musicOn1 = true;
 				_tempAudioSource = _musicSource1;
 			}
 			else if (!_musicSource2.isPlaying) {
-				_musicSource2.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+				_musicSource2.clip = _satrioClip;
 				_musicSource2.volume = 0.0f;
 				_musicSource2.loop = true;
 				_musicOn2 = true;
@@ -356,7 +362,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 4) {
 			_musicOnTimer.Reset ();
-			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.clip = _loopClip;
 			_musicSource2.loop = true;
 			_musicOn2 = true;
 		}
@@ -371,7 +377,7 @@ public class AudioController : MonoBehaviour {
 			_soundOff3 = true;
 			_soundOff4 = true;
 			_musicOff2 = true;
-			_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_musicSource1.clip = _satrioClip;
 			_musicSource1.volume = 1.0f;
 			_musicSource1.loop = true;
 			_musicOn1 = true;
@@ -388,7 +394,7 @@ public class AudioController : MonoBehaviour {
 			_soundOff3 = true;
 			_soundOff4 = true;
 			_musicOff2 = true;
-			_musicSource1.clip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_musicSource1.clip = _satrioClip;
 			_musicSource1.volume = 1.0f;
 			_musicSource1.loop = true;
 			_musicOn1 = true;
@@ -403,7 +409,7 @@ public class AudioController : MonoBehaviour {
 			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
-			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.clip = _loopClip;
 			_musicSource2.loop = true;
 			_musicOn2 = true;
 		}
@@ -412,7 +418,7 @@ public class AudioController : MonoBehaviour {
 			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
-			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.clip = _loopClip;
 			_musicSource2.loop = true;
 			_musicOn2 = true;
 		}
@@ -421,7 +427,7 @@ public class AudioController : MonoBehaviour {
 			_musicOffTimer.Reset ();
 			_soundOff2 = true;
 			_musicOff1 = true;
-			_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+			_musicSource2.clip = _loopClip;
 			_musicSource2.loop = true;
 			_musicOn2 = true;
 		}
@@ -437,13 +443,14 @@ public class AudioController : MonoBehaviour {
 			_musicSource1.volume = MathHelpers.LinMapFrom01(0.0f, _musicSource1.volume, _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed));
 		}
 		else if (_musicOn1) {
+			_musicSource1.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+
 			if (!_musicSource1.isPlaying) {
 				_musicSource1.Play ();
 			}
 			else if (_musicSource1.volume > _musicVolume-0.02f) {
 				_musicOn1 = false;
 			}
-			_musicSource1.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
 		}
 		if (_musicOff2) {
 			if (Mathf.Approximately (_musicSource2.volume, 0.0f)) {
@@ -454,13 +461,14 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_musicOn2) {
 			
+			_musicSource2.volume = MathHelpers.LinMapFrom01(0.0f, _musicVolume, _musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed));
+
 			if (!_musicSource2.isPlaying) {
 				_musicSource2.Play ();
 			}
 			else if (_musicSource2.volume > _musicVolume-0.02f) {
 				_musicOn2 = false;
 			}
-			_musicSource2.volume = MathHelpers.LinMapFrom01(0.0f, _musicVolume, _musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed));
 		}
 		if (_musicOff3) {
 			if (Mathf.Approximately (_musicSource3.volume, 0.0f)) {
@@ -470,13 +478,14 @@ public class AudioController : MonoBehaviour {
 			_musicSource3.volume =  MathHelpers.LinMapFrom01(0.0f, _musicSource3.volume, _musicOffCurve.Evaluate (_musicOffTimer.PercentTimePassed));
 		}
 		else if (_musicOn3) {
+			_musicSource3.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
+
 			if (!_musicSource3.isPlaying) {
 				_musicSource3.Play ();
 			}
 			else if (_musicSource3.volume > _musicVolume-0.02f) {
 				_musicOn3 = false;
 			}
-			_musicSource3.volume = Mathf.Clamp (_musicOnCurve.Evaluate (_musicOnTimer.PercentTimePassed), 0.0f, _musicVolume);
 		}
 	}
 
