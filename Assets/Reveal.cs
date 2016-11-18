@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Reveal : MonoBehaviour {
-	float _fadeDuration = 6f;
+	float _fadeDuration = 5f;
 	SpriteRenderer _thisRenderer;
 	SpriteRenderer _childRenderer;
 	Timer _fadeTime;

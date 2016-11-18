@@ -11,6 +11,12 @@ public class Fading : MonoBehaviour {
 	private int fadeDir = -1; // the direction to fade: in = -1 or out = 1
 	[SerializeField] bool _noStartFade = false;
 
+	void Awake(){
+		if (_noStartFade) {
+			alpha = 0.0f;
+		}
+	}
+
 	void Start(){
 		Cursor.visible = false;
 	}
