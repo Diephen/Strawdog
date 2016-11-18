@@ -16,10 +16,20 @@ public class EndingManager : MonoBehaviour {
 	bool _transition = false;
 	float _tempAlpha;
 	Color _tempTextColor;
+
+
+	[SerializeField] Text[] _endDot;
+	[SerializeField] Image[] _endStrike;
+	[SerializeField] Text[] _endText;
+	Color _endOriginalColor;
+	Color _tempEndTextColor;
+
 	// Use this for initialization
 	void Start () {
 		_originalColor = _left.color;
 		_tempTextColor = _text.color;
+		_endOriginalColor = _endDot [0].color;
+		_tempEndTextColor = _endDot [0].color;
 		_audioSource = gameObject.GetComponent<AudioSource> ();
 		_blackTimer.Reset ();
 	}
@@ -51,6 +61,15 @@ public class EndingManager : MonoBehaviour {
 				_tempAlpha = Mathf.Lerp (0.0f, 1.0f, _textTimer.PercentTimePassed);
 				_tempTextColor.a = _tempAlpha;
 				_text.color = _tempTextColor;
+
+				_tempEndTextColor.a = _tempAlpha;
+				for (int i=0; i<_endDot.Length; i++){
+					_endDot[i].color = _tempEndTextColor;
+					if (GameStateManager._acquiredStates [i]) {
+						_endText [i].color = _tempEndTextColor;
+						_endStrike [i].color = _tempEndTextColor;
+					}
+				}
 			}
 		}
 		else {
@@ -59,6 +78,16 @@ public class EndingManager : MonoBehaviour {
 			_tempAlpha = Mathf.Lerp (1.0f, 0.0f, _textTimer.PercentTimePassed);
 			_tempTextColor.a = _tempAlpha;
 			_text.color = _tempTextColor;
+
+			_tempEndTextColor = Color.Lerp (Color.black, _endOriginalColor, _textTimer.PercentTimePassed);
+			_tempEndTextColor.a = _tempAlpha;
+			for (int i=0; i<_endDot.Length; i++){
+				_endDot[i].color = _tempEndTextColor;
+				if (GameStateManager._acquiredStates [i]) {
+					_endText [i].color = _tempEndTextColor;
+					_endStrike [i].color = _tempEndTextColor;
+				}
+			}
 		}
 	}
 }
