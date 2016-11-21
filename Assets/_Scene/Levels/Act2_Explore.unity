@@ -16348,9 +16348,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.34698352, y: -0.6191385}
+  m_Offset: {x: 0.004037848, y: -1.3211756}
   serializedVersion: 2
-  m_Size: {x: 5.8236, y: 8.252456}
+  m_Size: {x: 3.9727905, y: 6.848383}
 --- !u!114 &1392691393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16366,14 +16366,14 @@ MonoBehaviour:
   _isPrisonerTop: 1
   _prisoner: {fileID: 1119253924}
   _backDown: 0
-  _stairRenderer: {fileID: 0}
+  _stairRenderer: {fileID: 623260410}
   _bedRenderer: {fileID: 0}
-  _secretDoorRenderer: {fileID: 0}
-  _stairStartPosition: 35.5
+  _secretDoorRenderer: {fileID: 1143142411}
+  _stairStartPosition: 96
   _bomb: {fileID: 0}
-  _groundCollider1: {fileID: 0}
-  _groundCollider2: {fileID: 0}
-  _leftFlap: {fileID: 0}
+  _groundCollider1: {fileID: 1119827684}
+  _groundCollider2: {fileID: 226912977}
+  _leftFlap: {fileID: 1243246475}
   _fencePanel: {fileID: 1286339576}
 --- !u!1 &1392756495
 GameObject:
