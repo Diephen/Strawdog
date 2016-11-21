@@ -37,6 +37,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	bool _leaveArea = false;
 	bool _bombGiven = false;
+	bool _gotBomb = false;
 
 	Vector3 _tempPosition;
 	Timer _offsetTimer = new Timer (0.3f);
@@ -118,9 +119,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		}
 
 		if (_isPrisonerTop) {
-			if (_isBomb && Input.GetKeyDown (_prisonerKeyCodes [3])) {
+			if (_isBomb && Input.GetKeyDown (_prisonerKeyCodes [3]) && !_gotBomb) {
 				_bomb.SetActive (false);
 				Events.G.Raise (new PrisonerFoundBombEvent ());
+				_gotBomb = true;
 			} else if (_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				//Events.G.Raise (new PrisonerWentBack ());
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
