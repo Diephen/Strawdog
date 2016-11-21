@@ -51,6 +51,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	AudioSource _audioSource;
 	GameObject _crouchTemp;
 
+	[SerializeField] FencePanel _fencePanel;
+	bool _answer = false;
+	bool _solved = false;
+
 	void Start(){
 		gameObject.tag = "Prisoner";
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
@@ -152,6 +156,10 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_isPrisonerTop) {
 			if (other.name == "BombArea") {
 				_isBombArea = true;
+				Events.G.Raise (new StaticCamera ());
+				if (!_solved) {
+					_fencePanel.FadeInPanel ();
+				}
 			} 
 			else if (other.tag == "StandHide") {
 				_isHidden = true;
@@ -183,8 +191,11 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "BombArea") {
-			_isBombArea = false;
 			_waveCnt = 0;
+			_answer = false;
+			_fencePanel.GlowFail ();
+			_isBombArea = false;
+			_fencePanel.FadePanel ();
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -258,16 +269,20 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 	}
 
 	void BombDetection(){
-		if (_isBombArea && !_bombGiven) {
+		if (_isBombArea && !_bombGiven && !_solved) {
 			if (_waveCnt == 0) {
 				if (Input.GetKeyDown (_prisonerKeyCodes [2])) {
 					_waveCnt = 1;
 					_audioSource.Play ();
 					_audioSource.pitch = 1.0f;
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (0);
+					_answer = true;
 				}
 				else if (Input.anyKeyDown){
-					_waveCnt = 0;
+					_waveCnt = 1;
+					_fencePanel.Glow (0);
+					_answer = false;
 				}
 			}
 			else if (_waveCnt == 1) {
@@ -276,33 +291,62 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 					_audioSource.Play ();
 					_audioSource.pitch = 1.1f;
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (1);
 				}
 				else if (Input.anyKeyDown) {
-					_waveCnt = 0;
+					_waveCnt = 2;
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+					_fencePanel.Glow (1);
+					_answer = false;
 				}
 			}
 			else if (_waveCnt == 2) {
 				if (Input.GetKeyDown (_prisonerKeyCodes [2]) && _offsetTimer.IsOffCooldown) {
 					_waveCnt = 3;
-					_audioSource.Play ();
 					_audioSource.pitch = 1.2f;
+					_audioSource.Play ();
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (2);
 				}
 				else if (Input.anyKeyDown) {
-					_waveCnt = 0;
+					_waveCnt = 3;
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+					_answer = false;
+					_fencePanel.Glow (2);
 				}
 			}
 			else if (_waveCnt == 3) {
 				if (Input.GetKeyDown (_prisonerKeyCodes [0]) && _offsetTimer.IsOffCooldown) {
-					_waveCnt = 4;
-					_audioSource.Play ();
-					_bombScript.ThrowBomb ();
+					_waveCnt = 5;
 					_audioSource.pitch = 0.9f;
-					_bombGiven = true;
+					_audioSource.Play ();
+					_fencePanel.Glow (3);
+					if (_answer == true) {
+						_bombScript.ThrowBomb ();
+						_bombGiven = true;
+						_fencePanel.GlowSuccess ();
+						_solved = true;
+					}
+					else {
+						_waveCnt = 4;
+						_offsetTimer.Reset ();
+					}
 				}
 				else if (Input.anyKeyDown) {
-					_waveCnt = 0;
+					_waveCnt = 4;
+					_fencePanel.Glow (3);
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_answer = false;
 				}
+			}
+			else if (_waveCnt == 4 && _offsetTimer.IsOffCooldown) {
+				_waveCnt = 0;
+				_fencePanel.GlowFail ();
 			}
 		}
 	}
