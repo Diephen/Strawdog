@@ -95,7 +95,8 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<TransitionSecretDoorEvent>(TransitionSecret);
 		Events.G.AddListener<ShootSwitchEvent>(ShootSwitch);
 		Events.G.AddListener<PrisonerShotEvent>(PrisonerShot);
-
+		Events.G.AddListener<Act2_SoldierAppear>(PrisonerHitFence);
+		Events.G.AddListener<PrisonerLeftFenceEvent>(PrisonerLeftFence);
 	}
 
 	void OnDisable ()
@@ -105,12 +106,15 @@ public class FollowCam : MonoBehaviour {
 		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<Guard_EncounterEvent>(GuardEncounter);
-		Events.G.AddListener<Prisoner_EncounterEvent>(PrisonerEncounter);
+		Events.G.RemoveListener<Prisoner_EncounterEvent>(PrisonerEncounter);
 		Events.G.RemoveListener<BrokeFree>(BreakFree);
 		Events.G.RemoveListener<LockCellEvent>(CloseDoor);
 		Events.G.RemoveListener<TransitionSecretDoorEvent>(TransitionSecret);
 		Events.G.RemoveListener<ShootSwitchEvent>(ShootSwitch);
 		Events.G.RemoveListener<PrisonerShotEvent>(PrisonerShot);
+		Events.G.RemoveListener<Act2_SoldierAppear>(PrisonerHitFence);
+		Events.G.RemoveListener<PrisonerLeftFenceEvent>(PrisonerLeftFence);
+
 	}
 
 	void StaticCam(StaticCamera e){
@@ -185,6 +189,18 @@ public class FollowCam : MonoBehaviour {
 	void PrisonerShot(PrisonerShotEvent e){
 		timer = 0f;
 		_followObj = _followGuard;
+		_cameraToggle = cameraPos.Right;
+	}
+
+	void PrisonerHitFence(Act2_SoldierAppear e){
+		timer = 0f;
+		_followObj = _followPrisoner;
+		_cameraToggle = cameraPos.Left;
+	}
+
+	void PrisonerLeftFence(PrisonerLeftFenceEvent e){
+		timer = 0f;
+		_followObj = _followPrisoner;
 		_cameraToggle = cameraPos.Right;
 	}
 }

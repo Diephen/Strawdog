@@ -14,6 +14,7 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	[SerializeField] PuppetControl _prisonerPuppetControl;
 
 	[SerializeField] Transform m_SleepPos;
+	bool m_IsCaught = false;
 
 //	bool m_isResisting = false;
 //	bool m_isUnderTorture = false;
@@ -38,6 +39,8 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<SleepInCellEvent> (SleepInCell);
 		Events.G.AddListener<DragPrisonerInJail> (OnDragged);
+		Events.G.AddListener<PrisonerEncounterSoldierExplore> (OnEncounterSoldier);
+		Events.G.AddListener<Act2_SoldierDragPrisonerExplore> (OnDraggedExplore);
 	}
 
 	void OnDisable ()
@@ -45,6 +48,8 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<SleepInCellEvent> (SleepInCell);
 		Events.G.RemoveListener<DragPrisonerInJail> (OnDragged);
+		Events.G.RemoveListener<PrisonerEncounterSoldierExplore> (OnEncounterSoldier);
+		Events.G.RemoveListener<Act2_SoldierDragPrisonerExplore> (OnDraggedExplore);
 	}
 
 //	void OnGuardEnterCell (GuardEnteringCellEvent e)
@@ -94,6 +99,18 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 		transform.position = m_SleepPos.position;
 		m_AnimCtrl.SetAnimation(true);
 		m_Anim.Play("p-jc-Sleep");
+	}
+
+	void OnEncounterSoldier(PrisonerEncounterSoldierExplore e){
+		//m_Anim.Play ("p-jc-Sleep");
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Prisoner));
+	}
+
+	void OnDraggedExplore(Act2_SoldierDragPrisonerExplore e){
+		print ("P Hands UP");
+		m_AnimCtrl.SetAnimation(true);
+		m_Anim.Play ("p-exp-GetCaught");
+		_prisonerPuppetControl.DisableKeyInput ();
 	}
 
 

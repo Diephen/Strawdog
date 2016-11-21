@@ -244,7 +244,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadAct3_Yes(PrisonerFoundBombEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f, "VoiceOver/19_JustMaybe"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 1f, "VoiceOver/19_JustMaybe"));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant, 3f, "VoiceOver/20_MaybeHim"));

@@ -83,6 +83,13 @@ public class CaughtSneakingEvent : GameEvent {
 public class GuardStairsStartEvent : GameEvent {
 }
 
+public class PrisonerLeftFenceEvent : GameEvent {
+}
+
+public class PrisonerEncounterSoldierExplore:GameEvent{
+	
+}
+
 public class PrisonerStairsStartEvent : GameEvent {
 }
 
@@ -97,6 +104,29 @@ public class Act2_PrisonerWalkedUpStairsEvent : GameEvent {
 
 public class Act2_PrisonerWalkedDownStairsEvent : GameEvent {
 }
+
+/* soldier drag prisoner in explore */
+public class Act2_SoldierAppear:GameEvent{
+	
+}
+
+public class Act2_SoldierDragPrisonerExplore:GameEvent{
+	
+}
+
+public class Act2_PrisonerGetBomb:GameEvent{
+	
+}
+
+public class Act2_PrisonerWalkFenceInteraction:GameEvent{
+	public bool IsBombFound { get; private set; }
+	public Act2_PrisonerWalkFenceInteraction(bool isbombfound){
+		IsBombFound = isbombfound;
+	}
+}
+
+
+// 
 
 public class LightCaughtEvent : GameEvent {
 	public float Volume { get; private set; }

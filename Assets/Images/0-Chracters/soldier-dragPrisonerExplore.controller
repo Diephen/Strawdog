@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: soldier-dragPrisoner
+  m_Name: soldier-dragPrisonerExplore
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -21,13 +21,13 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &1102000010297662760
+--- !u!1102 &1102000010204226504
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: soldier-exp-Drag
+  m_Name: soldier-exp-Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -39,18 +39,18 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6a9e8839903614e83884f83673e978b0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4c66acea0a46a424594edd592ecf60c6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &1102000011699837998
+--- !u!1102 &1102000011843602396
 AnimatorState:
   serializedVersion: 5
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: soldier-jc-drag
+  m_Name: soldier-exp-Walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -62,7 +62,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5ce39b22e0b954d19a4cb56c1a5fd740, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9ac8ec6ffb854407f841293b4fc2cbc7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -90,13 +90,13 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &1102000013572582130
+--- !u!1102 &1102000012505341130
 AnimatorState:
   serializedVersion: 5
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: soldier-exp-Walk
+  m_Name: soldier-exp-Drag
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -108,7 +108,30 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9ac8ec6ffb854407f841293b4fc2cbc7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6a9e8839903614e83884f83673e978b0, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+--- !u!1102 &1102000012582619484
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: soldier-exp-PointGun
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 05d645020de99415dbcfd7a27cbc507e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -122,17 +145,20 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 1102000011699837998}
-    m_Position: {x: 144, y: 180, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 1102000012037441750}
     m_Position: {x: 288, y: 36, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102000013572582130}
-    m_Position: {x: 372, y: 228, z: 0}
+    m_State: {fileID: 1102000012505341130}
+    m_Position: {x: 432, y: 96, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102000010297662760}
-    m_Position: {x: 372, y: 180, z: 0}
+    m_State: {fileID: 1102000011843602396}
+    m_Position: {x: 228, y: 96, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102000010204226504}
+    m_Position: {x: 263, y: 161, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102000012582619484}
+    m_Position: {x: 298, y: 226, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

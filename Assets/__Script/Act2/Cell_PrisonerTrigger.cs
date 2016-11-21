@@ -120,9 +120,9 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_isPrisonerTop) {
 			if (_isBomb && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				_bomb.SetActive (false);
-				Events.G.Raise (new PrisonerFoundBombEvent ());
+				//Events.G.Raise (new PrisonerFoundBombEvent ());
 			} else if (_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
-				Events.G.Raise (new PrisonerWentBack ());
+				//Events.G.Raise (new PrisonerWentBack ());
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 				_isOnFlap = false;
 				_leaveArea = true;
@@ -151,12 +151,18 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		else if (other.name == "Bomb") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
 			_isBomb = true;
+			Events.G.Raise (new Act2_PrisonerGetBomb ());
 		}
 
 		if (_isPrisonerTop) {
+			if (other.name == "soldier-exe") {
+				other.gameObject.GetComponent<SoldierDragHandle> ().WalkToPrisoner ();
+				Events.G.Raise (new PrisonerEncounterSoldierExplore());
+			} 
 			if (other.name == "BombArea") {
 				_isBombArea = true;
-				Events.G.Raise (new StaticCamera ());
+				// soldier in the way back
+				Events.G.Raise(new Act2_SoldierAppear());
 				if (!_solved) {
 					_fencePanel.FadeInPanel ();
 				}
@@ -196,6 +202,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_fencePanel.GlowFail ();
 			_isBombArea = false;
 			_fencePanel.FadePanel ();
+			Events.G.Raise (new PrisonerLeftFenceEvent ());
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
