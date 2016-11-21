@@ -35,6 +35,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] Renderer _doorRenderer;
 	[SerializeField] Renderer _secretDoorRenderer;
 
+	[SerializeField] BoxCollider2D _houseCol;
+
 	[SerializeField] GameObject _bomb;
 	Bomb _bombScript;
 
@@ -191,6 +193,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		}
 		else if (other.name == "BombArea") {
 			_isBombArea = true;
+			_houseCol.enabled = true;
 			if (!_solved) {
 				_fencePanel.FadeInPanel ();
 			}

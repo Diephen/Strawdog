@@ -394,6 +394,16 @@ Prefab:
       propertyPath: _fencePanel
       value: 
       objectReference: {fileID: 596326236}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _houseHighlight
+      value: 
+      objectReference: {fileID: 1105359124}
+    - target: {fileID: 114000013602856760, guid: de0c55a4026f54407bb73abc8c731236,
+        type: 2}
+      propertyPath: _houseCol
+      value: 
+      objectReference: {fileID: 1105359122}
     m_RemovedComponents:
     - {fileID: 114000010051735524, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: de0c55a4026f54407bb73abc8c731236, type: 2}
@@ -18895,7 +18905,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1105359118}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
