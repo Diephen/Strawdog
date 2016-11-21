@@ -68,6 +68,10 @@ public class CallGuardInCell:GameEvent{
 public class PrisonerFoundBombEvent : GameEvent {
 }
 
+public class PrisonerFoundBombAndLeave:GameEvent{
+	
+}
+
 public class PrisonerWentBack : GameEvent {
 }
 

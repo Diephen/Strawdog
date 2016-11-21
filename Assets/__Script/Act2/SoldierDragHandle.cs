@@ -89,7 +89,7 @@ public class SoldierDragHandle : MonoBehaviour {
 
 	void OnEndExploreSequence(){
 		if (m_IsPrisonerGetBomb) {
-			Events.G.Raise (new PrisonerFoundBombEvent ());
+			Events.G.Raise (new PrisonerFoundBombAndLeave ());
 		} else {
 			Events.G.Raise (new PrisonerWentBack ());
 		}

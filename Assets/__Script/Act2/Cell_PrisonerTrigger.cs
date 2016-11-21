@@ -120,7 +120,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 		if (_isPrisonerTop) {
 			if (_isBomb && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				_bomb.SetActive (false);
-				//Events.G.Raise (new PrisonerFoundBombEvent ());
+				Events.G.Raise (new PrisonerFoundBombEvent ());
 			} else if (_isOnFlap && Input.GetKeyDown (_prisonerKeyCodes [3])) {
 				//Events.G.Raise (new PrisonerWentBack ());
 				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();

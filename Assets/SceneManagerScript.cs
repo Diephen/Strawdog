@@ -84,7 +84,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<PrisonerSleepEvent>(LoadAct3_No);
 		Events.G.AddListener<PrisonerWentBack>(LoadWentBack);
 		Events.G.AddListener<GuardSleepEvent>(LoadGuardSleep);
-		Events.G.AddListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
+		Events.G.AddListener<PrisonerFoundBombAndLeave>(LoadAct3_Yes);
 		Events.G.AddListener<GuardFoundBombEvent>(LoadAct3_Plant);
 		Events.G.AddListener<CaughtSneakingEvent>(LoadCaught);
 
@@ -142,7 +142,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<PrisonerSleepEvent>(LoadAct3_No);
 		Events.G.RemoveListener<PrisonerWentBack>(LoadWentBack);
 		Events.G.RemoveListener<GuardSleepEvent>(LoadGuardSleep);
-		Events.G.RemoveListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
+		Events.G.RemoveListener<PrisonerFoundBombAndLeave>(LoadAct3_Yes);
 		Events.G.RemoveListener<GuardFoundBombEvent>(LoadAct3_Plant);
 		Events.G.RemoveListener<CaughtSneakingEvent>(LoadCaught);
 
@@ -243,7 +243,7 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f, "VoiceOver/07_GuardSleep"));
 	}
 
-	void LoadAct3_Yes(PrisonerFoundBombEvent e){
+	void LoadAct3_Yes(PrisonerFoundBombAndLeave e){
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 1f, "VoiceOver/19_JustMaybe"));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
