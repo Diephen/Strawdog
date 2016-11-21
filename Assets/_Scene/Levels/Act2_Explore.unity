@@ -4520,9 +4520,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 2.1884766, y: -2.505128}
+  m_Offset: {x: 1.6070251, y: -2.505128}
   serializedVersion: 2
-  m_Size: {x: 3.5569353, y: 13.643438}
+  m_Size: {x: 4.7197914, y: 13.643438}
 --- !u!212 &402958468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5229,7 +5229,7 @@ MonoBehaviour:
   _guardfootStep: {fileID: 0}
   _guardPuppetControl: {fileID: 0}
   _prisonerfootStep: {fileID: 8300000, guid: fcbef9995f6a74f76ab60869954c8987, type: 3}
-  _prisonerPuppetControl: {fileID: 781804538}
+  _prisonerPuppetControl: {fileID: 1119253933}
 --- !u!1 &440373483
 GameObject:
   m_ObjectHideFlags: 0
@@ -7568,7 +7568,7 @@ Prefab:
         type: 2}
       propertyPath: _prisonerPuppetControl
       value: 
-      objectReference: {fileID: 781804538}
+      objectReference: {fileID: 1119253933}
     - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
         type: 2}
       propertyPath: _prisonerfootStep
@@ -8635,12 +8635,6 @@ Transform:
   - {fileID: 1800800383}
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &781804538 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114000010034782686, guid: 0a57582b2cf47491abdb975d22ba7917,
-    type: 2}
-  m_PrefabInternal: {fileID: 1340546754}
-  m_Script: {fileID: 11500000, guid: c1544009b2afa4b4fa8d02d637800db8, type: 3}
 --- !u!1 &784534022
 GameObject:
   m_ObjectHideFlags: 0
@@ -12907,7 +12901,7 @@ Prefab:
         type: 2}
       propertyPath: _prisonerPuppetControl
       value: 
-      objectReference: {fileID: 781804538}
+      objectReference: {fileID: 1119253933}
     - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
         type: 2}
       propertyPath: _prisonerfootStep
@@ -14735,7 +14729,7 @@ Prefab:
         type: 2}
       propertyPath: _prisonerPuppetControl
       value: 
-      objectReference: {fileID: 781804538}
+      objectReference: {fileID: 1119253933}
     - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
         type: 2}
       propertyPath: _prisonerfootStep
@@ -22180,7 +22174,7 @@ MonoBehaviour:
   _guardfootStep: {fileID: 0}
   _guardPuppetControl: {fileID: 0}
   _prisonerfootStep: {fileID: 8300000, guid: e627b62f267e54d27a2e1d73e3745327, type: 3}
-  _prisonerPuppetControl: {fileID: 781804538}
+  _prisonerPuppetControl: {fileID: 1119253933}
 --- !u!1 &1897996619
 GameObject:
   m_ObjectHideFlags: 0
@@ -23323,7 +23317,7 @@ Prefab:
         type: 2}
       propertyPath: _prisonerPuppetControl
       value: 
-      objectReference: {fileID: 781804538}
+      objectReference: {fileID: 1119253933}
     - target: {fileID: 114000012870558126, guid: 1adf326ed9b324c4080eacf2e266e550,
         type: 2}
       propertyPath: _prisonerfootStep
@@ -24762,7 +24756,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2080208673}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8, y: -1.0814501, z: -9.996431}
+  m_LocalPosition: {x: -4, y: -1.0814501, z: -9.996431}
   m_LocalScale: {x: 6.263431, y: 4.2625, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
