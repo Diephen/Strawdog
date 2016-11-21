@@ -50,6 +50,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	[SerializeField] SpriteRenderer _rightFlap;
 	AudioSource _audioSource;
 
+	[SerializeField] FencePanel _fencePanel;
+	bool _answer = false;
+
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
@@ -192,6 +195,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "BombArea") {
 			_waveCnt = 0;
+			_answer = false;
+			_fencePanel.GlowFail ();
 			_isBombArea = false;
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
@@ -263,10 +268,13 @@ public class Cell_GuardTrigger : MonoBehaviour {
 					_audioSource.pitch = 1.0f;
 					_audioSource.Play ();
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (0);
+					_answer = true;
 				}
-				else if(Input.anyKeyDown) 
-				{
-					_waveCnt = 0;
+				else if (Input.anyKeyDown) {
+					_waveCnt = 1;
+					_fencePanel.Glow (0);
+					_answer = false;
 				}
 			}
 			else if (_waveCnt == 1 && _offsetTimer.IsOffCooldown) {
@@ -275,9 +283,15 @@ public class Cell_GuardTrigger : MonoBehaviour {
 					_audioSource.pitch = 1.1f;
 					_audioSource.Play ();
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (1);
 				}
-				else if(Input.anyKeyDown){
-					_waveCnt = 0;
+				else if (Input.anyKeyDown) {
+					_waveCnt = 2;
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+					_fencePanel.Glow (1);
+					_answer = false;
 				}
 			}
 			else if (_waveCnt == 2 && _offsetTimer.IsOffCooldown) {
@@ -286,22 +300,45 @@ public class Cell_GuardTrigger : MonoBehaviour {
 					_audioSource.pitch = 1.2f;
 					_audioSource.Play ();
 					_offsetTimer.Reset ();
+					_fencePanel.Glow (2);
 				}
-				else if(Input.anyKeyDown) {
-					_waveCnt = 0;
+				else if (Input.anyKeyDown) {
+					_waveCnt = 3;
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_offsetTimer.Reset ();
+					_answer = false;
+					_fencePanel.Glow (2);
 				}
 			}
 			else if (_waveCnt == 3 && _offsetTimer.IsOffCooldown) {
 				if (Input.GetKeyDown (_guardKeyCodes [2])) {
-					_waveCnt = 4;
-					_bombScript.ThrowBomb ();
+					_waveCnt = 5;
 					_audioSource.pitch = 0.9f;
 					_audioSource.Play ();
-					_bombGiven = true;
+					_fencePanel.Glow (3);
+					if (_answer == true) {
+						_bombScript.ThrowBomb ();
+						_bombGiven = true;
+//						_fencePanel.FadePanel ();
+					}
+					else {
+						_waveCnt = 4;
+						_offsetTimer.Reset ();
+					}
 				}
-				else if(Input.anyKeyDown) {
-					_waveCnt = 0;
+				else if (Input.anyKeyDown) {
+					_waveCnt = 4;
+					_fencePanel.Glow (3);
+					_bombScript.ThrowBomb ();
+					_audioSource.pitch = 1f;
+					_audioSource.Play ();
+					_answer = false;
 				}
+			}
+			else if (_waveCnt == 4 && _offsetTimer.IsOffCooldown) {
+				_waveCnt = 0;
+				_fencePanel.GlowFail ();
 			}
 		}
 	}

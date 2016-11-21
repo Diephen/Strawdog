@@ -247,7 +247,7 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 3f, "VoiceOver/19_JustMaybe"));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell, 3f, "VoiceOver/20_MaybeHim"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant, 3f, "VoiceOver/20_MaybeHim"));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
