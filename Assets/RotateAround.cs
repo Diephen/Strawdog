@@ -6,7 +6,7 @@ public class RotateAround : MonoBehaviour {
 	MinMax _rotateRange = new MinMax(-90.0f, 160.0f);
 //	MinMax _rotateRange = new MinMax(-30.0f, 160.0f);
 	Timer _rotateTimer;
-	float _rotateDuration = 7.0f;
+	float _rotateDuration = 9.0f;
 	Vector3 _eulerRotation;
 	// Use this for initialization
 	void Start () {

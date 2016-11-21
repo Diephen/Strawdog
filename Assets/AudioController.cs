@@ -49,6 +49,8 @@ public class AudioController : MonoBehaviour {
 	AudioClip _loopClip;
 	AudioClip _satrioClip;
 
+	AudioClip _windHowl;
+
 	void Awake() {
 		if (_instance) {
 			Destroy (gameObject);
@@ -58,6 +60,7 @@ public class AudioController : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 			_loopClip = Resources.Load<AudioClip> ("Music/Loop1");
 			_satrioClip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_windHowl = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
 		}
 	}
 
@@ -141,6 +144,8 @@ public class AudioController : MonoBehaviour {
 
 	void LoadTutorialEnd(TutorialEndEvent e){
 		if (!_soundSource3.isPlaying) {
+			_soundSource3.volume = 1.0f;
+			_soundSource3.loop = false;
 			_soundSource3.clip = Resources.Load<AudioClip> ("Sounds/PianoPluck");
 			_soundSource3.Play ();
 		}
@@ -180,7 +185,7 @@ public class AudioController : MonoBehaviour {
 			_preventAmbientWindTwice = e.Triggered;
 
 			if (e.Triggered) {
-				_musicSource1.clip = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
+				_musicSource1.clip = _windHowl;
 				_musicOn2 = false;
 				_musicOff2 = true;
 				_musicSource1.volume = 0.0f;
@@ -310,8 +315,9 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == 22) {
 			_musicSource2.volume = 0.6f;
-			_musicSource2.clip = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
+			_musicSource2.clip = _windHowl;
 			_musicSource2.loop = true;
+			_musicSource2.Play ();
 		}
 		else if (_currentSceneIndex == 1) {
 			_soundSource2_Light.Stop ();

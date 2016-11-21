@@ -10275,6 +10275,7 @@ MonoBehaviour:
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
   _leftFlap: {fileID: 0}
+  _fencePanel: {fileID: 0}
 --- !u!61 &741221685
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19453,6 +19454,7 @@ MonoBehaviour:
   _stairRenderer: {fileID: 1384982690}
   _doorRenderer: {fileID: 1059143570}
   _secretDoorRenderer: {fileID: 0}
+  _houseCol: {fileID: 0}
   _bomb: {fileID: 0}
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
@@ -19460,6 +19462,7 @@ MonoBehaviour:
   _prisonerStop: {fileID: 0}
   _leftFlap: {fileID: 0}
   _rightFlap: {fileID: 0}
+  _fencePanel: {fileID: 0}
 --- !u!61 &1485883823
 BoxCollider2D:
   m_ObjectHideFlags: 0
