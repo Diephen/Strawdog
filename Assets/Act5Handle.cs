@@ -25,7 +25,7 @@ public class Act5Handle : MonoBehaviour {
 	string _part1 = "You are from a wealthy family and you do not enjoy conflict.\n\nBut a war breaks out and your family pulls some strings so that you can avoid fighting in the war.\n\nInstead you are assigned to manage a prison\n\n\nYou are okay with this position";
 	string _part2 = "The higher ups told me that there was rebellion brewing.\nThey tell me to get more information on this";
 	string _part3 = "As the war rages on, my area also gets attacked and the prison got cut off on resources.\n\nI have too many prisoners, meaning too many mouths to feed\n\nThe higher ups tell me that they will try sending resources but it wont be for a while\n\nSomething drastic needs to happen";
-	string _part4 = "It seems that the war has been lost\nand the support doesnt seem to be on its way.\n\nI am now out of supplies\n\nSoldiers and Prisoners are dropping dead of hunger\n\nI am famished as well\n\nSome of us need to EAT.\nAt least this way, some of us can still survive";
+	string _part4 = "It seems that the war has been lost\nand the support doesnt seem to be on its way.\n\nWith no supplies, my men are dropping dead of hunger\n\nThey are willing to eat anything, or anyone...\n\nAt least this way, some of us can still survive";
 	string _part5 = "I hear that a rescue team is on the way\nbut what happened in the prison must never be heard of\n\nBurn the whole facility, all of them...";
 	string _part6 = "I stand trial for my war crimes\n\nand I am relieved as my involvement in the war and crimes have been determined to be insufficient for punishment\n";
 	string _part7 = "Filled with guilt.\nI live in denial of what happened back in the prison\n\nI decide to build a puppet theater";
