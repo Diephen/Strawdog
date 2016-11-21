@@ -81,7 +81,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Act2_GuardWalkedUpStairsEvent>(LoadAct2Patrol);
 		Events.G.AddListener<Act2_GuardWalkedDownStairsEvent>(LoadAct2Patrol_down);
 
-		Events.G.AddListener<SleepInCellEvent>(LoadAct3_No);
+		Events.G.AddListener<PrisonerSleepEvent>(LoadAct3_No);
 		Events.G.AddListener<PrisonerWentBack>(LoadWentBack);
 		Events.G.AddListener<GuardSleepEvent>(LoadGuardSleep);
 		Events.G.AddListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
@@ -139,7 +139,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Act2_GuardWalkedUpStairsEvent>(LoadAct2Patrol);
 		Events.G.RemoveListener<Act2_GuardWalkedDownStairsEvent>(LoadAct2Patrol_down);
 
-		Events.G.RemoveListener<SleepInCellEvent>(LoadAct3_No);
+		Events.G.RemoveListener<PrisonerSleepEvent>(LoadAct3_No);
 		Events.G.RemoveListener<PrisonerWentBack>(LoadWentBack);
 		Events.G.RemoveListener<GuardSleepEvent>(LoadGuardSleep);
 		Events.G.RemoveListener<PrisonerFoundBombEvent>(LoadAct3_Yes);
@@ -229,10 +229,10 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_GDown, 2f));
 	}
 
-	void LoadAct3_No(SleepInCellEvent e){
+	void LoadAct3_No(PrisonerSleepEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 3f, "VoiceOver/05_Bed"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 2f, "VoiceOver/05_Bed"));
 	}
 
 	void LoadWentBack(PrisonerWentBack e){

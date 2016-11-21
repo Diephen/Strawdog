@@ -54,6 +54,17 @@ public class LeftCellUnlockedEvent : GameEvent {
 public class SleepInCellEvent : GameEvent {
 }
 
+public class PrisonerSleepEvent:GameEvent{
+	
+}
+public class DragPrisonerInJail:GameEvent{
+	
+}
+
+public class CallGuardInCell:GameEvent{
+	
+}
+
 public class PrisonerFoundBombEvent : GameEvent {
 }
 

@@ -37,12 +37,14 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	{
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<SleepInCellEvent> (SleepInCell);
+		Events.G.AddListener<DragPrisonerInJail> (OnDragged);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<SleepInCellEvent> (SleepInCell);
+		Events.G.RemoveListener<DragPrisonerInJail> (OnDragged);
 	}
 
 //	void OnGuardEnterCell (GuardEnteringCellEvent e)
@@ -66,6 +68,7 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	{
 		print ("enable prisoner");
 		m_Anim.Play ("p-jc-GetUp");
+
 		// collider fix 
 		if(m_StopLeftForGuard!= null){
 			m_StopLeftForGuard.enabled = false;
@@ -78,7 +81,16 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 
 	}
 
+	void OnDragged(DragPrisonerInJail e){
+		m_Anim.Play ("p-jc-DragUp");
+	}
+
+	void OnCallGuard(){
+		Events.G.Raise (new CallGuardInCell ());
+	}
+
 	void SleepInCell(SleepInCellEvent e){
+		_prisonerPuppetControl.DisableKeyInput ();
 		transform.position = m_SleepPos.position;
 		m_AnimCtrl.SetAnimation(true);
 		m_Anim.Play("p-jc-Sleep");
