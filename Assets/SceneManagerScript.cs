@@ -289,7 +289,6 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadPlantBomb(TriggerPlantBombEvent e){
-		GameStateManager._acquiredStates [5] = true;
 		StartCoroutine(ChangeLevel(8, 1f));
 	}
 
@@ -308,6 +307,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
+		GameStateManager._acquiredStates [5] = true;
 		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Bomb, 1f));
 	}
 
