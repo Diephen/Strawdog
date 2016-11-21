@@ -28,7 +28,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _walkOff = false;
 	bool _bombGiven = false;
 	Timer _walkOffTimer = new Timer (1.0f);
-	Timer _offsetTimer = new Timer (0.3f);
+	Timer _offsetTimer = new Timer (0.5f);
 	Camera _mainCam;
 
 	[SerializeField] Renderer _stairRenderer;
@@ -52,6 +52,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 
 	[SerializeField] FencePanel _fencePanel;
 	bool _answer = false;
+	bool _solved = false;
 
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
@@ -68,6 +69,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
+		Debug.Log (_answer);
 		if (Input.GetKeyDown (_guardKeyCodes [3])) {
 			if (_isStairs) {
 				_guardPuppetController.StopWalkAudio ();
@@ -189,6 +191,9 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		}
 		else if (other.name == "BombArea") {
 			_isBombArea = true;
+			if (!_solved) {
+				_fencePanel.FadeInPanel ();
+			}
 		}
 	}
 
@@ -198,6 +203,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			_answer = false;
 			_fencePanel.GlowFail ();
 			_isBombArea = false;
+			_fencePanel.FadePanel ();
 		} else if (other.tag == "Stairs") {
 			_isStairs = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -261,7 +267,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void BombDetection(){
-		if (_isBombArea) {
+		if (_isBombArea && !_solved) {
 			if (_waveCnt == 0) {
 				if (Input.GetKeyDown (_guardKeyCodes [0])) {
 					_waveCnt = 1;
@@ -320,7 +326,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 					if (_answer == true) {
 						_bombScript.ThrowBomb ();
 						_bombGiven = true;
-//						_fencePanel.FadePanel ();
+						_fencePanel.GlowSuccess ();
+						_solved = true;
 					}
 					else {
 						_waveCnt = 4;
@@ -330,7 +337,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 				else if (Input.anyKeyDown) {
 					_waveCnt = 4;
 					_fencePanel.Glow (3);
-					_bombScript.ThrowBomb ();
 					_audioSource.pitch = 1f;
 					_audioSource.Play ();
 					_answer = false;
