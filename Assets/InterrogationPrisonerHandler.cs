@@ -145,7 +145,7 @@ public class InterrogationPrisonerHandler : MonoBehaviour {
 		} else {
 			m_NoteTimer.Reset();
 		}
-		m_IntrProgress.IncTime ((m_UnClockSymbolCount+1) * m_NoteTimer.CooldownTime + m_NoteTimer.TimePassed);
+		m_IntrProgress.IncTime ((m_UnClockSymbolCount + 1) * m_NoteTimer.CooldownTime + m_NoteTimer.TimePassed);
 	}
 
 	public void StopReading(){
