@@ -4,6 +4,7 @@ using System.Collections;
 public class PrisonerEncounterHandle : MonoBehaviour {
 	GameObject[] m_PWhiteBase;
 	GameObject[] m_GWhiteBase;
+	SpriteRenderer[] m_Sprites;
 	[SerializeField] float m_Speed;
 	[SerializeField] Color m_StartColor;
 	[SerializeField] Color m_EndColor;
@@ -91,6 +92,7 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		DimPuppet ();
+		m_Sprites = GetComponentsInChildren<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -193,6 +195,12 @@ public class PrisonerEncounterHandle : MonoBehaviour {
 			npos.x = m_HugPos.position.x;
 		}
 
+	}
+
+	void InArm(){
+		foreach (SpriteRenderer spr in m_Sprites) {
+			spr.sortingOrder += 7;
+		}
 	}
 
 
