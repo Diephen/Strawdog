@@ -275,6 +275,8 @@ public class StopSecretExitEvent: GameEvent{
 public class StartAct5Event: GameEvent {
 }
 
+public class StartCreditsEvent: GameEvent {
+}
 
 /* Key Events */
 public class PickUpPressedEvent: GameEvent {

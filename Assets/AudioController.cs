@@ -437,6 +437,16 @@ public class AudioController : MonoBehaviour {
 			_musicSource2.loop = true;
 			_musicOn2 = true;
 		}
+		else if (_currentSceneIndex == 24) {
+			_musicOffTimer.Reset ();
+			_soundOff1 = true;
+			_soundOff2 = true;
+			_soundOff3 = true;
+			_soundOff4 = true;
+			_musicOff1 = true;
+			_musicOff2 = true;
+			_musicOff3 = true;
+		}
 	}
 
 
