@@ -12028,10 +12028,10 @@ MonoBehaviour:
   - {fileID: 272128120}
   - {fileID: 866109890}
   _spriteArray:
-  - {fileID: 21300000, guid: 5ba7079da53ed4f338727be7d3594ed4, type: 3}
-  - {fileID: 21300000, guid: 7c6175595dc56449297286076c049247, type: 3}
-  - {fileID: 21300000, guid: 5ba7079da53ed4f338727be7d3594ed4, type: 3}
-  - {fileID: 21300000, guid: bb2f2444d741245a4ab305816338e862, type: 3}
+  - {fileID: 21300000, guid: e41aed6fc46cd4f2ba4894af22e35957, type: 3}
+  - {fileID: 21300000, guid: c11d5c952eaaf4b2f86559ca8851f2ee, type: 3}
+  - {fileID: 21300000, guid: e41aed6fc46cd4f2ba4894af22e35957, type: 3}
+  - {fileID: 21300000, guid: ec64896ca2b2b4c0c9bd59f4a5e0688a, type: 3}
   _noGlow: {fileID: 21300000, guid: acd88f35d44f84f20a355364eaf326a8, type: 3}
   _glow: {fileID: 21300000, guid: 908c749c141474c56915fbdeeb167ed4, type: 3}
 --- !u!4 &596326238
@@ -22612,7 +22612,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1291722797
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a7143473fe41748008a330598af0ef58, type: 3}
   m_Color: {r: 0.48620692, g: 0.48620692, b: 0.48620692, a: 1}
@@ -28701,6 +28701,36 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.6842035
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011767974340, guid: daafccc68c48d4b17b0c4e0c3326ad47,
+        type: 2}
+      propertyPath: _spriteArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: ec64896ca2b2b4c0c9bd59f4a5e0688a,
+        type: 3}
+    - target: {fileID: 114000011767974340, guid: daafccc68c48d4b17b0c4e0c3326ad47,
+        type: 2}
+      propertyPath: _spriteArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: e41aed6fc46cd4f2ba4894af22e35957,
+        type: 3}
+    - target: {fileID: 114000011767974340, guid: daafccc68c48d4b17b0c4e0c3326ad47,
+        type: 2}
+      propertyPath: _spriteArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: c11d5c952eaaf4b2f86559ca8851f2ee,
+        type: 3}
+    - target: {fileID: 114000011767974340, guid: daafccc68c48d4b17b0c4e0c3326ad47,
+        type: 2}
+      propertyPath: _spriteArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c1305d0ecfbd4c71934ef39a30c43c4,
+        type: 3}
+    - target: {fileID: 114000011767974340, guid: daafccc68c48d4b17b0c4e0c3326ad47,
+        type: 2}
+      propertyPath: _spriteArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: c11d5c952eaaf4b2f86559ca8851f2ee,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: daafccc68c48d4b17b0c4e0c3326ad47, type: 2}
   m_IsPrefabParent: 0

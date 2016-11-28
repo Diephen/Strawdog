@@ -51,7 +51,12 @@ public class InteractionProgress : MonoBehaviour {
 	}
 		
 	public void IncTime(float time){
-		m_TimePassed = time;
+		if (time <= 0.05f && time > 0f) {
+			time = 0.05f;
+		} else {
+			m_TimePassed = time;
+		}
+
 		if (m_TimePassed >= m_TimeToComplete) {
 			isComplete = true;
 			print ("complete");	
