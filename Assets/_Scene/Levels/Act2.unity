@@ -3807,6 +3807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8f37399539f4894925934798e16041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SpawnPos: {fileID: 0}
+  m_WalkSpeed: 0
+  m_GunSpr: {fileID: 0}
 --- !u!95 &414417108
 Animator:
   serializedVersion: 3
@@ -11355,6 +11358,7 @@ MonoBehaviour:
   _groundCollider1: {fileID: 0}
   _groundCollider2: {fileID: 0}
   _leftFlap: {fileID: 0}
+  _fencePanel: {fileID: 0}
 --- !u!1 &1711782915
 GameObject:
   m_ObjectHideFlags: 0

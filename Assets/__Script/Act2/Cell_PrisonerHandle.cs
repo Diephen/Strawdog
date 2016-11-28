@@ -15,6 +15,7 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 
 	[SerializeField] Transform m_SleepPos;
 	bool m_IsCaught = false;
+	bool m_IsSleep = false;
 
 //	bool m_isResisting = false;
 //	bool m_isUnderTorture = false;
@@ -95,10 +96,13 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	}
 
 	void SleepInCell(SleepInCellEvent e){
-		_prisonerPuppetControl.DisableKeyInput ();
-		transform.position = m_SleepPos.position;
-		m_AnimCtrl.SetAnimation(true);
-		m_Anim.Play("p-jc-Sleep");
+		if (!m_IsSleep) {
+			m_IsSleep = true;
+			_prisonerPuppetControl.DisableKeyInput ();
+			transform.position = m_SleepPos.position;
+			m_AnimCtrl.SetAnimation(true);
+			m_Anim.Play("p-jc-Sleep");
+		}
 	}
 
 	void OnEncounterSoldier(PrisonerEncounterSoldierExplore e){
