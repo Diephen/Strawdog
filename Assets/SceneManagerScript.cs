@@ -29,7 +29,8 @@ public class SceneManagerScript : MonoBehaviour {
 		TriggerWarning = 20,
 		Ending = 21,
 		Tutorial = 22,
-		Act5 = 23
+		Act5 = 23,
+		Credits = 24
 	};
 
 	// 0 : Killed at ditch
@@ -118,6 +119,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
 		Events.G.AddListener<StartAct5Event> (LoadAct5);
+		Events.G.AddListener<StartCreditsEvent> (LoadCredits);
 
 		SceneManager.sceneLoaded += OpenScreen;
 	}
@@ -176,6 +178,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<GuardExecutePrisoner> (LoadExecutionEndPrisonerDie);
 
 		Events.G.RemoveListener<StartAct5Event> (LoadAct5);
+		Events.G.RemoveListener<StartCreditsEvent> (LoadCredits);
 
 		SceneManager.sceneLoaded -= OpenScreen;
 	}
@@ -345,6 +348,10 @@ public class SceneManagerScript : MonoBehaviour {
 		
 	void LoadAct5(StartAct5Event e){
 		StartCoroutine(ChangeFade((int)SceneIndex.Act5, 5f));
+	}
+
+	void LoadCredits(StartCreditsEvent e){
+		StartCoroutine(ChangeFade((int)SceneIndex.Credits, 1f));
 	}
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){

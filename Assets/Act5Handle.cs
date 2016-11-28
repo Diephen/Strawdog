@@ -73,7 +73,7 @@ public class Act5Handle : MonoBehaviour {
 				_audioSource.Play ();
 			}
 			else if (cnt == 7) {
-				Events.G.Raise (new LoadVeryBeginningEvent ());
+				Events.G.Raise (new StartCreditsEvent ());
 			}
 		}
 	}
@@ -119,7 +119,12 @@ public class Act5Handle : MonoBehaviour {
 				_space.text = _next7;
 			}
 			_textOnTimer.Reset ();
-			_transition = false;
+			if (cnt == 8) {
+				_transition = true;
+			}
+			else {
+				_transition = false;
+			}
 			_trans2 = false;
 		}
 	}
