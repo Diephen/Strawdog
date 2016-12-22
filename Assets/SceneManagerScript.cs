@@ -3,35 +3,35 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using Giverspace;
 
-public class SceneManagerScript : MonoBehaviour {
+public enum SceneIndex {
+	Logo = 0, 
+	Act0 = 1, 
+	Act1 = 2,
+	Title = 3,
+	Act2 = 4,
+	Act2_PDown = 5,
+	Act2_Explore = 6,
+	Act2_GDown = 7,
+	Act2_Patrol = 8,
+	Act3_No = 9,
+	Act3_Yes = 10,
+	Act3_Plant_Cell = 11,
+	Act3_Plant_Cell_Again = 12,
+	Act3_Plant = 13,
+	Act3_Plant_Bomb = 14,
+	Act3_Plant_Done = 15,
+	Act4_1 = 16,
+	Act4_2 = 17,
+	Act4_2_Ditch = 18,
+	Act4_3_Encounter = 19,
+	TriggerWarning = 20,
+	Ending = 21,
+	Tutorial = 22,
+	Act5 = 23,
+	Credits = 24
+};
 
-	enum SceneIndex {
-		Logo = 0, 
-		Act0 = 1, 
-		Act1 = 2,
-		Title = 3,
-		Act2 = 4,
-		Act2_PDown = 5,
-		Act2_Explore = 6,
-		Act2_GDown = 7,
-		Act2_Patrol = 8,
-		Act3_No = 9,
-		Act3_Yes = 10,
-		Act3_Plant_Cell = 11,
-		Act3_Plant_Cell_Again = 12,
-		Act3_Plant = 13,
-		Act3_Plant_Bomb = 14,
-		Act3_Plant_Done = 15,
-		Act4_1 = 16,
-		Act4_2 = 17,
-		Act4_2_Ditch = 18,
-		Act4_3_Encounter = 19,
-		TriggerWarning = 20,
-		Ending = 21,
-		Tutorial = 22,
-		Act5 = 23,
-		Credits = 24
-	};
+public class SceneManagerScript : MonoBehaviour {
 
 	// 0 : Killed at ditch
 	// 1 : Prisoner Escapes
@@ -361,6 +361,8 @@ public class SceneManagerScript : MonoBehaviour {
 		else if (scene.buildIndex == (int)SceneIndex.Ending) {
 		}
 		else if (scene.name == "TitleCard") {
+		}
+		else if (scene.name == "MainMenu") {
 		}
 		else if (scene.buildIndex == (int)SceneIndex.Act5) {
 		}

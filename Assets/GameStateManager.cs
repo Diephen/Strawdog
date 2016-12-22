@@ -16,6 +16,10 @@ public class GameStateManager : MonoBehaviour {
 	// 4 : Happy Ending?
 	// 5 : Plant Bomb
 	// 6 : Final Ending
+	SceneIndex _prevScene;
+	SceneIndex _currScene;
+	CharacterIdentity _currChar;
+
 
 	void Awake () {
 		if (gameStateManager == null) {
@@ -32,7 +36,11 @@ public class GameStateManager : MonoBehaviour {
 		FileStream file = File.Create (Application.persistentDataPath + "/save.dat");
 	
 		SaveData data = new SaveData ();
+		//storing data
 		data.endingSave = _acquiredStates;
+		data.prevScene = _prevScene;
+		data.currScene = _currScene;
+		data.currChar = _currChar;
 
 		bf.Serialize (file, data);
 		file.Close();
@@ -45,9 +53,19 @@ public class GameStateManager : MonoBehaviour {
 			FileStream file = File.Open (Application.persistentDataPath + "/save.dat", FileMode.Open);
 			SaveData data = (SaveData)bf.Deserialize (file);
 			file.Close ();
-
+			//setting data value
 			_acquiredStates = data.endingSave;
+			_prevScene = data.prevScene;
+			_currScene = data.currScene;
+			_currChar = data.currChar;
 		}
+	}
+
+
+	void OnEnable(){
+	}
+
+	void OnDisable(){
 	}
 }
 
@@ -56,4 +74,7 @@ public class GameStateManager : MonoBehaviour {
 class SaveData
 {
 	public bool[] endingSave;
+	public SceneIndex prevScene;
+	public SceneIndex currScene;
+	public CharacterIdentity currChar;
 }
