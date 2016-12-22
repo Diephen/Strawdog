@@ -35,14 +35,14 @@ public class GameStateManager : MonoBehaviour {
 		data.endingSave = _acquiredStates;
 
 		bf.Serialize (file, data);
-		file.Close;
+		file.Close();
 	}
 
 	public void Load(){
 		if (File.Exists (Application.persistentDataPath + "/save.dat")) {
 			
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/save.dat");
+			FileStream file = File.Open (Application.persistentDataPath + "/save.dat", FileMode.Open);
 			SaveData data = (SaveData)bf.Deserialize (file);
 			file.Close ();
 
