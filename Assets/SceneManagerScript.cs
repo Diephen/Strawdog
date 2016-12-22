@@ -360,6 +360,8 @@ public class SceneManagerScript : MonoBehaviour {
 		//Capture all ending Scenes
 		else if (scene.buildIndex == (int)SceneIndex.Ending) {
 		}
+		else if (scene.name == "TitleCard") {
+		}
 		else if (scene.buildIndex == (int)SceneIndex.Act5) {
 		}
 		else {
