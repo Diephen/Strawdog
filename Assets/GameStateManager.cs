@@ -69,6 +69,7 @@ public class GameStateManager : MonoBehaviour {
 		data.prevScene = _prevScene;
 		data.currScene = _currScene;
 		data.currChar = _currChar;
+		data.playthroughCnt = _playthroughCnt;
 
 		bf.Serialize (file, data);
 		file.Close();
@@ -86,6 +87,7 @@ public class GameStateManager : MonoBehaviour {
 			_prevScene = data.prevScene;
 			_currScene = data.currScene;
 			_currChar = data.currChar;
+			_playthroughCnt = data.playthroughCnt;
 		}
 	}
 
@@ -111,4 +113,5 @@ class SaveData
 	public SceneIndex prevScene;
 	public SceneIndex currScene;
 	public CharacterIdentity currChar;
+	public int playthroughCnt;
 }
