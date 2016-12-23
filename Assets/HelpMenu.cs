@@ -6,6 +6,7 @@ public class HelpMenu : MonoBehaviour {
 	[SerializeField] GameObject _controls;
 
 	static HelpMenu _helpInstance = null;
+	KeyCode _helpKey;
 
 	void Awake() {
 		if (_helpInstance) {
@@ -17,8 +18,12 @@ public class HelpMenu : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		_helpKey = GameStateManager.gameStateManager._helpKey;
+	}
+
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.H)) {
+		if (Input.GetKeyDown (_helpKey)) {
 			_controls.SetActive (!_controls.activeSelf);
 		}
 	}

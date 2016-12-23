@@ -6,7 +6,7 @@ public enum CharacterIdentity {Guard, Prisoner, Both};
 
 public class PuppetControl : MonoBehaviour {
 	[SerializeField] CharacterIdentity _whoAmI;
-
+	[SerializeField] bool m_flip;
 	[SerializeField] Animator m_MouthAnim;
 	[SerializeField] GameObject[] m_Finger = new GameObject[3];
 	//add animators 
@@ -69,13 +69,37 @@ public class PuppetControl : MonoBehaviour {
 
 
 	void Awake(){
+
 		_DHoldTimer = new Timer (0.3f);
 	}
 
 	// Use this for initialization
 	void Start (){
 		StringCalculation ();
-
+		if (_whoAmI == CharacterIdentity.Guard) {
+			if (m_flip) {
+				m_ListenKey [2] = GameStateManager.gameStateManager._gLeftKey;
+				m_ListenKey [0] = GameStateManager.gameStateManager._gRightKey;
+			}
+			else {
+				m_ListenKey [0] = GameStateManager.gameStateManager._gLeftKey;
+				m_ListenKey [2] = GameStateManager.gameStateManager._gRightKey;
+			}
+			m_ListenKey [3] = GameStateManager.gameStateManager._gDownKey;
+			m_ListenKey [1] = GameStateManager.gameStateManager._gUpKey;
+		}
+		else if (_whoAmI == CharacterIdentity.Prisoner) {
+			if (m_flip) {
+				m_ListenKey [0] = GameStateManager.gameStateManager._pRightKey;
+				m_ListenKey [2] = GameStateManager.gameStateManager._pLeftKey;
+			}
+			else {
+				m_ListenKey [2] = GameStateManager.gameStateManager._pRightKey;
+				m_ListenKey [0] = GameStateManager.gameStateManager._pLeftKey;
+			}
+			m_ListenKey [3] = GameStateManager.gameStateManager._pDownKey;
+			m_ListenKey [1] = GameStateManager.gameStateManager._pUpKey;
+		}
 	}
 
 

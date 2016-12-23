@@ -15086,6 +15086,11 @@ Prefab:
       propertyPath: m_ListenKey.Array.data[2]
       value: 276
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011073985580, guid: 3a0b2f253f4c84a5bab522fbd33398c2,
+        type: 2}
+      propertyPath: m_flip
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000010965402698, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
@@ -18196,6 +18201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 114806624}
   m_Finger:
   - {fileID: 383068589}
@@ -21378,6 +21384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 940521928}
   m_Finger:
   - {fileID: 1901902341}
@@ -21947,6 +21954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 1469068015}
   m_Finger:
   - {fileID: 1138715433}
@@ -24289,6 +24297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 2094835548}
   m_Finger:
   - {fileID: 302609693}

@@ -16,9 +16,24 @@ public class GameStateManager : MonoBehaviour {
 	// 4 : Happy Ending?
 	// 5 : Plant Bomb
 	// 6 : Final Ending
-	SceneIndex _prevScene;
-	SceneIndex _currScene;
-	CharacterIdentity _currChar;
+	public SceneIndex _prevScene { get; set; }
+	public SceneIndex _currScene { get; set; }
+	public CharacterIdentity _currChar { get; set; }
+	public int _playthroughCnt { get; set; }
+
+	//Key Codes
+	public KeyCode _gLeftKey { get; set; }
+	public KeyCode _gUpKey { get; set; }
+	public KeyCode _gDownKey { get; set; }
+	public KeyCode _gRightKey { get; set; }
+
+	public KeyCode _pLeftKey { get; set; }
+	public KeyCode _pUpKey { get; set; }
+	public KeyCode _pDownKey { get; set; }
+	public KeyCode _pRightKey { get; set; }
+
+	public KeyCode _helpKey { get; set; }
+
 
 
 	void Awake () {
@@ -29,6 +44,19 @@ public class GameStateManager : MonoBehaviour {
 		else if (gameStateManager != this) {
 			Destroy (gameObject);
 		}
+
+		_gLeftKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gLeftKey", "A"));
+		_gDownKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gDownKey", "S"));
+		_gRightKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gRightKey", "D"));
+		_gUpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gUpKey", "W"));
+
+		_pLeftKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("pLeftKey", "LeftArrow"));
+		_pDownKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("pDownKey", "DownArrow"));
+		_pRightKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("pRightKey", "RightArrow"));
+		_pUpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("pUpKey", "UpArrow"));
+
+		_helpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("helpKey", "H"));
+
 	}
 		
 	public void Save () {
@@ -58,6 +86,12 @@ public class GameStateManager : MonoBehaviour {
 			_prevScene = data.prevScene;
 			_currScene = data.currScene;
 			_currChar = data.currChar;
+		}
+	}
+
+	public void Delete(){
+		if (File.Exists (Application.persistentDataPath + "/save.dat")) {
+			File.Delete (Application.persistentDataPath + "/save.dat");
 		}
 	}
 
