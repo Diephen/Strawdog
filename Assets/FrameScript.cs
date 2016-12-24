@@ -4,8 +4,10 @@ using System.Collections;
 public class FrameScript : MonoBehaviour {
 	[SerializeField] GameObject _leftFlap;
 	[SerializeField] GameObject _rightFlap;
-	[SerializeField] MinMax _leftFlapRange = new MinMax(-12.11f , -4.61f);
-	[SerializeField] MinMax _rightFlapRange = new MinMax(4.46f , 11.96f);
+//	[SerializeField] MinMax _leftFlapRange = new MinMax(-12.11f , -4.61f);
+//	[SerializeField] MinMax _rightFlapRange = new MinMax(4.46f , 11.96f);
+	[SerializeField] MinMax _leftFlapRange = new MinMax(-14f , -4.61f);
+	[SerializeField] MinMax _rightFlapRange = new MinMax(4.46f , 14f);
 	[SerializeField] MinMax _colorFlapRange = new MinMax(0.5f , 1.0f);
 	Vector3 _leftTempPos;
 	Vector3 _rightTempPos;
