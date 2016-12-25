@@ -80,7 +80,7 @@ public class SceneManagerScript : MonoBehaviour {
 		//Refactor Line
 
 		Events.G.AddListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
-		Events.G.AddListener<TutorialEndEvent>(LoadAct0);
+		Events.G.AddListener<Load1_1Event>(Load1_1);
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.AddListener<Act1EndedEvent>(LoadTitle);
@@ -142,7 +142,7 @@ public class SceneManagerScript : MonoBehaviour {
 		//Refactor Line
 
 		Events.G.RemoveListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
-		Events.G.RemoveListener<TutorialEndEvent>(LoadAct0);
+		Events.G.RemoveListener<Load1_1Event>(Load1_1);
 		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
 
 		Events.G.RemoveListener<Act1EndedEvent>(LoadTitle);
@@ -205,8 +205,9 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine (ChangeFade ((int)SceneIndex.A0_4_MainMenu, 2f));
 	}
 
-	void LoadAct0(TutorialEndEvent e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 3f));
+	void Load1_1(Load1_1Event e){
+		Debug.Log ("Starting");
+		StartCoroutine(ChangeFade((int)SceneIndex.A1_1_Intro, 3f));
 	}
 
 	void LoadTutorial(LoadTutorialEvent e){
@@ -373,6 +374,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
+		_once = false;
 		if (scene.buildIndex == (int)SceneIndex.TriggerWarning) {
 		}
 		//Capture all ending Scenes
@@ -424,6 +426,7 @@ public class SceneManagerScript : MonoBehaviour {
 	IEnumerator ChangeFade(int index, float duration){
 		if (!_once) {
 			_once = true;
+			Debug.Log (index);
 			yield return new WaitForSeconds (duration);
 //			if (_frameScript != null) {
 //				_frameScript.CloseFlap ();

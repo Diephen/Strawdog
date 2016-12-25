@@ -194,7 +194,6 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	public void NewButton(){
-		Debug.Log ("Does this Fire?");
 		Events.G.Raise (new LoadTutorialEvent ());
 	}
 

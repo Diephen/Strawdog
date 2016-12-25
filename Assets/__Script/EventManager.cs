@@ -17,7 +17,7 @@ public class LoadMainMenuEvent: GameEvent{
 public class LoadTutorialEvent: GameEvent{
 }
 
-public class TutorialEndEvent: GameEvent{
+public class Load1_1Event: GameEvent{
 }
 
 public class Act0EndedEvent : GameEvent {
