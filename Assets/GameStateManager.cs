@@ -18,6 +18,7 @@ public class GameStateManager : MonoBehaviour {
 	// 6 : Final Ending
 	public SceneIndex _prevScene { get; set; }
 	public SceneIndex _currScene { get; set; }
+	public int _actTitleIndex { get; set; }
 	public CharacterIdentity _currChar { get; set; }
 	public int _playthroughCnt { get; set; }
 
@@ -69,6 +70,7 @@ public class GameStateManager : MonoBehaviour {
 		data.prevScene = _prevScene;
 		data.currScene = _currScene;
 		data.currChar = _currChar;
+		data.actTitleIndex = _actTitleIndex;
 		data.playthroughCnt = _playthroughCnt;
 
 		bf.Serialize (file, data);
@@ -87,6 +89,7 @@ public class GameStateManager : MonoBehaviour {
 			_prevScene = data.prevScene;
 			_currScene = data.currScene;
 			_currChar = data.currChar;
+			data.actTitleIndex = _actTitleIndex;
 			_playthroughCnt = data.playthroughCnt;
 		}
 	}
@@ -112,6 +115,7 @@ class SaveData
 	public bool[] endingSave;
 	public SceneIndex prevScene;
 	public SceneIndex currScene;
+	public int actTitleIndex;
 	public CharacterIdentity currChar;
 	public int playthroughCnt;
 }
