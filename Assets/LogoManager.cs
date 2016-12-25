@@ -23,6 +23,6 @@ public class LogoManager : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		float fadeTime = _fade.BeginFade (1);
 		yield return new WaitForSeconds(fadeTime);
-		SceneManager.LoadScene ("TriggerWarning");
+		SceneManager.LoadScene ("0-2_TriggerWarning");
 	}
 }

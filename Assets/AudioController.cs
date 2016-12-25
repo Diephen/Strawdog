@@ -84,13 +84,13 @@ public class AudioController : MonoBehaviour {
 
 
 
-		if (_currentSceneIndex == 1) {
+		if (_currentSceneIndex == (int)SceneIndex.A1_1_Intro) {
 			if (!_musicSource1.isPlaying && !_musicSource2.isPlaying) {
 				_musicSource2.loop = true;
 				_musicSource2.Play ();
 			}
 		}
-		else if (_currentSceneIndex == 20) {
+		else if (_currentSceneIndex == (int)SceneIndex.A0_2_TriggerWarning) {
 			if(Input.GetKeyDown(KeyCode.Space) && !_soundSource1.isPlaying){
 				_soundOffTimer.Reset ();
 				_soundOff3 = true;
@@ -292,7 +292,7 @@ public class AudioController : MonoBehaviour {
 
 	void NewScene(Scene previousScene, Scene newScene){
 		_currentSceneIndex = newScene.buildIndex;
-		if (_currentSceneIndex == 0) {
+		if (_currentSceneIndex == (int)SceneIndex.A0_1_Logo) {
 			_musicSource1.Stop ();
 			_musicSource2.Stop ();
 			_musicSource3.Stop ();
@@ -309,17 +309,17 @@ public class AudioController : MonoBehaviour {
 			_soundSource4.Play ();
 			_soundSource3.Play ();
 		}
-		else if (_currentSceneIndex == 20) {
+		else if (_currentSceneIndex == (int)SceneIndex.A0_2_TriggerWarning) {
 			_soundSource1.clip = Resources.Load<AudioClip> ("Sounds/Opening/PickUpNeedle");
 			_soundSource1.loop = false;
 		}
-		else if (_currentSceneIndex == 22) {
+		else if (_currentSceneIndex == (int)SceneIndex.A0_3_Tutorial) {
 			_musicSource2.volume = 0.6f;
 			_musicSource2.clip = _windHowl;
 			_musicSource2.loop = true;
 			_musicSource2.Play ();
 		}
-		else if (_currentSceneIndex == 1) {
+		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Intro) {
 			_soundSource2_Light.Stop ();
 			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Piece_No1");
 			_musicSource2.clip = _loopClip;
@@ -329,7 +329,7 @@ public class AudioController : MonoBehaviour {
 			_musicSource2.volume = 1.0f;
 			_musicSource1.Play ();
 		}
-		else if (_currentSceneIndex == 2) {
+		else if (_currentSceneIndex == (int)SceneIndex.Act1) {
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicOnTimer.Reset ();
 			_musicOffTimer.Reset ();
@@ -350,22 +350,22 @@ public class AudioController : MonoBehaviour {
 			}
 			_musicOff3 = true;
 		}
-		else if (_currentSceneIndex == 3) {
-			//Reinitializing volume change variables
-			_musicOnTimer.Reset ();
-			_musicOffTimer.Reset ();
-			_tempAudioSource = null;
-			_goalVolume = 9999.9f;
-			_soundSource1.Stop ();
-			_soundSource2_Light.Stop ();
-			_soundSource3.Stop ();
-			_soundSource4.Stop ();
-
-			_musicOff2 = true;
-			_musicOff1 = true;
-			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Chimes");
-			_musicOn3 = true;
-		}
+//		else if (_currentSceneIndex == 3) {
+//			//Reinitializing volume change variables
+//			_musicOnTimer.Reset ();
+//			_musicOffTimer.Reset ();
+//			_tempAudioSource = null;
+//			_goalVolume = 9999.9f;
+//			_soundSource1.Stop ();
+//			_soundSource2_Light.Stop ();
+//			_soundSource3.Stop ();
+//			_soundSource4.Stop ();
+//
+//			_musicOff2 = true;
+//			_musicOff1 = true;
+//			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Chimes");
+//			_musicOn3 = true;
+//		}
 		else if (_currentSceneIndex == 4) {
 			_musicOnTimer.Reset ();
 			_musicSource2.clip = _loopClip;

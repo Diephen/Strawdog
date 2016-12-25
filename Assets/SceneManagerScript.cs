@@ -4,12 +4,19 @@ using UnityEngine.SceneManagement;
 using Giverspace;
 
 public enum SceneIndex {
-	Logo = 0, 
-	Act0 = 1, 
-	Act1 = 2,
-	Title = 3,
-	Act2 = 4,
-	Act2_PDown = 5,
+	A0_1_Logo = 0,
+	A0_2_TriggerWarning = 1,
+	A0_3_Tutorial = 2,
+	A0_4_MainMenu = 3,
+	A1_1_Intro = 4,
+
+
+	Logo = 210, 
+	Act0 = 211, 
+	Act1 = 212,
+	Title = 213,
+	Act2 = 214,
+	Act2_PDown = 215,
 	Act2_Explore = 6,
 	Act2_GDown = 7,
 	Act2_Patrol = 8,
@@ -68,6 +75,10 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		Events.G.AddListener<LoadMainMenuEvent>(LoadMainMenu);
+		Events.G.AddListener<LoadTutorialEvent>(LoadTutorial);
+		//Refactor Line
+
 		Events.G.AddListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
 		Events.G.AddListener<TutorialEndEvent>(LoadAct0);
 		Events.G.AddListener<Act0EndedEvent>(LoadVertical);
@@ -107,7 +118,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.AddListener<Guard_EncounterEvent>(LoadEncounter2);
 
-		Events.G.AddListener<TriggerWarningEndEvent>(LoadTutorial);
+
 
 		Events.G.AddListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
 		Events.G.AddListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
@@ -126,7 +137,10 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OnDisable ()
 	{
-		
+		Events.G.RemoveListener<LoadMainMenuEvent>(LoadMainMenu);
+		Events.G.RemoveListener<LoadTutorialEvent>(LoadTutorial);
+		//Refactor Line
+
 		Events.G.RemoveListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
 		Events.G.RemoveListener<TutorialEndEvent>(LoadAct0);
 		Events.G.RemoveListener<Act0EndedEvent>(LoadVertical);
@@ -166,7 +180,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<Prisoner_EncounterEvent>(LoadEncounter1);
 		Events.G.RemoveListener<Guard_EncounterEvent>(LoadEncounter2);
 
-		Events.G.RemoveListener<TriggerWarningEndEvent>(LoadTutorial);
+
 
 		Events.G.RemoveListener<RunAloneEndingEvent>(LoadEnd_RunAlone);
 		Events.G.RemoveListener<RunTogetherEndingEvent>(LoadEnd_RunTogether);
@@ -187,12 +201,16 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeFade((int)SceneIndex.Logo, 2f));
 	}
 
+	void LoadMainMenu(LoadMainMenuEvent e){
+		StartCoroutine (ChangeFade ((int)SceneIndex.A0_4_MainMenu, 2f));
+	}
+
 	void LoadAct0(TutorialEndEvent e){
 		StartCoroutine(ChangeFade((int)SceneIndex.Act0, 3f));
 	}
 
-	void LoadTutorial(TriggerWarningEndEvent e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Tutorial, 0.5f));
+	void LoadTutorial(LoadTutorialEvent e){
+		StartCoroutine(ChangeFade((int)SceneIndex.A0_3_Tutorial, 0.5f));
 	}
 
 	void LoadVertical(Act0EndedEvent e){

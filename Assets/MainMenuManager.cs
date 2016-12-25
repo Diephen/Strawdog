@@ -193,8 +193,9 @@ public class MainMenuManager : MonoBehaviour {
 		_languagesDropdown.onValueChanged.AddListener (delegate {OnLanguagesDropdown ();});
 	}
 
-	public void NewButton(string newGameLevel){
-		Debug.Log ("New Button Pressed");
+	public void NewButton(){
+		Debug.Log ("Does this Fire?");
+		Events.G.Raise (new LoadTutorialEvent ());
 	}
 
 	public void ContinueButton(){
@@ -255,42 +256,42 @@ public class MainMenuManager : MonoBehaviour {
 		for(int i = 0; i < menuPanel.childCount; i++)
 		{
 			if (menuPanel.GetChild (i).name == "GLeftKey") {
-				GameStateManager.gameStateManager._gLeftKey = KeyCode.A; //Set forward to new keycode
+				GameStateManager.gameStateManager._gLeftKey = KeyCode.LeftArrow; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._gLeftKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("gLeftKey", GameStateManager.gameStateManager._gLeftKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "GDownKey"){
-				GameStateManager.gameStateManager._gDownKey = KeyCode.S; //Set forward to new keycode
+				GameStateManager.gameStateManager._gDownKey = KeyCode.DownArrow; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._gDownKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("gDownKey", GameStateManager.gameStateManager._gDownKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "GRightKey"){
-				GameStateManager.gameStateManager._gRightKey = KeyCode.D; //Set forward to new keycode
+				GameStateManager.gameStateManager._gRightKey = KeyCode.RightArrow; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._gRightKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("gRightKey", GameStateManager.gameStateManager._gRightKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "GUpKey"){
-				GameStateManager.gameStateManager._gUpKey = KeyCode.W; //Set forward to new keycode
+				GameStateManager.gameStateManager._gUpKey = KeyCode.UpArrow; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._gUpKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("gUpKey", GameStateManager.gameStateManager._gUpKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "PLeftKey"){
-				GameStateManager.gameStateManager._pLeftKey = KeyCode.LeftArrow; //Set forward to new keycode
+				GameStateManager.gameStateManager._pLeftKey = KeyCode.A; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._pLeftKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("pLeftKey", GameStateManager.gameStateManager._pLeftKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "PDownKey"){
-				GameStateManager.gameStateManager._pDownKey = KeyCode.DownArrow; //Set forward to new keycode
+				GameStateManager.gameStateManager._pDownKey = KeyCode.S; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._pDownKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("pDownKey", GameStateManager.gameStateManager._pDownKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "PRightKey"){
-				GameStateManager.gameStateManager._pRightKey = KeyCode.RightArrow; //Set forward to new keycode
+				GameStateManager.gameStateManager._pRightKey = KeyCode.D; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._pRightKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("pRightKey", GameStateManager.gameStateManager._pRightKey.ToString()); //save new key to PlayerPrefs
 			}
 			else if(menuPanel.GetChild(i).name == "PUpKey"){
-				GameStateManager.gameStateManager._pUpKey = KeyCode.UpArrow; //Set forward to new keycode
+				GameStateManager.gameStateManager._pUpKey = KeyCode.W; //Set forward to new keycode
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._pUpKey.ToString(); //Set button text to new key
 				PlayerPrefs.SetString("pUpKey", GameStateManager.gameStateManager._pUpKey.ToString()); //save new key to PlayerPrefs
 			}

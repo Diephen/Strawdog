@@ -11,7 +11,10 @@ using System.Collections;
 public class LoadVeryBeginningEvent: GameEvent{
 }
 
-public class TriggerWarningEndEvent: GameEvent{
+public class LoadMainMenuEvent: GameEvent{
+}
+
+public class LoadTutorialEvent: GameEvent{
 }
 
 public class TutorialEndEvent: GameEvent{

@@ -18,7 +18,7 @@ public class Fading : MonoBehaviour {
 	}
 
 	void Start(){
-		Cursor.visible = false;
+//		Cursor.visible = false;
 	}
 	void OnGUI() {
 		//fade out/ in the alpha value using a direction, a speed and TIme.deltattime to conver the operation to seconds
