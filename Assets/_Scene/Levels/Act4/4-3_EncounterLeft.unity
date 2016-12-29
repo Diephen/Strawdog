@@ -1273,6 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 2072029772}
   m_Finger:
   - {fileID: 2058809150}
@@ -7570,6 +7571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 1
+  m_flip: 0
   m_MouthAnim: {fileID: 503784612}
   m_Finger:
   - {fileID: 196725925}
@@ -7596,7 +7598,7 @@ MonoBehaviour:
   - 2
   - -1
   - 2
-  m_Continuous: 010001
+  m_Continuous: 000001
   m_MoveSpeed: 3
   _spotlight: {fileID: 420098904}
   _lightControl: {fileID: 320693799}
@@ -16498,33 +16500,6 @@ Prefab:
     - target: {fileID: 4000012217008788, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010210851682, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61000011868901574, guid: d0965eff08aed44d889e8f4e130a0e80,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61000010715144298, guid: d0965eff08aed44d889e8f4e130a0e80,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013470222906, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011073817950, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013312234630, guid: d0965eff08aed44d889e8f4e130a0e80,
-        type: 2}
-      propertyPath: _disableGuard
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}

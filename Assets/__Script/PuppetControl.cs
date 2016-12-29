@@ -414,12 +414,12 @@ public class PuppetControl : MonoBehaviour {
 		else if (other.name == "STOPRight") {
 			_stateHandling [4] = false;
 		}
-		else if (other.name == "open-left") {
-			_stateHandling [3] = false;
-		}
-		else if (other.name == "open-right") {
-			_stateHandling [4] = false;
-		}
+//		else if (other.name == "open-left") {
+//			_stateHandling [3] = false;
+//		}
+//		else if (other.name == "open-right") {
+//			_stateHandling [4] = false;
+//		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
@@ -428,12 +428,12 @@ public class PuppetControl : MonoBehaviour {
 		} else if (other.name == "STOPRight") {
 			_stateHandling [4] = true;
 		}
-		else if (other.name == "open-left") {
-			_stateHandling [3] = true;
-		}
-		else if (other.name == "open-right") {
-			_stateHandling [4] = true;
-		}
+//		else if (other.name == "open-left") {
+//			_stateHandling [3] = true;
+//		}
+//		else if (other.name == "open-right") {
+//			_stateHandling [4] = true;
+//		}
 	}
 
 	public void DisableKeyInput(){

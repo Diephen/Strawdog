@@ -1273,6 +1273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 0
+  m_flip: 0
   m_MouthAnim: {fileID: 2072029772}
   m_Finger:
   - {fileID: 2058809150}
@@ -7570,6 +7571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 1
+  m_flip: 0
   m_MouthAnim: {fileID: 503784612}
   m_Finger:
   - {fileID: 196725925}
@@ -7596,7 +7598,7 @@ MonoBehaviour:
   - 2
   - -1
   - 2
-  m_Continuous: 010001
+  m_Continuous: 000001
   m_MoveSpeed: 3
   _spotlight: {fileID: 420098904}
   _lightControl: {fileID: 320693799}

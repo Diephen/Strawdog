@@ -62,6 +62,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010939151786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000010739345540}
+  - 61: {fileID: 61000010505468038}
+  m_Layer: 0
+  m_Name: leave-right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000011073817950
 GameObject:
   m_ObjectHideFlags: 1
@@ -89,6 +105,22 @@ GameObject:
   - 212: {fileID: 212000010890764724}
   m_Layer: 0
   m_Name: frame-down
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013161274890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011173887290}
+  - 61: {fileID: 61000012276036942}
+  m_Layer: 0
+  m_Name: leave-left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,6 +174,19 @@ Transform:
   - {fileID: 4000013108653518}
   m_Father: {fileID: 4000012217008788}
   m_RootOrder: 2
+--- !u!4 &4000010739345540
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010939151786}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 13, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012217008788}
+  m_RootOrder: 5
 --- !u!4 &4000011163477508
 Transform:
   m_ObjectHideFlags: 1
@@ -155,13 +200,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012877813696}
   m_RootOrder: 0
+--- !u!4 &4000011173887290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013161274890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012217008788}
+  m_RootOrder: 4
 --- !u!4 &4000012217008788
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010210851682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,6 +228,8 @@ Transform:
   - {fileID: 4000012877813696}
   - {fileID: 4000010539663390}
   - {fileID: 4000013058664480}
+  - {fileID: 4000011173887290}
+  - {fileID: 4000010739345540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000012877813696
@@ -225,6 +285,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012217008788}
   m_RootOrder: 0
+--- !u!61 &61000010505468038
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010939151786}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 10}
 --- !u!61 &61000010715144298
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -253,6 +327,20 @@ BoxCollider2D:
   m_Offset: {x: -3.1743653, y: 0}
   serializedVersion: 2
   m_Size: {x: 8.348729, y: 14}
+--- !u!61 &61000012276036942
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013161274890}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 10}
 --- !u!82 &82000012695120148
 AudioSource:
   m_ObjectHideFlags: 1
@@ -377,7 +465,7 @@ MonoBehaviour:
   _closeSound: {fileID: 8300000, guid: 56f69d70cadd94bf9b0087a533e82284, type: 3}
   _bc1: {fileID: 61000010715144298}
   _bc2: {fileID: 61000011868901574}
-  _disableGuard: 0
+  _disableGuard: 1
   _disablePrisoner: 0
 --- !u!212 &212000010890764724
 SpriteRenderer:

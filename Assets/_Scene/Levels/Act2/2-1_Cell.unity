@@ -90,6 +90,28 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12763504 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010381504736, guid: 4630af52f357d4ddf970fb2750a7ba92,
+    type: 2}
+  m_PrefabInternal: {fileID: 2112051825}
+--- !u!95 &12763505
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12763504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &12771569
 GameObject:
   m_ObjectHideFlags: 0
@@ -8768,6 +8790,28 @@ SpriteRenderer:
   m_Color: {r: 0.16176468, g: 0.16176468, b: 0.16176468, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1304724205 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010381504736, guid: 4630af52f357d4ddf970fb2750a7ba92,
+    type: 2}
+  m_PrefabInternal: {fileID: 1294677387}
+--- !u!95 &1304724207
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304724205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ead1ff42ef5814e68aa0bc7bb53de7ac, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1327905562
 GameObject:
   m_ObjectHideFlags: 0
@@ -9700,6 +9744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _whoAmI: 1
+  m_flip: 0
   m_MouthAnim: {fileID: 427349510}
   m_Finger:
   - {fileID: 966292696}
@@ -13369,6 +13414,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011681094350, guid: 4630af52f357d4ddf970fb2750a7ba92, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010916988508, guid: 4630af52f357d4ddf970fb2750a7ba92,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
