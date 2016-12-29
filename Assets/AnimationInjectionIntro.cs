@@ -104,7 +104,7 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 		}
 
 		if (isAwayTogether && _endIntroTimer.IsOffCooldown) {
-			Events.G.Raise (new Load1_1Event ());
+			Events.G.Raise (new LoadTitleCardEvent (0));
 			isGuardReady = false;
 		}
 		if(!isGuardReady || !isPrisonerReady) {

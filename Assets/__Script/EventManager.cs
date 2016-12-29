@@ -17,6 +17,13 @@ public class LoadMainMenuEvent: GameEvent{
 public class LoadTutorialEvent: GameEvent{
 }
 
+public class LoadTitleCardEvent: GameEvent{
+	public int TitleIndex { get; private set; }
+	public LoadTitleCardEvent(int titleIndex){
+		TitleIndex = titleIndex;
+	}
+}
+
 public class Load1_1Event: GameEvent{
 }
 

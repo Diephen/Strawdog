@@ -8,7 +8,11 @@ public enum SceneIndex {
 	A0_2_TriggerWarning = 1,
 	A0_3_Tutorial = 2,
 	A0_4_MainMenu = 3,
-	A1_1_Intro = 4,
+	A0_5_Title = 4,
+	A0_6_TitleCard = 5,
+	A0_7_Ending = 6,
+	A0_8_Credits = 7,
+	A1_1_Intro = 8,
 
 
 	Logo = 210, 
@@ -17,9 +21,9 @@ public enum SceneIndex {
 	Title = 213,
 	Act2 = 214,
 	Act2_PDown = 215,
-	Act2_Explore = 6,
-	Act2_GDown = 7,
-	Act2_Patrol = 8,
+	Act2_Explore = 216,
+	Act2_GDown = 217,
+	Act2_Patrol = 218,
 	Act3_No = 9,
 	Act3_Yes = 10,
 	Act3_Plant_Cell = 11,
@@ -77,6 +81,7 @@ public class SceneManagerScript : MonoBehaviour {
 	{
 		Events.G.AddListener<LoadMainMenuEvent>(LoadMainMenu);
 		Events.G.AddListener<LoadTutorialEvent>(LoadTutorial);
+		Events.G.AddListener<LoadTitleCardEvent> (LoadTitleCard);
 		//Refactor Line
 
 		Events.G.AddListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
@@ -139,6 +144,7 @@ public class SceneManagerScript : MonoBehaviour {
 	{
 		Events.G.RemoveListener<LoadMainMenuEvent>(LoadMainMenu);
 		Events.G.RemoveListener<LoadTutorialEvent>(LoadTutorial);
+		Events.G.RemoveListener<LoadTitleCardEvent> (LoadTitleCard);
 		//Refactor Line
 
 		Events.G.RemoveListener<LoadVeryBeginningEvent>(LoadVeryBeginning);
@@ -205,8 +211,12 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine (ChangeFade ((int)SceneIndex.A0_4_MainMenu, 2f));
 	}
 
+	void LoadTitleCard(LoadTitleCardEvent e){
+		GameStateManager.gameStateManager._actTitleIndex = e.TitleIndex;
+		StartCoroutine (ChangeFade ((int)SceneIndex.A0_6_TitleCard, 2f));
+	}
+
 	void Load1_1(Load1_1Event e){
-		Debug.Log ("Starting");
 		StartCoroutine(ChangeFade((int)SceneIndex.A1_1_Intro, 3f));
 	}
 

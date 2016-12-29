@@ -127,7 +127,9 @@ public class TitleCardManager : MonoBehaviour {
 						_tempTitleColor.a = _tempAlpha;
 						_titleText[GameStateManager.gameStateManager._actTitleIndex].color = _tempTitleColor;
 						// Event Call to Next Scene Here
-						
+				if (GameStateManager.gameStateManager._actTitleIndex == 0) {
+					Events.G.Raise (new Load1_1Event ());
+				}
 					}
 //			}
 		}
