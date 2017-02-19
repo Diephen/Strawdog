@@ -216,30 +216,50 @@ public class PuppetControl : MonoBehaviour {
 
 	void ContinuousKeyHandle(){
 		if (m_charState != charState.pickup) {
-
-			//A-Key
-			if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
-				&& (m_charState == charState.idle || m_charState == charState.left)) {
-				if (_stateHandling [3] == true) {
-					m_charState = charState.left;
-					Walk (m_charState);
-				} else {
-					//Jung-Ho: Let me know if you need to use this
-					//					Events.G.Raise (new WalkRightEvent (_whoAmI));
+			if(m_flip){
+				//A-Key
+				if (m_Continuous [0] && Input.GetKey (m_ListenKey [2])
+					&& (m_charState == charState.idle || m_charState == charState.left)) {
+					WalkLeftKeyPress();
+				}
+				// D-Key
+				if (m_Continuous [2] && Input.GetKey (m_ListenKey [0])
+					&& (m_charState == charState.idle || m_charState == charState.right)) {
+					WalkRightKeyPress();
+				}
+			} else {
+				//A-Key
+				if (m_Continuous [0] && Input.GetKey (m_ListenKey [0])
+					&& (m_charState == charState.idle || m_charState == charState.left)) {
+					WalkLeftKeyPress();
+				}
+				// D-Key
+				if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
+					&& (m_charState == charState.idle || m_charState == charState.right)) {
+					WalkRightKeyPress();
 				}
 			}
+		
+		}
+	}
 
-			// D-Key
-			if (m_Continuous [2] && Input.GetKey (m_ListenKey [2])
-				&& (m_charState == charState.idle || m_charState == charState.right)) {
-				if (_stateHandling [4] == true) {
-					m_charState = charState.right;
-					Walk (m_charState);
-				} else {
-					//Jung-Ho: Let me know if you need to use this
-					//					Events.G.Raise (new WalkLeftEvent (_whoAmI));
-				}
-			}
+	void WalkRightKeyPress(){
+		if (_stateHandling [4] == true) {
+			m_charState = charState.right;
+			Walk (m_charState);
+		} else {
+			//Jung-Ho: Let me know if you need to use this
+			//					Events.G.Raise (new WalkLeftEvent (_whoAmI));
+		}
+	}
+
+	void WalkLeftKeyPress(){
+		if (_stateHandling [3] == true) {
+			m_charState = charState.left;
+			Walk (m_charState);
+		} else {
+			//Jung-Ho: Let me know if you need to use this
+			//					Events.G.Raise (new WalkRightEvent (_whoAmI));
 		}
 	}
 
@@ -408,25 +428,44 @@ public class PuppetControl : MonoBehaviour {
 
 
 	void OnTriggerStay2D(Collider2D other) {
-		if (other.name == "STOPLeft") {
-			_stateHandling [3] = false;
-		}
-		else if (other.name == "STOPRight") {
-			_stateHandling [4] = false;
-		}
+		if(m_flip){
+			if (other.name == "STOPLeft") {
+				_stateHandling [4] = false;
+			}
+			else if (other.name == "STOPRight") {
+				_stateHandling [3] = false;
+			}
+		} else {
+			if (other.name == "STOPLeft") {
+				_stateHandling [3] = false;
+			}
+			else if (other.name == "STOPRight") {
+				_stateHandling [4] = false;
+			}
 //		else if (other.name == "open-left") {
 //			_stateHandling [3] = false;
 //		}
 //		else if (other.name == "open-right") {
 //			_stateHandling [4] = false;
 //		}
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (other.name == "STOPLeft") {
-			_stateHandling [3] = true;
-		} else if (other.name == "STOPRight") {
-			_stateHandling [4] = true;
+		if(m_flip){
+			if (other.name == "STOPLeft") {
+				_stateHandling [4] = true;
+			}
+			else if (other.name == "STOPRight") {
+				_stateHandling [3] = true;
+			}
+		} else {
+			if (other.name == "STOPLeft") {
+				_stateHandling [3] = true;
+			}
+			else if (other.name == "STOPRight") {
+				_stateHandling [4] = true;
+			}
 		}
 //		else if (other.name == "open-left") {
 //			_stateHandling [3] = true;

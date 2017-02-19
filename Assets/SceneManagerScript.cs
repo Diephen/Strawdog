@@ -228,7 +228,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadVeryBeginning (LoadVeryBeginningEvent e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Logo, 2f));
+		StartCoroutine(ChangeFade((int)SceneIndex.A0_1_Logo, 2f));
 	}
 
 	void LoadMainMenu(LoadMainMenuEvent e){
@@ -241,7 +241,7 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void Load1_1(Load1_1Event e){
-		StartCoroutine(ChangeFade((int)SceneIndex.A1_1_Intro, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A1_1_Intro, 3f));
 	}
 
 	void LoadTutorial(LoadTutorialEvent e){
@@ -249,61 +249,61 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadVertical(Act0EndedEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act1, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A1_1_Torture, 2f));
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 1.5f, "VoiceOver/02_StopDrown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 1.5f, "VoiceOver/02_StopDrown"));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f, "VoiceOver/03_Drown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 4f, "VoiceOver/03_Drown"));
 	}
 
 		
 	void LoadAct2(TitleEndedEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2, 0.5f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_1_Cell, 0.5f));
 	}
 
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Explore, 2f, "VoiceOver/06_Explore"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_2_Explore, 2f, "VoiceOver/06_Explore"));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_PDown, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_1_Cell, 2f));
 	}
 
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_Patrol, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 2f));
 	}
 
 	void LoadAct2Patrol_down(Act2_GuardWalkedDownStairsEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act2_GDown, 2f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 2f));
 	}
 
 	void LoadAct3_No(PrisonerSleepEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 2f, "VoiceOver/05_Bed"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A3_1_Interrogation, 2f, "VoiceOver/05_Bed"));
 	}
 
 	void LoadWentBack(PrisonerWentBack e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f, "VoiceOver/09_GoBack"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A3_1_Interrogation, 1f, "VoiceOver/09_GoBack"));
 	}
 
 	void LoadGuardSleep(GuardSleepEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_No, 1f, "VoiceOver/07_GuardSleep"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A3_1_Interrogation, 1f, "VoiceOver/07_GuardSleep"));
 	}
 
 	void LoadAct3_Yes(PrisonerFoundBombAndLeave e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Yes, 1f, "VoiceOver/19_JustMaybe"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A3_2_InterrogationBomb, 1f, "VoiceOver/19_JustMaybe"));
 	}
 	void LoadAct3_Plant(GuardFoundBombEvent e) {
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant, 3f, "VoiceOver/20_MaybeHim"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_5_PlantBomb, 3f, "VoiceOver/20_MaybeHim"));
 	}
 	void LoadCaught(CaughtSneakingEvent e){
 	}
@@ -311,37 +311,37 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadFoodStorage_Prisoner(Taken_EnterFoodStorageEvent e){
 		GameStateManager._acquiredStates [0] = true;
 		if (e.BrokeFree) {
-			StartCoroutine (ChangeLevel ((int)SceneIndex.Ending, 1.5f, "VoiceOver/15_Detrimental"));
+			StartCoroutine (ChangeLevel ((int)SceneIndex.A5_3_Ending, 1.5f, "VoiceOver/15_Detrimental"));
 		}
 		else {
-			StartCoroutine (ChangeLevel ((int)SceneIndex.Ending, 1.5f, "VoiceOver/14_Terrible"));
+			StartCoroutine (ChangeLevel ((int)SceneIndex.A5_3_Ending, 1.5f, "VoiceOver/14_Terrible"));
 		}
 	}
 
 	void LoadExecution(TriggerExecutionEvent e){
 		GameStateManager._acquiredStates [2] = true;
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f, "VoiceOver/10_BombCaught"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_1_Execution, 1f, "VoiceOver/10_BombCaught"));
 	}
 
 	void ReLoadExecution(RestartExecution e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_1, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_1_Execution, 1f));
 	}
 
 	// When decide not to execute the prisoner
 	void LoadExecutionEndBothDie(SoldierExecuteBoth e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/12_NoChoice"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A5_3_Ending, 3f, "VoiceOver/12_NoChoice"));
 	}
 
 	void LoadExecutionEndPrisonerDie(GuardExecutePrisoner e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 4f, "VoiceOver/11_Unfortunate"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A5_3_Ending, 4f, "VoiceOver/11_Unfortunate"));
 	}
 
 	void LoadTakenAway(TriggerTakenAwayEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2_Ditch, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_2_Ditch, 1f));
 	}
 
 	void LoadLeaveDitch(LeaveDitchEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_2, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_2_Ditch, 1f));
 	}
 
 	void LoadPlantBomb(TriggerPlantBombEvent e){
@@ -355,70 +355,70 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadPlantUp(Plant_UpStairsEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_5_PlantBomb, 1f));
 	}
 
 	void LoadPlantDown(Plant_DownStairsEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Cell_Again, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_5_PlantBomb, 1f));
 	}
 
 	void LoadFoodStorage_Guard(Plant_EnterFoodStorageEvent e) {
 		GameStateManager._acquiredStates [5] = true;
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Bomb, 1f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_5_PlantBomb, 1f));
 	}
 
 	void LoadLeaveFoodStorage(Plant_LeaveFoodStorageEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act3_Plant_Done, 1f, "VoiceOver/22_DeedDone"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_6_PlantBombDone, 1f, "VoiceOver/22_DeedDone"));
 	}
 
 	void LoadEncounter1(Prisoner_EncounterEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_3_EncounterLeft, 3f));
 	}
 
 	void LoadEncounter2(Guard_EncounterEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Act4_3_Encounter, 3f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A4_3_EncounterLeft, 3f));
 	}
 
 	//Ending
 	void LoadEnd_RunAlone(RunAloneEndingEvent e){
 		GameStateManager._acquiredStates [1] = true;
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 1.5f, "VoiceOver/18_LetGo"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A5_3_Ending, 1.5f, "VoiceOver/18_LetGo"));
 	}
 
 	void LoadEnd_RunTogether(RunTogetherEndingEvent e){
 		GameStateManager._acquiredStates [4] = true;
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/16_EscapeTogether"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A5_3_Ending, 3f, "VoiceOver/16_EscapeTogether"));
 	}
 
 	void LoadEnd_GuardAlone(GuardAloneEndingEvent e){
 		GameStateManager._acquiredStates [3] = true;
-		StartCoroutine(ChangeLevel((int)SceneIndex.Ending, 3f, "VoiceOver/17_JustJob"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A5_3_Ending, 3f, "VoiceOver/17_JustJob"));
 	}
 
 	void LoadRetry(RetryEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.Title, 4f));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 4f));
 	}
 		
 	void LoadAct5(StartAct5Event e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Act5, 5f));
+		StartCoroutine(ChangeFade((int)SceneIndex.A5_3_Ending, 5f));
 	}
 
 	void LoadCredits(StartCreditsEvent e){
-		StartCoroutine(ChangeFade((int)SceneIndex.Credits, 1f));
+		StartCoroutine(ChangeFade((int)SceneIndex.A0_8_Credits, 1f));
 	}
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
 		_once = false;
-		if (scene.buildIndex == (int)SceneIndex.TriggerWarning) {
+		if (scene.buildIndex == (int)SceneIndex.A0_2_TriggerWarning) {
 		}
 		//Capture all ending Scenes
-		else if (scene.buildIndex == (int)SceneIndex.Ending) {
+		else if (scene.buildIndex == (int)SceneIndex.A0_7_Ending) {
 		}
 		else if (scene.name == "0-6_TitleCard") {
 		}
 		else if (scene.name == "MainMenu") {
 		}
-		else if (scene.buildIndex == (int)SceneIndex.Act5) {
+		else if (scene.buildIndex == (int)SceneIndex.A5_1_SecretRoom) {
 		}
 		else {
 			StartCoroutine (WaitBeforeOpen ());

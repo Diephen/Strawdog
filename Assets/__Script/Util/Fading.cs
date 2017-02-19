@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Fading : MonoBehaviour {
+	// public static Fading _fading;
+
 	public Texture2D fadeOutTexture; //the texture that will overlay the screen. Black image or loading graphic
 	public float fadeSpeed= 1f; // the fading speed
 
@@ -12,6 +14,13 @@ public class Fading : MonoBehaviour {
 	[SerializeField] bool _noStartFade = false;
 
 	void Awake(){
+		// if (_fading) {
+			// Destroy (this);
+		// }
+		// else {
+			// _fading = this;
+			// DontDestroyOnLoad (gameObject);
+		// }
 		if (_noStartFade) {
 			alpha = 0.0f;
 		}
@@ -19,10 +28,11 @@ public class Fading : MonoBehaviour {
 
 	void Start(){
 //		Cursor.visible = false;
+		SceneManager.sceneLoaded += OnLevelLoaded;
 	}
 	void OnGUI() {
 		//fade out/ in the alpha value using a direction, a speed and TIme.deltattime to conver the operation to seconds
-		alpha += fadeDir * fadeSpeed * Time.deltaTime;
+		alpha += fadeDir * (Time.deltaTime / fadeSpeed);
 		alpha = Mathf.Clamp01 (alpha);
 
 		//set the color of our GUI
@@ -38,7 +48,7 @@ public class Fading : MonoBehaviour {
 	}
 
 	//OnLevelWasLoaded is called when a level is loaded. takes loaded level index as a parameter
-	void OnLevelWasLoaded() {
+	void OnLevelLoaded(Scene scene, LoadSceneMode sceneMode) {
 		//alpha = 1
 		if (!_noStartFade) {
 			BeginFade (-1);
