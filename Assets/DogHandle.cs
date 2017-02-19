@@ -57,8 +57,6 @@ public class DogHandle : MonoBehaviour {
 				DogHappy ();
 				m_ProgressBar.IncTime (10f);
 			}
-
-
 		}
 	}
 
