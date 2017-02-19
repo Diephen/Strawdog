@@ -26,7 +26,8 @@ public class GuardTrigger : MonoBehaviour {
 	[SerializeField] SpriteRenderer _rightFlap;
 
 	bool _guardLeaveCell = false;
-
+	bool _isDoor = false;
+	bool _opened = true;
 	//Variables for Highlight
 	Camera _mainCam;
 	HighlightsFX _highlightsFX;
@@ -43,15 +44,21 @@ public class GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKeyDown (_guardKeyCodes [3]) && _isStairs) {
-			_goToStart = true;
-			_isStairs = false;
-			//_highlightsFX.enabled = false;
-			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-			_guardPuppetController.DisableKeyInput ();
-			_tempPosition = _guard.transform.position;
-			_stairStartTimer.Reset ();
-			Events.G.Raise (new GuardStairsStartEvent ());
+		if (Input.GetKeyDown (_guardKeyCodes [3])) {
+			if(_isStairs){
+				_goToStart = true;
+				_isStairs = false;
+				//_highlightsFX.enabled = false;
+				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+				_guardPuppetController.DisableKeyInput ();
+				_tempPosition = _guard.transform.position;
+				_stairStartTimer.Reset ();
+				Events.G.Raise (new GuardStairsStartEvent ());
+			}
+			else if (_isDoor) {
+			_opened = !_opened;
+			Events.G.Raise (new OpenOfficeEvent (_opened));
+			}
 		}
 
 		if (_goToStart) {
@@ -99,6 +106,9 @@ public class GuardTrigger : MonoBehaviour {
 			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			//_highlightsFX.objectRenderer = _stairRenderer;
 			//_highlightsFX.enabled = true;
+		} else if (other.name == "Office") {
+			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+			_isDoor = true;
 		} else if (other.name == "open-right") {
 			//_highlightsFX.objectRenderer = _rightFlap;
 			//_highlightsFX.enabled = true;
@@ -121,6 +131,17 @@ public class GuardTrigger : MonoBehaviour {
 			_guardState = guardState.EnteredCell;
 			Events.G.Raise(new GuardEngaginPrisonerEvent(false));
 		} 
+		else if (other.name == "Office") {
+			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+			if (_isOnFlap) {
+				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().EnableHighlight();
+			}
+			else {
+				other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+
+			}
+			_isDoor = false;
+		}
 		else if (other.tag == "Stairs") 
 		{
 			_isStairs = false;

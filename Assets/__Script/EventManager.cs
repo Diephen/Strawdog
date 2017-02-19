@@ -58,6 +58,13 @@ public class LockCellEvent : GameEvent {
 	}
 }
 
+public class OpenOfficeEvent : GameEvent {
+	public bool Opened { get; private set; }
+	public OpenOfficeEvent(bool opened){
+		Opened = opened;
+	}
+}
+
 public class LeftCellUnlockedEvent : GameEvent {
 }
 
