@@ -12,7 +12,7 @@ public class AnimationInjectionIntro : AnimationInjectionBase {
 	private bool isPrisonerReady = false;
 	private bool isAwayTogether = false;
 
-	Timer _endIntroTimer = new Timer(1.0f);
+	Timer _endIntroTimer = new Timer(0.5f);
 	//private bool isPrisonerDead = false;
 
 	void OnEnable(){
