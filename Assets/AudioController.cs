@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Runtime.ConstrainedExecution;
 
 public class AudioController : MonoBehaviour {
-	float[] volume = new float[] {0.5f, 0.7f, 1.0f};
+	float[] volume = new float[] {1.0f, 0.5f, 0.0f};
 	[SerializeField] AudioSource _musicSource1;
 	[SerializeField] AudioSource _musicSource2;
 	[SerializeField] AudioSource _musicSource3;
@@ -58,8 +58,8 @@ public class AudioController : MonoBehaviour {
 		else {
 			_instance = this;
 			DontDestroyOnLoad (gameObject);
-			_loopClip = Resources.Load<AudioClip> ("Music/Loop1");
-			_satrioClip = Resources.Load<AudioClip> ("Music/SatrioSound");
+			_loopClip = Resources.Load<AudioClip> ("Music/Loop No.1 v.2");
+			_satrioClip = Resources.Load<AudioClip> ("Music/Ambient cue 1");
 			_windHowl = Resources.Load<AudioClip> ("Sounds/windhowl_ambient");
 		}
 	}
@@ -196,7 +196,7 @@ public class AudioController : MonoBehaviour {
 				_musicOn1 = true;
 			}
 			else {
-				_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop1");
+				_musicSource2.clip = Resources.Load<AudioClip> ("Music/Loop 2");
 				_musicOn1 = false;
 				_musicOff1 = true;
 				_musicSource2.volume = 0.0f;
@@ -323,7 +323,7 @@ public class AudioController : MonoBehaviour {
 		}
 		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Intro) {
 			_soundSource2_Light.Stop ();
-			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Piece_No1");
+			_musicSource1.clip = Resources.Load<AudioClip> ("Music/Theme 1 v.2");
 			_musicSource2.clip = _loopClip;
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicSource1.loop = false;
@@ -390,10 +390,10 @@ public class AudioController : MonoBehaviour {
 			_musicSource1.loop = true;
 			_musicOn1 = true;
 			_tempAudioSource = _musicSource1;
-			_soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
-			_soundSource2_Light.volume = 1.0f;
-			_soundSource2_Light.loop = true;
-			_soundSource2_Light.Play ();
+			// _soundSource2_Light.clip = Resources.Load<AudioClip> ("Sounds/ClockTick");
+			// _soundSource2_Light.volume = 1.0f;
+			// _soundSource2_Light.loop = true;
+			// _soundSource2_Light.Play ();
 		}
 		else if (_currentSceneIndex == 10) {
 			_musicOnTimer.Reset ();

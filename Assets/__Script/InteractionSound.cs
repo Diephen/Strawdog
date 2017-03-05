@@ -27,11 +27,20 @@ public class InteractionSound : MonoBehaviour {
 	[SerializeField] AudioClip[] m_sounds;
 	[SerializeField] AudioSource m_audio;
 	[SerializeField] AudioSource m_audioDrown;
+	AudioSource m_drownMusicTest;
+	AudioSource m_beep;
 
 	// Use this for initialization
 	void Start () {
 		m_audio = gameObject.GetComponent<AudioSource> ();
 		m_audioDrown = gameObject.AddComponent<AudioSource> ();
+		
+		m_drownMusicTest = gameObject.AddComponent<AudioSource>();
+		m_beep = gameObject.AddComponent<AudioSource>();
+
+		m_drownMusicTest.clip = Resources.Load<AudioClip> ("Music/Drowning sound 1");
+		m_beep.clip = Resources.Load<AudioClip> ("Music/Basic Sound 1");
+
 		m_audioDrown.loop = true;
 		m_audioDrown.playOnAwake = false;
 		m_audioDrown.clip = m_sounds [2];
@@ -42,11 +51,33 @@ public class InteractionSound : MonoBehaviour {
 	
 	}
 
+	void OnGuardEnterCell(GuardEnteringCellEvent e){
+		m_beep.volume = 0.6f;
+		m_beep.Play();
+		m_beep.loop = true;
+	}
+
+	void OnGuardEngagePrisoner(GuardEngaginPrisonerEvent e){
+		m_beep.volume = 1.0f;
+
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
+		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<GuardEnteringCellEvent>(OnGuardEnterCell);
+		Events.G.RemoveListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
+	}
+
 	public void PlayDunkIn(){
 		m_audio.clip = m_sounds [0];
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
+		m_drownMusicTest.Play();
 
 	}
 
@@ -55,18 +86,18 @@ public class InteractionSound : MonoBehaviour {
 		if (!m_audio.isPlaying) {
 			m_audio.Play ();
 		}
-
+		m_drownMusicTest.Stop();
 	}
 
 	public void PlayDrown(){
 		if (!m_audioDrown.isPlaying) {
-			m_audioDrown.Play();
+			// m_audioDrown.Play();
 		}
 	}
 
 	public void StopDrown(){
 		if (m_audioDrown.isPlaying) {
-			m_audioDrown.Stop();
+			// m_audioDrown.Stop();
 		}
 	}
 
