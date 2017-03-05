@@ -331,7 +331,7 @@ public class AudioController : MonoBehaviour {
 			_musicSource2.volume = 1.0f;
 			_musicSource1.Play ();
 		}
-		else if (_currentSceneIndex == (int)SceneIndex.Act1) {
+		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Intro) {
 			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicOnTimer.Reset ();
 			_musicOffTimer.Reset ();

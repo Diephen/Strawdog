@@ -17,7 +17,7 @@ public class AddForceToLeg : MonoBehaviour {
 	void FixedUpdate () {
 		if(drag){
 			force = MathHelpers.LinMapFrom01 (_forceRange.Min, _forceRange.Max, Random.value);
-			if (flip) {
+			if (!flip) {
 				if (left) {
 					rb.AddForce (Vector2.left * force);
 				}

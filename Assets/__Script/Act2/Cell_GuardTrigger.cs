@@ -30,7 +30,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	Timer _walkOffTimer = new Timer (1.0f);
 	Timer _offsetTimer = new Timer (0.5f);
 	Camera _mainCam;
-
 	[SerializeField] Renderer _stairRenderer;
 	[SerializeField] Renderer _doorRenderer;
 	[SerializeField] Renderer _secretDoorRenderer;
