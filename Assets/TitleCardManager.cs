@@ -43,10 +43,18 @@ public class TitleCardManager : MonoBehaviour {
 	[SerializeField] float[] _secondDuration = new float[8];
 	Timer _durationTimer;
 
+	void Awake(){
+		_originalColor = _left.color;
+		if(GameStateManager.gameStateManager._actTitleIndex == 0){
+			_left.color = Color.black;
+			_right.color = Color.black;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 
-		_originalColor = _left.color;
+		
 		_tempTitleColor = _titleText[GameStateManager.gameStateManager._actTitleIndex].color;
 		_tempBodyColor = _titleText[GameStateManager.gameStateManager._actTitleIndex].color;
 
@@ -82,8 +90,13 @@ public class TitleCardManager : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if(GameStateManager.gameStateManager._actTitleIndex == 0){
+			_left.color = Color.Lerp (Color.black, _fadeToColor, _blackTimer.PercentTimePassed);
+			_right.color = _left.color;
+		} else {
 			_left.color = Color.Lerp (_originalColor, _fadeToColor, _blackTimer.PercentTimePassed);
 			_right.color = _left.color;
+		}
 			if (_blackTimer.IsOffCooldown && _once) {
 				_titleTextTimer.Reset ();
 				_bodyTextTimer.Reset ();
