@@ -477,5 +477,13 @@ public class EncountEndStateEvent:GameEvent{
 	}
 }
 
+// ** For progress bar ** //
+public class UIProgressBar:GameEvent{
+	public bool IsDrop { get; private set; }
+	public UIProgressBar(bool isdrop){
+		IsDrop = isdrop;
+	}
+}
+
 
 

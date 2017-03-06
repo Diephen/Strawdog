@@ -500,12 +500,14 @@ public class PuppetControl : MonoBehaviour {
 
 	void EnableMove(EnableMoveEvent e){
 		if (e.WhoAmI == CharacterIdentity.Both || e.WhoAmI == _whoAmI) {
+			print ("## Enable move" + e.WhoAmI.ToString ());
 			_stateHandling [4] = true;
 			_stateHandling [3] = true;
 		}
 	}
 	void DisableMove(DisableMoveEvent e){
 		if (e.WhoAmI == CharacterIdentity.Both || e.WhoAmI == _whoAmI) {
+			
 			_stateHandling [4] = false;
 			_stateHandling [3] = false;
 		}

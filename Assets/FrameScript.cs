@@ -30,6 +30,8 @@ public class FrameScript : MonoBehaviour {
 //	[SerializeField] bool _disablePrisoner = false;
 
 	void Start () {
+		_leftFlap.SetActive (true);
+		_rightFlap.SetActive (true);
 		_leftTempPos = _leftFlap.transform.localPosition;
 		_rightTempPos = _rightFlap.transform.localPosition;
 		_audioSource = gameObject.GetComponent<AudioSource> ();

@@ -64,7 +64,9 @@ public class DogHandle : MonoBehaviour {
 		//Debug.Log ("Attention");
 		if(m_DogState == DogState.idle && other.name == "GuardStructure"){
 			StopPlayer ();
-			StartCoroutine (m_ProgressBar.FadeIn(3f));
+			//StartCoroutine (m_ProgressBar.FadeIn(3f));
+			// TODO: trigger bar animation
+			Events.G.Raise(new UIProgressBar(true));
 			m_AnimInjection.SetEngage ();
 			m_DogState = DogState.start;
 			CheckState (m_DogState);
@@ -114,15 +116,15 @@ public class DogHandle : MonoBehaviour {
 	}
 
 	void StopPlayer(){
-		if (m_PC._stateHandling [3]) {
-			m_PC._stateHandling [3] = false;
+		if (m_PC._stateHandling [4]) {
+			m_PC._stateHandling [4] = false;
 		}
 
 	}
 
 	void LeavePlayer(){
-		if (!m_PC._stateHandling [3]) {
-			m_PC._stateHandling [3] = true;
+		if (!m_PC._stateHandling [4]) {
+			m_PC._stateHandling [4] = true;
 		}
 	}
 
@@ -152,7 +154,8 @@ public class DogHandle : MonoBehaviour {
 		m_Anim.SetBool ("IsStartWalk", false);
 		m_IsPetting = false;
 		//LeavePlayer ();
-		StartCoroutine (m_ProgressBar.FadeOut (2f));
+		//StartCoroutine (m_ProgressBar.FadeOut (2f));
+		Events.G.Raise(new UIProgressBar(false));
 		// stop begging 
 	}
 

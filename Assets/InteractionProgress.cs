@@ -7,6 +7,9 @@ public class InteractionProgress : MonoBehaviour {
 	[SerializeField] float m_TimePassed; 
 
 	[SerializeField] Renderer m_Bck;
+	[SerializeField] bool m_IsShowFromStart = false;
+
+	Animator m_UIAnim;
 
 
 	bool isComplete = false;
@@ -16,7 +19,38 @@ public class InteractionProgress : MonoBehaviour {
 	bool isFadingOut = false;
 	Color bckColor;
 	//public int timeToComplete = 3;
-	
+
+	// Use this for initialization
+	void Start () {
+		m_TimePassed = 0f;
+		m_Progress.material.SetFloat ("_Progress", 0f);
+		m_UIAnim = GetComponent<Animator> ();
+		if (m_IsShowFromStart) {
+			m_Progress.material.SetFloat("_AlphaValue", 1f);
+			bckColor = m_Bck.material.color;
+			bckColor.a = 1;
+			m_Bck.material.SetColor ("_Color", bckColor);
+
+		} else {
+			//Use this to Start progress
+			//StartCoroutine(RadialProgress(3));
+			m_Progress.material.SetFloat("_AlphaValue", 0f);
+			bckColor = m_Bck.material.color;
+			bckColor.a = 0;
+			m_Bck.material.SetColor ("_Color", bckColor);
+
+		}
+	}
+
+	void OnEnable(){
+		Events.G.AddListener<UIProgressBar> (OnUITrigger);
+	}
+
+	void OnDisable(){
+		Events.G.RemoveListener<UIProgressBar> (OnUITrigger);
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 		if (!isComplete) {
@@ -27,23 +61,13 @@ public class InteractionProgress : MonoBehaviour {
 				UpdateBar (m_TimeToComplete);
 				isFadeOut = true;
 				print ("FadeOut");
-				StartCoroutine (FadeOut (4f));
+				//StartCoroutine (FadeOut (4f));
+				m_UIAnim.SetBool("IsDrop", false);
 			}
 		}
 	
 	}
 
-	// Use this for initialization
-	void Start () {
-		m_TimePassed = 0f;
-		m_Progress.material.SetFloat ("_Progress", 0f);
-		//Use this to Start progress
-		//StartCoroutine(RadialProgress(3));
-		m_Progress.material.SetFloat("_AlphaValue", 0f);
-		bckColor = m_Bck.material.color;
-		bckColor.a = 0;
-		m_Bck.material.SetColor ("_Color", bckColor);
-	}
 
 	void UpdateBar(float time){
 		float p = time / m_TimeToComplete;
@@ -127,5 +151,24 @@ public class InteractionProgress : MonoBehaviour {
 		m_Bck.material.SetColor ("_Color", bckColor);
 		//break;
 
+	}
+
+	void OnUITrigger(UIProgressBar e){
+		if (e.IsDrop) {
+			ShowUI ();
+		} else {
+			HideUI ();
+		}
+		
+	}
+
+	void ShowUI(){
+		//m_UIAnim.Play ("PBar-Drop");
+		m_UIAnim.SetBool("IsDrop", true);
+	}
+
+	void HideUI(){
+		//m_UIAnim.Play ("PBar-PullBack");
+		m_UIAnim.SetBool("IsDrop", false);
 	}
 }
