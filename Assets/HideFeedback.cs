@@ -35,9 +35,9 @@ public class HideFeedback : MonoBehaviour {
 			for (int i = 0; i < _hideSprites.Length; i++) {
 				_origColor = _hideSprites [i].color;
 				_tempColor = _hideSprites [i].color;
-				_tempColor.r = (_hideSprites [i].color.r / 5.0f) * 3.0f;
-				_tempColor.g = (_hideSprites [i].color.g / 5.0f) * 3.0f;
-				_tempColor.b = (_hideSprites [i].color.b / 5.0f) * 3.0f;
+				_tempColor.r = (_hideSprites [i].color.r / 5.0f) * 2.0f;
+				_tempColor.g = (_hideSprites [i].color.g / 5.0f) * 2.0f;
+				_tempColor.b = (_hideSprites [i].color.b / 5.0f) * 2.0f;
 				_newColor = _tempColor;
 				_hideSprites [i].color = _newColor;
 			}

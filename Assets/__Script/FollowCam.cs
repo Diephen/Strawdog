@@ -97,6 +97,10 @@ public class FollowCam : MonoBehaviour {
 		Events.G.AddListener<PrisonerShotEvent>(PrisonerShot);
 		Events.G.AddListener<Act2_SoldierAppear>(PrisonerHitFence);
 		Events.G.AddListener<PrisonerLeftFenceEvent>(PrisonerLeftFence);
+
+		Events.G.AddListener<CameraFollowTransformEvent>(FollowTransform);
+		Events.G.AddListener<DogReturnToPrisonerEvent>(DogReturnToPrisoner);
+		Events.G.AddListener<DogReturnToGuardEvent>(DogReturnToGuard);
 	}
 
 	void OnDisable ()
@@ -115,10 +119,33 @@ public class FollowCam : MonoBehaviour {
 		Events.G.RemoveListener<Act2_SoldierAppear>(PrisonerHitFence);
 		Events.G.RemoveListener<PrisonerLeftFenceEvent>(PrisonerLeftFence);
 
+		Events.G.RemoveListener<CameraFollowTransformEvent>(FollowTransform);
+		Events.G.RemoveListener<DogReturnToPrisonerEvent>(DogReturnToPrisoner);
+		Events.G.RemoveListener<DogReturnToGuardEvent>(DogReturnToGuard);
 	}
 
 	void StaticCam(StaticCamera e){
 		_cameraToggle = cameraPos.Static;
+	}
+
+	void FollowTransform(CameraFollowTransformEvent e){
+		if(_followObj != e._Transform.transform){
+			timer = 0f;
+			_followObj = e._Transform.transform;
+			_cameraToggle = cameraPos.Center;
+		}
+	}
+
+	void DogReturnToPrisoner(DogReturnToPrisonerEvent e){
+		timer = 0f;
+		_followObj = _followPrisoner;
+		_cameraToggle = cameraPos.Left;
+	}
+
+	void DogReturnToGuard(DogReturnToGuardEvent e){
+		timer = 0f;
+		_followObj = _followGuard;
+		_cameraToggle = cameraPos.Left;
 	}
 
 	void TransitionSecret(TransitionSecretDoorEvent e){

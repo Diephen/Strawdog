@@ -107,6 +107,12 @@ public class GuardStairsStartEvent : GameEvent {
 public class PrisonerLeftFenceEvent : GameEvent {
 }
 
+public class DogReturnToPrisonerEvent : GameEvent {
+}
+
+public class DogReturnToGuardEvent : GameEvent {
+}
+
 public class PrisonerEncounterSoldierExplore:GameEvent{
 	
 }
@@ -168,6 +174,13 @@ public class LightOffEvent : GameEvent {
 }
 //public class Act2EndedEvent : GameEvent {
 //}
+
+public class CameraFollowTransformEvent : GameEvent {
+	public GameObject _Transform {get; private set;}
+	public CameraFollowTransformEvent(GameObject _transform){
+		_Transform = _transform;
+	}
+}
 
 /* Act 3 */
 public class TriggerExecutionEvent : GameEvent {
