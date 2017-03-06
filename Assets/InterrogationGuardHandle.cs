@@ -34,6 +34,17 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	bool m_IsAtStart = true;
 	bool m_IsEnd = false;
 	bool m_interroAggressiveOnce = false;
+
+
+	[SerializeField] Symbol[] m_ComboPool;
+	[SerializeField] Sprite[] m_Symbols;
+	Timer m_ComboTimer;
+
+	// check key inputs 
+	int m_CurrentKey = -1;
+
+
+
 	// Use this for initialization
 	void Awake () {
 		
@@ -41,16 +52,21 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		//m_CurWaitTime = 2f;
 		//m_StartTime = Time.time;
 		m_BottomSpr = m_Bottom.GetComponentsInChildren<SpriteRenderer>();
+
+		// max number 
+		m_ComboTimer = new Timer (5f);
 	}
 
 	void Start(){
-		m_GS = IG_GuardState.PushQuestion;
+		m_GS = IG_GuardState.Idle;
 		ChangeState ();
+		m_ComboTimer.Reset ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Behaviour ();
+		// 
+		//Behaviour ();
 		//CheckWalkPos ();
 		if(Input.GetKeyDown(KeyCode.W)){
 			if (!m_IsAnswer && (m_GS == IG_GuardState.Question || m_GS == IG_GuardState.PushQuestion)) {
@@ -58,9 +74,80 @@ public class InterrogationGuardHandle : MonoBehaviour {
 				print ("Answer!!!");
 			}
 		}
+
+		//print ("Timer val: " + m_ComboTimer.TimeLeft);
+
+		if (m_ComboTimer.IsOffCooldown) {
+			GenerateCombo ();
+
+		} else {
+			if (m_CurrentKey == 4){
+				//m_CurrentKey = 0;
+				GenerateCombo ();
+				//m_ComboTimer.Reset ();
+			}
+			if (Input.anyKeyDown) {
+				print ("Check the current key input");
+				if (Input.GetKeyDown (KeyCode.W)) {
+					CheckKeyInput (3);
+				} else if (Input.GetKeyDown (KeyCode.A)) {
+					CheckKeyInput (1);
+				} else if (Input.GetKeyDown (KeyCode.S)) {
+					CheckKeyInput (0);
+				} else if (Input.GetKeyDown (KeyCode.D)) {
+					CheckKeyInput (2);
+				} else {
+					print ("#### Error input ####");
+				}
+			}
+
+		}
 	
 	}
 
+	// generate combination 
+	void GenerateCombo(){
+		int randomNum;
+		//int preNum = 0;
+		for (int i = 0; i < 4; i++) {
+			//print ("##### " + i + " #####");
+			randomNum = Random.Range (0, 4);
+			//print (randomNum);
+//			while(!m_ComboPool [i].SetSprite (m_Symbols [randomNum], randomNum)){
+//				randomNum = Random.Range (0, 4);
+//			}
+//			i++;
+			if (m_ComboPool [i].SetSprite (m_Symbols [randomNum], randomNum)) {
+			} else {
+				i -= 1;
+				print ("Redo");
+			}
+		}
+			
+		m_ComboTimer.Reset ();
+		m_CurrentKey = 0;
+	}
+
+	// check if using the correct keys 
+	void CheckKeyInput(int keyIdx){
+		if (m_CurrentKey > -1 && m_CurrentKey < 4) {
+			print ("### " + m_ComboPool [m_CurrentKey].GetSymbolIdx ());
+			if (keyIdx == m_ComboPool [m_CurrentKey].GetSymbolIdx () && !m_ComboPool [m_CurrentKey].IsUnclock) {
+				m_ComboPool [m_CurrentKey].HitSymbol ();
+				m_CurrentKey += 1;
+			} else {
+				print ("### Miss the symbol");
+				foreach (Symbol sb in m_ComboPool) {
+					sb.MissSymbol ();
+				}
+				//GenerateCombo ();
+			}
+		} 
+
+	}
+
+
+	// old code, with guard AI
 	bool CheckStateEnd(){
 		if (m_CurWaitTime > 0) {
 			if (Time.time - m_StartTime >= m_CurWaitTime) {
