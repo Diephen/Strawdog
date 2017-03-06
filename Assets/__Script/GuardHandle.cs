@@ -119,7 +119,8 @@ public class GuardHandle : MonoBehaviour {
 			//m_GuardAnim.SetTrigger ("TriggerStartTorture");
 			m_GuardAnim.SetBool("IsBack", false);
 			m_IsStartTorture = true;
-			StartCoroutine (m_ProgressBar.FadeIn (3f));
+			Events.G.Raise (new UIProgressBar (true));
+			//StartCoroutine (m_ProgressBar.FadeIn (3f));
 		}
 	}
 		
@@ -172,7 +173,8 @@ public class GuardHandle : MonoBehaviour {
 			m_GuardAnim.SetBool("IsBack", true);
 			m_PrisonerHandle.LeaveCalledByGuard ();
 			m_PC.MoveRight ();
-			StartCoroutine (m_ProgressBar.FadeOut (2f));
+			Events.G.Raise (new UIProgressBar (false));
+			//StartCoroutine (m_ProgressBar.FadeOut (2f));
 		}
 
 	}

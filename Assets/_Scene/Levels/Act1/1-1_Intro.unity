@@ -13120,34 +13120,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 0.759}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &801995847 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1295072161274184, guid: 94819713db7f74bf0ad319c8bec2109c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1665218167}
 --- !u!114 &801995848 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114617477745348080, guid: 94819713db7f74bf0ad319c8bec2109c,
     type: 2}
   m_PrefabInternal: {fileID: 1665218167}
   m_Script: {fileID: 11500000, guid: 5f9a37f51ab9a4735a27ca8775ee354f, type: 3}
---- !u!95 &801995849
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 801995847}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 75fb62d4fea504b3aba6f93092c9377e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &804396155
 GameObject:
   m_ObjectHideFlags: 0
@@ -25955,21 +25933,6 @@ Prefab:
     - target: {fileID: 4826906956820790, guid: 94819713db7f74bf0ad319c8bec2109c, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114617477745348080, guid: 94819713db7f74bf0ad319c8bec2109c,
-        type: 2}
-      propertyPath: m_IsShowFromStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 212624418126182096, guid: 94819713db7f74bf0ad319c8bec2109c,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 995829669
-      objectReference: {fileID: 0}
-    - target: {fileID: 212624418126182096, guid: 94819713db7f74bf0ad319c8bec2109c,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: -8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94819713db7f74bf0ad319c8bec2109c, type: 2}

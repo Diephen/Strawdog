@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4826906956820790}
   - component: {fileID: 114617477745348080}
+  - component: {fileID: 95270197350170556}
   m_Layer: 0
   m_Name: ProgressBarAnimated
   m_TagString: Untagged
@@ -156,7 +157,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1295072161274184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8200004, y: 9.1, z: 4.3100004}
+  m_LocalPosition: {x: -2.8200004, y: 12.62, z: 4.3100004}
   m_LocalScale: {x: 3.601088, y: 3.601099, z: 3.601099}
   m_Children:
   - {fileID: 4220605345068264}
@@ -267,6 +268,23 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &95270197350170556
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1295072161274184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 75fb62d4fea504b3aba6f93092c9377e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114617477745348080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +300,7 @@ MonoBehaviour:
   m_TimeToComplete: 5.5
   m_TimePassed: 0
   m_Bck: {fileID: 23797949596917984}
+  m_IsShowFromStart: 1
 --- !u!212 &212624418126182096
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -311,8 +330,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 995829669
+  m_SortingOrder: -8
   m_Sprite: {fileID: 21300000, guid: baed42feee445421a8ef19f9801caf1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
