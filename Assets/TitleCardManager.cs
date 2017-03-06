@@ -143,7 +143,10 @@ public class TitleCardManager : MonoBehaviour {
 				if (GameStateManager.gameStateManager._actTitleIndex == 0) {
 					Events.G.Raise (new Load1_1Event ());
 				}
-					}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 1) {
+					Events.G.Raise (new Load2_1Event ());
+				}
+			}
 //			}
 		}
 	}

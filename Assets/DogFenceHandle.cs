@@ -77,10 +77,10 @@ Vector3 _dogOriginPos;
 
 	IEnumerator WaitForBark(){
 		yield return new WaitForSeconds(2);
-		if(SceneManager.GetActiveScene().buildIndex == 11){
+		if(SceneManager.GetActiveScene().buildIndex == (int)SceneIndex.A2_2_Explore){
 			Events.G.Raise(new DogReturnToPrisonerEvent());
 			Events.G.Raise(new EnableMoveEvent(CharacterIdentity.Both));
-		} else if (SceneManager.GetActiveScene().buildIndex == 12){
+		} else if (SceneManager.GetActiveScene().buildIndex == (int)SceneIndex.A2_3_Patrol){
 			Events.G.Raise(new DogReturnToGuardEvent());
 			Events.G.Raise(new EnableMoveEvent(CharacterIdentity.Both));
 		}

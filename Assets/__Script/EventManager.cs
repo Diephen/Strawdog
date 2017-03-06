@@ -26,6 +26,8 @@ public class LoadTitleCardEvent: GameEvent{
 
 public class Load1_1Event: GameEvent{
 }
+public class Load2_1Event: GameEvent{
+}
 
 public class Act0EndedEvent : GameEvent {
 }

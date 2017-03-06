@@ -116,6 +116,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.AddListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
 
 		Events.G.AddListener<TitleEndedEvent>(LoadAct2);
+		Events.G.AddListener<Load2_1Event>(Load2_1);
 
 		Events.G.AddListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
 		Events.G.AddListener<Act2_PrisonerWalkedDownStairsEvent>(LoadAct2Explore_down);
@@ -179,6 +180,7 @@ public class SceneManagerScript : MonoBehaviour {
 		Events.G.RemoveListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
 
 		Events.G.RemoveListener<TitleEndedEvent>(LoadAct2);
+		Events.G.RemoveListener<Load2_1Event>(Load2_1);
 
 		Events.G.RemoveListener<Act2_PrisonerWalkedUpStairsEvent>(LoadAct2Explore);
 		Events.G.RemoveListener<Act2_PrisonerWalkedDownStairsEvent>(LoadAct2Explore_down);
@@ -244,6 +246,10 @@ public class SceneManagerScript : MonoBehaviour {
 		StartCoroutine(ChangeLevel((int)SceneIndex.A1_1_Intro, 3f));
 	}
 
+	void Load2_1(Load2_1Event e){
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_1_Cell, 3f));
+	}
+
 	void LoadTutorial(LoadTutorialEvent e){
 		StartCoroutine(ChangeFade((int)SceneIndex.A0_3_Tutorial, 0.5f));
 	}
@@ -262,7 +268,8 @@ public class SceneManagerScript : MonoBehaviour {
 
 		
 	void LoadAct2(TitleEndedEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.A2_1_Cell, 0.5f));
+		GameStateManager.gameStateManager._actTitleIndex = 1;
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_6_TitleCard, 0.5f));
 	}
 
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
