@@ -13,6 +13,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	}
 	IG_GuardState m_GS;
 	Animator m_Anim;
+	[SerializeField] InterrogationType m_Type = InterrogationType.prisoner_no;
 	[SerializeField] Interrogation m_ItrSceneManager;
 	[SerializeField] InterrogationPrisonerHandler m_IPHandle;
 	[SerializeField] InteractionSound m_ItrAudio;
@@ -21,7 +22,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	[SerializeField] GameObject m_Bottom;
 	//[SerializeField] SpriteRenderer m_LeftArm;
 	[SerializeField] float m_Speed;
-	[SerializeField] float[] m_WaitTime;
+	//[SerializeField] float[] m_WaitTime;
 
 	SpriteRenderer[] m_BottomSpr;
 	bool _callOnce = true;
@@ -34,15 +35,22 @@ public class InterrogationGuardHandle : MonoBehaviour {
 	bool m_IsAtStart = true;
 	bool m_IsEnd = false;
 	bool m_interroAggressiveOnce = false;
+	// 
+	bool m_IsInterrogationEnd = false;
+	bool m_IsInterrogationPaused = false;
+	bool m_IsNewComboGenerated = false;
+
+	bool m_WalkOnce = false;
 
 
 	[SerializeField] Symbol[] m_ComboPool;
 	[SerializeField] Sprite[] m_Symbols;
+	[SerializeField] InterrogationLight[] m_Lights;
 	Timer m_ComboTimer;
 
 	// check key inputs 
 	int m_CurrentKey = -1;
-
+	int m_CurrentLight = -1;
 
 
 	// Use this for initialization
@@ -55,53 +63,102 @@ public class InterrogationGuardHandle : MonoBehaviour {
 
 		// max number 
 		m_ComboTimer = new Timer (5f);
+		//m_Lights = FindObjectsOfType<InterrogationLight> ();
 	}
 
 	void Start(){
 		m_GS = IG_GuardState.Idle;
 		ChangeState ();
-		m_ComboTimer.Reset ();
+		//m_ComboTimer.Reset ();
+		m_CurrentLight = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// 
 		//Behaviour ();
+		UpdateBehaviour();
 		//CheckWalkPos ();
-		if(Input.GetKeyDown(KeyCode.W)){
-			if (!m_IsAnswer && (m_GS == IG_GuardState.Question || m_GS == IG_GuardState.PushQuestion)) {
-				m_IsAnswer = true;
-				print ("Answer!!!");
-			}
-		}
 
 		//print ("Timer val: " + m_ComboTimer.TimeLeft);
+		if (!m_IsInterrogationEnd && !m_IsEnd) {
+			if (!m_IsInterrogationPaused) {
+				if (m_ComboTimer.IsOffCooldown && !m_IsNewComboGenerated) {
+					// if time is up fail state 
+					// GenerateCombo ();
+					m_GS = IG_GuardState.Idle;
+					ChangeState ();
+					UpdateLights (false);
 
-		if (m_ComboTimer.IsOffCooldown) {
-			GenerateCombo ();
+					foreach (Symbol sb in m_ComboPool) {
+						StartCoroutine (sb.HideSymbol(0.8f));
+					}
+				} else if (!m_ComboTimer.IsOffCooldown) {
+					if (m_CurrentKey == 4) {
+						m_CurrentKey = -1;
+						m_GS = IG_GuardState.Idle;
+						ChangeState ();
+						UpdateLights (true);
+						foreach (Symbol sb in m_ComboPool) {
+							StartCoroutine (sb.HideSymbol (1f));
+						}
+						//m_ComboTimer.Reset ();
+					}
 
-		} else {
-			if (m_CurrentKey == 4){
-				//m_CurrentKey = 0;
-				GenerateCombo ();
-				//m_ComboTimer.Reset ();
-			}
-			if (Input.anyKeyDown) {
-				print ("Check the current key input");
+					//
+					if (m_CurrentLight == m_Lights.Length) {
+						print ("###### End interrogation #######");
+						m_IsInterrogationEnd = true;
+					}
+
+					//
+					if (Input.anyKeyDown) {
+						//print ("Check the current key input");
+						if (Input.GetKeyDown (KeyCode.W)) {
+							CheckKeyInput (3);
+						} else if (Input.GetKeyDown (KeyCode.A)) {
+							CheckKeyInput (1);
+						} else if (Input.GetKeyDown (KeyCode.S)) {
+							CheckKeyInput (0);
+						} else if (Input.GetKeyDown (KeyCode.D)) {
+							CheckKeyInput (2);
+						} else {
+							//print ("#### Error input ####");
+						}
+					}
+
+				}// end of checking timer 
+			} else {
 				if (Input.GetKeyDown (KeyCode.W)) {
-					CheckKeyInput (3);
-				} else if (Input.GetKeyDown (KeyCode.A)) {
-					CheckKeyInput (1);
-				} else if (Input.GetKeyDown (KeyCode.S)) {
-					CheckKeyInput (0);
-				} else if (Input.GetKeyDown (KeyCode.D)) {
-					CheckKeyInput (2);
-				} else {
-					print ("#### Error input ####");
+					if (!m_IsAnswer && m_GS == IG_GuardState.PushQuestion) {
+						m_IsAnswer = true;
+						print ("Answer!!!");
+					}
 				}
 			}
 
+
+		} else if (!m_IsEnd && m_IsInterrogationEnd) {
+			// when get all combo correct before scene ends
+			if(!m_WalkOnce){
+				m_WalkOnce = true;
+				m_GS = IG_GuardState.WalkToRight;
+				ChangeState ();
+				foreach (Symbol sb in m_ComboPool) {
+					StartCoroutine (sb.HideSymbol(0.2f));
+				}
+			}
+
+		} else {
+			// when scene ends && not able to get all combo correct 
+			foreach (Symbol sb in m_ComboPool) {
+				StartCoroutine (sb.HideSymbol(0.2f));
+			}
+//			foreach (InterrogationLight igt in m_Lights) {
+//				igt.TurnLightOff ();
+//			}
 		}
+
 	
 	}
 
@@ -112,43 +169,69 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
 			//print ("##### " + i + " #####");
 			randomNum = Random.Range (0, 4);
-			//print (randomNum);
-//			while(!m_ComboPool [i].SetSprite (m_Symbols [randomNum], randomNum)){
-//				randomNum = Random.Range (0, 4);
-//			}
-//			i++;
 			if (m_ComboPool [i].SetSprite (m_Symbols [randomNum], randomNum)) {
 			} else {
 				i -= 1;
-				print ("Redo");
+				//print ("Redo");
 			}
 		}
-			
 		m_ComboTimer.Reset ();
 		m_CurrentKey = 0;
+
 	}
 
-	// check if using the correct keys 
+	// check if using the correct keys  && lights resposes 
 	void CheckKeyInput(int keyIdx){
 		if (m_CurrentKey > -1 && m_CurrentKey < 4) {
-			print ("### " + m_ComboPool [m_CurrentKey].GetSymbolIdx ());
+			// print ("### " + m_ComboPool [m_CurrentKey].GetSymbolIdx ());
 			if (keyIdx == m_ComboPool [m_CurrentKey].GetSymbolIdx () && !m_ComboPool [m_CurrentKey].IsUnclock) {
 				m_ComboPool [m_CurrentKey].HitSymbol ();
 				m_CurrentKey += 1;
+
 			} else {
 				print ("### Miss the symbol");
 				foreach (Symbol sb in m_ComboPool) {
 					sb.MissSymbol ();
+					StartCoroutine (sb.HideSymbol(0.8f));
+					m_CurrentKey = -1;
 				}
 				//GenerateCombo ();
+				// go to the push down 
+				UpdateLights (false);
+				m_GS = IG_GuardState.PushQuestion;
+				m_IsInterrogationPaused = true;
+				ChangeState ();
 			}
 		} 
+
+	}
+
+	// check the lights 
+	void UpdateLights(bool isTurnOnLight){
+		if (isTurnOnLight) {
+			if (m_CurrentLight > -1 && m_CurrentLight < m_Lights.Length) {
+				m_Lights [m_CurrentLight].TurnLightOn ();
+				m_CurrentLight += 1;
+				// guard out hand down 
+
+			} 
+		} else {
+			if (m_CurrentLight - 1 >= 0) {
+				m_CurrentLight -= 1;
+				m_Lights [m_CurrentLight].TurnLightOff ();
+			}
+
+//			foreach (InterrogationLight lgt in m_Lights) {
+//				lgt.TurnLightOff ();
+//			}
+		}
 
 	}
 
 
 	// old code, with guard AI
 	bool CheckStateEnd(){
+		print ("#### " + (Time.time - m_StartTime));
 		if (m_CurWaitTime > 0) {
 			if (Time.time - m_StartTime >= m_CurWaitTime) {
 				return true;
@@ -160,19 +243,114 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		}
 	}
 
+	void UpdateBehaviour(){
+		switch (m_GS) {
+		case IG_GuardState.Idle:
+			if (!CheckStateEnd()) {
+				print ("Idle");
+			} else {
+				print ("End Idle");
+				if (!m_IsEnd && !m_IsInterrogationEnd ) {
+					m_IsNewComboGenerated = false;
+					m_GS = IG_GuardState.Question;
+					ChangeState ();
+				} else if(m_IsEnd) {
+					EndSequence ();
+				}
+
+			}
+			break;
+		case IG_GuardState.Question:
+			if (m_IsEnd) {
+				EndSequence ();
+			}
+			break;
+		case IG_GuardState.WalkToRight:
+			if (m_IsWalk && !m_IsAtStart) {
+				CheckWalkPos ();
+			} else {
+				//m_IsWalk = false;
+				Events.G.Raise (new TriggerTakenAwayEvent ());
+				m_GS = IG_GuardState.Idle;
+				ChangeState ();
+			}
+			break;
+		case IG_GuardState.PushQuestion:
+			if (!m_IsEnd) {
+				if (m_IsAnswer) {
+					m_GS = IG_GuardState.BackToIdle;
+					ChangeState ();
+					m_IsAnswer = false;
+					m_interroAggressiveOnce = true;
+				} else {
+					// question idling
+					if (m_interroAggressiveOnce) {
+						m_ItrAudio.PlayInterroAggressive ();
+						m_interroAggressiveOnce = false;
+					}
+					print ("Pushing Question Idle");
+				}
+			} else {
+				EndSequence ();
+			}
+
+			break;
+		case IG_GuardState.BackToIdle:
+			if (CheckStateEnd ()) {
+				if (!m_IsEnd) {
+					m_GS = IG_GuardState.Idle;
+					ChangeState ();
+					// back to ask questions 
+					//GenerateCombo();
+					m_IsInterrogationPaused = false;
+					//m_ComboTimer.Reset ();
+				} else {
+					EndSequence ();
+				}
+			}
+			break;
+		case IG_GuardState.EndKickAfterIdle:
+			if (CheckStateEnd ()) {
+				// goes to the end 
+				m_GS = IG_GuardState.EndKickAfterPush;
+				ChangeState ();
+			}
+			break;
+		case IG_GuardState.EndKickAfterPush:
+			if (CheckStateEnd ()) {
+				//m_GS = IG_GuardState.EndKickAfterIdle;
+				if (_callOnce) {
+					m_ItrSceneManager.NextScene ();
+					_callOnce = false;
+				}
+			}
+			break;
+		}
+
+	}
+
+
+
+
+	// ################ Old Code ###################### //
 	// check behaviour only when state change
 	void ChangeState(){
 		switch (m_GS) {
 		case IG_GuardState.Idle:
-			m_CurWaitTime = 2f;
+			m_CurWaitTime = 1.2f;
 			m_StartTime = Time.time;
+			m_IsNewComboGenerated = true;
 			m_Anim.Play ("IG-Idle");
 			break;
 		case IG_GuardState.Question:
-			m_CurWaitTime = 4f;
-			m_StartTime = Time.time;
-			m_Anim.Play ("IG-Question");
-			m_ItrAudio.PlayInterroNicer ();
+			if (!m_IsEnd && !m_IsInterrogationEnd) {
+				GenerateCombo ();
+				m_IsNewComboGenerated = false;
+				//m_CurWaitTime = 4f;
+				//m_StartTime = Time.time;
+				m_Anim.Play ("IG-Question");
+				m_ItrAudio.PlayInterroNicer ();
+			}
 			break;
 		case IG_GuardState.WalkToRight:
 			//m_CurWaitTime = 3f;
@@ -213,6 +391,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		}
 	}
 
+	/*
 	void Behaviour(){
 		switch (m_GS) {
 		case IG_GuardState.Idle:
@@ -310,16 +489,30 @@ public class InterrogationGuardHandle : MonoBehaviour {
 		}
 			
 	}
+	*/
 
 	public void EndInterrogation(){
 		if (!m_IsEnd) {
 			m_IsEnd = true;
+			// if got all the answer right -- link back to the cell with note reading
+			// guard let go of prisoner 
+			if(m_IsInterrogationEnd){
+				
+			}
+
+			// if didn't get the answer right -- link to the execution 
+			// guard kick the prisoner
+			else{
+				
+			}
+
+
 		}
 	}
 
 	// checkeck which state to go to after the sequence ends 
 	void EndSequence(){
-		if (m_IsEnd) {
+		if (m_IsEnd && !m_IsInterrogationEnd) {
 			print ("Check ending");
 			if (m_GS == IG_GuardState.Idle) {
 				m_GS = IG_GuardState.EndKickAfterIdle;
@@ -374,7 +567,7 @@ public class InterrogationGuardHandle : MonoBehaviour {
 				Flip ();
 			}
 		} else {
-			if (transform.position.x + dir * m_Speed * Time.deltaTime > m_StartX.position.x) {
+			if (transform.position.x + 2*dir * m_Speed * Time.deltaTime > m_StartX.position.x) {
 				npos.x += dir * m_Speed * Time.deltaTime;
 				transform.position = npos;
 			} else {

@@ -37,13 +37,17 @@ public class Symbol : MonoBehaviour {
 	}
 
 	public void MissSymbol(){
-		if (!IsUnclock) {
-			IsUnclock = false;
-			m_SpriteRenderer.color = new Color (255, 0, 0);
-			print ("### Miss!!");
-		}
-
+		IsUnclock = false;
+		m_SpriteRenderer.color = new Color (255, 0, 0);
+		print ("### Miss!!");
 	}
+
+	public IEnumerator HideSymbol(float time){
+		yield return new WaitForSeconds(time);
+		m_SpriteRenderer.color = new Color (0, 0, 0, 0);
+	}
+
+
 
 	public bool SetSprite(Sprite spr, int idx){
 		if (idx != m_SymbolIdx) {

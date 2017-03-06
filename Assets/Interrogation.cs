@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum InterrogationType{
+	prisoner_yes,
+	prisoner_no,
+	guard
+}
+
 public class Interrogation : MonoBehaviour {
-	enum InterrogationType{
-		prisoner_yes,
-		prisoner_no,
-		guard
-	}
+	
 	//[SerializeField] bool _bombFound = false;
 	[SerializeField] InterrogationType m_SceneType;
 	[SerializeField] float _duration;
