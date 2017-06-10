@@ -1,4 +1,6 @@
-﻿Shader "Custom/Highlight" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Highlight" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Main Texture", 2D) = "black" {}
@@ -112,7 +114,7 @@
             #pragma fragment frag
 
             float4 vert(float4 v:POSITION) : POSITION {
-                return mul (UNITY_MATRIX_MVP, v);
+                return UnityObjectToClipPos (v);
             }
 
             // Note: Android platforms do not support "fixed", has to be fixed4
@@ -157,7 +159,7 @@
      
             v2f vert( float4 v : POSITION ) {        
                 v2f o;
-                o.vertex = mul( UNITY_MATRIX_MVP, v );
+                o.vertex = UnityObjectToClipPos( v );
                 o.projPos = ComputeScreenPos(o.vertex);             
                 return o;
             }
