@@ -25,22 +25,25 @@ public class TitleCardManager : MonoBehaviour {
 	//Act Title Index
 	//0 - Act 1
 	//1 - Act 2
-	//2 - Act 3-1
-	//3 - Act 3-2
-	//4 - Act 3-3
-	//5 - Act 4-1
-	//6 - Act 4-2
-	//7 - Act 5
+	//2 - Act 3-1 (interrogation)
+	//3 - Act 3-1 (interrogation With Bomb)
+	//4 - Act 3-2 (prisoner read)
+	//5 - Act 3-3  (guard read)
+	//6 - Act 3-4 (bomb)
+	//7 - Act 4-1 (execution)
+	//8 - Act 4-2 (ditch)
+	//9 - Act 4-3 (plant bomb)
+	//10 - Act 5
 		
 	float _tempAlpha;
 	Color _tempTitleColor;
 	Color _tempBodyColor;
 
-	[SerializeField] Text[] _titleText = new Text[8];
-	[SerializeField] Text[] _bodyText = new Text[8];
+	[SerializeField] Text[] _titleText = new Text[11];
+	[SerializeField] Text[] _bodyText = new Text[11];
 
-	[SerializeField] float[] _firstDuration = new float[8];
-	[SerializeField] float[] _secondDuration = new float[8];
+	[SerializeField] float[] _firstDuration = new float[11];
+	[SerializeField] float[] _secondDuration = new float[11];
 	Timer _durationTimer;
 
 	void Awake(){
@@ -146,6 +149,33 @@ public class TitleCardManager : MonoBehaviour {
 				else if (GameStateManager.gameStateManager._actTitleIndex == 1) {
 					Events.G.Raise (new Load2_1Event ());
 				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 2) {
+					Events.G.Raise (new Load3_1Event());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 3) {
+					Events.G.Raise (new Load3_2Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 4) {
+					Events.G.Raise (new Load3_3Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 5) {
+					Events.G.Raise (new Load3_4Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 6) {
+					Events.G.Raise (new Load3_5Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 7) {
+					Events.G.Raise (new Load4_1Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 8) {
+					Events.G.Raise (new Load4_2Event ());
+				}
+				else if (GameStateManager.gameStateManager._actTitleIndex == 9) {
+					Events.G.Raise (new Load4_6Event ());
+				}
+				//else if (GameStateManager.gameStateManager._actTitleIndex == 9) {
+				//	Events.G.Raise (new Load2_1Event ());
+				//}
 			}
 //			}
 		}

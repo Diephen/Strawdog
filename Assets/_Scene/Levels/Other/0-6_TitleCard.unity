@@ -186,6 +186,83 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 25887035}
+--- !u!1 &126220701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 126220702}
+  - component: {fileID: 126220703}
+  - component: {fileID: 126220704}
+  m_Layer: 0
+  m_Name: Act3-4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &126220702
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126220701}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.60380876, y: 0.61915743, z: 1.0382158}
+  m_Children: []
+  m_Father: {fileID: 307083073}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.9998932, y: -1.0000534}
+  m_SizeDelta: {x: 2414, y: 998}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &126220703
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126220701}
+--- !u!114 &126220704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 126220701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Our confederates have surrendered, yet our war rages on.\r\n\nWe are determined
+    to continue fighting and we will devote our lives to protect our cause.\r We will
+    not surrender until they defeat every last one of us.\r\n\nBut it is clear to
+    me that we have already lost."
 --- !u!1 &156534478
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +291,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 553007337}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -387,7 +464,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 307083073}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -426,9 +503,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "There were frequent attempts to sabotage our operation, most of them fruitless.
-    After every failed attempt, the prison would crack down on suspicious prisoners.
-    \n\nIt was in our best interest to keep everyone safe."
+  m_Text: 'As the war continued on, resources became scarce and food had to be rationed
+    out. It was important to look out for our own, so necessary cuts were made for
+    the prisoners. '
 --- !u!222 &195990781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -537,10 +614,13 @@ RectTransform:
   - {fileID: 648695101}
   - {fileID: 25887036}
   - {fileID: 1814269896}
+  - {fileID: 342792959}
   - {fileID: 195990779}
   - {fileID: 543492478}
+  - {fileID: 126220702}
   - {fileID: 1752213167}
   - {fileID: 451911849}
+  - {fileID: 1200008294}
   - {fileID: 1345288675}
   m_Father: {fileID: 168383339}
   m_RootOrder: 2
@@ -624,6 +704,83 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 324898093}
+--- !u!1 &342792958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 342792959}
+  - component: {fileID: 342792960}
+  - component: {fileID: 342792961}
+  m_Layer: 0
+  m_Name: Act3-1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &342792959
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342792958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6038086, y: 0.6191573, z: 1.0382156}
+  m_Children: []
+  m_Father: {fileID: 307083073}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.9998016, y: -16.999924}
+  m_SizeDelta: {x: 2414, y: 998}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &342792960
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342792958}
+--- !u!114 &342792961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342792958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "There were frequent attempts to sabotage our operation, most of them fruitless.
+    After every failed attempt, the prison would crack down on suspicious prisoners,
+    by whatever means possible. \n\nIt was in our best interest to keep our people
+    safe."
 --- !u!1001 &361366666
 Prefab:
   m_ObjectHideFlags: 0
@@ -694,7 +851,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 307083073}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -733,9 +890,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: If the soldiers were anything, we were efficient. Many of us have been taught
-    to never let things go to waste. If there was ever a need, we made do with what
-    we had.
+  m_Text: If us soldiers were anything, we were efficient. Many of us had been taught
+    to never let things go to waste. If there was ever a need, we could go to extreme
+    lengths to make do with what we had.
 --- !u!222 &451911851
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -845,7 +1002,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 307083073}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -886,7 +1043,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "As the war continued on, resources became scarce and food had to be rationed
     out. It was important to look out for our own, so necessary cuts were made for
-    the prisoners. \n\nThey were criminals after all."
+    the prisoners. \n\nI wonder how my family is doing back home. I hope they have
+    enough to eat."
 --- !u!222 &543492480
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1070,10 +1228,13 @@ RectTransform:
   - {fileID: 1028798624}
   - {fileID: 1268805539}
   - {fileID: 828928180}
+  - {fileID: 1928743443}
   - {fileID: 1573054743}
   - {fileID: 1879925552}
+  - {fileID: 623783789}
   - {fileID: 782930712}
   - {fileID: 1277434954}
+  - {fileID: 1298856594}
   - {fileID: 156534479}
   m_Father: {fileID: 168383339}
   m_RootOrder: 1
@@ -1151,6 +1312,83 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 597149592}
+--- !u!1 &623783788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 623783789}
+  - component: {fileID: 623783790}
+  - component: {fileID: 623783791}
+  m_Layer: 0
+  m_Name: Act3-4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &623783789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623783788}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.60380876, y: 0.61915743, z: 1.0382158}
+  m_Children: []
+  m_Father: {fileID: 553007337}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.999939, y: 209}
+  m_SizeDelta: {x: 2000, y: 450}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &623783790
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623783788}
+--- !u!114 &623783791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623783788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Act 3
+
+
+    Prelude'
 --- !u!1 &648695100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1445,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
-    m_FontSize: 80
+    m_FontSize: 73
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1308,7 +1546,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 553007337}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1502,7 +1740,7 @@ MonoBehaviour:
   m_Text: 'Act 3
 
 
-    Sabotage'
+    Interrogation'
 --- !u!222 &828928182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1775,7 +2013,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1968,6 +2206,82 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1123415147}
+--- !u!1 &1200008293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1200008294}
+  - component: {fileID: 1200008295}
+  - component: {fileID: 1200008296}
+  m_Layer: 0
+  m_Name: Act4-3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1200008294
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1200008293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.60380876, y: 0.61915743, z: 1.0382158}
+  m_Children: []
+  m_Father: {fileID: 307083073}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.9998932, y: -21.99997}
+  m_SizeDelta: {x: 2414, y: 998}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1200008295
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1200008293}
+--- !u!114 &1200008296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1200008293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "I miss waking up in the morning to the smell of steaming white rice.\r\n\nThe
+    gleeful barks of my dog and the warm embrace from loved ones.\r\n\nBut will I
+    ever be able to return to this life, or is just another long gone dream?"
 --- !u!1 &1268805538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,7 +2462,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 553007337}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2197,6 +2511,83 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1277434953}
+--- !u!1 &1298856593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1298856594}
+  - component: {fileID: 1298856595}
+  - component: {fileID: 1298856596}
+  m_Layer: 0
+  m_Name: Act4-3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1298856594
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1298856593}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.60380876, y: 0.61915743, z: 1.0382158}
+  m_Children: []
+  m_Father: {fileID: 553007337}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.999939, y: 209}
+  m_SizeDelta: {x: 2000, y: 450}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1298856595
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1298856593}
+--- !u!114 &1298856596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1298856593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Act 4
+
+
+    Conclusion'
 --- !u!1 &1342535713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,7 +2684,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 307083073}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2487,7 +2878,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 553007337}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2529,7 +2920,7 @@ MonoBehaviour:
   m_Text: 'Act 3
 
 
-    Interrogation'
+    Scarcity'
 --- !u!222 &1573054745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2643,7 +3034,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 307083073}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2682,8 +3073,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'I don''t mean to say that our methods were perfect, but it was simple and
-    it got the job done. We catch the criminals and then we punish them accordingly. '
+  m_Text: "I don't mean to say that our methods were perfect, but it was simple and
+    it got the job done. We catch the criminals and then we punish them accordingly.
+    \n\nBesides, I could not stand their pathetic looks of defeat. It was as if they
+    lost all hope to live."
 --- !u!222 &1752213169
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2826,8 +3219,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "There were frequent attempts to sabotage our operation, most of them fruitless.
-    Some of the attempts were by our own men. \n\nIt seemed that war had done a number
-    on them, especially with the shortage of food."
+    After every failed attempt, the prison would crack down on suspicious prisoners,
+    by whatever means possible. \n\nIt was in our best interest to keep our people
+    safe."
 --- !u!222 &1814269898
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3001,15 +3395,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012217008788, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.191564
       objectReference: {fileID: 0}
     - target: {fileID: 4000012217008788, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.191564
       objectReference: {fileID: 0}
     - target: {fileID: 4000012217008788, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.191564
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
@@ -3047,7 +3441,7 @@ RectTransform:
   m_LocalScale: {x: 0.6038307, y: 0.61913574, z: 1.0381931}
   m_Children: []
   m_Father: {fileID: 553007337}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3089,13 +3483,90 @@ MonoBehaviour:
   m_Text: 'Act 3
 
 
-    Prelude'
+    Scarcity'
 --- !u!222 &1879925554
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1879925551}
+--- !u!1 &1928743442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1928743443}
+  - component: {fileID: 1928743444}
+  - component: {fileID: 1928743445}
+  m_Layer: 0
+  m_Name: Act3-1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1928743443
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928743442}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.60380876, y: 0.61915743, z: 1.0382158}
+  m_Children: []
+  m_Father: {fileID: 553007337}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -3.999939, y: 209}
+  m_SizeDelta: {x: 2000, y: 450}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1928743444
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928743442}
+--- !u!114 &1928743445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928743442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6078347, g: 0.6310345, b: 0.6095406, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: bafb9dc0b531a4daaacae07795009dfe, type: 3}
+    m_FontSize: 80
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Act 3
+
+
+    Interrogation'
 --- !u!1 &1932505582
 GameObject:
   m_ObjectHideFlags: 0
@@ -3132,19 +3603,25 @@ MonoBehaviour:
   - {fileID: 1028798625}
   - {fileID: 1268805540}
   - {fileID: 828928181}
+  - {fileID: 1928743445}
   - {fileID: 1573054744}
   - {fileID: 1879925553}
+  - {fileID: 623783791}
   - {fileID: 782930713}
   - {fileID: 1277434955}
+  - {fileID: 1298856596}
   - {fileID: 156534480}
   _bodyText:
   - {fileID: 648695102}
   - {fileID: 25887037}
   - {fileID: 1814269897}
+  - {fileID: 342792961}
   - {fileID: 195990780}
   - {fileID: 543492479}
+  - {fileID: 126220704}
   - {fileID: 1752213168}
   - {fileID: 451911850}
+  - {fileID: 1200008296}
   - {fileID: 1345288676}
   _firstDuration:
   - 12
@@ -3155,7 +3632,13 @@ MonoBehaviour:
   - 10
   - 10
   - 8
+  - 8
+  - 8
+  - 8
   _secondDuration:
+  - 6
+  - 6
+  - 6
   - 6
   - 6
   - 6

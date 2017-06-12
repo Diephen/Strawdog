@@ -12,7 +12,7 @@ public class TriggerWarning : MonoBehaviour {
 	
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space)){
-			Events.G.Raise (new LoadTutorialEvent ());
+			Events.G.Raise (new LoadMainMenuEvent ());
 			_text.color = Color.white;
 		}
 	}

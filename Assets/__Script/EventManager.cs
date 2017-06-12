@@ -28,6 +28,34 @@ public class Load1_1Event: GameEvent{
 }
 public class Load2_1Event: GameEvent{
 }
+public class Load2_2Event: GameEvent{
+}
+public class Load2_3Event: GameEvent{
+}
+public class Load2_4Event: GameEvent{
+}
+public class Load3_1Event: GameEvent{
+}
+public class Load3_2Event: GameEvent{
+}
+public class Load3_3Event: GameEvent{
+}
+public class Load3_4Event: GameEvent{
+}
+public class Load3_5Event: GameEvent{
+}
+public class Load4_1Event: GameEvent{
+}
+public class Load4_2Event: GameEvent{
+}
+public class Load4_3Event: GameEvent{
+}
+public class Load4_4Event: GameEvent{
+}
+public class Load4_5Event: GameEvent{
+}
+public class Load4_6Event: GameEvent{
+}
 
 public class Act0EndedEvent : GameEvent {
 }

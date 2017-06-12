@@ -25,6 +25,12 @@ public class MainMenuManager : MonoBehaviour {
 
 
 	[SerializeField] GameStateManager _gameStateManager;
+	[SerializeField] GameObject _optionMenu;
+
+	[SerializeField] string[] _menuEnglish;
+	[SerializeField] string[] _menuChinese;
+	[SerializeField] string[] _menuKorean;
+	[SerializeField] Text[] _menuText;
 
 	void Awake(){
 		if (_gameStateManager == null) {
@@ -33,6 +39,7 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	void Start(){
+		ResetLanguage();
 		if (menuPanel == null) {
 			menuPanel = GameObject.Find ("ControlsRebinding").transform;
 		}
@@ -68,6 +75,19 @@ public class MainMenuManager : MonoBehaviour {
 			}
 			else if(menuPanel.GetChild(i).name == "HelpKey"){
 				menuPanel.GetChild (i).GetComponentInChildren<Text> ().text = GameStateManager.gameStateManager._helpKey.ToString ();
+			}
+		}
+	}
+
+	void ResetLanguage(){
+		int thisLanguage = PlayerPrefs.GetInt("currentLanguage");
+		for(int i = 0; i < _menuText.Length; i++){
+			if(thisLanguage == 0){
+				_menuText[i].text = _menuEnglish[i];
+			} else if (thisLanguage == 1) {
+				_menuText[i].text = _menuChinese[i];
+			} else {
+				_menuText[i].text = _menuKorean[i];
 			}
 		}
 	}
@@ -202,12 +222,16 @@ public class MainMenuManager : MonoBehaviour {
 	}
 
 	public void OptionsButton(){
-		Debug.Log ("Options Button Pressed");
+		_optionMenu.SetActive(true);
 	}
 
 	public void QuitButton(){
 		Debug.Log ("Quit Button Pressed");
 		Application.Quit ();
+	}
+
+	public void BackButton(){
+		_optionMenu.SetActive(false);
 	}
 
 	public void ControlsButton(){
@@ -244,6 +268,7 @@ public class MainMenuManager : MonoBehaviour {
 			currentLanguage = languageSetting.Korean;
 		}
 		PlayerPrefs.SetInt("currentLanguage", _languagesDropdown.value);
+		ResetLanguage();
 	}
 
 	public void DeleteSaveFile(){
