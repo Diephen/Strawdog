@@ -188,7 +188,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 				_shootCnt++;
 				_execute = false;
 				m_CurrentSP = null;
-				if (_shootCnt == 1) {
+				if (_shootCnt == 1 && !GameStateManager.gameStateManager._executionAsGuard) {
 					this.transform.position = m_GuardStartPos [1].position;
 				} else if (_shootCnt == 2){
 					//Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));

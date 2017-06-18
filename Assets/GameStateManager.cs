@@ -35,6 +35,8 @@ public class GameStateManager : MonoBehaviour {
 
 	public KeyCode _helpKey { get; set; }
 
+	public bool _executionAsGuard{get; set;}
+
 
 
 	void Awake () {

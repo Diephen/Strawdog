@@ -72,7 +72,7 @@ public class Interrogation : MonoBehaviour {
 	public void NextScene(){
 		if (m_SceneType == InterrogationType.prisoner_yes) {
 			print ("Go to execution");
-			Events.G.Raise (new TriggerExecutionEvent ());
+			Events.G.Raise (new TriggerExecutionEvent (false));
 
 		} else if(m_SceneType == InterrogationType.prisoner_no){
 			print ("Go to Ditch");

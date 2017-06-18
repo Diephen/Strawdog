@@ -422,6 +422,11 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void LoadExecution(TriggerExecutionEvent e){
+		if(e._ExecutionAsGuard){
+			GameStateManager.gameStateManager._executionAsGuard = false;
+		} else {
+			GameStateManager.gameStateManager._executionAsGuard = true;
+		}
 		GameStateManager._acquiredStates [2] = true;
 		GameStateManager.gameStateManager._actTitleIndex = 7;
 		StartCoroutine(ChangeLevel((int)SceneIndex.A0_6_TitleCard, 0.5f));

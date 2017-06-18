@@ -36,6 +36,9 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		m_CatchTimer = new Timer (WaitToCatchDuration);
 		m_EncounterTimer = new Timer (WaitToShootBoth);
 		m_Anim = GetComponent<Animator> ();
+		if(GameStateManager.gameStateManager._executionAsGuard){
+			Events.G.Raise(new ShootSwitchEvent());
+		}
 		//m_FlashLight = GameObject.FindObjectOfType<rotateTowards> ();
 	}
 

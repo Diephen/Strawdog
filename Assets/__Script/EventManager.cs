@@ -214,6 +214,10 @@ public class CameraFollowTransformEvent : GameEvent {
 
 /* Act 3 */
 public class TriggerExecutionEvent : GameEvent {
+	public bool _ExecutionAsGuard {get; private set;}
+	public TriggerExecutionEvent(bool _executionAsGuard){
+		_ExecutionAsGuard = _executionAsGuard;
+	}
 }
 
 public class TriggerTakenAwayEvent : GameEvent {
