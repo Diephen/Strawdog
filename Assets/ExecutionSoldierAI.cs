@@ -9,7 +9,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	[SerializeField] SpriteRenderer m_GunSprite;
 	[SerializeField] float m_Speed;
 	[SerializeField] float WaitToCatchDuration = 0.1f;
-	[SerializeField] float CatchDuration = 0.1f;
+	[SerializeField] float CatchDuration = 0.01f;
 	[SerializeField] float WaitToShootBoth = 8f;
 	[SerializeField] InteractionSound m_ItrSound;
 
@@ -83,7 +83,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void OnPrisonerStray(AboutToStrayOutOfLineEvent e){
 		//m_IsCatch = true;
-		if(!m_IsSwitchToGuard && !m_IsGuardEncounter){
+		if(!m_IsSwitchToGuard && !m_IsGuardEncounter && !m_IsPrisonerStray){
 			m_IsPrisonerStray = e.Straying;
 			if (m_IsPrisonerStray) {
 				m_CatchTimer.Reset ();
