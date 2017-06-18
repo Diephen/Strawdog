@@ -2140,6 +2140,16 @@ Prefab:
       propertyPath: _warningColor.b
       value: 0.24107915
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013132168468, guid: 91e86aa66f5a641e68168ac011f68bbd,
+        type: 2}
+      propertyPath: _guardTarget
+      value: 
+      objectReference: {fileID: 211190654}
+    - target: {fileID: 114000011130965038, guid: 91e86aa66f5a641e68168ac011f68bbd,
+        type: 2}
+      propertyPath: _rotateTowardsScript
+      value: 
+      objectReference: {fileID: 937576881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91e86aa66f5a641e68168ac011f68bbd, type: 2}
   m_IsPrefabParent: 0
@@ -11171,6 +11181,12 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &937576881 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000013132168468, guid: 91e86aa66f5a641e68168ac011f68bbd,
+    type: 2}
+  m_PrefabInternal: {fileID: 216616450}
+  m_Script: {fileID: 11500000, guid: 2128f68b4751548cd831aa9265b1fde2, type: 3}
 --- !u!1 &940768754
 GameObject:
   m_ObjectHideFlags: 0
@@ -11280,6 +11296,7 @@ MonoBehaviour:
   CatchDuration: 2
   WaitToShootBoth: 30
   m_ItrSound: {fileID: 0}
+  _rotateTowardsScript: {fileID: 0}
 --- !u!1 &948233370
 GameObject:
   m_ObjectHideFlags: 0
@@ -12596,6 +12613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 853659968}
+  _guardTarget: {fileID: 0}
   speed: 2
   _spotAngleCurve:
     serializedVersion: 2
@@ -12733,7 +12751,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1090020353}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.93, y: 1, z: 0}
+  m_LocalPosition: {x: 20.51, y: 1, z: 0}
   m_LocalScale: {x: 0.86915326, y: 0.86915374, z: 0.86915374}
   m_Children: []
   m_Father: {fileID: 2119516614}
@@ -19182,7 +19200,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1800737166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.630104, y: 1, z: 0}
+  m_LocalPosition: {x: 14.46, y: 1, z: 0}
   m_LocalScale: {x: 0.86915326, y: 0.86915374, z: 0.86915374}
   m_Children: []
   m_Father: {fileID: 2119516614}
@@ -23156,6 +23174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 853659968}
+  _guardTarget: {fileID: 0}
   speed: 2
   _spotAngleCurve:
     serializedVersion: 2

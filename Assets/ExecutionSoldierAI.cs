@@ -10,8 +10,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	[SerializeField] float m_Speed;
 	[SerializeField] float WaitToCatchDuration = 0.1f;
 	[SerializeField] float CatchDuration = 0.1f;
-	[SerializeField] float WaitToShootBoth = 10f;
+	[SerializeField] float WaitToShootBoth = 8f;
 	[SerializeField] InteractionSound m_ItrSound;
+
+	[SerializeField] rotateTowards _rotateTowardsScript;
+
 	GameObject m_FlashLight;
 	Timer m_CatchTimer;
 	Timer m_EncounterTimer;
@@ -24,6 +27,9 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	bool m_IsSwitchToGuard = false;
 	bool m_IsPrisonerDead = false;
 	bool _once = false;
+
+	bool _calledWarning = false;
+	bool _movedOverRight = false;
 	float step;
 	// Use this for initialization
 	void Start () {
@@ -60,7 +66,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		m_EncounterTimer.Reset ();
 		if (e.ExeType == ExecutionType.Prisoner && e.IsStart && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
-			m_IsReadyToShoot = true;
+			//m_IsReadyToShoot = true;
 			if (m_Prisoner == null) {
 				m_Prisoner = GameObject.FindObjectOfType<ExecutionPrisonerHandle> ().gameObject;
 			}
@@ -142,21 +148,34 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		}
 
 		if (m_IsReadyToShoot) {
-			//MoveToPrisonerRight ();
+			MoveToPrisonerRight ();
 		}
 
 		if (m_IsGuardEncounter && m_EncounterTimer.IsOffCooldown && !m_IsPrisonerDead) {
 			// Shooting animation
 			ShootBoth();
 			m_IsGuardEncounter = false;
-
-			
+		} else if (m_IsGuardEncounter && !m_IsPrisonerDead){
+			if(m_EncounterTimer.PercentTimePassed > 0.7f && _movedOverRight == false){
+				m_IsReadyToShoot = true;
+				_movedOverRight = true;
+				m_Anim.Play ("soldier-exe-Alert");
+				m_ItrSound.PlaySoldierAlert ();
+				_rotateTowardsScript.WalkCloser();
+			}
+			if(m_EncounterTimer.PercentTimePassed > 0.5f && _calledWarning == false){
+				_calledWarning = true;
+				m_Anim.Play ("soldier-exe-Alert");
+				m_ItrSound.PlaySoldierAlert ();
+				_rotateTowardsScript.FocusLightOnGuard();
+			}
 		}
 	
 	}
 
 	void ShootBoth(){
 		m_Anim.Play ("soldier-exe-ShootPrisoner");
+		Events.G.Raise(new DisableMoveEvent(CharacterIdentity.Guard));
 	}
 
 	void PrisonerDie(){
