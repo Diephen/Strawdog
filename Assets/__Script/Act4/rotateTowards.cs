@@ -13,6 +13,7 @@ public class rotateTowards : MonoBehaviour {
 	Color _originalColor;
 
 	float angle;
+	bool _dontChangeColorOfLight = false;
 
 	[SerializeField] MinMax _patrolArea = new MinMax (0.0f, 180.0f);
 	[SerializeField] AnimationCurve _patrolCurve;
@@ -77,8 +78,12 @@ public class rotateTowards : MonoBehaviour {
 		}
 	}
 
+	public void DontChangeColorOfLight(){
+		_dontChangeColorOfLight = true;
+	}
+
 	void SetStray(AboutToStrayOutOfLineEvent e) {
-		if (e.Straying) {
+		if (e.Straying && !_dontChangeColorOfLight) {
 			_spotLight.color = _alertColor;
 		} //else {
 			//_spotLight.color = _originalColor;
@@ -87,8 +92,10 @@ public class rotateTowards : MonoBehaviour {
 	}
 
 	void FollowPrisoner(ExecutionBreakFree e){
-		_isStraying = true;
-		_spotLight.color = _warningColor;
+		if(!_dontChangeColorOfLight){
+			_isStraying = true;
+			_spotLight.color = _warningColor;
+		}
 	}
 
 	public void FocusLightOnGuard(){

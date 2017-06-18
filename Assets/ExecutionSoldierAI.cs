@@ -174,6 +174,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	}
 
 	void ShootBoth(){
+		_rotateTowardsScript.DontChangeColorOfLight();
 		m_Anim.Play ("soldier-exe-ShootPrisoner");
 		Events.G.Raise(new DisableMoveEvent(CharacterIdentity.Guard));
 	}

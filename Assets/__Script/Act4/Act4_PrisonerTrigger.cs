@@ -27,11 +27,13 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 	public bool _isExecute = false;
 
 	[SerializeField] SpriteRenderer _rightFlap;
+	BoxCollider2D _prisonerCollider;
 
 	void Start(){
 		_prisonerPuppetController = _prisoner.GetComponent <PuppetControl> ();
 		_prisonerKeyCodes = _prisonerPuppetController.GetKeyCodes ();
 		_alertTimer = new Timer (2.0f);
+		_prisonerCollider = gameObject.GetComponent<BoxCollider2D>();
 	}
 
 	void Update(){
@@ -131,9 +133,11 @@ public class Act4_PrisonerTrigger : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D other) {
 		if (other.name == "AlertTrigger") {
-			_isSafe = false;
-			_alertTimer.Reset ();
-			Events.G.Raise (new AboutToStrayOutOfLineEvent (true));
+			if(_prisonerCollider.enabled == true){
+				_isSafe = false;
+				_alertTimer.Reset ();
+				Events.G.Raise (new AboutToStrayOutOfLineEvent (true));
+			}
 		}
 		else if (other.tag == "SecretDoor") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
