@@ -503,6 +503,7 @@ public class PuppetControl : MonoBehaviour {
 			print ("## Enable move" + e.WhoAmI.ToString ());
 			_stateHandling [4] = true;
 			_stateHandling [3] = true;
+			_stateHandling [7] = true;
 		}
 	}
 	void DisableMove(DisableMoveEvent e){

@@ -26,6 +26,8 @@ public class DragJitter : MonoBehaviour {
 
 	Vector3 m_PushbackPos;
 
+	bool _freedomDisabled = false;
+
 	// Use this for initialization
 	void Start () {
 		_pushTimer = new Timer (3.0f);
@@ -76,7 +78,7 @@ public class DragJitter : MonoBehaviour {
 			}
 		}
 
-		if (_inputCount > _freedomCount) {
+		if (_inputCount > _freedomCount && _freedomDisabled == false) {
 			_jitterSource.clip = _ropeBreak;
 			_jitterSource.Play ();
 			_prisonerPuppetControl.EnableContinuousWalk ();
@@ -93,11 +95,13 @@ public class DragJitter : MonoBehaviour {
 	void OnEnable(){
 		Events.G.AddListener<LineControlEvent> (OnLineControl);
 		Events.G.AddListener<CutPrisonerBrforeOthers> (OnPrisonerCut);
+		Events.G.AddListener<ShootSwitchEvent> (ExecutionSwitch);
 	}
 
 	void OnDisable(){
 		Events.G.RemoveListener<LineControlEvent> (OnLineControl);
 		Events.G.RemoveListener<CutPrisonerBrforeOthers> (OnPrisonerCut);
+		Events.G.RemoveListener<ShootSwitchEvent> (ExecutionSwitch);
 	}
 
 	public void DisableJitter(){
@@ -144,5 +148,9 @@ public class DragJitter : MonoBehaviour {
 		} else {
 			isPushBack = false;
 		}
+	}
+
+	void ExecutionSwitch(ShootSwitchEvent e){
+		_freedomDisabled = true;
 	}
 }

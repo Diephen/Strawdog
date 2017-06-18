@@ -131,6 +131,7 @@ public class ExecutionGuardHandle : MonoBehaviour {
 		m_IsHandUp = false;
 		m_AnimCtrl.SetAnimation (true);
 		m_AnimInjection.SetEngage ();
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 	}
 
 

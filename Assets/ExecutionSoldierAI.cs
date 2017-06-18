@@ -8,8 +8,8 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	[SerializeField] GameObject m_Prisoner;
 	[SerializeField] SpriteRenderer m_GunSprite;
 	[SerializeField] float m_Speed;
-	[SerializeField] float WaitToCatchDuration = 1f;
-	[SerializeField] float CatchDuration = 3f;
+	[SerializeField] float WaitToCatchDuration = 0.1f;
+	[SerializeField] float CatchDuration = 0.1f;
 	[SerializeField] float WaitToShootBoth = 10f;
 	[SerializeField] InteractionSound m_ItrSound;
 	GameObject m_FlashLight;
@@ -53,11 +53,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void OnSwitchToGuard(ShootSwitchEvent e){
 		m_IsSwitchToGuard = true;
-		m_EncounterTimer.Reset ();
 
 	}
 
 	void OnEncounter(ExecutionEncounter e){
+		m_EncounterTimer.Reset ();
 		if (e.ExeType == ExecutionType.Prisoner && e.IsStart && !m_IsGuardEncounter) {
 			m_IsGuardEncounter = true;
 			m_IsReadyToShoot = true;
@@ -69,6 +69,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	}
 
 	void OnPrisonerBreakFree(ExecutionBreakFree e){
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 		m_Anim.Play ("soldier-exe-Alert");
 		m_ItrSound.PlaySoldierAlert ();
 	}
@@ -90,19 +91,19 @@ public class ExecutionSoldierAI : MonoBehaviour {
 
 	void MoveToPrisoner(){
 		print ("catching");
-		Vector3 FinalPos = transform.position;
-
-		FinalPos.x = m_Prisoner.transform.position.x;
+		//Vector3 FinalPos = transform.position;
+		ShootBoth();
+		//FinalPos.x = m_Prisoner.transform.position.x;
 		//transform.position = FinalPos;
 		//Vector3.MoveTowards (transform.position, FinalPos, step);
 
-		if (Mathf.Abs (transform.position.x - FinalPos.x) > 2f) {
-			transform.position = Vector3.MoveTowards (transform.position, FinalPos, step);
-		} else {
-			print ("call reset event");
-			m_IsCatch = false;
-			Events.G.Raise (new RestartExecution ());
-		}
+		//if (Mathf.Abs (transform.position.x - FinalPos.x) > 2f) {
+		//	transform.position = Vector3.MoveTowards (transform.position, FinalPos, step);
+		//} else {
+		//	print ("call reset event");
+		//	m_IsCatch = false;
+		//	Events.G.Raise (new RestartExecution ());
+		//}
 	}
 
 	void MoveToPrisonerRight(){
@@ -125,11 +126,11 @@ public class ExecutionSoldierAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!m_IsCatch && m_CatchTimer.IsOffCooldown && m_IsPrisonerStray) {
-			print ("restart level");
+			//print ("restart level");
 			m_IsCatch = true;
 			// end of scene sequence
 			Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Both));
-			step = Time.deltaTime * Mathf.Abs (m_Prisoner.transform.position.x - transform.position.x) / CatchDuration;
+			//step = Time.deltaTime * Mathf.Abs (m_Prisoner.transform.position.x - transform.position.x) / CatchDuration;
 		}
 
 		if (m_IsCatch) {
@@ -141,7 +142,7 @@ public class ExecutionSoldierAI : MonoBehaviour {
 		}
 
 		if (m_IsReadyToShoot) {
-			MoveToPrisonerRight ();
+			//MoveToPrisonerRight ();
 		}
 
 		if (m_IsGuardEncounter && m_EncounterTimer.IsOffCooldown && !m_IsPrisonerDead) {

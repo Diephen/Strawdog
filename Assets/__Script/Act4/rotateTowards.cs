@@ -7,6 +7,7 @@ public class rotateTowards : MonoBehaviour {
 	[SerializeField] AnimationCurve _spotAngleCurve;
 	Quaternion _rotation;
 	Light _spotLight;
+	[SerializeField] Color _warningColor;
 	[SerializeField] Color _alertColor;
 	Color _originalColor;
 
@@ -57,14 +58,15 @@ public class rotateTowards : MonoBehaviour {
 	void SetStray(AboutToStrayOutOfLineEvent e) {
 		if (e.Straying) {
 			_spotLight.color = _alertColor;
-		} else {
-			_spotLight.color = _originalColor;
+		} //else {
+			//_spotLight.color = _originalColor;
 //			_alertTimer.Reset ();
-		}
+		//}
 	}
 
 	void FollowPrisoner(ExecutionBreakFree e){
 		_isStraying = true;
+		_spotLight.color = _warningColor;
 	}
 
 	void OnEnable ()
