@@ -16,14 +16,14 @@ public class WallFade : MonoBehaviour {
 	{
 		Events.G.AddListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.AddListener<LockCellEvent>(CloseDoor);
-		Events.G.AddListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.AddListener<OfficeDoorEvent>(CloseOffice);
 	}
 
 	void OnDisable ()
 	{
 		Events.G.RemoveListener<LeftCellUnlockedEvent>(LeftCellUnlocked);
 		Events.G.RemoveListener<LockCellEvent>(CloseDoor);
-		Events.G.RemoveListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.RemoveListener<OfficeDoorEvent>(CloseOffice);
 	}
 
 	void LeftCellUnlocked(LeftCellUnlockedEvent e){
@@ -37,7 +37,7 @@ public class WallFade : MonoBehaviour {
 		}
 	}
 
-	void CloseOffice(OpenOfficeEvent e){
+	void CloseOffice(OfficeDoorEvent e){
 		if (e.Opened) {
 			StartCoroutine (FadeOut ());
 		} else if (!e.Opened){

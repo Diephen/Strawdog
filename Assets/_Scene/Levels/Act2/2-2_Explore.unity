@@ -499,7 +499,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 264.1798, y: 4.5871453}
+  m_ConnectedAnchor: {x: 73.77983, y: 4.5871453}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2618,7 +2618,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 261.99982, y: 11.182344}
+  m_ConnectedAnchor: {x: 71.59982, y: 11.182344}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -7880,7 +7880,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544408505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.5, y: 0, z: -10}
+  m_LocalPosition: {x: 69, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 404173336}
@@ -14214,7 +14214,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119253924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 256.9, y: -1.9, z: 0}
+  m_LocalPosition: {x: 66.5, y: -1.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1234797413}
@@ -16583,7 +16583,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 2.0092125, y: -0.9437213}
-  m_ConnectedAnchor: {x: 259.75983, y: 6.723424}
+  m_ConnectedAnchor: {x: 69.35983, y: 6.723424}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -25399,9 +25399,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1649277820}
   - component: {fileID: 1649277821}
+  - component: {fileID: 1649277822}
   m_Layer: 0
   m_Name: Interior-door-nearEntrance
-  m_TagString: Untagged
+  m_TagString: OfficeDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25459,6 +25460,18 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!65 &1649277822
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1649277819}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.780001, y: 21.48, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1653058918
 GameObject:
   m_ObjectHideFlags: 0

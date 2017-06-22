@@ -20,10 +20,10 @@ public class RotateDoor : MonoBehaviour {
 	void FixedUpdate () {
 		if (_openDoor) {
 			transform.rotation = Quaternion.Lerp (_originalRotation, Quaternion.Euler (_tempEuler), _openDoorTimer.PercentTimePassed);
-			_tempSpriteColor.a = _openDoorTimer.PercentTimeLeft;
+			//_tempSpriteColor.a = _openDoorTimer.PercentTimeLeft;
 		} else {
 			transform.rotation = Quaternion.Lerp (transform.rotation, _originalRotation, _openDoorTimer.PercentTimePassed);
-			_tempSpriteColor.a = _openDoorTimer.PercentTimePassed;
+			//_tempSpriteColor.a = _openDoorTimer.PercentTimePassed;
 		}
 		_spriteRenderer.color =  _tempSpriteColor;
 	}
@@ -35,8 +35,8 @@ public class RotateDoor : MonoBehaviour {
 		_openDoorTimer.Reset ();
 	}
 
-	void CloseOffice(OpenOfficeEvent e){
-		_openDoor = !e.Opened;
+	void CloseOffice(OfficeDoorEvent e){
+		_openDoor = e.Opened;
 		_tempEuler = _originalRotation.eulerAngles;
 		_tempEuler.y = 60.0f;
 		_openDoorTimer.Reset ();
@@ -44,11 +44,11 @@ public class RotateDoor : MonoBehaviour {
 
 	void OnEnable(){
 		Events.G.AddListener<LockCellEvent>(CloseDoor);
-		Events.G.AddListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.AddListener<OfficeDoorEvent>(CloseOffice);
 	}
 
 	void OnDisable(){
 		Events.G.RemoveListener<LockCellEvent>(CloseDoor);
-		Events.G.RemoveListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.RemoveListener<OfficeDoorEvent>(CloseOffice);
 	}
 }

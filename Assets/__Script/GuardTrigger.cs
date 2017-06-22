@@ -27,7 +27,7 @@ public class GuardTrigger : MonoBehaviour {
 
 	bool _guardLeaveCell = false;
 	bool _isDoor = false;
-	bool _opened = true;
+	bool _isOfficeOpened = false;
 	//Variables for Highlight
 	Camera _mainCam;
 	HighlightsFX _highlightsFX;
@@ -56,8 +56,9 @@ public class GuardTrigger : MonoBehaviour {
 				Events.G.Raise (new GuardStairsStartEvent ());
 			}
 			else if (_isDoor) {
-			_opened = !_opened;
-			Events.G.Raise (new OpenOfficeEvent (_opened));
+				print ("Guard open office door");
+				_isOfficeOpened = !_isOfficeOpened;
+				Events.G.Raise (new OfficeDoorEvent (_isOfficeOpened));
 			}
 		}
 
@@ -119,6 +120,15 @@ public class GuardTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = true;
 			other.GetComponent<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
+		} else if (other.name == "EnterInteriorTrigger") {
+			// enter the interior 
+			Events.G.Raise(new WallTransitionEvent(true));
+		}else if (other.name == "ExitInteriorTrigger") {
+			// enter the interior 
+			Events.G.Raise(new WallTransitionEvent(false));
+		}else if (other.name == "DoorEnterTrigger") {
+			// enter the interior 
+			Events.G.Raise(new DoorTransitionEvent(false));
 		}
 			
 	}
@@ -157,6 +167,9 @@ public class GuardTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = false;
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 			_isOnFlap = false;
+		}else if (other.name == "DoorEnterTrigger") {
+			// enter the interior 
+			Events.G.Raise(new DoorTransitionEvent(true));
 		}
 	}
 }		
