@@ -88,13 +88,29 @@ public class LockCellEvent : GameEvent {
 	}
 }
 
-public class OpenOfficeEvent : GameEvent {
+public class OfficeDoorEvent: GameEvent {
 	public bool Opened { get; private set; }
-	public OpenOfficeEvent(bool opened){
+	public OfficeDoorEvent(bool opened){
 		Opened = opened;
 	}
 }
 
+//simple wall transition 
+public class WallTransitionEvent:GameEvent{
+	public bool GoUp { get; private set; }
+	public WallTransitionEvent(bool goup){
+		GoUp = goup;
+	}
+}
+
+// for door transition 
+public class DoorTransitionEvent:GameEvent{
+	public bool GoUp { get; private set; }
+	public DoorTransitionEvent(bool goup){
+		GoUp = goup;
+	}
+}
+	
 public class LeftCellUnlockedEvent : GameEvent {
 }
 

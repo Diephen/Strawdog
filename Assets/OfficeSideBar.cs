@@ -23,8 +23,8 @@ public class OfficeSideBar : MonoBehaviour {
 		_spriteRenderer.color =  _tempSpriteColor;
 	}
 
-	void CloseOffice(OpenOfficeEvent e){
-		_openDoor = !e.Opened;
+	void CloseOffice(OfficeDoorEvent e){
+		_openDoor = e.Opened;
 		if(_openDoor){
 			_boxCollider2D.enabled = true;
 		} else {
@@ -34,10 +34,10 @@ public class OfficeSideBar : MonoBehaviour {
 	}
 
 	void OnEnable(){
-		Events.G.AddListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.AddListener<OfficeDoorEvent>(CloseOffice);
 	}
 
 	void OnDisable(){
-		Events.G.RemoveListener<OpenOfficeEvent>(CloseOffice);
+		Events.G.RemoveListener<OfficeDoorEvent>(CloseOffice);
 	}
 }

@@ -28,20 +28,20 @@ public class Announcement : MonoBehaviour {
 				_box2d.enabled = false;
 			}
 	}
-
-	void CloseOffice(OpenOfficeEvent e){
-		if(!e.Opened){
-			_box2d.enabled = false;
-		} else {
-			_box2d.enabled = true;
-		}
-	}
+	// Move to wall fade transition 
+//	void CloseOffice(OfficeDoorEvent e){
+//		if(!e.Opened){
+//			_box2d.enabled = false;
+//		} else {
+//			_box2d.enabled = true;
+//		}
+//	}
 
 	void OnEnable(){
-		Events.G.AddListener<OpenOfficeEvent>(CloseOffice);
+		//Events.G.AddListener<OfficeDoorEvent>(CloseOffice);
 	}
 
 	void OnDisable(){
-		Events.G.RemoveListener<OpenOfficeEvent>(CloseOffice);
+		//Events.G.RemoveListener<OfficeDoorEvent>(CloseOffice);
 	}
 }

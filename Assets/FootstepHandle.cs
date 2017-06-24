@@ -9,7 +9,7 @@ public class FootstepHandle : MonoBehaviour {
 	[SerializeField] PuppetControl _prisonerPuppetControl;
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("Footstep "+ other.tag);
+		//Debug.Log ("Footstep "+ other.tag);
 		if (other.tag == "Guard") {
 			_guardPuppetControl.SwitchWalk (_guardfootStep);
 		}

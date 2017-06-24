@@ -9,6 +9,9 @@ public class EnterInteriorTriggerHandle : MonoBehaviour {
 	Color m_StartColor;
 	Color m_EndColor;
 	bool m_IsWallFade = false;
+
+	// track player position 
+
 	// Use this for initialization
 	void Start () {
 		//m_PlayerPos = GameObject.FindObjectOfType<GuardHandle> ().transform.position;
