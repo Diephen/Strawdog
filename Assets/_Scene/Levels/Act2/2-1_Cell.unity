@@ -193,7 +193,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 12771569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.9, y: 0.43199226, z: 0}
+  m_LocalPosition: {x: 64.9, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7999,7 +7999,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772509562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 83.07, y: 0.43199226, z: 0}
+  m_LocalPosition: {x: 83.07, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8528,6 +8528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSeeThroughWall: 1
+  _isSeeInterrogationWall: 0
 --- !u!61 &931754292
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9013,6 +9014,7 @@ GameObject:
   - component: {fileID: 976595600}
   - component: {fileID: 976595599}
   - component: {fileID: 976595598}
+  - component: {fileID: 976595601}
   m_Layer: 0
   m_Name: Glass
   m_TagString: Untagged
@@ -9092,12 +9094,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 976595597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.23, y: 1.43, z: -5.95}
+  m_LocalPosition: {x: 64.23, y: 0.88, z: -5.95}
   m_LocalScale: {x: 0.57, y: 0.533, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &976595601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 976595597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d27640e036444f02806a6b1eede37e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isSeeThroughWall: 0
+  _isSeeInterrogationWall: 1
 --- !u!1 &996206821 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011826366912, guid: de0c55a4026f54407bb73abc8c731236,
@@ -10197,7 +10212,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 8e29891c86b1145c4a70eb4d2363db51, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -13142,6 +13157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSeeThroughWall: 0
+  _isSeeInterrogationWall: 0
 --- !u!61 &1640034850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13275,6 +13291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isSeeThroughWall: 0
+  _isSeeInterrogationWall: 0
 --- !u!1 &1643787074
 GameObject:
   m_ObjectHideFlags: 0
@@ -13553,7 +13570,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1676309543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.67, y: 0.43199226, z: 0}
+  m_LocalPosition: {x: 49.67, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16296,7 +16313,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2125645369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.75, y: -0.85, z: 0}
+  m_LocalPosition: {x: 72.75, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

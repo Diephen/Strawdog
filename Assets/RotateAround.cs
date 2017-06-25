@@ -25,7 +25,7 @@ public class RotateAround : MonoBehaviour {
 		_eulerRotation.x = MathHelpers.LinMapFrom01 (_rotateRange.Min, _rotateRange.Max, _rotateTimer.PercentTimeLeft);
 //		Debug.Log (_rotation);
 		transform.rotation = Quaternion.Euler (_eulerRotation);
-		_dLight.intensity = Mathf.Lerp (0.0f, 1.0f, _rotateTimer.PercentTimeLeft);
+		_dLight.intensity = Mathf.Lerp (0.0f, 2.0f, _rotateTimer.PercentTimeLeft);
 
 
 		if (_rotateTimer.IsOffCooldown) {
