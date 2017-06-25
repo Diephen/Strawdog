@@ -5,11 +5,16 @@ public class WallFade : MonoBehaviour {
 	Renderer _renderer;
 	float _tempAlpha;
 	Color _tempColor;
+	Color _emptyColor;
+
+	[SerializeField] bool _isSeeThroughWall = false;
 
 	void Start(){
 		_renderer = gameObject.GetComponent <SpriteRenderer> ();
 		_tempColor = _renderer.material.color;
 		_tempAlpha = _tempColor.a;
+		_emptyColor = Color.white;
+		_emptyColor.a = 0.0f;
 	}
 
 	void OnEnable ()
@@ -27,33 +32,46 @@ public class WallFade : MonoBehaviour {
 	}
 
 	void LeftCellUnlocked(LeftCellUnlockedEvent e){
+		if (!_isSeeThroughWall) {
+			StartCoroutine (FadeOut (0.4f, 0.0f));
+		} else {
+			StartCoroutine (FadeOut (1.0f, 0.0f));
+		}
+		Debug.Log ("Break 1");
 	}
 
 	void CloseDoor(LockCellEvent e){
-		if (e.Locked) {
-			StartCoroutine (FadeOut ());
-		} else if (!e.Locked){
-			StartCoroutine (FadeIn ());
+		if (!_isSeeThroughWall) {
+			if (e.Locked) {
+				StartCoroutine (FadeOut (0.4f, 1.0f));
+			} else if (!e.Locked) {
+				StartCoroutine (FadeIn (0.4f, 1.0f));
+			}
+			Debug.Log ("Break 2");
 		}
 	}
 
 	void CloseOffice(OfficeDoorEvent e){
-		if (e.Opened) {
-			StartCoroutine (FadeOut ());
-		} else if (!e.Opened){
-			StartCoroutine (FadeIn ());
+		if (!_isSeeThroughWall) {
+			if (e.Opened) {
+				StartCoroutine (FadeOut (0.4f, 1.0f));
+			} else if (!e.Opened) {
+				StartCoroutine (FadeIn (0.4f, 1.0f));
+			}
+			Debug.Log ("Break 3");
 		}
 	}
 
 	public void FadeWall(){
-		StartCoroutine (FadeOut ());
+		StartCoroutine (FadeOut (0.4f, 1.0f));
+		Debug.Log ("Break 4");
 	}
 
-	IEnumerator FadeIn(){
+	IEnumerator FadeIn(float from, float to){
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = MathHelpers.LinMapFrom01 (0.6f, 1.0f, 1.0f - (Time.time - startTime)/2f);
+			_tempAlpha = MathHelpers.LinMapFrom01 (from, to, 1.0f - (Time.time - startTime)/2f);
 			_tempColor.a = _tempAlpha;
 			_renderer.material.color = _tempColor;
 			yield return null;
@@ -63,11 +81,11 @@ public class WallFade : MonoBehaviour {
 		}
 	}
 
-	IEnumerator FadeOut(){
+	IEnumerator FadeOut(float from, float to){
 		float startTime = Time.time;
 		bool i = true;
 		while (i) {
-			_tempAlpha = MathHelpers.LinMapFrom01 (0.6f, 1.0f, (Time.time - startTime)/2f);
+			_tempAlpha = MathHelpers.LinMapFrom01 (from, to, (Time.time - startTime)/2f);
 			_tempColor.a = _tempAlpha;
 			_renderer.material.color = _tempColor;
 			yield return null;

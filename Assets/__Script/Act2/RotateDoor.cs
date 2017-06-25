@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class RotateDoor : MonoBehaviour {
+	[SerializeField] bool _isOfficeDoor = false;
 	bool _openDoor = false;
 	Timer _openDoorTimer;
 	Vector3 _tempEuler;
@@ -13,33 +14,41 @@ public class RotateDoor : MonoBehaviour {
 		_openDoorTimer = new Timer (2f);
 		_originalRotation = transform.rotation;
 		_spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-		_tempSpriteColor = _spriteRenderer.color;
+		_tempEuler = _originalRotation.eulerAngles;
+		_tempEuler.y = 60.0f;
+		if (_isOfficeDoor) {
+			_tempSpriteColor = _spriteRenderer.color;
+		}
 
 	}
 	
 	void FixedUpdate () {
-		if (_openDoor) {
+		if (!_openDoor) {
 			transform.rotation = Quaternion.Lerp (_originalRotation, Quaternion.Euler (_tempEuler), _openDoorTimer.PercentTimePassed);
 			//_tempSpriteColor.a = _openDoorTimer.PercentTimeLeft;
 		} else {
 			transform.rotation = Quaternion.Lerp (transform.rotation, _originalRotation, _openDoorTimer.PercentTimePassed);
 			//_tempSpriteColor.a = _openDoorTimer.PercentTimePassed;
 		}
-		_spriteRenderer.color =  _tempSpriteColor;
+		if (_isOfficeDoor) {
+			_spriteRenderer.color = _tempSpriteColor;
+		}
 	}
 
 	void CloseDoor(LockCellEvent e){
 		_openDoor = !e.Locked;
-		_tempEuler = _originalRotation.eulerAngles;
-		_tempEuler.y = 60.0f;
+		//_tempEuler = _originalRotation.eulerAngles;
+		//_tempEuler.y = 60.0f;
 		_openDoorTimer.Reset ();
+		Debug.Log ("Close DOor is called: " + e.Locked);
 	}
 
 	void CloseOffice(OfficeDoorEvent e){
 		_openDoor = e.Opened;
-		_tempEuler = _originalRotation.eulerAngles;
-		_tempEuler.y = 60.0f;
+		//_tempEuler = _originalRotation.eulerAngles;
+		//_tempEuler.y = 60.0f;
 		_openDoorTimer.Reset ();
+		Debug.Log ("Close Office is called");
 	}
 
 	void OnEnable(){

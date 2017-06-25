@@ -70,38 +70,31 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		Debug.Log (_answer);
-		if (Input.GetKeyDown (_guardKeyCodes [3])) {
-			if (_isStairs) {
-				_guardPuppetController.StopWalkAudio ();
-				_goToStart = true;
-				_isStairs = false;
-				_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-				_guardPuppetController.DisableKeyInput ();
-				_tempPosition = _guard.transform.position;
-				_stairStartTimer.Reset ();
-				Events.G.Raise (new GuardStairsStartEvent ());
-			}
-			else if (_isOnFlap) {
-				Events.G.Raise (new LeftCellUnlockedEvent ());
-				_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-				_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-				_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
-				_isOnFlap = false;
-				_guardStop.enabled = false;
-				_prisonerStop.enabled = true;
-				_walkOff = true;
-				_walkOffTimer.Reset ();
-				Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
-			}
-			else if (_isDoor) {
-				_locked = !_locked;
-				Events.G.Raise (new LockCellEvent (_locked));
-				if (_locked) {
-					Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+		if (!_climbStair) {
+			if (Input.GetKeyDown (_guardKeyCodes [3]) || (!_isGuardTop && Input.GetKeyDown (_guardKeyCodes [1]))) {
+				if (_isStairs) {
+					_guardPuppetController.StopWalkAudio ();
+					_goToStart = true;
+					_isStairs = false;
+					_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+					_guardPuppetController.DisableKeyInput ();
+					_tempPosition = _guard.transform.position;
+					_stairStartTimer.Reset ();
+					Events.G.Raise (new GuardStairsStartEvent ());
 				}
 			}
+			if (Input.GetKeyDown (_guardKeyCodes [3])) {
+				if (_isOnFlap) {
+					LeaveCellDoor ();
+				} else if (_isDoor) {
+					_locked = !_locked;
+					Events.G.Raise (new LockCellEvent (_locked));
+					if (_locked) {
+						Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
+					}
+				}
 
+			}
 		}
 
 		if (_walkOff) {
@@ -129,7 +122,7 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			}
 		}
 		else if (_climbStair && !_isGuardTop) {
-			_guard.transform.Translate ((Vector3.left + Vector3.up) * 2.0f * Time.deltaTime);
+			_guard.transform.Translate ((Vector3.right + Vector3.up) * 2.0f * Time.deltaTime);
 			Events.G.Raise (new Act2_GuardWalkedUpStairsEvent ());
 		}
 		else if (_climbStair && _isGuardTop) {
@@ -154,6 +147,19 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			BombDetection ();
 
 		}
+	}
+
+	void LeaveCellDoor(){
+		Events.G.Raise (new LeftCellUnlockedEvent ());
+		_rightFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		_leftFlap.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		_doorRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
+		_isOnFlap = false;
+		_guardStop.enabled = false;
+		_prisonerStop.enabled = true;
+		_walkOff = true;
+		_walkOffTimer.Reset ();
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -185,6 +191,14 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isOnFlap = true;
 			_isOnRight = false;
+		}
+		else if (other.name == "leave-right") {
+			_isOnRight = true;
+			LeaveCellDoor ();
+		}
+		else if (other.name == "leave-left") {
+			_isOnRight = false;
+			LeaveCellDoor ();
 		}
 		else if (other.name == "sh-front_0") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
