@@ -8,12 +8,16 @@ public class RotateAround : MonoBehaviour {
 	Timer _rotateTimer;
 	float _rotateDuration = 9.0f;
 	Vector3 _eulerRotation;
+
+	Light _dLight;
+
+	[SerializeField] AnimationCurve _lightIntensityCurve;
 	// Use this for initialization
 	void Start () {
+		_dLight = GetComponent<Light> ();
 		_rotateTimer = new Timer (_rotateDuration);
 		_eulerRotation = transform.eulerAngles;
 		_rotateTimer.Reset ();
-		Log.Metrics.Message("End Time");
 	}
 	
 	// Update is called once per frame
@@ -21,6 +25,9 @@ public class RotateAround : MonoBehaviour {
 		_eulerRotation.x = MathHelpers.LinMapFrom01 (_rotateRange.Min, _rotateRange.Max, _rotateTimer.PercentTimeLeft);
 //		Debug.Log (_rotation);
 		transform.rotation = Quaternion.Euler (_eulerRotation);
+		_dLight.intensity = Mathf.Lerp (0.0f, 1.0f, _rotateTimer.PercentTimeLeft);
+
+
 		if (_rotateTimer.IsOffCooldown) {
 			Events.G.Raise (new TitleEndedEvent ());
 		}
