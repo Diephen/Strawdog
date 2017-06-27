@@ -10,6 +10,7 @@ public class TruckControl : MonoBehaviour {
 	float _Speed;
 	Timer _DrivingTimer;
 	bool _isDriving = false;
+	bool _isStart = false;
 
 
 	// Use this for initialization
@@ -57,7 +58,7 @@ public class TruckControl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.name == "GuardStructure") {
+		if (other.name == "GuardStructure" && !_isStart) {
 			print ("## truck start driving");
 			Initiate ();
 		}
@@ -73,6 +74,7 @@ public class TruckControl : MonoBehaviour {
 			tw.WheelSpin ();
 		}
 		_isDriving = true;
+		_isStart = true;
 		_DrivingTimer.Reset ();
 
 	}
@@ -81,7 +83,8 @@ public class TruckControl : MonoBehaviour {
 		foreach (TruckWheel tw in _Wheels) {
 			tw.StopSpin ();
 		}
-		_isDriving = false; 
+		_isDriving = false;
+
 	}
 		
 
