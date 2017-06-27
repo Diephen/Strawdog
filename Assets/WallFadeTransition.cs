@@ -59,10 +59,10 @@ public class WallFadeTransition : MonoBehaviour {
 
 	void EnterRoom(){
 		// scene transition ot the inside area
-		foreach(SpriteRenderer spr in _Spr){
-			//print ("setfalse");
-			spr.enabled = false;
-		}
+//		foreach(SpriteRenderer spr in _Spr){
+//			//print ("setfalse");
+//			spr.enabled = false;
+//		}
 		foreach (BoxCollider2D b2d in _B2D) {
 			b2d.enabled = false;
 		}
