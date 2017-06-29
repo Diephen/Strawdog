@@ -24,8 +24,11 @@ public class Announcement : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Guard" || other.tag == "Prisoner") {
+			if (_audioSource != null) {
 				_audioSource.Play ();
 				_box2d.enabled = false;
+			}
+				
 			}
 	}
 	// Move to wall fade transition 
