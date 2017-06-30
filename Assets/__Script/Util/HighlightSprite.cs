@@ -74,7 +74,7 @@ public class HighlightSprite : MonoBehaviour {
 
 	void ShowText(){
 		print ("show text");
-		if (m_DesText != null) {
+		if (m_DesText.Length>=1) {
 			print ("show text");
 			if (_isDoor) {
 				// open
@@ -87,7 +87,7 @@ public class HighlightSprite : MonoBehaviour {
 	}
 
 	void HideText(){
-		if (m_DesText != null) {
+		if (m_DesText.Length>=1) {
 			foreach (GameObject g in m_DesText) {
 				g.SetActive (false);
 			}
