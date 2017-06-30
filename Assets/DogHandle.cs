@@ -63,7 +63,7 @@ public class DogHandle : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		//Debug.Log ("Attention");
 		if(m_DogState == DogState.idle && other.name == "GuardStructure"){
-			StopPlayer ();
+			//StopPlayer ();
 			//StartCoroutine (m_ProgressBar.FadeIn(3f));
 			// TODO: trigger bar animation
 			Events.G.Raise(new UIProgressBar(true));
@@ -78,7 +78,7 @@ public class DogHandle : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D other) {
 		//Debug.Log ("Attention");
 		if(other.name == "GuardStructure"){
-			LeavePlayer ();
+			//LeavePlayer ();
 			m_DogState = DogState.idle;
 			CheckState (m_DogState);
 			//Debug.Log ("bye bye");
@@ -171,7 +171,7 @@ public class DogHandle : MonoBehaviour {
 	}
 
 	public void EndInteraction(){
-		LeavePlayer ();
+		//LeavePlayer ();
 		m_Anim.SetBool ("IsPetting", false);
 		m_Anim.SetBool ("IsStartWalk",false);
 		foreach (SpriteRenderer spr in m_DogSprite) {
