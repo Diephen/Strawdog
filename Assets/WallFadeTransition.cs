@@ -10,6 +10,8 @@ public class WallFadeTransition : MonoBehaviour {
 	[SerializeField] SpriteRenderer[] _Spr;
 	[SerializeField] BoxCollider2D[] _B2D;
 	Animator _LiftAnimator;
+	[SerializeField] AudioClip[] _AClip;
+	AudioSource _AS;
 	bool _isWallUp = false;
 
 
@@ -20,6 +22,7 @@ public class WallFadeTransition : MonoBehaviour {
 		if (gameObject.GetComponent<Animator> ()) {
 			_LiftAnimator = gameObject.GetComponent<Animator> ();
 		}
+		_AS = GetComponent<AudioSource> ();
 		
 	}
 
@@ -114,8 +117,12 @@ public class WallFadeTransition : MonoBehaviour {
 			_isWallUp = e.GoUp;
 			if (_isWallUp) {
 				_LiftAnimator.Play ("Lift");
+				_AS.clip = _AClip [0];
+				_AS.Play ();
 			} else {
 				_LiftAnimator.Play ("Down");
+				_AS.clip = _AClip [1];
+				_AS.Play ();
 			}
 		}
 	}

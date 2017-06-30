@@ -7,6 +7,8 @@ public class DoorOpenTransition : MonoBehaviour {
 	[SerializeField] GameObject _door;
 	[SerializeField] Animator _doorAnim;
 	[SerializeField] SpriteRenderer[] _doorFrame;
+	[SerializeField] AudioClip[] _AClip;
+	AudioSource _AS;
 	//[SerializeField] GameObject[] _instruction;
 	bool _openDoor = false;
 	bool _isEnter = false;
@@ -26,6 +28,7 @@ public class DoorOpenTransition : MonoBehaviour {
 		_doorTrigger.enabled = false;
 		//_instruction [0].SetActive (false);
 		//_instruction [1].SetActive (false);
+		_AS = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate () {
@@ -76,8 +79,12 @@ public class DoorOpenTransition : MonoBehaviour {
 			_isEnter = e.GoUp;
 			if (_isEnter) {
 				_doorAnim.Play ("Up");
+				_AS.clip = _AClip [0];
+				_AS.Play ();
 			} else {
 				_doorAnim.Play ("Down");
+				_AS.clip = _AClip [1];
+				_AS.Play ();
 			}
 		}
 
