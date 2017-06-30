@@ -9,14 +9,19 @@ public class AnimationInjection : MonoBehaviour {
 	bool[] _tempStateHandling = new bool[11];
 	int state = 0;
 
+	Timer _intervalTimer;
+	bool _IsResist = false;
+
 	bool _isGuardTorturing = false;       // if the guard is doing the torture action 
 
 	// Use this for initialization
 	void Start () {
+		_intervalTimer = new Timer (0.5f);
 	}
 
 	void Update(){
 		//Debug.Log ("Torturing?? " + _isGuardTorturing);	
+		CheckResist();
 	}
 
 	void OnEnable ()
@@ -57,6 +62,16 @@ public class AnimationInjection : MonoBehaviour {
 		Events.G.RemoveListener<DPressedEvent>(DPressed);
 		Events.G.RemoveListener<DHoldEvent>(DHold);
 		Events.G.RemoveListener<DReleasedEvent>(DReleased);
+	}
+
+	// resist: checking if press two buttons 
+
+	void CheckResist(){
+		if (_IsResist && _intervalTimer.IsOffCooldown) {
+			_IsResist = false;
+			m_prisoner.ReleaseResist ();
+		}
+
 	}
 
 	void OnGuardEnterCell (GuardEnteringCellEvent e)
@@ -102,7 +117,14 @@ public class AnimationInjection : MonoBehaviour {
 			Debug.Log("Call Torture");
 			m_guard.Torture();
 		} else {
-			m_prisoner.Resist ();
+			//if continue tapping 
+			if (!_IsResist && _intervalTimer.IsOffCooldown) {
+				_IsResist = true;
+				_intervalTimer.Reset ();
+				m_prisoner.Resist ();
+			} else if (_IsResist && !_intervalTimer.IsOffCooldown) {
+				_intervalTimer.Reset ();
+			} 
 		}
 
 
@@ -111,7 +133,7 @@ public class AnimationInjection : MonoBehaviour {
 		if (e.WhoAmI == CharacterIdentity.Guard) {
 			m_guard.ReleaseTorture ();
 		} else {
-			m_prisoner.ReleaseResist ();
+			//m_prisoner.ReleaseResist ();
 		}
 	}
 	void SPressed(SPressedEvent e){
@@ -120,8 +142,16 @@ public class AnimationInjection : MonoBehaviour {
 	}
 	void DPressed(DPressedEvent e){
 		// choose to leave 
-		if (e.WhoAmI != CharacterIdentity.Guard)  {
-			m_prisoner.Resist ();
+		if (e.WhoAmI != CharacterIdentity.Guard) {
+			if (!_IsResist && _intervalTimer.IsOffCooldown) {
+				_IsResist = true;
+				_intervalTimer.Reset ();
+				m_prisoner.Resist ();
+			} else if (_IsResist && !_intervalTimer.IsOffCooldown) {
+				_intervalTimer.Reset ();
+			} 
+		} else {
+			
 		}
 	}
 
@@ -139,7 +169,7 @@ public class AnimationInjection : MonoBehaviour {
 			// guard torture
 			// m_guard.Torture();
 		} else {
-			m_prisoner.ReleaseResist ();
+			//m_prisoner.ReleaseResist ();
 		}
 	}
 }

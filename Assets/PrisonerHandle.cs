@@ -7,13 +7,20 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] LightControl m_LightCtrl;
+	[SerializeField] GameObject[] m_DesText;
 
 	bool m_isResisting = false;
 	bool m_isUnderTorture = false;
 	//[SerializeField] Animator m_GuardAnim;
 
 	private bool m_IsStartTorture = false;
- 	
+
+	void Awake(){
+		foreach (GameObject g in m_DesText) {
+			g.SetActive (false);
+		}
+	}
+
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
@@ -44,6 +51,11 @@ public class PrisonerHandle : MonoBehaviour {
 		if (e.Engaged) {
 			Debug.Log ("P: Prisoner Engaged");
 			StartTorture ();
+			// show text 
+			foreach (GameObject g in m_DesText) {
+				g.SetActive (true);
+			}
+
 		} else {
 			Debug.Log ("P:Prisoner Disengaged");
 		}
@@ -53,17 +65,28 @@ public class PrisonerHandle : MonoBehaviour {
 		
 	}
 
+	void LateUpdate(){
+		if (m_IsStartTorture) {
+			m_PrisonerAnim.SetBool("IsStartTorture", false);
+		}
+
+	}
+
 
 	void StartTorture(){
 		if (m_PrisonerAnim != null && !m_IsStartTorture) {
 			m_AnimCtrl.SetAnimation (true);
-			m_PrisonerAnim.SetTrigger ("TriggerStartTorture");
+			//m_PrisonerAnim.SetTrigger ("TriggerStartTorture");
+			m_PrisonerAnim.Play ("TortureStart");
+			//m_PrisonerAnim.SetBool("IsStartTorture", true);
 			m_IsStartTorture = true;
+
 		}
 	}
 
 	public void Torture(){
 		m_isUnderTorture = true;
+
 		m_PrisonerAnim.SetBool("IsTorture", true);
 		if (m_isResisting) {
 			ReleaseResist ();
@@ -74,6 +97,7 @@ public class PrisonerHandle : MonoBehaviour {
 
 	public void ReleaseTorture(){
 		m_isUnderTorture = false;
+
 		m_PrisonerAnim.SetBool ("IsTorture", false);
 		//m_LightCtrl.ToggleSpotFlicker ();
 		m_LightCtrl.TurnOffFlicker();
@@ -104,12 +128,18 @@ public class PrisonerHandle : MonoBehaviour {
 		// animation set back 
 		// prisoner animation set back
 		if(m_isResisting){
+			
 			m_PrisonerAnim.SetBool("IsResist", false);
 			m_IsStartTorture = false;	
-			m_AnimCtrl.SetAnimation(false);
+
 			m_GuardHandle.LeaveCalledByPrisoner ();
 			m_ItrAudio.PlayBreakOut ();
+			m_AnimCtrl.SetAnimation(false);
 			m_LightCtrl.TurnOffFlicker ();
+			// hide text
+			foreach (GameObject g in m_DesText) {
+				g.SetActive (false);
+			}
 		}
 
 
@@ -117,6 +147,11 @@ public class PrisonerHandle : MonoBehaviour {
 
 	public void DrownStruggle(float holdTime){
 		m_PrisonerAnim.SetFloat ("TortureHold", holdTime);
+		if (holdTime >= 2f) {
+			foreach (GameObject g in m_DesText) {
+				g.SetActive (false);
+			}
+		}
 	}
 
 	public void LeaveCalledByGuard(){
@@ -127,6 +162,10 @@ public class PrisonerHandle : MonoBehaviour {
 		m_ItrAudio.PlayChain ();
 		//m_GuardHandle.LeaveCalledByPrisoner ();
 		m_LightCtrl.TurnOffFlicker ();
+		// hide text
+		foreach (GameObject g in m_DesText) {
+			g.SetActive (false);
+		}
 	
 	}
 
@@ -141,5 +180,9 @@ public class PrisonerHandle : MonoBehaviour {
 
 	void BackToIdle(){
 
+	}
+
+	public void ButtonPressed(int idx){
+		
 	}
 }

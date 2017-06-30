@@ -15,6 +15,7 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] Fading m_Fading;
 	[SerializeField] InteractionProgress m_ProgressBar;
 
+
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
 	private bool m_IsStartTorture = false;
