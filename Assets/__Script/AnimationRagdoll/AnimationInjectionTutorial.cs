@@ -8,13 +8,14 @@ public class AnimationInjectionTutorial : AnimationInjectionBase {
 //	[SerializeField] bool[] _animInject = new bool[11];
 //	[SerializeField] GuardTutorialHandle m_guard;
 //	bool[] _tempStateHandling = new bool[11];
-//	int state = 0;
+	int state = 0;
 	private bool isEngaged = false;
 
 	public void SetEngage(){
 		if (!isEngaged) {
 			isEngaged = true;
 			CheckInteractionState ();
+			//Events.G.Raise
 		}
 	}
 
