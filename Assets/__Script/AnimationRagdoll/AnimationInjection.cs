@@ -118,6 +118,7 @@ public class AnimationInjection : MonoBehaviour {
 			m_guard.Torture();
 		} else {
 			//if continue tapping 
+			m_prisoner.ButtonPressed(0);
 			if (!_IsResist && _intervalTimer.IsOffCooldown) {
 				_IsResist = true;
 				_intervalTimer.Reset ();
@@ -142,7 +143,9 @@ public class AnimationInjection : MonoBehaviour {
 	}
 	void DPressed(DPressedEvent e){
 		// choose to leave 
+
 		if (e.WhoAmI != CharacterIdentity.Guard) {
+			m_prisoner.ButtonPressed(1);
 			if (!_IsResist && _intervalTimer.IsOffCooldown) {
 				_IsResist = true;
 				_intervalTimer.Reset ();

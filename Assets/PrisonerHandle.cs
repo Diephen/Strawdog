@@ -7,7 +7,8 @@ public class PrisonerHandle : MonoBehaviour {
 	[SerializeField] AnimationControl m_AnimCtrl;
 	[SerializeField] InteractionSound m_ItrAudio;
 	[SerializeField] LightControl m_LightCtrl;
-	[SerializeField] GameObject[] m_DesText;
+	[SerializeField] TextReaction[] m_DesText;
+	bool _isfaded = false;
 
 	bool m_isResisting = false;
 	bool m_isUnderTorture = false;
@@ -16,9 +17,9 @@ public class PrisonerHandle : MonoBehaviour {
 	private bool m_IsStartTorture = false;
 
 	void Awake(){
-		foreach (GameObject g in m_DesText) {
-			g.SetActive (false);
-		}
+//		foreach (GameObject g in m_DesText) {
+//			g.SetActive (false);
+//		}
 	}
 
 	void OnEnable ()
@@ -52,8 +53,9 @@ public class PrisonerHandle : MonoBehaviour {
 			Debug.Log ("P: Prisoner Engaged");
 			StartTorture ();
 			// show text 
-			foreach (GameObject g in m_DesText) {
-				g.SetActive (true);
+			_isfaded = false;
+			foreach (TextReaction tr in m_DesText) {
+				tr.TextFadeIn ();
 			}
 
 		} else {
@@ -101,6 +103,13 @@ public class PrisonerHandle : MonoBehaviour {
 		m_PrisonerAnim.SetBool ("IsTorture", false);
 		//m_LightCtrl.ToggleSpotFlicker ();
 		m_LightCtrl.TurnOffFlicker();
+
+		if (_isfaded) {
+			_isfaded = false;
+			foreach (TextReaction tr in m_DesText) {
+				tr.TextFadeIn ();
+			}
+		}
 	}
 
 	public void Resist(){
@@ -137,8 +146,9 @@ public class PrisonerHandle : MonoBehaviour {
 			m_AnimCtrl.SetAnimation(false);
 			m_LightCtrl.TurnOffFlicker ();
 			// hide text
-			foreach (GameObject g in m_DesText) {
-				g.SetActive (false);
+			_isfaded = true;
+			foreach (TextReaction tr in m_DesText) {
+				tr.TextFadeOut ();
 			}
 		}
 
@@ -148,8 +158,9 @@ public class PrisonerHandle : MonoBehaviour {
 	public void DrownStruggle(float holdTime){
 		m_PrisonerAnim.SetFloat ("TortureHold", holdTime);
 		if (holdTime >= 2f) {
-			foreach (GameObject g in m_DesText) {
-				g.SetActive (false);
+			_isfaded = true;
+			foreach (TextReaction tr in m_DesText) {
+				tr.TextFadeOut ();
 			}
 		}
 	}
@@ -163,8 +174,9 @@ public class PrisonerHandle : MonoBehaviour {
 		//m_GuardHandle.LeaveCalledByPrisoner ();
 		m_LightCtrl.TurnOffFlicker ();
 		// hide text
-		foreach (GameObject g in m_DesText) {
-			g.SetActive (false);
+		_isfaded = true;
+		foreach (TextReaction tr in m_DesText) {
+			tr.TextFadeOut ();
 		}
 	
 	}
@@ -183,6 +195,7 @@ public class PrisonerHandle : MonoBehaviour {
 	}
 
 	public void ButtonPressed(int idx){
+		m_DesText [idx].Tap ();
 		
 	}
 }

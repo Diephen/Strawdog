@@ -14,7 +14,7 @@ public class GuardHandle : MonoBehaviour {
 
 	[SerializeField] Fading m_Fading;
 	[SerializeField] InteractionProgress m_ProgressBar;
-
+	[SerializeField] TextReaction[] m_DesText;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
@@ -57,6 +57,10 @@ public class GuardHandle : MonoBehaviour {
 		if (e.Engaged) {
 			Debug.Log ("G: Prisoner Engaged");
 			StartTorture ();
+			foreach (TextReaction tr in m_DesText) {
+				tr.TextFadeIn ();
+			}
+
 		} else {
 			Debug.Log ("G: Prisoner Disengaged");
 		}
@@ -161,6 +165,9 @@ public class GuardHandle : MonoBehaviour {
 
 	public void ReleasePrisoner(){
 		m_PrisonerHandle.ReleaseTorture ();
+		foreach (TextReaction tr in m_DesText) {
+			tr.TextFadeOut ();
+		}
 	}
 
 	public void Leave(){
@@ -177,6 +184,9 @@ public class GuardHandle : MonoBehaviour {
 			Events.G.Raise (new UIProgressBar (false));
 			//StartCoroutine (m_ProgressBar.FadeOut (2f));
 		}
+		foreach (TextReaction tr in m_DesText) {
+			tr.TextFadeOut ();
+		}
 
 	}
 
@@ -187,6 +197,10 @@ public class GuardHandle : MonoBehaviour {
 		m_GuardAnim.SetBool("IsBack", true);
 		m_PC.MoveRight ();
 		StartCoroutine (m_ProgressBar.FadeOut (2f));
+		Events.G.Raise (new UIProgressBar (false));
+		foreach (TextReaction tr in m_DesText) {
+			tr.TextFadeOut ();
+		}
 	}
 
 
