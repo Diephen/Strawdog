@@ -7,6 +7,7 @@ public class TruckControl : MonoBehaviour {
 	[SerializeField] float _DrivingSpeedLimit;
 	[SerializeField] Transform _TruckTrans;
 	Animator _TruckAnim;
+	AudioSource _TruckAudio;
 	float _Speed;
 	Timer _DrivingTimer;
 	bool _isDriving = false;
@@ -18,6 +19,7 @@ public class TruckControl : MonoBehaviour {
 		_Wheels = GetComponentsInChildren<TruckWheel> ();
 		_DrivingTimer = new Timer (5f);
 		_TruckAnim = GetComponent<Animator> ();
+		_TruckAudio = GetComponent<AudioSource> ();
 		
 	}
 	
@@ -67,6 +69,7 @@ public class TruckControl : MonoBehaviour {
 
 	void Initiate(){
 		_TruckAnim.Play ("Truck_Start");
+		_TruckAudio.Play ();
 	}
 
 	void StartTruck(){
