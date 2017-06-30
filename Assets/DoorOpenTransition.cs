@@ -6,7 +6,8 @@ public class DoorOpenTransition : MonoBehaviour {
 	[SerializeField] BoxCollider2D _doorTrigger;
 	[SerializeField] GameObject _door;
 	[SerializeField] Animator _doorAnim;
-	[SerializeField] SpriteRenderer _doorFrame;
+	[SerializeField] SpriteRenderer[] _doorFrame;
+	//[SerializeField] GameObject[] _instruction;
 	bool _openDoor = false;
 	bool _isEnter = false;
 	bool _isFirstTimeUp = true;
@@ -23,6 +24,8 @@ public class DoorOpenTransition : MonoBehaviour {
 		_spriteRenderer = _door.GetComponent<SpriteRenderer>();
 		_tempSpriteColor = _spriteRenderer.color;
 		_doorTrigger.enabled = false;
+		//_instruction [0].SetActive (false);
+		//_instruction [1].SetActive (false);
 	}
 
 	void FixedUpdate () {
@@ -52,10 +55,19 @@ public class DoorOpenTransition : MonoBehaviour {
 		_openDoorTimer.Reset ();
 		if (_openDoor) {
 			_doorTrigger.enabled = true;
-			_doorFrame.sortingOrder += 100;
+			foreach (SpriteRenderer spr in _doorFrame) {
+				spr.sortingOrder += 100;
+			}
+//			_instruction [0].SetActive (true);
+//			_instruction [1].SetActive (false);
+
 		} else {
 			_doorTrigger.enabled = false;
-			_doorFrame.sortingOrder -= 100;
+			foreach (SpriteRenderer spr in _doorFrame) {
+				spr.sortingOrder -= 100;
+			}
+//			_instruction [0].SetActive (false);
+//			_instruction [1].SetActive (true);
 		}
 	}
 

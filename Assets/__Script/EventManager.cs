@@ -110,6 +110,10 @@ public class DoorTransitionEvent:GameEvent{
 		GoUp = goup;
 	}
 }
+
+public class DoorTextChangeEvent:GameEvent{
+	
+}
 	
 public class LeftCellUnlockedEvent : GameEvent {
 }
