@@ -59,6 +59,7 @@ public class GuardTrigger : MonoBehaviour {
 				print ("Guard open office door");
 				_isOfficeOpened = !_isOfficeOpened;
 				Events.G.Raise (new OfficeDoorEvent (_isOfficeOpened));
+
 			}
 		}
 
@@ -109,6 +110,7 @@ public class GuardTrigger : MonoBehaviour {
 			//_highlightsFX.enabled = true;
 		} else if (other.name == "Office") {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
+
 			_isDoor = true;
 		} else if (other.name == "open-right") {
 			//_highlightsFX.objectRenderer = _rightFlap;
