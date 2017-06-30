@@ -5,6 +5,8 @@ public class HighlightSprite : MonoBehaviour {
 	[SerializeField] GameObject m_Hi;
 	[SerializeField] GameObject[] m_DesText;
 	[SerializeField] bool _isDoor = false;
+	[SerializeField] bool _isSwitchingCharacter = false;
+	[SerializeField] bool _isPrisoner = false;
 	bool _isDoorClosed = true;
 	bool m_IsFlicker = false;
 	SpriteRenderer m_Sprite;
@@ -14,11 +16,14 @@ public class HighlightSprite : MonoBehaviour {
 
 	void OnEnable(){
 		Events.G.AddListener<OfficeDoorEvent> (ChangeTextHandle);
-
+		Events.G.AddListener<LockCellEvent> (ChangeTextCellHandle);
+		Events.G.AddListener<DisableMoveEvent> (ChangeCharacterHandle);
 	}
 
 	void OnDisable(){
 		Events.G.RemoveListener<OfficeDoorEvent> (ChangeTextHandle);
+		Events.G.RemoveListener<LockCellEvent> (ChangeTextCellHandle);
+		Events.G.RemoveListener<DisableMoveEvent> (ChangeCharacterHandle);
 	}
 
 	// Use this for initialization
@@ -73,15 +78,31 @@ public class HighlightSprite : MonoBehaviour {
 	}
 
 	void ShowText(){
-		print ("show text");
+		//print ("show text");
 		if (m_DesText.Length>=1) {
-			print ("show text");
-			if (_isDoor) {
+			//print ("show text");
+			if (_isDoor && !_isSwitchingCharacter) {
 				// open
+				print("Door open: " + !_isDoorClosed);
+				if (_isDoorClosed) {
+					m_DesText [0].SetActive (true);
+					m_DesText [1].SetActive (true);
+				} else {
+					m_DesText [0].SetActive (true);
+					m_DesText [2].SetActive (true);
+				}
+
+			} else if (!_isDoor && !_isSwitchingCharacter) {
 				m_DesText [0].SetActive (true);
-				m_DesText [1].SetActive (true);
-			} else {
-				m_DesText [0].SetActive (true);
+			} else if(!_isDoor && _isSwitchingCharacter){
+				// starts with the first one 
+				if (!_isPrisoner) {
+					m_DesText [0].SetActive (true);
+				} else {
+					m_DesText [1].SetActive (true);
+				}
+
+				
 			}
 		}
 	}
@@ -96,8 +117,9 @@ public class HighlightSprite : MonoBehaviour {
 
 	void ChangeTextHandle(OfficeDoorEvent e){
 		if (_isDoor && m_DesText != null) {
-			//_isDoorClosed = !_isDoorClosed;
+			_isDoorClosed = !e.Opened;
 			if (e.Opened) {
+				//show close text 
 				m_DesText [2].SetActive (true);
 				m_DesText [1].SetActive (false);
 			} else {
@@ -106,6 +128,26 @@ public class HighlightSprite : MonoBehaviour {
 			}
 		}
 		
+	}
+
+	void ChangeTextCellHandle(LockCellEvent e){
+		if (_isDoor && m_DesText != null) {
+			_isDoorClosed = e.Locked;
+			if (!e.Locked) {
+				m_DesText [2].SetActive (true);
+				m_DesText [1].SetActive (false);
+			} else {
+				m_DesText [1].SetActive (true);
+				m_DesText [2].SetActive (false);
+			}
+		}
+	}
+
+	void ChangeCharacterHandle(DisableMoveEvent e){
+		if (_isSwitchingCharacter && e.WhoAmI == CharacterIdentity.Guard) {
+			print ("## switch to prisoner");
+			_isPrisoner = !_isPrisoner;
+		}
 	}
 
 
