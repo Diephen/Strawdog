@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010939151786
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1025226580670050
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010210851682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.03, z: -1.7722}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.1729757, y: 1.1729754, z: 1.1729754}
   m_Children:
   - {fileID: 4024126807866200}
@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1427936737a4641e586ce4f14bde808e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Hi: {fileID: 1000013470222906}
+  m_Hi: {fileID: 1327206266551310}
   m_DesText: []
   _isDoor: 0
   _isSwitchingCharacter: 0
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1427936737a4641e586ce4f14bde808e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Hi: {fileID: 1000011073817950}
+  m_Hi: {fileID: 1235789275362894}
   m_DesText: []
   _isDoor: 0
   _isSwitchingCharacter: 0
