@@ -361,7 +361,7 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAct2Explore(Act2_PrisonerWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.A2_2_Explore, 2f, "VoiceOver/06_Explore"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A2_2_Explore, 2f));
 	}
 
 	void LoadAct2Explore_down(Act2_PrisonerWalkedDownStairsEvent e){

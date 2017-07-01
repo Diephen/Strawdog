@@ -73,7 +73,8 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 
 	void Update(){
 
-		if (Input.GetKeyDown (_prisonerKeyCodes [3]) && _isStairs) {
+		if (Input.GetKeyDown (_prisonerKeyCodes [3]) || (!_isPrisonerTop && Input.GetKeyDown (_prisonerKeyCodes [1]))){
+			if(_isStairs){
 			_goToStart = true;
 			_isStairs = false;
 			_stairRenderer.gameObject.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
@@ -81,6 +82,7 @@ public class Cell_PrisonerTrigger : MonoBehaviour {
 			_tempPosition = _prisoner.transform.position;
 			_stairStartTimer.Reset ();
 			Events.G.Raise (new PrisonerStairsStartEvent ());
+			}
 		}
 
 		if (_goToStart) {

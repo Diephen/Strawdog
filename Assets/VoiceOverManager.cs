@@ -39,8 +39,8 @@ public class VoiceOverManager : MonoBehaviour {
 	}
 
 	void LeftUnlockPlay(LeftCellUnlockedEvent e){
-		_voiceOverSource.clip = Resources.Load<AudioClip>("VoiceOver/04_Unlock");
-		_voiceOverSource.Play ();
+		//_voiceOverSource.clip = Resources.Load<AudioClip>("VoiceOver/04_Unlock");
+		//_voiceOverSource.Play ();
 	}
 
 	void OnEnable(){
