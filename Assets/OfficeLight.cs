@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class OfficeLight : MonoBehaviour {
 	[SerializeField] GameObject _light;
+	AudioSource _AS;
 	// Use this for initialization
 	void Start () {
-		TurnOffLight ();
+		
+		_AS = GetComponent<AudioSource> ();
+		_light.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -16,10 +19,12 @@ public class OfficeLight : MonoBehaviour {
 
 	void TurnOnLight(){
 		_light.SetActive (true);
+		_AS.Play ();
 	}
 
 	void TurnOffLight(){
 		_light.SetActive (false);
+		_AS.Play ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
