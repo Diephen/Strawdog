@@ -16,7 +16,7 @@ public class EndingManager : MonoBehaviour {
 	bool _transition = false;
 	float _tempAlpha;
 	Color _tempTextColor;
-
+	[SerializeField] bool _isDemoEnd = false;
 
 	[SerializeField] Text[] _endDot;
 	[SerializeField] Image[] _endStrike;
@@ -36,7 +36,11 @@ public class EndingManager : MonoBehaviour {
 	
 	void Update(){
 		if (_isText && Input.GetKeyDown (KeyCode.Space)) {
-			Events.G.Raise (new RetryEvent ());
+			if (_isDemoEnd) {
+				Events.G.Raise (new LoadVeryBeginningEvent ());
+			} else {
+				Events.G.Raise (new RetryEvent ());
+			}
 			_isText = false;
 			_text.color = Color.white;
 			_tempTextColor = Color.white;
@@ -51,7 +55,11 @@ public class EndingManager : MonoBehaviour {
 			_right.color = _left.color;
 			if (_blackTimer.IsOffCooldown && _once) {
 				_textTimer.Reset ();
-				_audioSource.clip = _endClips [Random.Range (0, 6)];
+				if (_isDemoEnd) {
+					_audioSource.clip = _endClips [2];
+				} else {
+					_audioSource.clip = _endClips [Random.Range (0, 6)];
+				}
 				_audioSource.Play ();
 				_once = false;
 				_isText = true;

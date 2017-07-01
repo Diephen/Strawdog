@@ -281,11 +281,15 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void Load2_2(Load2_2Event e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.A2_2_Explore, 3f));
+		//StartCoroutine(ChangeLevel((int)SceneIndex.A2_2_Explore, 3f));
+		//DemoBuild
+		StartCoroutine(ChangeLevel(11, 3f));
 	}
 
 	void Load2_3(Load2_3Event e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 3f));
+		//StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 3f));
+		//DemoBuild
+		StartCoroutine(ChangeLevel(11, 3f));
 	}
 
 	void Load2_4(Load2_4Event e){
@@ -371,7 +375,9 @@ public class SceneManagerScript : MonoBehaviour {
 	void LoadAct2Patrol(Act2_GuardWalkedUpStairsEvent e){
 //		StartCoroutine(ChangeLevel(5, 2f));
 		//End PlayTest
-		StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 2f));
+		//StartCoroutine(ChangeLevel((int)SceneIndex.A2_3_Patrol, 2f));
+		//demo build
+		StartCoroutine(ChangeLevel(11, 2f));
 	}
 
 	void LoadAct2Patrol_down(Act2_GuardWalkedDownStairsEvent e){
@@ -382,7 +388,9 @@ public class SceneManagerScript : MonoBehaviour {
 //		StartCoroutine(ChangeLevel(4, 2f));
 		//End PlayTest
 		GameStateManager.gameStateManager._actTitleIndex = 4;
-		StartCoroutine(ChangeLevel((int)SceneIndex.A0_6_TitleCard, 0.5f));
+		//StartCoroutine(ChangeLevel((int)SceneIndex.A0_6_TitleCard, 0.5f));
+		//Demo Build
+		StartCoroutine(ChangeLevel(11, 0.5f));
 		//StartCoroutine(ChangeLevel((int)SceneIndex.A3_1_Interrogation, 2f, "VoiceOver/05_Bed"));
 	}
 
@@ -527,6 +535,8 @@ public class SceneManagerScript : MonoBehaviour {
 		}
 		//Capture all ending Scenes
 		else if (scene.buildIndex == (int)SceneIndex.A0_7_Ending) {
+		}
+		else if (scene.name == "DemoEnding") {
 		}
 		else if (scene.name == "0-6_TitleCard") {
 		}

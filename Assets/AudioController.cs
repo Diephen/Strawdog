@@ -133,13 +133,15 @@ public class AudioController : MonoBehaviour {
 	}
 	void GuardStairsStart(GuardStairsStartEvent e){
 		_soundSource1.clip = _guardStairs;
+		_soundSource1.volume = 1.0f;
 		_soundSource1.Play ();
-		Log.Metrics.Message("CHOICE 2: Guard Stairs (Lock)");
+		//Log.Metrics.Message("CHOICE 2: Guard Stairs (Lock)");
 	}
 	void PrisonerStairsStartEvent(PrisonerStairsStartEvent e){
 		_soundSource1.clip = _prisonerStairs;
+		_soundSource1.volume = 1.0f;
 		_soundSource1.Play ();
-		Log.Metrics.Message("CHOICE 3: Prisoner Stairs");
+		//Log.Metrics.Message("CHOICE 3: Prisoner Stairs");
 	}
 
 	void LoadTutorialEnd(LoadTitleCardEvent e){
@@ -331,8 +333,8 @@ public class AudioController : MonoBehaviour {
 			_musicSource2.volume = 1.0f;
 			_musicSource1.Play ();
 		}
-		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Intro) {
-			_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
+		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Torture) {
+			//_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
 			_musicOnTimer.Reset ();
 			_musicOffTimer.Reset ();
 			_musicVolume = 0.5f;
@@ -351,6 +353,49 @@ public class AudioController : MonoBehaviour {
 				_tempAudioSource = _musicSource2;
 			}
 			_musicOff3 = true;
+		}
+		else if (_currentSceneIndex == (int)SceneIndex.A1_1_Torture) {
+			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
+			_musicVolume = 0.5f;
+			if (!_musicSource1.isPlaying) {
+				_musicSource1.clip = _satrioClip;
+				_musicSource1.volume = 0.0f;
+				_musicSource1.loop = true;
+				_musicOn1 = true;
+				_tempAudioSource = _musicSource1;
+			}
+			else if (!_musicSource2.isPlaying) {
+				_musicSource2.clip = _satrioClip;
+				_musicSource2.volume = 0.0f;
+				_musicSource2.loop = true;
+				_musicOn2 = true;
+				_tempAudioSource = _musicSource2;
+			}
+			_musicOff3 = true;
+		}
+		else if (_currentSceneIndex == (int)SceneIndex.A2_1_Cell) {
+			//_musicSource3.clip = Resources.Load<AudioClip> ("Music/Transition1");
+			_musicOnTimer.Reset ();
+			_musicOffTimer.Reset ();
+			_musicVolume = 0.5f;
+			if (!_musicSource1.isPlaying) {
+				_musicSource1.clip = _satrioClip;
+				_musicSource1.volume = 0.0f;
+				_musicSource1.loop = true;
+				_musicOn1 = true;
+				_musicOff2 = true;
+				_tempAudioSource = _musicSource1;
+			}
+			else if (!_musicSource2.isPlaying) {
+				_musicSource2.clip = _satrioClip;
+				_musicSource2.volume = 0.0f;
+				_musicSource2.loop = true;
+				_musicOn2 = true;
+				_musicOff1 = true;
+				_tempAudioSource = _musicSource2;
+			}
+			//_musicOff3 = true;
 		}
 //		else if (_currentSceneIndex == 3) {
 //			//Reinitializing volume change variables

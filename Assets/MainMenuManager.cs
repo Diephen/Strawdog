@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEditor;
 using System.IO;
 
 public enum languageSetting {

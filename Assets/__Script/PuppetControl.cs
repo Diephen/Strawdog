@@ -76,7 +76,7 @@ public class PuppetControl : MonoBehaviour {
 	// Use this for initialization
 	void Start (){
 		StringCalculation ();
-		if (_whoAmI == CharacterIdentity.Guard) {
+		/*if (_whoAmI == CharacterIdentity.Guard) {
 			if (m_flip) {
 				m_ListenKey [2] = GameStateManager.gameStateManager._gLeftKey;
 				m_ListenKey [0] = GameStateManager.gameStateManager._gRightKey;
@@ -99,7 +99,7 @@ public class PuppetControl : MonoBehaviour {
 			}
 			m_ListenKey [3] = GameStateManager.gameStateManager._pDownKey;
 			m_ListenKey [1] = GameStateManager.gameStateManager._pUpKey;
-		}
+		}*/
 	}
 
 
