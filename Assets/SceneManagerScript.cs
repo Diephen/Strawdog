@@ -346,11 +346,11 @@ public class SceneManagerScript : MonoBehaviour {
 	}
 
 	void OnGuardLeaveCell (GuardLeavingCellEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 1.5f, "VoiceOver/02_StopDrown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 1.5f));
 	}
 
 	void LoadTitle(Act1EndedEvent e){
-		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 4f, "VoiceOver/03_Drown"));
+		StartCoroutine(ChangeLevel((int)SceneIndex.A0_5_Title, 4f));
 	}
 		
 	void LoadAct2(TitleEndedEvent e){
