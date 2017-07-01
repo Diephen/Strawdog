@@ -825,16 +825,51 @@ Prefab:
     - target: {fileID: 61000010505468038, guid: d0965eff08aed44d889e8f4e130a0e80,
         type: 2}
       propertyPath: m_Offset.x
-      value: -2.0634327
+      value: 4.293093
       objectReference: {fileID: 0}
     - target: {fileID: 61000010505468038, guid: d0965eff08aed44d889e8f4e130a0e80,
         type: 2}
       propertyPath: m_Size.x
-      value: 5.6268654
+      value: 5.700679
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000012695120148, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 0.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013312234630, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: _leaveLeft
+      value: 
+      objectReference: {fileID: 57888777}
+    - target: {fileID: 114000013312234630, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: _leaveRight
+      value: 
+      objectReference: {fileID: 57888776}
+    - target: {fileID: 61000010505468038, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000012276036942, guid: d0965eff08aed44d889e8f4e130a0e80,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0965eff08aed44d889e8f4e130a0e80, type: 2}
   m_IsPrefabParent: 0
+--- !u!61 &57888776 stripped
+BoxCollider2D:
+  m_PrefabParentObject: {fileID: 61000012276036942, guid: d0965eff08aed44d889e8f4e130a0e80,
+    type: 2}
+  m_PrefabInternal: {fileID: 57888775}
+--- !u!61 &57888777 stripped
+BoxCollider2D:
+  m_PrefabParentObject: {fileID: 61000010505468038, guid: d0965eff08aed44d889e8f4e130a0e80,
+    type: 2}
+  m_PrefabInternal: {fileID: 57888775}
 --- !u!1 &65589395
 GameObject:
   m_ObjectHideFlags: 0

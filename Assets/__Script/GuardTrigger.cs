@@ -81,11 +81,7 @@ public class GuardTrigger : MonoBehaviour {
 			_guard.transform.Translate ((Vector3.left + Vector3.down) * 2.0f * Time.deltaTime);
 		}
 		if (_isOnFlap && Input.GetKeyDown (_guardKeyCodes [3])) {
-			Events.G.Raise (new GuardLeavingCellEvent ());
-			_rightFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-			_leftFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
-			Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
-			_guardLeaveCell = true;
+			LeaveTortureChamber ();
 		}
 
 		if (_guardLeaveCell) {
@@ -112,6 +108,9 @@ public class GuardTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 
 			_isDoor = true;
+		} 
+		else if (other.name == "leave-right") {
+			LeaveTortureChamber ();
 		} else if (other.name == "open-right") {
 			//_highlightsFX.objectRenderer = _rightFlap;
 			//_highlightsFX.enabled = true;
@@ -133,6 +132,14 @@ public class GuardTrigger : MonoBehaviour {
 			Events.G.Raise(new DoorTransitionEvent(false));
 		}
 			
+	}
+
+	void LeaveTortureChamber(){
+		Events.G.Raise (new GuardLeavingCellEvent ());
+		_rightFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+		_leftFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
+		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
+		_guardLeaveCell = true;
 	}
 
 

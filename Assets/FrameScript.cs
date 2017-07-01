@@ -29,6 +29,9 @@ public class FrameScript : MonoBehaviour {
 //	[SerializeField] bool _disableGuard = false;
 //	[SerializeField] bool _disablePrisoner = false;
 
+	[SerializeField] BoxCollider2D _leaveLeft;
+	[SerializeField] BoxCollider2D _leaveRight;
+
 	void Start () {
 		_leftFlap.SetActive (true);
 		_rightFlap.SetActive (true);
@@ -66,7 +69,11 @@ public class FrameScript : MonoBehaviour {
 					if (_open) {
 						_bc1.enabled = true;
 						_bc2.enabled = true;
+					if (_leaveLeft != null) {
+						_leaveLeft.enabled = true;
+						_leaveRight.enabled = true;
 					}
+				}
 			}
 		}
 
