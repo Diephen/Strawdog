@@ -37,7 +37,7 @@ public class DoorOpenTransition : MonoBehaviour {
 			_door.transform.rotation = Quaternion.Lerp (_originalRotation, Quaternion.Euler (_tempEuler), _openDoorTimer.PercentTimePassed);
 			//_tempSpriteColor.a = _openDoorTimer.PercentTimeLeft;
 		} else {
-			_door.transform.rotation = Quaternion.Lerp (transform.rotation, _originalRotation, _openDoorTimer.PercentTimePassed);
+			_door.transform.rotation = Quaternion.Lerp (_door.transform.rotation, _originalRotation, _openDoorTimer.PercentTimePassed);
 			//_tempSpriteColor.a = _openDoorTimer.PercentTimePassed;
 		}
 		//_spriteRenderer.color =  _tempSpriteColor;
@@ -52,10 +52,10 @@ public class DoorOpenTransition : MonoBehaviour {
 
 	void CloseOffice(OfficeDoorEvent e){
 		print ("## Check door " + e.Opened);
+		_openDoorTimer.Reset ();
 		_openDoor = e.Opened;
 		_tempEuler = _originalRotation.eulerAngles;
-		_tempEuler.y = 60.0f;
-		_openDoorTimer.Reset ();
+		_tempEuler.y = -60.0f;
 		if (_openDoor) {
 			_doorTrigger.enabled = true;
 			foreach (SpriteRenderer spr in _doorFrame) {
