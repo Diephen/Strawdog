@@ -1176,6 +1176,7 @@ GameObject:
   - component: {fileID: 1028798624}
   - component: {fileID: 1028798626}
   - component: {fileID: 1028798625}
+  - component: {fileID: 1028798627}
   m_Layer: 0
   m_Name: Text (1)
   m_TagString: Untagged
@@ -1198,7 +1199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 41, y: -431}
+  m_AnchoredPosition: {x: 41, y: -397}
   m_SizeDelta: {x: 2015, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1028798625
@@ -1240,6 +1241,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1028798623}
+--- !u!114 &1028798627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028798623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - Press 'Space' to Restart
+  - "\u6309\u201C\u7A7A\u683C\u952E\u201D\u91CD\u65B0\u5F00\u59CB"
 --- !u!1 &1123415147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,6 +2157,7 @@ GameObject:
   - component: {fileID: 2111613335}
   - component: {fileID: 2111613337}
   - component: {fileID: 2111613336}
+  - component: {fileID: 2111613338}
   m_Layer: 0
   m_Name: Text (2)
   m_TagString: Untagged
@@ -2197,19 +2215,35 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Thank you for playing this demo for Whispers from the Strawdog.
-
-
-    The team is currently reworking the experience.
-
-
-    Please contact the developers if you would like a preview of the content to come.'
+  m_Text: "Thank you for playing this demo of Whispers from the Strawdog\n\nThe team
+    is currently reworking on the experience \n\nPlease contact the developers if
+    you would like a preview for the content to come \n\npetme@petmegames.com"
 --- !u!222 &2111613337
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2111613334}
+--- !u!114 &2111613338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2111613334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - Thank you for playing this demo of Whispers from the Strawdog  The team is currently
+    reworking on the experience   Please contact the developers if you would like
+    a preview for the content to come   petme@petmegames.com
+  - "\u611F\u8B1D\u8A66\u73A9 Whispers from the Strawdog  \u672C\u904A\u6232\u76EE\u524D\u4ECD\u5728\u958B\u767C\u968E\u6BB5
+    \ \u5982\u679C\u60A8\u60F3\u7372\u5F97\u66F4\u591A\u904A\u6232\u5167\u5BB9\uFF0C\u8ACB\u806F\u7CFB\u958B\u767C\u8005
+    \ petme@petmegames.com"
 --- !u!1 &2120640550
 GameObject:
   m_ObjectHideFlags: 0
