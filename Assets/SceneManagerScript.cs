@@ -81,6 +81,10 @@ public class SceneManagerScript : MonoBehaviour {
 	bool _once = false;
 	[SerializeField] VoiceOverManager _voManager;
 
+	void Awake() {
+		GameStateManager.gameStateManager._currScene = (SceneIndex)SceneManager.GetActiveScene ().buildIndex;
+	}
+
 	void Update(){
 //		if(_start){
 //			if (Input.GetKeyDown (KeyCode.Space)) {
@@ -531,6 +535,7 @@ public class SceneManagerScript : MonoBehaviour {
 
 	void OpenScreen(Scene scene, LoadSceneMode mode){
 		_once = false;
+		GameStateManager.gameStateManager._currScene = (SceneIndex)scene.buildIndex;
 		if (scene.buildIndex == (int)SceneIndex.A0_2_TriggerWarning) {
 		}
 		//Capture all ending Scenes

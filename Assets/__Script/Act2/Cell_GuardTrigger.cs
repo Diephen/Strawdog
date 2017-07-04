@@ -55,6 +55,8 @@ public class Cell_GuardTrigger : MonoBehaviour {
 	bool _answer = false;
 	bool _solved = false;
 
+	patrol _TriggeredPatrolScript = null;
+
 	void Start(){
 		_guardPuppetController = _guard.GetComponent <PuppetControl> ();
 		_guardKeyCodes = _guardPuppetController.GetKeyCodes ();
@@ -93,7 +95,6 @@ public class Cell_GuardTrigger : MonoBehaviour {
 						Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
 					}
 				}
-
 			}
 		}
 
@@ -145,6 +146,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			}
 
 			BombDetection ();
+
+			if (_TriggeredPatrolScript != null && Input.GetKeyDown (_guardKeyCodes [1])) {
+				_TriggeredPatrolScript.WakeUp ();
+				_TriggeredPatrolScript = null;
+			}
 
 		}
 	}
@@ -204,6 +210,12 @@ public class Cell_GuardTrigger : MonoBehaviour {
 			other.GetComponentInChildren<HighlightSprite> ().EnableHighlight ();
 			_isSleep = true;
 		}
+		else if (other.tag == "Patrol") {
+			_TriggeredPatrolScript = other.gameObject.GetComponent<patrol> ();
+			if (_TriggeredPatrolScript != null) {
+				_TriggeredPatrolScript.HoverColor (true);
+			}
+		}
 		else if (other.name == "BombArea") {
 			_isBombArea = true;
 			_houseCol.enabled = true;
@@ -254,6 +266,11 @@ public class Cell_GuardTrigger : MonoBehaviour {
 		} else if (other.name == "sh-front_0") {
 			other.GetComponentInChildren<HighlightSprite> ().DisableHighlight ();
 			_isSleep = false;
+		} else if (other.tag == "Patrol") {
+			if (_TriggeredPatrolScript != null) {
+				_TriggeredPatrolScript.HoverColor (false);
+			}
+			_TriggeredPatrolScript = null;
 		}
 	}
 
