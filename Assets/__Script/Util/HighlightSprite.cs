@@ -53,7 +53,7 @@ public class HighlightSprite : MonoBehaviour {
 		if (m_Hi != null) {
 			m_Hi.SetActive (true);
 		}
-		print ("show text");
+		//print ("show text");
 		ShowText ();
 
 	}
@@ -83,7 +83,7 @@ public class HighlightSprite : MonoBehaviour {
 			//print ("show text");
 			if (_isDoor && !_isSwitchingCharacter) {
 				// open
-				print("Door open: " + !_isDoorClosed);
+				//print("Door open: " + !_isDoorClosed);
 				if (_isDoorClosed) {
 					m_DesText [0].SetActive (true);
 					m_DesText [1].SetActive (true);
@@ -145,7 +145,7 @@ public class HighlightSprite : MonoBehaviour {
 
 	void ChangeCharacterHandle(DisableMoveEvent e){
 		if (_isSwitchingCharacter && e.WhoAmI == CharacterIdentity.Guard) {
-			print ("## switch to prisoner");
+			//print ("## switch to prisoner");
 			_isPrisoner = !_isPrisoner;
 		}
 	}

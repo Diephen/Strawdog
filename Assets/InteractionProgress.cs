@@ -76,7 +76,7 @@ public class InteractionProgress : MonoBehaviour {
 		
 	public void IncTime(float time){
 		if (time <= 0.05f && time > 0f) {
-			time = 0.05f;
+			time = 0.08f;
 		} else {
 			m_TimePassed = time;
 		}
@@ -115,8 +115,8 @@ public class InteractionProgress : MonoBehaviour {
 			m_Bck.material.SetColor ("_Color", bckColor);
 			yield return 0;
 		}
-		m_Progress.material.SetFloat ("_AlphaValue", 1);
-		bckColor.a = 1;
+		m_Progress.material.SetFloat ("_AlphaValue", 1f);
+		bckColor.a = 1f;
 		m_Bck.material.SetColor ("_Color", bckColor);
 	}
 
@@ -147,7 +147,7 @@ public class InteractionProgress : MonoBehaviour {
 				
 		}
 		m_Progress.material.SetFloat ("_AlphaValue", 0);
-		bckColor.a = 0;
+		bckColor.a = 0f	;
 		m_Bck.material.SetColor ("_Color", bckColor);
 		//break;
 

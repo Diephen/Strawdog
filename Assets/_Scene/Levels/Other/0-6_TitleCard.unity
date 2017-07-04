@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 25887036}
   - component: {fileID: 25887038}
   - component: {fileID: 25887037}
+  - component: {fileID: 25887039}
   m_Layer: 0
   m_Name: Act2
   m_TagString: Untagged
@@ -186,6 +187,26 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 25887035}
+--- !u!114 &25887039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 25887035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - Sometimes I would wonder if orders were taken too far. But it was during war,
+    nobody had time to think about such things.  Everything was for the greater good.
+  - "\u4E0A\u7D1A\u7684\u547D\u4EE4\u6709\u6642\u5019\u8B93\u6211\u89BA\u5F97\u904E\u65BC\u6B98\u9177
+    \ \u4F46\u662F\u73FE\u5728\u662F\u7279\u6B8A\u6642\u671F\uFF0C\u6211\u4E0D\u80FD\u60F3\u592A\u591A
+    \  \u6240\u6709\u7684\u4E00\u5207\u90FD\u662F\u70BA\u4E86\u5927\u5C40\u7684\u5229\u76CA
+    \                              \u8BB0\u4E8E\u4E00\u4E5D\u56DB\u4E8C\u5E74\u516D\u6708 "
 --- !u!1 &126220701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1420,7 @@ GameObject:
   - component: {fileID: 648695101}
   - component: {fileID: 648695103}
   - component: {fileID: 648695102}
+  - component: {fileID: 648695104}
   m_Layer: 0
   m_Name: Act1
   m_TagString: Untagged
@@ -1456,17 +1478,38 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "August 1940, \n\nthe Empire of Japan declares the unification of East Asia
-    marking the beginning of the Greater East Asia Co-Prosperity Sphere.\n\n Justified
+  m_Text: "August 1940, \n\_\nThe Empire of Japan declared the unification of East
+    Asia marking the beginning of the Greater East Asia Co-Prosperity Sphere.\n\_\nJustified
     through Hakk\u014D ichiu, imperial Japan expands its colonial empire by dispatching
-    soldiers to enforce Japanese rule in colonized territories.\n\nI was one of the
-    soldiers."
+    soldiers to enforce Japanese rule in colonized territories.\n\_\nI was one of
+    the soldiers."
 --- !u!222 &648695103
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 648695100}
+--- !u!114 &648695104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 648695100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - "August 1940,  \_ The Empire of Japan declared the unification of East Asia marking
+    the beginning of the Greater East Asia Co-Prosperity Sphere. \_ Justified through
+    Hakk\u014D ichiu, imperial Japan expands its colonial empire by dispatching soldiers
+    to enforce Japanese rule in colonized territories. \_ I was one of the soldiers."
+  - "\u65E5\u672C\u5E1D\u570B\u7D71\u4E00\u4E9E\u6D32\u4E4B\u5F8C\uFF0C \u5BA3\u544A\u5927\u6771\u4E9E\u5171\u69AE\u5708\u7684\u958B\u59CB
+    \          \u4EE5\u201C\u516B\u7EAE\u4E00\u5B87\u201D\u70BA\u540D\uFF0C\u5E1D\u570B\u5C0D\u6B96\u6C11\u5730\u6D3E\u9063\u8ECD\u968A\u99D0\u5B88\uFF0C\u7A69\u56FA\u7D71\u6CBB\u529B\u91CF
+    \  \u6211\u5C31\u662F\u58EB\u5175\u4E2D\u7684\u4E00\u54E1                            -\u8A18\u65BC\u4E00\u4E5D\u56DB\u96F6\u5E74\u634C\u6708"
 --- !u!1001 &750384875
 Prefab:
   m_ObjectHideFlags: 0
@@ -2065,6 +2108,7 @@ GameObject:
   - component: {fileID: 1028798624}
   - component: {fileID: 1028798626}
   - component: {fileID: 1028798625}
+  - component: {fileID: 1028798627}
   m_Layer: 0
   m_Name: Act1
   m_TagString: Untagged
@@ -2122,16 +2166,29 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Act 1
-
-
-    Initiation'
+  m_Text: Act 1  Initiation
 --- !u!222 &1028798626
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1028798623}
+--- !u!114 &1028798627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028798623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - Act 1  Initiation
+  - "\u7B2C\u4E00\u5E55 \u5E8F\u5E55"
 --- !u!1 &1123415147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2292,6 +2349,7 @@ GameObject:
   - component: {fileID: 1268805539}
   - component: {fileID: 1268805541}
   - component: {fileID: 1268805540}
+  - component: {fileID: 1268805542}
   m_Layer: 0
   m_Name: Act2
   m_TagString: Untagged
@@ -2359,6 +2417,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268805538}
+--- !u!114 &1268805542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1268805538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isTextMesh: 0
+  _isChinese: 1
+  _textStrings:
+  - Act 2  Divergence
+  - "\u7B2C\u4E8C\u5E55 \u5206\u6B67"
 --- !u!1 &1276819815
 GameObject:
   m_ObjectHideFlags: 0
