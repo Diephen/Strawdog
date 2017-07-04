@@ -125,7 +125,7 @@ public class GuardHandle : MonoBehaviour {
 			m_GuardAnim.SetBool("IsBack", false);
 			m_IsStartTorture = true;
 			Events.G.Raise (new UIProgressBar (true));
-			//StartCoroutine (m_ProgressBar.FadeIn (3f));
+			StartCoroutine (m_ProgressBar.FadeIn (3f));
 		}
 	}
 		
