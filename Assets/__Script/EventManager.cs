@@ -554,3 +554,21 @@ public class UIProgressBar:GameEvent{
 
 
 
+//////////
+/// ///////
+/// UI
+/// 
+///  
+/// 
+/// 
+
+public class LanguageSwitchEvent:GameEvent{
+	public languageSetting lg{ get; private set; }
+	public LanguageSwitchEvent(languageSetting _lg){
+		lg = _lg;
+	}
+
+}
+
+
+

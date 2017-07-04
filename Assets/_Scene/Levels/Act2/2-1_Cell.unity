@@ -4498,6 +4498,26 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!1 &245765866 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1551528661540226, guid: 18303c44fec924ea0a115981fece80ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1421341410}
+--- !u!114 &245765868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245765866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300000, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300010, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &246871279
 GameObject:
   m_ObjectHideFlags: 0
@@ -8591,6 +8611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902293298}
   - component: {fileID: 902293299}
+  - component: {fileID: 902293300}
   m_Layer: 0
   m_Name: close
   m_TagString: Untagged
@@ -8651,6 +8672,21 @@ SpriteRenderer:
   m_Size: {x: 0.46, y: 0.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &902293300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902293297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300006, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300002, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &924287492
 GameObject:
   m_ObjectHideFlags: 0
@@ -12796,35 +12832,35 @@ Prefab:
         type: 3}
     - target: {fileID: 4675364439388196, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.79
+      value: 4.65
       objectReference: {fileID: 0}
     - target: {fileID: 4860042839526720, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.79
+      value: 4.65
       objectReference: {fileID: 0}
     - target: {fileID: 4675364439388196, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.x
-      value: 10.673783
+      value: 8.984291
       objectReference: {fileID: 0}
     - target: {fileID: 4675364439388196, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.y
-      value: 10.673787
+      value: 8.984295
       objectReference: {fileID: 0}
     - target: {fileID: 4675364439388196, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.z
-      value: 10.673788
+      value: 8.984296
       objectReference: {fileID: 0}
     - target: {fileID: 4860042839526720, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.x
-      value: 10.673783
+      value: 8.984291
       objectReference: {fileID: 0}
     - target: {fileID: 4860042839526720, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.y
-      value: 10.673787
+      value: 8.984295
       objectReference: {fileID: 0}
     - target: {fileID: 4860042839526720, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
       propertyPath: m_LocalScale.z
-      value: 10.673788
+      value: 8.984296
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18303c44fec924ea0a115981fece80ac, type: 2}
@@ -12902,6 +12938,26 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!1 &1431212882 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1150263021140548, guid: 18303c44fec924ea0a115981fece80ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1421341410}
+--- !u!114 &1431212884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1431212882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300000, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300010, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &1447061361
 GameObject:
   m_ObjectHideFlags: 0
@@ -14233,6 +14289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1690142444}
   - component: {fileID: 1690142445}
+  - component: {fileID: 1690142446}
   m_Layer: 0
   m_Name: text-description-v1_17
   m_TagString: Untagged
@@ -14293,6 +14350,21 @@ SpriteRenderer:
   m_Size: {x: 0.54, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1690142446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1690142443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300002, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300000, guid: 67bf73d4e65a14de7bff91439c162acf, type: 3}
 --- !u!1001 &1700535802
 Prefab:
   m_ObjectHideFlags: 0
@@ -16266,6 +16338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029977465}
   - component: {fileID: 2029977466}
+  - component: {fileID: 2029977467}
   m_Layer: 0
   m_Name: Open
   m_TagString: Untagged
@@ -16326,6 +16399,21 @@ SpriteRenderer:
   m_Size: {x: 0.46, y: 0.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &2029977467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029977464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300014, guid: c8c259249aa49475fb771637179148d1, type: 3}
+  - {fileID: 21300000, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &2040893498
 GameObject:
   m_ObjectHideFlags: 0

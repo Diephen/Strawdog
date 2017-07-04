@@ -11473,6 +11473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 526606840}
   - component: {fileID: 526606841}
+  - component: {fileID: 526606842}
   m_Layer: 0
   m_Name: close
   m_TagString: Untagged
@@ -11533,6 +11534,21 @@ SpriteRenderer:
   m_Size: {x: 0.46, y: 0.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &526606842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 526606839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300006, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300002, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &528478483
 GameObject:
   m_ObjectHideFlags: 0
@@ -12136,6 +12152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551956996}
   - component: {fileID: 551956997}
+  - component: {fileID: 551956998}
   m_Layer: 0
   m_Name: Open
   m_TagString: Untagged
@@ -12196,6 +12213,21 @@ SpriteRenderer:
   m_Size: {x: 0.46, y: 0.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &551956998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551956995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300014, guid: c8c259249aa49475fb771637179148d1, type: 3}
+  - {fileID: 21300000, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &569274870
 GameObject:
   m_ObjectHideFlags: 0
@@ -13625,7 +13657,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 690366940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3307, y: 11.15, z: 0}
+  m_LocalPosition: {x: 0.05, y: 12.16, z: 0}
   m_LocalScale: {x: 0.28810483, y: 0.29563415, z: 0.2881048}
   m_Children:
   - {fileID: 792635607}
@@ -14365,6 +14397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792635607}
   - component: {fileID: 792635608}
+  - component: {fileID: 792635609}
   m_Layer: 0
   m_Name: text-description-v1_11
   m_TagString: Untagged
@@ -14425,6 +14458,21 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.14}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &792635609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792635606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300004, guid: 78e442f4f94f24643915c9570a401db9, type: 3}
+  - {fileID: 21300004, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &795083837
 GameObject:
   m_ObjectHideFlags: 0
@@ -18564,7 +18612,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011274968084, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.4
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000011274968084, guid: 3a0b2f253f4c84a5bab522fbd33398c2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -24064,6 +24112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1453444120}
   - component: {fileID: 1453444121}
+  - component: {fileID: 1453444122}
   m_Layer: 0
   m_Name: text-description-v1_1
   m_TagString: Untagged
@@ -24124,6 +24173,21 @@ SpriteRenderer:
   m_Size: {x: 0.74, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1453444122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453444119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300000, guid: c8c259249aa49475fb771637179148d1, type: 3}
+  - {fileID: 21300006, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &1463038105
 GameObject:
   m_ObjectHideFlags: 0
@@ -25790,6 +25854,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1556820857}
   - component: {fileID: 1556820858}
+  - component: {fileID: 1556820859}
   m_Layer: 0
   m_Name: text-description-v1_6
   m_TagString: Untagged
@@ -25850,6 +25915,21 @@ SpriteRenderer:
   m_Size: {x: 0.94, y: 0.17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!114 &1556820859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1556820856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isChinese: 1
+  _TextImages:
+  - {fileID: 21300004, guid: c8c259249aa49475fb771637179148d1, type: 3}
+  - {fileID: 21300008, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
 --- !u!1 &1559335096
 GameObject:
   m_ObjectHideFlags: 0
@@ -30026,7 +30106,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.484569, y: 0.101362325}
+  m_Offset: {x: -1.9312131, y: 0.10136223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -30037,7 +30117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.9691367, y: 7.892132}
+  m_Size: {x: 4.8624253, y: 7.892132}
   m_EdgeRadius: 0
 --- !u!1 &1865737882
 GameObject:

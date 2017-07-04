@@ -33,7 +33,7 @@ public class DoorOpenTransition : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (_openDoor) {
-			print ("open");
+			//print ("open");
 			_door.transform.rotation = Quaternion.Lerp (_originalRotation, Quaternion.Euler (_tempEuler), _openDoorTimer.PercentTimePassed);
 			//_tempSpriteColor.a = _openDoorTimer.PercentTimeLeft;
 		} else {
@@ -51,7 +51,7 @@ public class DoorOpenTransition : MonoBehaviour {
 	}
 
 	void CloseOffice(OfficeDoorEvent e){
-		print ("## Check door " + e.Opened);
+		//print ("## Check door " + e.Opened);
 		_openDoorTimer.Reset ();
 		_openDoor = e.Opened;
 		_tempEuler = _originalRotation.eulerAngles;
