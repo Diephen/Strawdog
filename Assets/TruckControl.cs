@@ -17,7 +17,7 @@ public class TruckControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_Wheels = GetComponentsInChildren<TruckWheel> ();
-		_DrivingTimer = new Timer (5f);
+		_DrivingTimer = new Timer (4f);
 		_TruckAnim = GetComponent<Animator> ();
 		_TruckAudio = GetComponent<AudioSource> ();
 		
@@ -26,11 +26,11 @@ public class TruckControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		#if UNITY_EDITOR
-		if(Input.GetKeyDown(KeyCode.Space)){
-			print("## Truck start to move");
-			//StartTruck();
-			Initiate();
-		}
+//		if(Input.GetKeyDown(KeyCode.Space)){
+//			print("## Truck start to move");
+//			//StartTruck();
+//			Initiate();
+//		}
 		#endif
 
 		// driving 

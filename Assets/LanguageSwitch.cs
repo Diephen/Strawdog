@@ -12,16 +12,23 @@ public class LanguageSwitch : MonoBehaviour {
 	bool isCh = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		_LanSpriteRenderer = GetComponent<SpriteRenderer> ();
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+	void Start(){
 		if (_isChinese) {
 			Events.G.Raise (new LanguageSwitchEvent(languageSetting.Chinese));
 		}
+	}
+
+
+	
+	// Update is called once per frame
+	void Update () {
+		
 //		if (Input.GetKeyDown (KeyCode.L)) {
 //			
 //			isCh = !isCh;
@@ -54,6 +61,7 @@ public class LanguageSwitch : MonoBehaviour {
 	void OnEnable(){
 		Events.G.AddListener<LanguageSwitchEvent>(LanguageSwitchHandle);
 		//print ("enable language script");
+
 	}
 
 	void OnDisable(){
