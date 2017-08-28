@@ -81,7 +81,7 @@ public class SceneManagerScript : MonoBehaviour {
 	bool _once = false;
 	[SerializeField] VoiceOverManager _voManager;
 
-	void Awake() {
+	void Start() {
 		GameStateManager.gameStateManager._currScene = (SceneIndex)SceneManager.GetActiveScene ().buildIndex;
 	}
 
