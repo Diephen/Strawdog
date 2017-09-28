@@ -9791,7 +9791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 1
-  _isChinese: 1
+  _isChinese: 0
   _textStrings:
   - Hold the <i>'S'</i> key and the <i>'Down Arrow'</i>  when the characters glow
     to begin
@@ -11182,6 +11182,53 @@ Prefab:
     - target: {fileID: 1000012950250936, guid: c818f12a002284629955913fc144a9ef, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114609552048575292, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903159626773046, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651762422921584, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011256352370, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 73204c9c11c964454b041e4bd0e09668,
+        type: 3}
+    - target: {fileID: 114000014148563994, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 73204c9c11c964454b041e4bd0e09668,
+        type: 3}
+    - target: {fileID: 224000010089255494, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 257.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010089255494, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 316.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220090890, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -251
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000014220090890, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 429
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c818f12a002284629955913fc144a9ef, type: 2}
@@ -12984,7 +13031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 1
-  _isChinese: 1
+  _isChinese: 0
   _textStrings:
   - Press <i><b>'H'</b></i> to Bring Up Controls During the Game
   - "            \u6309  \u201CH\u201D  \u5F00\u542F\u6E38\u620F\u5E2E\u52A9\u83DC\u5355"
