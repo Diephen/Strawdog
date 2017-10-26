@@ -435,12 +435,42 @@ public class PuppetControl : MonoBehaviour {
 			else if (other.name == "STOPRight") {
 				_stateHandling [3] = false;
 			}
+			if (_whoAmI == CharacterIdentity.Guard) {
+				if (other.name == "STOPLeftGuard") {
+					_stateHandling [4] = false;
+				}
+				else if (other.name == "STOPRightGuard") {
+					_stateHandling [3] = false;
+				}
+			} else if (_whoAmI == CharacterIdentity.Prisoner) {
+				if (other.name == "STOPLeftPrisoner") {
+					_stateHandling [4] = false;
+				}
+				else if (other.name == "STOPRightPrisoner") {
+					_stateHandling [3] = false;
+				}
+			}
 		} else {
 			if (other.name == "STOPLeft") {
 				_stateHandling [3] = false;
 			}
 			else if (other.name == "STOPRight") {
 				_stateHandling [4] = false;
+			}
+			if (_whoAmI == CharacterIdentity.Guard) {
+				if (other.name == "STOPLeftGuard") {
+					_stateHandling [3] = false;
+				}
+				else if (other.name == "STOPRightGuard") {
+					_stateHandling [4] = false;
+				}
+			} else if (_whoAmI == CharacterIdentity.Prisoner) {
+				if (other.name == "STOPLeftPrisoner") {
+					_stateHandling [3] = false;
+				}
+				else if (other.name == "STOPRightPrisoner") {
+					_stateHandling [4] = false;
+				}
 			}
 //		else if (other.name == "open-left") {
 //			_stateHandling [3] = false;
@@ -459,12 +489,42 @@ public class PuppetControl : MonoBehaviour {
 			else if (other.name == "STOPRight") {
 				_stateHandling [3] = true;
 			}
+			if (_whoAmI == CharacterIdentity.Guard) {
+				if (other.name == "STOPLeftGuard") {
+					_stateHandling [4] = true;
+				}
+				else if (other.name == "STOPRightGuard") {
+					_stateHandling [3] = true;
+				}
+			} else if (_whoAmI == CharacterIdentity.Prisoner) {
+				if (other.name == "STOPLeftPrisoner") {
+					_stateHandling [4] = true;
+				}
+				else if (other.name == "STOPRightPrisoner") {
+					_stateHandling [3] = true;
+				}
+			}
 		} else {
 			if (other.name == "STOPLeft") {
 				_stateHandling [3] = true;
 			}
 			else if (other.name == "STOPRight") {
 				_stateHandling [4] = true;
+			}
+			if (_whoAmI == CharacterIdentity.Guard) {
+				if (other.name == "STOPLeftGuard") {
+					_stateHandling [3] = true;
+				}
+				else if (other.name == "STOPRightGuard") {
+					_stateHandling [4] = true;
+				}
+			} else if (_whoAmI == CharacterIdentity.Prisoner) {
+				if (other.name == "STOPLeftPrisoner") {
+					_stateHandling [3] = true;
+				}
+				else if (other.name == "STOPRightPrisoner") {
+					_stateHandling [4] = true;
+				}
 			}
 		}
 //		else if (other.name == "open-left") {
