@@ -100,6 +100,7 @@ public class GuardHandle : MonoBehaviour {
 					m_IsFaint = true;
 					//Fading to Black
 					Events.G.Raise(new Act1EndedEvent());
+					GameStateManager.gameStateManager._TorturedPrisoner = true;
 				}
 			}
 

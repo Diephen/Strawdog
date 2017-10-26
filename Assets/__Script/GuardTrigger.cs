@@ -139,6 +139,7 @@ public class GuardTrigger : MonoBehaviour {
 		_rightFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		_leftFlap.GetComponentInChildren<HighlightSprite> ().DisableHighlight();
 		Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
+		GameStateManager.gameStateManager._TorturedPrisoner = false;
 		_guardLeaveCell = true;
 	}
 

@@ -35,18 +35,19 @@ public class GameStateManager : MonoBehaviour {
 
 	public KeyCode _helpKey { get; set; }
 
+	//TODO: figure out what this variable is (it is being used, but forgot how)
 	public bool _executionAsGuard{get; set;}
-
-
+	// keeps a record of whether the player chose to torture the prisoner in 1-2
+	public bool _TorturedPrisoner {get; set;}
 
 	void Awake () {
 		if (gameStateManager == null) {
-			DontDestroyOnLoad (gameObject);
 			gameStateManager = this;
 		}
 		else if (gameStateManager != this) {
 			Destroy (gameObject);
 		}
+		DontDestroyOnLoad (gameObject);
 
 		_gLeftKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gLeftKey", "A"));
 		_gDownKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("gDownKey", "S"));
