@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 0
-  _isChinese: 0
+  _isChinese: 1
   _textStrings:
   - Sometimes I would wonder if orders were taken too far. But it was during war,
     nobody had time to think about such things.  Everything was for the greater good.
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 0
-  _isChinese: 0
+  _isChinese: 1
   _textStrings:
   - "August 1940,  \_ The Empire of Japan declared the unification of East Asia marking
     the beginning of the Greater East Asia Co-Prosperity Sphere. \_ Justified through
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 0
-  _isChinese: 0
+  _isChinese: 1
   _textStrings:
   - Act 1  Initiation
   - "\u7B2C\u4E00\u5E55 \u5E8F\u5E55"
@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 0
-  _isChinese: 0
+  _isChinese: 1
   _textStrings:
   - Act 2  Divergence
   - "\u7B2C\u4E8C\u5E55 \u5206\u6B67"
