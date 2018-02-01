@@ -15,6 +15,8 @@ public class GuardHandle : MonoBehaviour {
 	[SerializeField] Fading m_Fading;
 	[SerializeField] InteractionProgress m_ProgressBar;
 	[SerializeField] TextReaction[] m_DesText;
+	[SerializeField] TextReaction[] m_LeaveHint;
+	Timer m_leaveTimer;
 
 	float m_AStartHoldTime = -1f;
 	float m_AHoldTime = 0f;
@@ -23,12 +25,18 @@ public class GuardHandle : MonoBehaviour {
 	private bool m_IsFaint = false;
 
 	bool m_EngagedPrisoner = false;
+	bool m_isFirstEngaged = false;
+
+	void Awake(){
+		m_leaveTimer = new Timer(5f);
+	}
 
 	void OnEnable ()
 	{
 		Events.G.AddListener<GuardEnteringCellEvent>(OnGuardEnterCell);
 		Events.G.AddListener<GuardEngaginPrisonerEvent>(OnGuardEngagePrisoner);
 		Events.G.AddListener<GuardLeavingCellEvent>(OnGuardLeaveCell);
+
 	}
 
 	void OnDisable ()
@@ -50,6 +58,12 @@ public class GuardHandle : MonoBehaviour {
 		if (m_DoorAudio != null && !m_DoorAudio.isPlaying) {
 			m_DoorAudio.Play ();
 		}
+		foreach (TextReaction tr in m_LeaveHint) {
+			tr.Confirm();
+
+		}
+
+
 	}
 
 	void OnGuardEngagePrisoner (GuardEngaginPrisonerEvent e)
@@ -57,6 +71,8 @@ public class GuardHandle : MonoBehaviour {
 		if (e.Engaged) {
 			Debug.Log ("G: Prisoner Engaged");
 			StartTorture ();
+			m_isFirstEngaged = true;
+			m_leaveTimer.Reset ();
 			foreach (TextReaction tr in m_DesText) {
 				tr.TextFadeIn ();
 			}
@@ -115,6 +131,14 @@ public class GuardHandle : MonoBehaviour {
 //			}
 //			m_GuardAnim.SetFloat ("TortureHold", m_AHoldTime);
 
+		}
+
+		if (m_leaveTimer.IsOffCooldown && m_isFirstEngaged) {
+			foreach (TextReaction tr in m_LeaveHint) {
+				tr.TextFadeIn ();
+				tr.Blink ();
+			}
+			m_isFirstEngaged = false;
 		}
 	}
 
@@ -187,7 +211,12 @@ public class GuardHandle : MonoBehaviour {
 		}
 		foreach (TextReaction tr in m_DesText) {
 			tr.TextFadeOut ();
+
 		}
+//		foreach (TextReaction tr in m_LeaveHint) {
+//			tr.Confirm();
+//
+//		}
 
 	}
 

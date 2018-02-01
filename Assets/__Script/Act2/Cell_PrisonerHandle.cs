@@ -24,6 +24,11 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 //	private bool m_IsStartTorture = false;
 
 	void Start(){
+		if (GameStateManager.gameStateManager._TorturedPrisoner) {
+			m_IsStartWithAnimation = true;
+		} else {
+			m_IsStartWithAnimation = false;
+		}
 		if (m_Anim == null && GetComponent<Animator> ()) {
 			m_Anim = GetComponent<Animator> ();
 		}
@@ -73,7 +78,12 @@ public class Cell_PrisonerHandle : MonoBehaviour {
 	void LeftCellUnlocked (LeftCellUnlockedEvent e)
 	{
 		print ("enable prisoner");
-		m_Anim.Play ("p-jc-GetUp");
+		if (m_IsStartWithAnimation) {
+			m_Anim.Play ("p-jc-GetUp");
+		} else {
+			EnablePrisonerMovement ();
+		}
+
 
 		// collider fix 
 		if(m_StopLeftForGuard!= null){
