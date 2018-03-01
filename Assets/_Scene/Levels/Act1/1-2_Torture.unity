@@ -5087,20 +5087,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 6.8
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -10095,20 +10081,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -11028,7 +11000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isChinese: 1
+  _isChinese: 0
   _TextImages:
   - {fileID: 21300012, guid: c8c259249aa49475fb771637179148d1, type: 3}
   - {fileID: 21300014, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
@@ -11905,20 +11877,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -14448,7 +14406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isChinese: 1
+  _isChinese: 0
   _TextImages:
   - {fileID: 21300000, guid: e418d00b885454a4bb1087646a0c0c28, type: 3}
   - {fileID: 21300000, guid: e418d00b885454a4bb1087646a0c0c28, type: 3}
@@ -17529,6 +17487,21 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 544408509}
+    - target: {fileID: 114651762422921584, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903159626773046, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114609552048575292, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c818f12a002284629955913fc144a9ef, type: 2}
   m_IsPrefabParent: 0
@@ -25542,7 +25515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 054ea863ce5b54e6f80cf85aec56329f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isChinese: 1
+  _isChinese: 0
   _TextImages:
   - {fileID: 21300008, guid: c8c259249aa49475fb771637179148d1, type: 3}
   - {fileID: 21300012, guid: 47fd8a1125823466a88cc7b6eb876eec, type: 3}
@@ -29192,20 +29165,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 6.8
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -33631,20 +33590,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 6.8
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

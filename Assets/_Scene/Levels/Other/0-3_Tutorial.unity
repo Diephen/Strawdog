@@ -2951,20 +2951,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -10144,8 +10130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8e3e9bb841847fbb719eef3a06508c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isTextMesh: 1
-  _isChinese: 1
+  _isTextMesh: 0
+  _isChinese: 0
   _textStrings:
   - Hold the <i>'S'</i> key and the <i>'Down Arrow'</i>  when the characters glow
     to begin
@@ -11555,6 +11541,21 @@ Prefab:
     - target: {fileID: 224000010695095284, guid: c818f12a002284629955913fc144a9ef,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651762422921584, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114903159626773046, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114609552048575292, guid: c818f12a002284629955913fc144a9ef,
+        type: 2}
+      propertyPath: _isChinese
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -13273,20 +13274,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 6.8
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -13401,7 +13388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isTextMesh: 1
-  _isChinese: 1
+  _isChinese: 0
   _textStrings:
   - Press <i><b>'H'</b></i> to Bring Up Controls During the Game
   - "            \u6309  \u201CH\u201D  \u5F00\u542F\u6E38\u620F\u5E2E\u52A9\u83DC\u5355"
@@ -17449,20 +17436,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
