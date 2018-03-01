@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class PrisonerHandle : MonoBehaviour {
+	[SerializeField] PuppetControl m_PCtrl;
 	[SerializeField] Animator m_PrisonerAnim;
 	[SerializeField] GuardHandle m_GuardHandle;
 	[SerializeField] AnimationControl m_AnimCtrl;

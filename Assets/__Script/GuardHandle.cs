@@ -72,6 +72,7 @@ public class GuardHandle : MonoBehaviour {
 			Debug.Log ("G: Prisoner Engaged");
 			StartTorture ();
 			m_isFirstEngaged = true;
+			//m_IsStartTorture = false;
 			m_leaveTimer.Reset ();
 			foreach (TextReaction tr in m_DesText) {
 				tr.TextFadeIn ();
@@ -150,6 +151,7 @@ public class GuardHandle : MonoBehaviour {
 			m_GuardAnim.SetBool("IsBack", false);
 			m_IsStartTorture = true;
 			Events.G.Raise (new UIProgressBar (true));
+			Events.G.Raise (new DisableMoveEvent (CharacterIdentity.Guard));
 			StartCoroutine (m_ProgressBar.FadeIn (3f));
 		}
 	}
@@ -213,10 +215,7 @@ public class GuardHandle : MonoBehaviour {
 			tr.TextFadeOut ();
 
 		}
-//		foreach (TextReaction tr in m_LeaveHint) {
-//			tr.Confirm();
-//
-//		}
+
 
 	}
 
@@ -237,6 +236,7 @@ public class GuardHandle : MonoBehaviour {
 	public void DisableAnim(){
 		m_AnimCtrl.SetAnimation(false);
 		m_GuardAnim.SetBool("IsBack", false);
+		Events.G.Raise (new EnableMoveEvent (CharacterIdentity.Guard));
 	} 
 
 
